@@ -1,7 +1,7 @@
 #pragma once
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
-
+#include "ShaderProgram.h"
 #include <iostream>
 
 
@@ -28,6 +28,7 @@ int main() {
 
 	glfwSetTime(0);
 
+	ShaderProgram pro;
 
 	while (!glfwWindowShouldClose(window)) {
 

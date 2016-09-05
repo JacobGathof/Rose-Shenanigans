@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rose", "Rose\Rose.vcxproj", "{EDED8CE4-C882-44C3-A9D9-F788DCE8208B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "opengl-wrapper", "opengl-wrapper", "{68DB7BC5-BDEB-401D-832D-E27B4500B185}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
