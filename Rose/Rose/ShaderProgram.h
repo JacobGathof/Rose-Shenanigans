@@ -36,7 +36,7 @@ private:
 	/*Checks and prints any errors in the linking of shaders*/
 	void checkLinkErrors(int shader);
 
-	/*Return the char* representing the shader source. Used to check file parser*/
+	/*Return the char* representing the shader source. Converts file into usable char buffer*/
 	const char * getShaderSource(char* filename);
 
 };
