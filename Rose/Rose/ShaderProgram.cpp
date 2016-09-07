@@ -137,6 +137,7 @@ void ShaderProgram::loadSampler(char * location, int i) {
 	glUniform1i(glGetUniformLocation(this->shader_program, location), i);
 }
 
-ShaderProgram::~ShaderProgram()
-{
+ShaderProgram::~ShaderProgram(){
+
+	glDeleteShader(shader_program);
 }

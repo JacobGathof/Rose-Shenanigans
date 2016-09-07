@@ -4,6 +4,9 @@
 
 std::map<std::string, Model*> Res::models;
 std::map<std::string, ShaderProgram*> Res::shaders;
+std::map<std::string, Texture*> Res::textures;
+
+Model * Res::stdModel;
 
 
 Model * Res::getModel(std::string str)
@@ -14,6 +17,11 @@ Model * Res::getModel(std::string str)
 ShaderProgram * Res::getShader(std::string str)
 {
 	return shaders[str];
+}
+
+Texture * Res::getTexture(std::string str)
+{
+	return textures[str];
 }
 
 void Res::loadModel(std::string name, float * vertices, float * tex, int length){
@@ -28,15 +36,22 @@ void Res::loadShader(std::string name, char * file_vertex, char * file_geo, char
 	shaders[name] = program;
 }
 
+void Res::loadTexture(std::string name, char * filename){
+	Texture * t = new Texture(filename);
+	textures[name] = t;
+}
+
 void Res::cleanResources(){
 	for (auto m : models) {
-		glDeleteVertexArrays(1, &m.second->VAO);
 		delete m.second;
 	}
 
 	for (auto s : shaders) {
-		glDeleteShader(s.second->shader_program);
 		delete s.second;
+	}
+
+	for (auto t : textures) {
+		delete t.second;
 	}
 	std::cout << "Resources cleaned\n";
 

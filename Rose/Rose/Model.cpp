@@ -2,6 +2,10 @@
 
 
 
+void Model::bind(){
+	glBindVertexArray(VAO);
+}
+
 Model::Model(int vao, int num)
 {
 	this->VAO = vao;
@@ -13,6 +17,6 @@ Model::Model()
 }
 
 
-Model::~Model()
-{
+Model::~Model(){
+	glDeleteVertexArrays(1, &VAO);
 }
