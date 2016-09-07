@@ -1,9 +1,12 @@
 #pragma once
+#include "GL\glew.h"
+
+
 class Model
 {
 public:
 
-	int VAO;
+	GLuint VAO;
 	int numberOfVertices;
 
 	/*Construct a Model Object with a VAO and the Number of Vertices to render*/
