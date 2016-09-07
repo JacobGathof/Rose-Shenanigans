@@ -1,11 +1,13 @@
 #pragma once
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
-#include "ShaderProgram.h"
+#include "Game.h"
+#include "Res.h"
 #include <iostream>
 
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+Game game;
 
 int main() {
 
@@ -28,18 +30,21 @@ int main() {
 
 	glfwSetTime(0);
 
-	ShaderProgram pro;
+	game.init();
 
 	while (!glfwWindowShouldClose(window)) {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		game.loop();
+		game.render();
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 
-
 	}
+
+	Res::cleanResources();
 
 	glfwTerminate();
 
