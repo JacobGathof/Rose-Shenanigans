@@ -1,4 +1,6 @@
 #pragma once
+#include "Object.h"
+
 class Game
 {
 public:
@@ -8,5 +10,7 @@ public:
 	void init();
 	void loop();
 	void render();
+
+	Object wizard;
 };
 

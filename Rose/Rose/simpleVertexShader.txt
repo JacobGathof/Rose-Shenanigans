@@ -1,16 +1,16 @@
 #version 400 core
 
-layout (location = 0) in vec2 position;
+layout (location = 0) in vec2 vertices;
 layout (location = 1) in vec2 texCoords;
 
 out vec2 texCoords_;
 
-uniform float height;
-uniform float width;
+uniform vec2 scale;
+uniform vec2 pos;
 
 void main(){
 	
-	gl_Position = vec4(position.x*width, position.y*height, 0.0 , 1.0);
+	gl_Position = vec4(vertices.x*scale.x + pos.x, vertices.y*scale.y + pos.y, 0.0 , 1.0);
 	texCoords_ = texCoords;
 	
 }
