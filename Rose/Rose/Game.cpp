@@ -11,13 +11,18 @@ void Game::init()
 	Res::loadShader("simpleShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
 	ShaderProgram * pro = Res::getShader("simpleShader");
 
-	pro->loadFloat("height", 1);
-	pro->loadFloat("width", 1);
+	pro->loadFloat("height", .5f);
+	pro->loadFloat("width", .5f);
+	pro->loadSampler("image", 0);
 
-	float vertices[] = { 0,0, 0,1, 1,1 };
-	float tex[] = { 0,0, 0,1, 1,1 };
+	Res::loadTexture("Wizard", "Wizard.png");
+	Res::getTexture("Wizard")->bind();
 
-	Res::loadModel("Triangle", vertices, tex, 6);
+	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0};
+	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1};
+
+	Res::loadModel("Square", vertices, tex, 12);
+	Res::stdModel = Res::getModel("Square");
 
 }
 
@@ -28,9 +33,8 @@ void Game::loop(){
 
 void Game::render(){
 
-	Model* m = Res::getModel("Triangle");
-
-	glBindVertexArray(m->VAO);
+	Model* m = Res::stdModel;
+	m->bind();
 	glDrawArrays(GL_TRIANGLES, 0, m->numberOfVertices);
 
 }
