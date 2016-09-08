@@ -15,7 +15,7 @@ void Object::draw(){
 	
 	ShaderProgram * shader = Res::getShader("simpleShader");
 	shader->loadVector2f("scale", scale);
-	//shader->loadVector2f("position", position);
+	shader->loadVector2f("pos", position);
 
 	Res::stdModel->bind();
 
