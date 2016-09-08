@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GL\glew.h"
+#include "Vector2f.h"
 
 class ShaderProgram
 {
@@ -22,7 +23,7 @@ public:
 	/*Load a float uniform to the shader at a specified location (uniform name)*/
 	void loadFloat(char* location, float value);
 
-	//void loadVector3f(char* location, Vector3f v);
+	void loadVector2f(char* location, Vector2f v);
 	//void loadMatrix4f(char* location, Matrix4f *mat);
 
 	/*Load a sampler uniform to the shader at a specified location. Identical to loading an integer*/
