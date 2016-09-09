@@ -14,7 +14,7 @@ class Player: public Object
 public:
 	Player();
 	~Player();
-	Player(int health, int maxhealth, int mana, int maxmana, int morality, Vector2f pos);
+	Player(int health, int maxhealth, int mana, int maxmana, int morality, Vector2f pos, Vector2f sc, std::string image, int speed);
 
 	int maxhp;
 	int hp;
