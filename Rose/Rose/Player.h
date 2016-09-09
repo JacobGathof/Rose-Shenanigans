@@ -16,7 +16,6 @@ public:
 	~Player();
 	Player(int health, int maxhealth, int mana, int maxmana, int morality, Vector2f pos);
 
-	int dummy;
 	int maxhp;
 	int hp;
 	int maxmana;
