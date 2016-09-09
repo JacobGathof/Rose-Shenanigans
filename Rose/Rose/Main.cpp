@@ -10,7 +10,10 @@ int main() {
 
 	GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", 0, 0);
 	glfwMakeContextCurrent(window);
+
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
@@ -29,6 +32,8 @@ int main() {
 	while (!glfwWindowShouldClose(window)) {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		Input::processInput();
 
 		game.loop();
 		game.render();
@@ -54,4 +59,27 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		return;
 	}
 
+	if (action == GLFW_PRESS) {
+		Input::keys[key] = true;
+	}
+	if (action == GLFW_RELEASE) {
+		Input::keys[key] = false;
+	}
+}
+
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+
+	if (action == GLFW_PRESS) {
+		Input::mouse[button] = true;
+	}
+	if (action == GLFW_RELEASE) {
+		Input::mouse[button] = false;
+	}
+
+}
+
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+	return;
 }
