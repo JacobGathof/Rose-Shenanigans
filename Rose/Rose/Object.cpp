@@ -2,8 +2,14 @@
 
 
 
-void Object::collide(Object obj)
+bool Object::collide(Object obj)
 {
+	if (obj.position.x <= position.x + scale.x || obj.position.x >= position.x) {
+		if (obj.position.y <= position.y + scale.y || obj.position.y >= position.y) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void Object::move()

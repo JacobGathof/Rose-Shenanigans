@@ -12,7 +12,7 @@ public:
 	Texture * tex;
 	float speed;
 
-	void collide(Object obj);
+	bool collide(Object obj);
 	void move();
 	void draw();
 
