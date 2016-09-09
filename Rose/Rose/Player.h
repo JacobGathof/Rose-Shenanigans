@@ -4,6 +4,11 @@
 #include <vector>
 #include <iostream>
 
+enum TypesOfHands {
+	right,
+	left
+};
+
 class Player: public Object
 {
 public:
@@ -19,8 +24,6 @@ public:
 	Weapon hands[2];
 	std::vector<Object> inventory;
 
-	enum right;
-	enum left;
 	
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
