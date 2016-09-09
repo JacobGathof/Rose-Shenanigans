@@ -25,15 +25,24 @@ int main() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(1, 1, 1, 1);
 
-	glfwSetTime(0);
-
 	game.init();
+	Input::game = &game;
+
+	glfwSetTime(0);
+	float dt = 0;
+	float last_second = 0;
+	float last_time = 0;
+	float current_time = 0;
 
 	while (!glfwWindowShouldClose(window)) {
 
+		current_time = glfwGetTime();
+		dt = current_time - last_time;
+		last_time = current_time;
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Input::processInput();
+		Input::processInput(dt);
 
 		game.loop();
 		game.render();

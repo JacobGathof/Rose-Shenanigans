@@ -12,8 +12,11 @@ bool Object::collide(Object obj)
 	return false;
 }
 
-void Object::move()
+void Object::move(Vector2f dir)
 {
+	position.x += dir.x * speed;
+	position.y += dir.y * speed;
+
 }
 
 void Object::draw(){

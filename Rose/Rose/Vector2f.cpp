@@ -1,6 +1,17 @@
 #include "Vector2f.h"
+#include <iostream>
 
 
+float Vector2f::magnitude()
+{
+	return sqrt(x*x + y*y);
+}
+
+Vector2f Vector2f::normalize()
+{
+	float mag = magnitude();
+	return Vector2f(x/mag, y/mag);
+}
 
 Vector2f::Vector2f()
 {
