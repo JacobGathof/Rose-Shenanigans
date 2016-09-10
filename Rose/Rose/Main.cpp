@@ -21,7 +21,6 @@ int main() {
 	if (err != GLEW_OK)
 		std::cout << "Error:" << glewGetErrorString(err);
 
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(1, 1, 1, 1);

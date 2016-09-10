@@ -15,15 +15,14 @@ Player::~Player()
 {
 }
 
-Player::Player(int health, int maxhealth, int magic, int maxmagic, int moral, Vector2f pos)
+Player::Player(int health, int maxhealth, int magic, int maxmagic, int moral, Vector2f pos, Vector2f sc, std::string image, int speed)
+	: Object(pos, sc, image, speed)
 {
 	maxhp = maxhealth;
 	hp = health;
 	mana = magic;
 	maxmana = maxmagic;
 	morality = moral;
-	position = pos;
-	
 }
 
 void Player::equip(Weapon weapon, int hand)

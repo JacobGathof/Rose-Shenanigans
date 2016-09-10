@@ -3,6 +3,7 @@
 #include "ModelLoader.h"
 #include "Model.h"
 #include "Res.h"
+#include "Player.h"
 #include <iostream>
 
 void Game::init()
@@ -19,9 +20,7 @@ void Game::init()
 
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
-
-
-	wizard = Object(Vector2f(0, 0), Vector2f(1, 1), "Wizard");
+	wizard = Player(100, 100, 100, 100, 50, Vector2f(0, 0), Vector2f(1, 1), "Wizard", 1);
 
 
 }
