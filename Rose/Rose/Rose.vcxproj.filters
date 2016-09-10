@@ -130,9 +130,18 @@
     <Text Include="simpleFragmentShader.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="staticVertexShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="staticFragmentShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Wizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Echo.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

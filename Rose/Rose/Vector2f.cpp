@@ -9,6 +9,7 @@ float Vector2f::magnitude()
 
 Vector2f Vector2f::normalize()
 {
+	if (x == 0 && y == 0) return Vector2f(0, 0);
 	float mag = magnitude();
 	return Vector2f(x/mag, y/mag);
 }

@@ -13,7 +13,7 @@ public:
 	float speed;
 
 	bool collide(Object obj);
-	void move(Vector2f dir);
+	virtual void move(Vector2f dir);
 	void draw();
 
 	Object();

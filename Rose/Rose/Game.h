@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "Player.h"
 
 class Game
 {
@@ -11,6 +11,6 @@ public:
 	void loop();
 	void render();
 
-	Object wizard;
+	Player wizard;
 };
 

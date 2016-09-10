@@ -9,6 +9,13 @@ enum TypesOfHands {
 	left
 };
 
+enum Direction {
+	SOUTH,
+	EAST,
+	WEST,
+	NORTH
+};
+
 class Player: public Object
 {
 public:
@@ -23,6 +30,10 @@ public:
 	int morality;
 	Weapon hands[2];
 	std::vector<Object> inventory;
+
+	Direction direction = SOUTH;
+	float internalTime = 0;
+	virtual void move(Vector2f dir, float dt);
 
 	
 	void equip(Weapon weapon, int hand);
