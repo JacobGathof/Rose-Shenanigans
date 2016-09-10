@@ -203,7 +203,7 @@
     <Text Include="staticVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Documents\my programs\sprite world of my own\inn.png" />
+    <Image Include="..\..\..\..\..\Documents\my programs\sprite world of my own\buildingtest.png" />
     <Image Include="Echo.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
