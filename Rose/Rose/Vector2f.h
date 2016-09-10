@@ -15,6 +15,10 @@ public:
 		return Vector2f(v.x * f, v.y * f);
 	}
 
+	friend Vector2f operator+(const Vector2f &v, const Vector2f &v2) {
+		return Vector2f(v.x +v2.x, v.y +v2.y);
+	}
+
 
 	Vector2f();
 	Vector2f(float x, float y);

@@ -7,18 +7,22 @@ Game* Input::game;
 
 void Input::processInput(float dt)
 {
+
+	Vector2f movement;
 	if (keys[GLFW_KEY_W]) {
-		game->wizard.move(dt*Vector2f(0, 1));
+		movement = movement + Vector2f(0, 1);
 	}
 	if (keys[GLFW_KEY_S]) {
-		game->wizard.move(dt*Vector2f(0, -1));
+		movement = movement + Vector2f(0, -1);
 	}
 	if (keys[GLFW_KEY_A]) {
-		game->wizard.move(dt*Vector2f(-1, 0));
+		movement = movement + Vector2f(-1, 0);
 	}
 	if (keys[GLFW_KEY_D]) {
-		game->wizard.move(dt*Vector2f(1, 0));
+		movement = movement + Vector2f(1, 0);
 	}
+		game->wizard.move(movement.normalize(), dt);
+
 
 	if (mouse[GLFW_MOUSE_BUTTON_1]) {
 		

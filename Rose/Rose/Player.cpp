@@ -36,3 +36,20 @@ void Player::addToInventory(Object item)
 	inventory.push_back(item);
 }
 
+void Player::move(Vector2f dir, float dt) {
+
+	if (dir.x == 0 && dir.y == 0) internalTime = 0;
+
+	if (dir.x > .75) direction = WEST;
+	if (dir.x < -.75) direction = EAST;
+
+	if (dir.y > .75) direction = NORTH;
+	if (dir.y < -.75) direction = SOUTH;
+
+
+	position = position + dir*speed*dt;
+
+	internalTime += dt;
+
+}
+
