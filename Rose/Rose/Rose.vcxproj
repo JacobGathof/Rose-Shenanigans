@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Echo.png" />
+    <Image Include="Image.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
