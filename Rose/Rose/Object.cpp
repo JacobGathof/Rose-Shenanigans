@@ -4,8 +4,8 @@
 
 bool Object::collide(Object obj)
 {
-	if (obj.position.x <= position.x + scale.x || obj.position.x >= position.x) {
-		if (obj.position.y <= position.y + scale.y || obj.position.y >= position.y) {
+	if (obj.position.x <= position.x + scale.x || obj.position.x + obj.scale.x >= position.x) {
+		if (obj.position.y <= position.y + scale.y || obj.position.y + obj.scale.y>= position.y) {
 			return true;
 		}
 	}

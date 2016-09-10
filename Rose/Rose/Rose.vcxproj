@@ -203,8 +203,8 @@
     <Text Include="staticVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Documents\my programs\sprite world of my own\buildingtest.png" />
     <Image Include="Echo.png" />
+    <Image Include="Image.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

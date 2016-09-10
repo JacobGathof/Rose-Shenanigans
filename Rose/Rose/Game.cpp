@@ -24,7 +24,7 @@ void Game::init()
 	Res::stdModel = Res::getModel("Square");
 	wizard = Player(100, 100, 100, 100, 50, Vector2f(0, 0), Vector2f(20, 20), "Echo", 20);
 
-	//Res::loadTexture("Inn", "buildingtest.png");
+	Res::loadTexture("Inn", "Echo.png");
 
 	building = Building(Vector2f(.5, 0), "Inn", Vector2f(20, 20), Vector2f(.75, 0));
 
