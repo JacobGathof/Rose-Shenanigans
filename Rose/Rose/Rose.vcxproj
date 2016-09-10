@@ -157,6 +157,7 @@
     <ClInclude Include="Building.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LoadZones.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Model.h" />
@@ -174,11 +175,13 @@
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
+    <ClInclude Include="WorldManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LoadZones.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -191,6 +194,7 @@
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="simpleFragmentShader.txt" />
