@@ -13,7 +13,6 @@ World::~World()
 
 World::World(std::string title)
 {
-	
 	name = title;
 }
 

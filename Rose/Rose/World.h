@@ -8,7 +8,6 @@ public:
 	~World();
 	World(std::string title);
 	
-
 	std::string name;
 	std::vector<Object> objects;
 	
