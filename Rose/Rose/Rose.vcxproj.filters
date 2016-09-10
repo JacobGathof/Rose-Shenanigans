@@ -156,5 +156,8 @@
     <Image Include="Echo.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\..\..\Documents\my programs\sprite world of my own\inn.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

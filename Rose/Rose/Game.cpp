@@ -16,14 +16,17 @@ void Game::init()
 	pro->loadSampler("image", 0);
 
 	Res::loadTexture("Echo", "Echo.png");
+	
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0};
 	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1};
 
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
-	wizard = Player(100, 100, 100, 100, 50, Vector2f(0, 0), Vector2f(20, 20), "Echo", 20.0);
+	wizard = Player(100, 100, 100, 100, 50, Vector2f(0, 0), Vector2f(20, 20), "Echo", 20);
 
+	//Res::loadTexture("Inn", "inn.png");
+	building = Building(Vector2f(.5, 0), "Inn", Vector2f(1, 1), Vector2f(.75, 0));
 
 }
 
@@ -39,5 +42,6 @@ void Game::render(){
 	pro->loadInteger("direction", wizard.direction);
 
 	wizard.draw();
+	//building.draw();
 
 }

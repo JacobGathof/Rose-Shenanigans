@@ -35,21 +35,24 @@ int main() {
 	float current_time = 0;
 
 	while (!glfwWindowShouldClose(window)) {
+		try {
+			current_time = glfwGetTime();
+			dt = current_time - last_time;
+			last_time = current_time;
 
-		current_time = glfwGetTime();
-		dt = current_time - last_time;
-		last_time = current_time;
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			Input::processInput(dt);
 
-		Input::processInput(dt);
+			game.loop();
+			game.render();
 
-		game.loop();
-		game.render();
-
-		glfwPollEvents();
-		glfwSwapBuffers(window);
-
+			glfwPollEvents();
+			glfwSwapBuffers(window);
+		}
+		catch (exception e) {
+			std::cout << e.what();
+		}
 	}
 
 	Res::cleanResources();

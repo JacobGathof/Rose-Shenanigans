@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Building.h"
 
 class Game
 {
@@ -12,5 +13,6 @@ public:
 	void render();
 
 	Player wizard;
+	Building building;
 };
 
