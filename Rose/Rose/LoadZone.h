@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
 #include "Vector2f.h"
-class LoadZones
+class LoadZone
 {
 public:
-	LoadZones();
-	~LoadZones();
+	LoadZone();
+	~LoadZone();
 
-	LoadZones(std::string name, int h, int w, Vector2f pos);
+	LoadZone(std::string name, int h, int w, Vector2f pos);
 
 	std::string world;
 	int height, width;

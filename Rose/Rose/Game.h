@@ -3,7 +3,8 @@
 #include "Building.h"
 #include "World.h"
 #include "WorldManager.h"
-#include "LoadZones.h"
+#include "LoadZone.h"
+#include "Text.h"
 
 class Game
 {
@@ -21,7 +22,8 @@ public:
 	Entity edwin;
 	Player wizard;
 	Building building;
-	LoadZones zone;
+	LoadZone zone;
+	Text text;
 	
 };
 

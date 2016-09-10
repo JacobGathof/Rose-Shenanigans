@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\moormaet\Desktop\opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -129,7 +129,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\moormaet\Desktop\opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -155,10 +155,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="LoadZones.h" />
+    <ClInclude Include="LoadZone.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Model.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
@@ -180,10 +182,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="LoadZones.cpp" />
+    <ClCompile Include="LoadZone.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -199,14 +203,18 @@
     <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Font.txt" />
     <Text Include="simpleFragmentShader.txt" />
     <Text Include="simpleVertexShader.txt" />
     <Text Include="staticFragmentShader.txt" />
     <Text Include="staticVertexShader.txt" />
+    <Text Include="textFragmentShader.txt" />
+    <Text Include="textVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
+    <Image Include="Font_Texture.png" />
     <Image Include="Image.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
