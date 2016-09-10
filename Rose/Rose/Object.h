@@ -13,8 +13,7 @@ public:
 	float speed;
 
 	bool collide(Object obj);
-	virtual void move(Vector2f dir);
-	void draw();
+	virtual void draw();
 
 	Object();
 	Object(Vector2f pos, Vector2f scale, std::string texName, float speed = 1.0);

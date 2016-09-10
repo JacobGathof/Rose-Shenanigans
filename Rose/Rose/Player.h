@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "Entity.h"
 #include "Weapon.h"
 #include <vector>
 #include <iostream>
@@ -9,19 +9,12 @@ enum TypesOfHands {
 	left
 };
 
-enum Direction {
-	SOUTH,
-	EAST,
-	WEST,
-	NORTH
-};
-
-class Player: public Object
+class Player: public Entity
 {
 public:
-	Player();
-	~Player();
-	Player(int health, int maxhealth, int mana, int maxmana, int morality, Vector2f pos, Vector2f sc, std::string image, int speed);
+	Player() {};
+	~Player() {};
+	Player(Vector2f pos, Vector2f sc, std::string image, int speed);
 
 	int maxhp;
 	int hp;
@@ -31,8 +24,7 @@ public:
 	Weapon hands[2];
 	std::vector<Object> inventory;
 
-	Direction direction = SOUTH;
-	float internalTime = 0;
+
 	virtual void move(Vector2f dir, float dt);
 
 	

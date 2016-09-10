@@ -44,7 +44,7 @@ int main() {
 
 			Input::processInput(dt);
 
-			game.loop();
+			game.loop(dt);
 			game.render();
 
 			glfwPollEvents();

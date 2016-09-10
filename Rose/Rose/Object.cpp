@@ -12,17 +12,12 @@ bool Object::collide(Object obj)
 	return false;
 }
 
-void Object::move(Vector2f dir)
-{
-	position.x += dir.x * speed;
-	position.y += dir.y * speed;
 
-}
 
 void Object::draw(){
 	tex->bind();
 	
-	ShaderProgram * shader = Res::getShader("simpleShader");
+	ShaderProgram * shader = Res::getShader("staticShader");
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);
 

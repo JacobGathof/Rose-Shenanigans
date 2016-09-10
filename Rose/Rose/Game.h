@@ -9,9 +9,11 @@ public:
 	~Game() {};
 
 	void init();
-	void loop();
+	void loop(float dt);
 	void render();
 
+	float gameTime;
+	Entity edwin;
 	Player wizard;
 	Building building;
 };
