@@ -1,5 +1,6 @@
 #pragma once
 #include "World.h"
+#include "Player.h"
 
 #include <vector>
 class WorldManager
@@ -7,11 +8,12 @@ class WorldManager
 public:
 	WorldManager();
 	~WorldManager();
+	WorldManager(World area);
 
 	World world;
 	std::map<std::string, World> worlds;
 
 	void addWorld(World area);
-	void swapWorld(std::string name);
+	void checkWorld(Player player);
 };
 

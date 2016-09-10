@@ -27,13 +27,14 @@ void World::Draw() {
 	}
 }
 
-void World::CheckLoad(Player player, WorldManager manager) {
+std::string World::CheckLoad(Player player) {
 	for (int i = 0; i < loadzones.size(); i++) {
 		LoadZones zone = loadzones.at(i);
 		if (zone.position.y <= player.position.y + player.scale.y || zone.position.y + zone.height >= player.position.y) {
 			if (zone.position.x <= player.position.x + player.scale.x || zone.position.x + zone.width >= player.position.x) {
-				manager.swapWorld(zone.world);
+				return zone.world;
 			}
 		}
 	}
+	return "";
 }

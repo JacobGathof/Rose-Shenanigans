@@ -3,7 +3,6 @@
 #include "Vector2f.h"
 #include "LoadZones.h"
 #include "Player.h"
-#include "WorldManager.h"
 #include <vector>
 class World
 {
@@ -17,7 +16,7 @@ public:
 	std::vector<LoadZones> loadzones;
 	
 	void AddLoadZone(LoadZones zone);
-	void CheckLoad(Player player, WorldManager manager);
+	std::string CheckLoad(Player player);
 	void Draw();
 };
 
