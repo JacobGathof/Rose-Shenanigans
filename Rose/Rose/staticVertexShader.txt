@@ -7,12 +7,13 @@ out vec2 texCoords_;
 
 uniform vec2 scale;
 uniform vec2 pos;
+uniform vec2 cameraPosition;
 
 const mat4 projectionMatrix = mat4(vec4(1.0/64,0,0,0), vec4(0,1.0/64,0,0), vec4(0,0,2,-1), vec4(0,0,0,1));
 
 void main(){
 	
-	gl_Position = projectionMatrix * vec4(vertices.x*scale.x + pos.x, vertices.y*scale.y + pos.y, 0.0 , 1.0);
+	gl_Position = projectionMatrix * vec4(vertices.x*scale.x + pos.x - cameraPosition.x, vertices.y*scale.y + pos.y - cameraPosition.y, 0.0 , 1.0);
 	texCoords_ = texCoords;
 	
 }
