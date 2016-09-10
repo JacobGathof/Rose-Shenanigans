@@ -20,8 +20,7 @@ void Game::init()
 
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
-
-	wizard = Player(100,100,100,100,50, Vector2f(0, 0), Vector2f(1, 1), "Wizard",1);
+	wizard = Player(100, 100, 100, 100, 50, Vector2f(0, 0), Vector2f(1, 1), "Wizard", 1);
 
 
 }
