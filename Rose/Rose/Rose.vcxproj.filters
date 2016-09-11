@@ -201,9 +201,6 @@
     <Image Include="Echo.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Image.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Edwin.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -211,6 +208,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="image.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
