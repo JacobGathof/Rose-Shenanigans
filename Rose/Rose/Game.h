@@ -5,6 +5,7 @@
 #include "WorldManager.h"
 #include "LoadZone.h"
 #include "Text.h"
+#include "Terrain.h"
 
 class Game
 {
@@ -25,5 +26,6 @@ public:
 	LoadZone zone;
 	Text text;
 	
+	Terrain terrain;
 };
 

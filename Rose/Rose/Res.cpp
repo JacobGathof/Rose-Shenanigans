@@ -11,6 +11,27 @@ std::map<std::string, Character*> Res::characters;
 
 Model * Res::stdModel;
 
+void Res::init() {
+
+	Res::loadShader("simpleShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
+	Res::loadShader("staticShader", "staticVertexShader.txt", 0, "staticFragmentShader.txt");
+	Res::loadShader("textShader", "textVertexShader.txt", 0, "textFragmentShader.txt");
+	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
+
+	Res::loadTexture("Echo", "Echo.png");
+	Res::loadTexture("Inn", "Echo.png");
+	Res::loadTexture("Edwin", "Edwin.png");
+	Res::loadTexture("Grass", "Grass.png");
+
+	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
+
+
+	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
+	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
+	Res::loadModel("Square", vertices, tex, 12);
+	Res::stdModel = Res::getModel("Square");
+
+}
 
 Model * Res::getModel(std::string str)
 {
@@ -99,26 +120,6 @@ void Res::loadFont(std::string name, char * filename_font, char* filename_textur
 
 }
 
-
-void Res::init() {
-
-	Res::loadShader("simpleShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
-	Res::loadShader("staticShader", "staticVertexShader.txt", 0, "staticFragmentShader.txt");
-	Res::loadShader("textShader", "textVertexShader.txt", 0, "textFragmentShader.txt");
-
-	Res::loadTexture("Echo", "Echo.png");
-	Res::loadTexture("Inn", "Echo.png");
-	Res::loadTexture("Edwin", "Edwin.png");
-
-	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
-
-
-	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
-	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
-	Res::loadModel("Square", vertices, tex, 12);
-	Res::stdModel = Res::getModel("Square");
-
-}
 
 void Res::cleanResources(){
 	for (auto m : models) {

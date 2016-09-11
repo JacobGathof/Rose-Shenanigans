@@ -174,6 +174,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector2f.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vector2f.cpp" />
@@ -210,6 +212,8 @@
     <Text Include="simpleVertexShader.txt" />
     <Text Include="staticFragmentShader.txt" />
     <Text Include="staticVertexShader.txt" />
+    <Text Include="terrainFragmentShader.txt" />
+    <Text Include="terrainVertexShader.txt" />
     <Text Include="textFragmentShader.txt" />
     <Text Include="textVertexShader.txt" />
   </ItemGroup>
@@ -217,6 +221,7 @@
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
     <Image Include="Font_Texture.png" />
+    <Image Include="Grass.png" />
     <Image Include="Image.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>

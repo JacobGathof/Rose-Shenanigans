@@ -93,6 +93,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -158,6 +161,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="simpleVertexShader.txt">
@@ -181,6 +187,12 @@
     <Text Include="Font.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="terrainVertexShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="terrainFragmentShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Wizard.png">
@@ -196,6 +208,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Font_Texture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Grass.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
