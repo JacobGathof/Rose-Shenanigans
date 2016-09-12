@@ -1,6 +1,6 @@
 #pragma once
-#include "GL\glew.h"
-#include "GLFW\glfw3.h"
+#include "opengl-wrapper\GLEW\include\GL\glew.h"
+#include "opengl-wrapper\GLFW\include\GLFW\glfw3.h"
 #include "Game.h"
 #include "Res.h"
 #include "Input.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GL\glew.h"
+#include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Vector2f.h"
 
 class ShaderProgram
