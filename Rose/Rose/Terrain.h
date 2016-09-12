@@ -8,6 +8,25 @@ class Terrain
 {
 public:
 
+	enum TileType {
+
+		TOP_RIGHT_CORNER,
+		TOP_LEFT_CORNER,
+		BOT_RIGHT_CORNER,
+		BOT_LEFT_CORNER,
+
+		TOP_PATH,
+		BOT_PATH,
+		LEFT_PATH,
+		RIGHT_PATH,
+
+		DIRT,
+
+
+
+	};
+
+
 	class TerrainChunk;
 
 	std::vector<TerrainChunk*> terrain;
@@ -17,8 +36,8 @@ public:
 	float tileScale;
 
 	Terrain() {
-		tilesPerChunk = 8;
-		tileScale = 20.0f;
+		tilesPerChunk = 4;
+		tileScale = 10.0f;
 	};
 
 	void addTerrain() {
