@@ -19,12 +19,11 @@ void Res::init() {
 	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
 
 	Res::loadTexture("Echo", "Echo.png");
-	Res::loadTexture("Inn", "Echo.png");
+	Res::loadTexture("Inn", "Image.png");
 	Res::loadTexture("Edwin", "Edwin.png");
 	Res::loadTexture("Grass", "Grass.png");
 
 	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
-
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };

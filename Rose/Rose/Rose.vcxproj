@@ -173,6 +173,7 @@
     <ClInclude Include="opengl-wrapper\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Res.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
@@ -222,10 +223,11 @@
     <Image Include="Edwin.png" />
     <Image Include="Font_Texture.png" />
     <Image Include="Grass.png" />
-    <Image Include="image.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
+    <Image Include="Exteriordecor.png" />
     <Image Include="Wizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rose.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
