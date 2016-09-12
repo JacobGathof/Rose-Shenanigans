@@ -57,8 +57,8 @@ void Game::loop(float dt){
 void Game::render(){	
 	
 	terrain.draw();
-	worldmg.world.draw();
+	//worldmg.world.draw();
 	wizard.draw();
-	text.draw();
+	//text.draw();
 
 }

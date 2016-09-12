@@ -1,7 +1,9 @@
 #include "Main.h"
-
+#include <time.h>
 
 int main() {
+
+	srand(time(NULL));
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -33,12 +35,20 @@ int main() {
 	float last_second = 0;
 	float last_time = 0;
 	float current_time = 0;
+	int framesPerSecond = 0;
 
 	while (!glfwWindowShouldClose(window)) {
 		try {
 			current_time = glfwGetTime();
 			dt = current_time - last_time;
 			last_time = current_time;
+			framesPerSecond++;
+
+			if (current_time - last_second >= 1.0f) {
+				last_second = current_time;
+				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				framesPerSecond = 0;
+			}
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

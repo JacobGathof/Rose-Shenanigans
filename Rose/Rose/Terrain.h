@@ -36,7 +36,7 @@ public:
 	float tileScale;
 
 	Terrain() {
-		tilesPerChunk = 8;
+		tilesPerChunk = 16;
 		tileScale = 10.0f;
 	};
 
