@@ -46,16 +46,21 @@ void Terrain::TerrainChunk::buildTerrain() {
 
 				/*Bottom left corner*/
 				if (south == 0 && west == 0) {
-					dividedTileTextures[vptr++] = 16+2;
+					dividedTileTextures[vptr++] = 16+3;
 				}
 				else if (south == 0 && west != 0) {
-					dividedTileTextures[vptr++] = 16+6;
+					dividedTileTextures[vptr++] = 16+7;
 				}
 				else if (south != 0 && west == 0) {
-					dividedTileTextures[vptr++] = 16+1;
+					dividedTileTextures[vptr++] = 16+2;
 				}
 				else {
-					dividedTileTextures[vptr++] = 16+5;
+					int sw;
+					if (j == 0 || i == 0) sw = 0;	else { sw = tileTexture[(i + -1)*tilesPerChunk + j + -1]; }
+					if(sw == 0)
+						dividedTileTextures[vptr++] = 33;
+					else
+						dividedTileTextures[vptr++] = 16+5;
 				}
 				/*End*/
 
@@ -71,23 +76,34 @@ void Terrain::TerrainChunk::buildTerrain() {
 					dividedTileTextures[vptr++] = 16 + 1;
 				}
 				else {
-					dividedTileTextures[vptr++] = 16 + 5;
+					int nw;
+					if (j == tilesPerChunk-1 || i == 0) nw = 0;	else { nw = tileTexture[(i + -1)*tilesPerChunk + j + 1]; }
+					if (nw == 0)
+						dividedTileTextures[vptr++] = 32;
+					else
+						dividedTileTextures[vptr++] = 16 + 5;
 				}
 				/*End*/
 
 
 				/*Bottom Right corner*/
 				if (south == 0 && east == 0) {
-					dividedTileTextures[vptr++] = 16 + 10;
+					dividedTileTextures[vptr++] = 16 + 15;
 				}
 				else if (south == 0 && east != 0) {
-					dividedTileTextures[vptr++] = 16 + 6;
+					dividedTileTextures[vptr++] = 16 + 7;
 				}
 				else if (south != 0 && east == 0) {
-					dividedTileTextures[vptr++] = 16 + 9;
+					dividedTileTextures[vptr++] = 16 + 13;
 				}
 				else {
-					dividedTileTextures[vptr++] = 16 + 5;
+					int se;
+					if (j == 0 || i == tilesPerChunk - 1) se = 0;	else { se = tileTexture[(i + 1)*tilesPerChunk + j + -1]; }
+					if (se == 0)
+						dividedTileTextures[vptr++] = 35;
+					else
+						dividedTileTextures[vptr++] = 16 + 5;
+
 				}
 				/*End*/
 
@@ -95,16 +111,23 @@ void Terrain::TerrainChunk::buildTerrain() {
 
 				/*Top Right corner*/
 				if (north == 0 && east == 0) {
-					dividedTileTextures[vptr++] = 16 + 8;
+					dividedTileTextures[vptr++] = 16 + 12;
 				}
 				else if (north == 0 && east != 0) {
 					dividedTileTextures[vptr++] = 16 + 4;
 				}
 				else if (north != 0 && east == 0) {
-					dividedTileTextures[vptr++] = 16 + 9;
+					dividedTileTextures[vptr++] = 16 + 13;
 				}
 				else {
-					dividedTileTextures[vptr++] = 16 + 5;
+
+					int ne;
+					if (j == tilesPerChunk-1 || i == tilesPerChunk - 1) ne = 0;	else { ne = tileTexture[(i + 1)*tilesPerChunk + j + 1]; }
+					if (ne == 0)
+						dividedTileTextures[vptr++] = 34;
+					else
+						dividedTileTextures[vptr++] = 16 + 5;
+				
 				}
 				/*End*/
 

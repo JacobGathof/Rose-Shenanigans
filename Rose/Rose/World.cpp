@@ -40,8 +40,6 @@ std::string World::CheckLoad(Player player) {
 	for (int i = 0; i < loadzones.size(); i++) {
 		LoadZone zone = loadzones.at(i);
 		if (zone.position.y <= player.position.y + player.scale.y && zone.position.y + zone.height >= player.position.y) {
-			std::cout << zone.position.y + zone.height << std::endl;
-			std::cout << player.position.y << std::endl;
 			if (zone.position.x <= player.position.x + player.scale.x && zone.position.x + zone.width >= player.position.x) {
 				return zone.world;
 			}
