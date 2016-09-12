@@ -19,7 +19,7 @@ void Terrain::TerrainChunk::buildTerrain() {
 		tilePosition[pptr++] = i/tilesPerChunk;
 		tilePosition[pptr++] = i%tilesPerChunk;
 
-		tileTexture[vptr++] = 2;
+		tileTexture[vptr++] = rand()%3;
 	}
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };

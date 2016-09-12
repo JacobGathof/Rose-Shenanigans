@@ -1,6 +1,6 @@
 #pragma once
 #include "Model.h"
-#include "GL\glew.h"
+#include "opengl-wrapper\GLEW\include\GL\glew.h"
 
 class ModelLoader
 {
