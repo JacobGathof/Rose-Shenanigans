@@ -18,7 +18,7 @@ void Terrain::TerrainChunk::buildTerrain() {
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.1f;
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.1f;
 
-			tileTexture[i*tilesPerChunk + j] = rand() % 3;
+			tileTexture[i*tilesPerChunk + j] = rand() % 2;
 
 		}
 	}
@@ -30,12 +30,93 @@ void Terrain::TerrainChunk::buildTerrain() {
 	int vptr = 0;
 	for (int i = 0; i < tilesPerChunk; i++) {
 		for (int j = 0; j < tilesPerChunk; j++) {
-			for (int k = 0; k < 4; k++) {
-				dividedTilePositions[pptr++] = i*3.0f + 1.1*(k/2);
-				dividedTilePositions[pptr++] = j*3.0f + 1.1*(k%2);
 
+			for (int k = 0; k < 4; k++) {
+				dividedTilePositions[pptr++] = i*2.0f + 1.0*(k / 2);
+				dividedTilePositions[pptr++] = j*2.0f + 1.0*(k % 2);
+			}
+
+			if (tileTexture[i*tilesPerChunk + j] == 1) {
+				int north, south, east, west;
+
+				if (j == tilesPerChunk - 1) north = 0;	else { north = tileTexture[(i + 0)*tilesPerChunk + j + 1];  }
+				if (j == 0) south = 0;					else { south = tileTexture[(i + 0)*tilesPerChunk + j - 1]; }
+				if (i == tilesPerChunk-1) east = 0;		else { east = tileTexture[(i + 1)*tilesPerChunk + j + 0]; }
+				if (i == 0) west = 0;					else { west = tileTexture[(i - 1)*tilesPerChunk + j + 0]; }
+
+				/*Bottom left corner*/
+				if (south == 0 && west == 0) {
+					dividedTileTextures[vptr++] = 16+2;
+				}
+				else if (south == 0 && west != 0) {
+					dividedTileTextures[vptr++] = 16+6;
+				}
+				else if (south != 0 && west == 0) {
+					dividedTileTextures[vptr++] = 16+1;
+				}
+				else {
+					dividedTileTextures[vptr++] = 16+5;
+				}
+				/*End*/
+
+				
+				/*Top left corner*/
+				if (north == 0 && west == 0) {
+					dividedTileTextures[vptr++] = 16 + 0;
+				}
+				else if (north == 0 && west != 0) {
+					dividedTileTextures[vptr++] = 16 + 4;
+				}
+				else if (north != 0 && west == 0) {
+					dividedTileTextures[vptr++] = 16 + 1;
+				}
+				else {
+					dividedTileTextures[vptr++] = 16 + 5;
+				}
+				/*End*/
+
+
+				/*Bottom Right corner*/
+				if (south == 0 && east == 0) {
+					dividedTileTextures[vptr++] = 16 + 10;
+				}
+				else if (south == 0 && east != 0) {
+					dividedTileTextures[vptr++] = 16 + 6;
+				}
+				else if (south != 0 && east == 0) {
+					dividedTileTextures[vptr++] = 16 + 9;
+				}
+				else {
+					dividedTileTextures[vptr++] = 16 + 5;
+				}
+				/*End*/
+
+
+
+				/*Top Right corner*/
+				if (north == 0 && east == 0) {
+					dividedTileTextures[vptr++] = 16 + 8;
+				}
+				else if (north == 0 && east != 0) {
+					dividedTileTextures[vptr++] = 16 + 4;
+				}
+				else if (north != 0 && east == 0) {
+					dividedTileTextures[vptr++] = 16 + 9;
+				}
+				else {
+					dividedTileTextures[vptr++] = 16 + 5;
+				}
+				/*End*/
+
+			}
+
+			else {
+				dividedTileTextures[vptr++] = tileTexture[i*tilesPerChunk + j];
+				dividedTileTextures[vptr++] = tileTexture[i*tilesPerChunk + j];
+				dividedTileTextures[vptr++] = tileTexture[i*tilesPerChunk + j];
 				dividedTileTextures[vptr++] = tileTexture[i*tilesPerChunk + j];
 			}
+
 		}
 	}
 
