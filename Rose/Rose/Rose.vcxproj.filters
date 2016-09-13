@@ -193,6 +193,12 @@
     <Text Include="terrainFragmentShader.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="uiVertexShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="uiFragmentShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Wizard.png">

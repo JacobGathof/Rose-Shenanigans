@@ -216,6 +216,8 @@
     <Text Include="terrainVertexShader.txt" />
     <Text Include="textFragmentShader.txt" />
     <Text Include="textVertexShader.txt" />
+    <Text Include="uiFragmentShader.txt" />
+    <Text Include="uiVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Echo.png" />

@@ -18,6 +18,7 @@ void Res::init() {
 	Res::loadShader("staticShader", "staticVertexShader.txt", 0, "staticFragmentShader.txt");
 	Res::loadShader("textShader", "textVertexShader.txt", 0, "textFragmentShader.txt");
 	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
+	Res::loadShader("uiShader", "uiVertexShader.txt", 0, "uiFragmentShader.txt");
 
 	Res::loadTexture("Echo", "Echo.png");
 	Res::loadTexture("Inn", "Echo.png");
