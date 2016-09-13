@@ -10,10 +10,11 @@ public:
 	Weapon(int dmg, int critdmg, int percent, Vector2f * pos, std::string texName);
 
 	std::string texture;
+	//Vector2f* playerpos;
 	int damage;
 	int critdamage;
 	int critpercent;
 
-	bool attack(NPC obj);
+	bool attack(NPC obj, Vector2f pos);
 };
 

@@ -18,11 +18,17 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f * pos, std::string te
 	critdamage = dmg;
 	critpercent = percent;
 	damage = dmg;
+
 }
 
-bool Weapon::attack(NPC obj)
+bool Weapon::attack(NPC obj, Vector2f pos)
 {
+	Vector2f vec;
+	vec.x = pos.x - position.x + 10;
+	vec.y = pos.y - position.y + 10;
+	move(vec, 1);
 	draw();
+	/*
 	if (collide(obj)) {
 		srand(time(NULL));
 		if (rand() % 100 <= critpercent) {
@@ -32,4 +38,5 @@ bool Weapon::attack(NPC obj)
 			obj.health -= damage;
 		}
 	}
+	*/
 }
