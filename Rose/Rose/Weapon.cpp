@@ -30,7 +30,6 @@ bool Weapon::attack(NPC obj, Vector2f pos)
 	draw();
 	/*
 	if (collide(obj)) {
-		srand(time(NULL));
 		if (rand() % 100 <= critpercent) {
 			obj.health -= critdamage;
 		}
@@ -39,4 +38,5 @@ bool Weapon::attack(NPC obj, Vector2f pos)
 		}
 	}
 	*/
+	return true;
 }

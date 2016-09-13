@@ -10,25 +10,12 @@
 
 void Game::init()
 {
-	world = World("start");
-
 	Res::init();
 
+	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
-	edwin = Entity(Vector2f(-30, 30), Vector2f(20, 20), "Edwin", 20);
-	building = Building(Vector2f(.5, 0), "Inn", Vector2f(20, 20), Vector2f(.75, 0));
-	text = Text(Vector2f(-20, -20), "I threw a wish in the well/Don't ask me I'll never tell", Vector2f(5,5));
-	text.setText("I looked to you as it fell/And now you're in my way");
-
-	world.AddEntity(&edwin);
-	world.AddObject(&building);
-
-	zone = LoadZone("second", 9, 9, Vector2f(55, 55));
-	world.AddLoadZone(zone);
-	worldmg = WorldManager(world);
-
-	world = World("second");
-	worldmg.addWorld(world);
+	text = Text(Vector2f(-20, -20), "lkllklk", Vector2f(5,5));
+	text.setText("ththth");
 
 	terrain = Terrain();
 	terrain.addTerrain();
@@ -37,28 +24,36 @@ void Game::init()
 
 }
 
+void Game::tick() {
+
+	//Advance each animation
+}
+
+
 void Game::loop(float dt){
+
+	if (gameTick) {
+		tick();
+	}
 
 	gameTime += dt;
 
-	if (((int)gameTime/2) % 2 == 0)
-		edwin.move(Vector2f(1, 0), dt);
-	else
-		edwin.move(Vector2f(-1, 0), dt);
-
-	worldmg.checkWorld(wizard);
+	WorldManager::checkWorld(wizard);
 
 	Camera::position = wizard.position;
 	Res::getShader("simpleShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("staticShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
+
+	gary.update(dt);
 }
 
 void Game::render(){	
 	
-	terrain.draw();
-	//worldmg.world.draw();
-	wizard.draw();
+	//terrain.draw();
+	//WorldManager::drawWorld();
+	//wizard.draw();
+	//gary.draw();
 	//text.draw();
 
 }

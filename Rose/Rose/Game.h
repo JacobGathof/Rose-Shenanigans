@@ -6,6 +6,7 @@
 #include "LoadZone.h"
 #include "Text.h"
 #include "Terrain.h"
+#include "NPC.h"
 
 class Game
 {
@@ -13,18 +14,17 @@ public:
 	Game() {};
 	~Game() {};
 
+	void tick();
 	void init();
 	void loop(float dt);
 	void render();
 
-	World world;
-	WorldManager worldmg;
+	bool gameTick;
 	float gameTime;
-	Entity edwin;
 	Player wizard;
-	Building building;
-	LoadZone zone;
 	Text text;
+
+	NPC gary;
 	
 	Terrain terrain;
 };

@@ -45,6 +45,7 @@ int main() {
 			framesPerSecond++;
 
 			if (current_time - last_second >= 1.0f) {
+				game.gameTick = true;
 				last_second = current_time;
 				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
@@ -56,6 +57,8 @@ int main() {
 
 			game.loop(dt);
 			game.render();
+			game.gameTick = false;
+
 
 			glfwPollEvents();
 			glfwSwapBuffers(window);
