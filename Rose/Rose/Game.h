@@ -14,10 +14,12 @@ public:
 	Game() {};
 	~Game() {};
 
+	void tick();
 	void init();
 	void loop(float dt);
 	void render();
 
+	bool gameTick;
 	float gameTime;
 	Player wizard;
 	Text text;

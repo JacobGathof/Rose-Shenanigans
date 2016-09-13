@@ -24,7 +24,17 @@ void Game::init()
 
 }
 
+void Game::tick() {
+
+	//Advance each animation
+}
+
+
 void Game::loop(float dt){
+
+	if (gameTick) {
+		tick();
+	}
 
 	gameTime += dt;
 
