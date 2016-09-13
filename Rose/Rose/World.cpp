@@ -36,6 +36,17 @@ void World::draw() {
 	}
 }
 
+void World::unloadWorld(){
+
+	for (auto o : objects) {
+		delete o;
+	}
+
+	for (auto e : entities) {
+		delete e;
+	}
+}
+
 std::string World::CheckLoad(Player player) {
 	for (int i = 0; i < loadzones.size(); i++) {
 		LoadZone zone = loadzones.at(i);

@@ -17,14 +17,11 @@ public:
 	void loop(float dt);
 	void render();
 
-	World world;
-	WorldManager worldmg;
 	float gameTime;
-	Entity edwin;
 	Player wizard;
-	Building building;
-	LoadZone zone;
 	Text text;
+
+	NPC gary;
 	
 	Terrain terrain;
 };

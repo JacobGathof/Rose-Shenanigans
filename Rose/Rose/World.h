@@ -22,5 +22,6 @@ public:
 	void AddLoadZone(LoadZone zone);
 	std::string CheckLoad(Player player);
 	void draw();
+	void unloadWorld();
 };
 

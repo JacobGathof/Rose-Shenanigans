@@ -1,4 +1,5 @@
 #include "Res.h"
+#include "WorldManager.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -19,7 +20,7 @@ void Res::init() {
 	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
 
 	Res::loadTexture("Echo", "Echo.png");
-	Res::loadTexture("Inn", "Image.png");
+	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
 	Res::loadTexture("Grass", "Grass.png");
 
@@ -30,6 +31,7 @@ void Res::init() {
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
 
+	WorldManager::init();
 }
 
 Model * Res::getModel(std::string str)
@@ -136,6 +138,8 @@ void Res::cleanResources(){
 	for (auto c : characters) {
 		delete c.second;
 	}
+
+	WorldManager::destroy();
 
 	std::cout << "Resources cleaned\n";
 

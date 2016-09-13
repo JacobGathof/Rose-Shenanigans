@@ -24,7 +24,6 @@ bool Weapon::attack(NPC obj)
 {
 	draw();
 	if (collide(obj)) {
-		srand(time(NULL));
 		if (rand() % 100 <= critpercent) {
 			obj.health -= critdamage;
 		}
@@ -32,4 +31,5 @@ bool Weapon::attack(NPC obj)
 			obj.health -= damage;
 		}
 	}
+	return false;
 }
