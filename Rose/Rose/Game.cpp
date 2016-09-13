@@ -13,7 +13,6 @@ void Game::init()
 	Res::init();
 
 	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
-	gary.loadScripts(&wizard);
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	text = Text(Vector2f(-20, -20), "lkllklk", Vector2f(5,5));
 	text.setText("ththth");
