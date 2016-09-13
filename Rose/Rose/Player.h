@@ -27,7 +27,7 @@ public:
 
 	virtual void move(Vector2f dir, float dt);
 
-	
+	void attack(int hand);
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
 	

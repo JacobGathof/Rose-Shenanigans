@@ -4,7 +4,6 @@
 #include <string>
 #include <sstream>
 
-
 std::map<std::string, Model*> Res::models;
 std::map<std::string, ShaderProgram*> Res::shaders;
 std::map<std::string, Texture*> Res::textures;
@@ -23,6 +22,7 @@ void Res::init() {
 	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
 	Res::loadTexture("Grass", "Grass.png");
+	Res::loadTexture("sword", "Edwin.png");
 
 	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
 

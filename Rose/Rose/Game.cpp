@@ -5,6 +5,7 @@
 #include "Res.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Weapon.h"
 
 #include <iostream>
 
@@ -14,6 +15,8 @@ void Game::init()
 
 	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
+	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
+	wizard.hands[0] = weapon;
 	text = Text(Vector2f(-20, -20), "lkllklk", Vector2f(5,5));
 	text.setText("ththth");
 
@@ -52,7 +55,7 @@ void Game::render(){
 	
 	//terrain.draw();
 	//WorldManager::drawWorld();
-	//wizard.draw();
+	wizard.draw();
 	//gary.draw();
 	//text.draw();
 

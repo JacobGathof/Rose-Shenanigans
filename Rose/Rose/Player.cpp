@@ -5,12 +5,16 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, int speed)
 	: Entity(pos, sc, image, speed)
 {
-
 	maxhp = 100;
 	hp = 100;
 	mana = 100;
 	maxmana = 100;
 	morality = 50;
+}
+
+void Player::attack(int hand)
+{
+	hands[hand].attack(NPC(), position);
 }
 
 void Player::equip(Weapon weapon, int hand)

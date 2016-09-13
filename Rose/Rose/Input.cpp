@@ -21,6 +21,9 @@ void Input::processInput(float dt)
 	if (keys[GLFW_KEY_D]) {
 		movement = movement + Vector2f(1, 0);
 	}
+	if (keys[GLFW_KEY_1]) {
+		game->wizard.attack(0);
+	}
 		game->wizard.move(movement.normalize(), dt);
 
 

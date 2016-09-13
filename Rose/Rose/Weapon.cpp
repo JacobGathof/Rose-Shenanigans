@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include <time.h>
+#include <iostream>
 
 
 Weapon::Weapon()
@@ -11,22 +12,20 @@ Weapon::~Weapon()
 {
 }
 
-Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f * pos, std::string texName) 
-	: Entity(*pos + Vector2f(10,10), Vector2f(5, 5), texName, 0)
+Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, std::string texName) 
+	: Entity(pos + Vector2f(15,20), Vector2f(5, 5), texName, 0)
 {
 	texture = texName;
 	critdamage = dmg;
 	critpercent = percent;
 	damage = dmg;
-
 }
 
 bool Weapon::attack(NPC obj, Vector2f pos)
 {
-	Vector2f vec;
-	vec.x = pos.x - position.x + 10;
-	vec.y = pos.y - position.y + 10;
-	move(vec, 1);
+	position.x += (pos.x + 15) - position.x;
+	position.y += (pos.y + 20) - position.y;
+	
 	draw();
 	/*
 	if (collide(obj)) {

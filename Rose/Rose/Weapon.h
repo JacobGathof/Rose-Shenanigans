@@ -7,7 +7,7 @@ class Weapon : public Entity
 public:
 	Weapon();
 	~Weapon();
-	Weapon(int dmg, int critdmg, int percent, Vector2f * pos, std::string texName);
+	Weapon(int dmg, int critdmg, int percent, Vector2f pos, std::string texName);
 
 	std::string texture;
 	//Vector2f* playerpos;
