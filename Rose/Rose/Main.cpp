@@ -33,6 +33,7 @@ int main() {
 	glfwSetTime(0);
 	float dt = 0;
 	float last_second = 0;
+	float last_tick = 0;
 	float last_time = 0;
 	float current_time = 0;
 	int framesPerSecond = 0;
@@ -45,10 +46,14 @@ int main() {
 			framesPerSecond++;
 
 			if (current_time - last_second >= 1.0f) {
-				game.gameTick = true;
 				last_second = current_time;
-				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
+			}
+
+			if (current_time - last_tick >= 0.05f) {
+				game.gameTick = true;
+				last_tick = current_time;
 			}
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

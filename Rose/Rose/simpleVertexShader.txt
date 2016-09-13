@@ -11,6 +11,9 @@ uniform float animTimer;
 uniform int direction;
 uniform vec2 cameraPosition;
 
+uniform int rows;
+uniform int cols;
+
 const mat4 projectionMatrix = mat4(vec4(1.0/64,0,0,0), vec4(0,1.0/64,0,0), vec4(0,0,2,-1), vec4(0,0,0,1));
 
 void main(){
@@ -20,6 +23,13 @@ void main(){
 		vertices.x*scale.x + pos.x - cameraPosition.x, 
 		vertices.y*scale.y + pos.y - cameraPosition.y, 0.0 , 1.0);
 
-	texCoords_ = vec2(texCoords.x/3 + (1.0/3)* mod(round(animTimer*4), 3) , texCoords.y/4 + (1/4.0) * direction);
-	
+	texCoords_ = vec2(texCoords.x/cols + (1.0/cols) * mod(round(animTimer*4.0), cols) , texCoords.y/rows + (1.0/rows) * direction);
+
+
+	if(direction == 4){
+		int index = int(mod(round(animTimer*8), (cols*4)));
+		index = (index > 2) ? 0 : index;
+		texCoords_ = vec2(texCoords.x/cols + (1.0/cols) * index , texCoords.y/rows + (1.0/rows) * direction);
+	}
+
 }

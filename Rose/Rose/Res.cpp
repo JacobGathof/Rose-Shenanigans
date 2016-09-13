@@ -1,4 +1,5 @@
 #include "Res.h"
+#include "Textbox.h"
 #include "WorldManager.h"
 #include <iostream>
 #include <string>
@@ -32,6 +33,7 @@ void Res::init() {
 	Res::stdModel = Res::getModel("Square");
 
 	WorldManager::init();
+	Textbox::init();
 }
 
 Model * Res::getModel(std::string str)
@@ -140,6 +142,7 @@ void Res::cleanResources(){
 	}
 
 	WorldManager::destroy();
+	Textbox::destroy();
 
 	std::cout << "Resources cleaned\n";
 

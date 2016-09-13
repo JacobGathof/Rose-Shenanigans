@@ -1,4 +1,5 @@
 #include "Input.h"
+#include "Textbox.h"
 #include <iostream>
 
 bool Input::keys[];
@@ -27,9 +28,19 @@ void Input::processInput(float dt)
 		game->wizard.move(movement.normalize(), dt);
 
 
-	if (mouse[GLFW_MOUSE_BUTTON_1]) {
-		
+	if (keys[GLFW_KEY_T]) {
+		keys[GLFW_KEY_T] = false;
+		Textbox::advanceQueue();
 	}
+
+	if (keys[GLFW_KEY_Y]) {
+		keys[GLFW_KEY_Y] = false;
+		std::string strs[] = {"Hello", "The", "Quick", "Brown", "Fox", "Jumped", "Over", "The", "Lazy", "Dog"};
+		std::string str = strs[rand() % 10];
+		Textbox::print(str);
+	}
+
+
 }
 
 Input::Input()

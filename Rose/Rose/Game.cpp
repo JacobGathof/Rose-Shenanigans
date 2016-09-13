@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "Weapon.h"
+#include "Textbox.h"
 
 #include <iostream>
 
@@ -28,7 +29,9 @@ void Game::init()
 }
 
 void Game::tick() {
-
+	
+	wizard.tick();
+	Textbox::update();
 	//Advance each animation
 }
 
@@ -49,6 +52,7 @@ void Game::loop(float dt){
 	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
 
 	gary.update(dt);
+
 }
 
 void Game::render(){	
@@ -58,5 +62,6 @@ void Game::render(){
 	wizard.draw();
 	//gary.draw();
 	//text.draw();
+	Textbox::draw();
 
 }
