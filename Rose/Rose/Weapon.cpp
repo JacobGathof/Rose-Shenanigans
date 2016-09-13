@@ -20,6 +20,7 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f * pos, std::string te
 	damage = dmg;
 }
 
+/*
 bool Weapon::attack(NPC obj)
 {
 	draw();
@@ -33,3 +34,4 @@ bool Weapon::attack(NPC obj)
 	}
 	return false;
 }
+*/

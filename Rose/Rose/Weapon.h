@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Vector2f.h"
-#include "NPC.h"
+//#include "NPC.h"
 class Weapon : public Entity
 {
 public:
@@ -14,6 +14,6 @@ public:
 	int critdamage;
 	int critpercent;
 
-	bool attack(NPC obj);
+	//bool attack(NPC obj);
 };
 

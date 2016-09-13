@@ -2,9 +2,9 @@
 #include <iostream>
 
 
-NPC::NPC(Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed)
-{
+NPC::NPC(Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed){
 
+	
 }
 
 NPC::NPC()
@@ -14,6 +14,15 @@ NPC::NPC()
 
 NPC::~NPC()
 {
+}
+
+void NPC::loadScripts(Player* player)
+{
+	script = ScriptQueue(player, this);
+}
+
+void NPC::update(float dt){
+	script.checkScript();
 }
 
 void NPC::addAction(std::string str){

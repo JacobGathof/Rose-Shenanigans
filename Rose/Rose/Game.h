@@ -6,6 +6,7 @@
 #include "LoadZone.h"
 #include "Text.h"
 #include "Terrain.h"
+#include "NPC.h"
 
 class Game
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include <stack>
+#include "ScriptQueue.h"
 
 class NPC : public Entity
 {
@@ -9,8 +10,11 @@ public:
 	NPC();
 	~NPC();
 
-	std::stack<void (NPC::*)(std::string)> actions;
+	void loadScripts(Player * player);
 
+	ScriptQueue script;
+
+	void update(float dt);
 	void addAction(std::string str);
 	void print(std::string str);
 	void act();
