@@ -3,13 +3,12 @@
 in vec2 texCoords_;
 
 uniform sampler2D image;
+uniform float gameTime;
 
 void main(){
 	vec4 outColor = texture(image, texCoords_);
-	if(outColor.a > .5 && outColor.a < .9){
-		outColor.r = 0.0f;
-		outColor.g = 0.0f;
-		outColor.b = 1.0f;
+	if(outColor.a > .25 && outColor.a < .75){
+		outColor *= vec4(abs(cos(gameTime/5)), abs(sin(gameTime/3)), abs(sin(gameTime/7)), 1.0);
 		outColor.a = 1.0f;
 	}
 	gl_FragColor = outColor;

@@ -55,6 +55,7 @@ void Game::loop(float dt){
 	Res::getShader("staticShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
 
+	Res::getShader("simpleShader")->loadFloat("gameTime", gameTime);
 	gary.update(dt);
 
 }
