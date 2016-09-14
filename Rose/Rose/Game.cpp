@@ -12,6 +12,9 @@
 
 void Game::init()
 {
+
+
+	
 	Res::init();
 
 	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
