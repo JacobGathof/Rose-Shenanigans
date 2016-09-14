@@ -14,7 +14,8 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, int speed)
 
 void Player::attack(int hand)
 {
-	hands[hand].attack(NPC(), position);
+
+	hands[hand].attack(NPC(), position, lastdirection);
 }
 
 void Player::equip(Weapon weapon, int hand)

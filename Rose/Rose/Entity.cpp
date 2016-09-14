@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include <iostream>
 
 
 Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)
@@ -12,16 +12,18 @@ Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)
 
 void Entity::move(Vector2f dir, float dt)
 {
-	if (dir.x == 0 && dir.y == 0) direction = IDLE;
-
-	if (dir.x > .75) direction = WEST;
+	if (dir.x == 0 && dir.y == 0) {
+		direction = IDLE;
+	}
+	if (dir.x > .75) direction = WEST; 
 	if (dir.x < -.75) direction = EAST;
 
 	if (dir.y > .75) direction = NORTH;
 	if (dir.y < -.75) direction = SOUTH;
-
+	if (direction != IDLE) {
+		lastdirection = direction;
+	}
 	position = position + dir*speed*dt;
-
 
 }
 

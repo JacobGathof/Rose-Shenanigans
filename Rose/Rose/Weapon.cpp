@@ -13,7 +13,7 @@ Weapon::~Weapon()
 }
 
 Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, std::string texName) 
-	: Entity(pos + Vector2f(15,20), Vector2f(5, 5), texName, 0)
+	: Entity(pos + Vector2f(15,20), Vector2f(20, 20), texName, 0)
 {
 	texture = texName;
 	critdamage = dmg;
@@ -21,11 +21,31 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, std::string texN
 	damage = dmg;
 }
 
-bool Weapon::attack(NPC obj, Vector2f pos)
+bool Weapon::attack(NPC obj, Vector2f pos, int dir)
 {
-	position.x += (pos.x + 15) - position.x;
-	position.y += (pos.y + 20) - position.y;
-	
+	position.x += (pos.x + 0) - position.x;
+	position.y += (pos.y + 5) - position.y;
+	if (dir == 0) {
+		position.y -= 15;
+	}
+	if (dir == 1) {
+		position.x -= 10;
+	}
+	else if (dir == 2) {
+		position.x += 10;
+	}
+	if (dir == 0) {
+		direction = SOUTH;
+	}
+	else if (dir == 1) {
+		direction = EAST;
+	}
+	else if (dir == 2) {
+		direction = WEST;
+	}
+	else {
+		direction = NORTH;
+	}
 	draw();
 	/*
 	if (collide(obj)) {

@@ -24,7 +24,7 @@ void Res::init() {
 	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
 	Res::loadTexture("Grass", "Grass.png");
-	Res::loadTexture("sword", "Edwin.png");
+	Res::loadTexture("sword", "sword.png");
 
 	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
 

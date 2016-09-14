@@ -219,5 +219,8 @@
     <Image Include="Exteriordecor.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

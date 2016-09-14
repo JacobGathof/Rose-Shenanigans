@@ -21,6 +21,7 @@ public:
 	Direction direction = SOUTH;
 	float internalTime = 0;
 
+	Direction lastdirection = SOUTH;
 	int numberOfAnimationRows;
 	int framesPerAnimation;
 

@@ -15,6 +15,6 @@ public:
 	int critdamage;
 	int critpercent;
 
-	bool attack(NPC obj, Vector2f pos);
+	bool attack(NPC obj, Vector2f pos, int dir);
 };
 

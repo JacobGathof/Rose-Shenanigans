@@ -31,6 +31,7 @@ void Game::init()
 void Game::tick() {
 	
 	wizard.tick();
+	wizard.hands[0].tick();
 	Textbox::update();
 	//Advance each animation
 }

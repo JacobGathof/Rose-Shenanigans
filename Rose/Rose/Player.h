@@ -24,12 +24,10 @@ public:
 	Weapon hands[2];
 	std::vector<Object> inventory;
 
-
 	virtual void move(Vector2f dir, float dt);
 
 	void attack(int hand);
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
-	
 };
 
