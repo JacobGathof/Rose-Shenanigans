@@ -31,7 +31,7 @@ void Entity::draw() {
 
 	tex->bind();
 
-	ShaderProgram * shader = Res::getShader("simpleShader");
+	ShaderProgram * shader = Res::getShader("entityShader");
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);
 	shader->loadFloat("animTimer", internalTime);

@@ -14,7 +14,8 @@ Model * Res::stdModel;
 
 void Res::init() {
 
-	Res::loadShader("simpleShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
+	Res::loadShader("entityShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
+	Res::loadShader("particleShader", "particleVertexShader.txt", 0, "particleFragmentShader.txt");
 	Res::loadShader("staticShader", "staticVertexShader.txt", 0, "staticFragmentShader.txt");
 	Res::loadShader("textShader", "textVertexShader.txt", 0, "textFragmentShader.txt");
 	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");

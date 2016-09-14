@@ -3,6 +3,7 @@
 #include "Building.h"
 #include "World.h"
 #include "WorldManager.h"
+#include "ParticleSystem.h"
 #include "LoadZone.h"
 #include "Text.h"
 #include "Terrain.h"
@@ -22,9 +23,9 @@ public:
 	bool gameTick;
 	float gameTime;
 	Player wizard;
-	Text text;
 
 	NPC gary;
+	ParticleSystem sys;
 	
 	Terrain terrain;
 };

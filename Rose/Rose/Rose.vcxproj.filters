@@ -90,6 +90,9 @@
     <ClInclude Include="Textbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -164,6 +167,9 @@
     <ClCompile Include="Textbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="simpleVertexShader.txt">
@@ -197,6 +203,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="uiFragmentShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="particleVertexShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="particleFragmentShader.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

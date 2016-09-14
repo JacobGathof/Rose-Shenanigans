@@ -167,6 +167,7 @@
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="resource.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -208,6 +210,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Font.txt" />
+    <Text Include="particleFragmentShader.txt" />
+    <Text Include="particleVertexShader.txt" />
     <Text Include="simpleFragmentShader.txt" />
     <Text Include="simpleVertexShader.txt" />
     <Text Include="staticFragmentShader.txt" />

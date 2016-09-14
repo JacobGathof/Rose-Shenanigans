@@ -1,0 +1,18 @@
+#version 400 core
+
+in vec3 color_;
+in vec2 texCoords_;
+
+out vec4 outColor;
+
+uniform sampler2D image;
+
+void main(){
+
+	//vec4 col = texture(image, texCoords_);
+
+
+	outColor =  /*vec4(col.xyz, 1.0f)*/ vec4(color_, 0.1f);
+
+}
+ 

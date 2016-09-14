@@ -12,18 +12,13 @@
 
 void Game::init()
 {
-
-
-	
 	Res::init();
-
+	
 	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
-	text = Text(Vector2f(-20, -20), "lkllklk", Vector2f(5,5));
-	text.setText("ththth");
-
+	sys = ParticleSystem(true);
 	terrain = Terrain();
 	terrain.addTerrain();
 
@@ -51,12 +46,13 @@ void Game::loop(float dt){
 	WorldManager::checkWorld(wizard);
 
 	Camera::position = wizard.position;
-	Res::getShader("simpleShader")->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader("entityShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("staticShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
 
-	Res::getShader("simpleShader")->loadFloat("gameTime", gameTime);
+	Res::getShader("entityShader")->loadFloat("gameTime", gameTime);
 	gary.update(dt);
+	sys.update(dt);
 
 }
 
@@ -66,7 +62,7 @@ void Game::render(){
 	//WorldManager::drawWorld();
 	wizard.draw();
 	//gary.draw();
-	//text.draw();
 	Textbox::draw();
+	sys.render();
 
 }
