@@ -20,7 +20,7 @@ public:
 	int particle_count = 0;
 	int last_unused_particle = 0;
 	float particle_life = 1.0f;
-	float particle_speed = 1.0f;
+	float particle_speed = 10.0f;
 
 
 	Vector2f position;

@@ -5,6 +5,8 @@ in vec2 texCoords_;
 uniform sampler2D image;
 uniform float gameTime;
 
+
+
 void main(){
 	vec4 outColor = texture(image, texCoords_);
 	if(outColor.a > .25 && outColor.a < .75){

@@ -130,8 +130,7 @@ ParticleSystem::ParticleSystem(bool t)
 	particle_count = 0;
 	last_unused_particle = 0;
 	particle_life = 0.5f;
-	particle_speed = 0.5f;
-
+	particle_speed = 32.0f;
 
 
 	glGenVertexArrays(1, &VAO);

@@ -14,11 +14,13 @@ void Game::init()
 {
 	Res::init();
 	
-	gary = NPC(Vector2f(100, 100), Vector2f(20, 20), "Edwin", 50);
+	gary = NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
+	gary.numberOfAnimationRows = 4;
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
 	sys = ParticleSystem(true);
+	sys.position = Vector2f(0, 0);
 	terrain = Terrain();
 	terrain.addTerrain();
 
@@ -49,6 +51,7 @@ void Game::loop(float dt){
 	Res::getShader("entityShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("staticShader")->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader("particleShader")->loadVector2f("cameraPosition", Camera::position);
 
 	Res::getShader("entityShader")->loadFloat("gameTime", gameTime);
 	gary.update(dt);
@@ -61,7 +64,7 @@ void Game::render(){
 	//terrain.draw();
 	//WorldManager::drawWorld();
 	wizard.draw();
-	//gary.draw();
+	gary.draw();
 	Textbox::draw();
 	sys.render();
 
