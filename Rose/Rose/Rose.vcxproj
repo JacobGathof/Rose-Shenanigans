@@ -160,6 +160,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LightManager.h" />
     <ClInclude Include="LoadZone.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Main.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LightManager.cpp" />
     <ClCompile Include="LoadZone.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />

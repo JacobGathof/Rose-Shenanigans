@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Weapon.h"
 #include "Textbox.h"
+#include "LightManager.h"
 
 #include <iostream>
 
@@ -25,6 +26,12 @@ void Game::init()
 	terrain.addTerrain();
 
 	gameTime = 0;
+
+	LightManager::addLight(new Light(Vector2f(0, 0), Vector2f(0, 0), 4.0f));
+	LightManager::addLight(new Light(Vector2f(20, 20), Vector2f(0, 0), 4.0f));
+	LightManager::addLight(new Light(Vector2f(20, -20), Vector2f(0, 0), 4.0f));
+	LightManager::addLight(new Light(Vector2f(-20, 20), Vector2f(0, 0), 4.0f));
+	LightManager::addLight(new Light(Vector2f(-20, -20), Vector2f(0, 0), 4.0f));
 
 }
 
@@ -66,6 +73,6 @@ void Game::render(){
 	wizard.draw();
 	gary.draw();
 	Textbox::draw();
-	sys.render();
+	//sys.render();
 
 }

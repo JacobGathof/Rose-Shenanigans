@@ -1,6 +1,7 @@
 #include "Res.h"
 #include "Textbox.h"
 #include "WorldManager.h"
+#include "LightManager.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -145,6 +146,7 @@ void Res::cleanResources(){
 
 	WorldManager::destroy();
 	Textbox::destroy();
+	LightManager::cleanUp();
 
 	std::cout << "Resources cleaned\n";
 
