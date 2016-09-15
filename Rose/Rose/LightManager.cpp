@@ -22,7 +22,7 @@ void LightManager::updateLights(char* shader) {
 	currentShader->loadInteger("numLights", numberOfLights);
 
 	currentShader->loadVector2f((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].position").c_str(), lights[numberOfLights - 1]->position);
-	currentShader->loadVector2f((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].color").c_str(), lights[numberOfLights - 1]->color);
+	currentShader->loadColor((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].color").c_str(), lights[numberOfLights - 1]->color);
 	currentShader->loadFloat((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].intensity").c_str(), lights[numberOfLights - 1]->intensity);
 
 
@@ -38,7 +38,7 @@ void LightManager::reloadLights(char* shader)
 	for (int i = 0; i < lights.size(); i++) {
 
 		currentShader->loadVector2f((char *)("pointLights[" + std::to_string(i) + "].position").c_str(), lights[i]->position);
-		currentShader->loadVector2f((char *)("pointLights[" + std::to_string(i) + "].color").c_str(), lights[i]->color);
+		currentShader->loadColor((char *)("pointLights[" + std::to_string(i) + "].color").c_str(), lights[i]->color);
 		currentShader->loadFloat((char *)("pointLights[" + std::to_string(i) + "].intensity").c_str(), lights[i]->intensity);
 	}
 

@@ -125,6 +125,11 @@ void ShaderProgram::loadVector2f(char * location, Vector2f v){
 	glUniform2f(glGetUniformLocation(this->shader_program, location), v.x, v.y);
 }
 
+void ShaderProgram::loadColor(char * location, Color c){
+	use();
+	glUniform3f(glGetUniformLocation(this->shader_program, location), c.r, c.g, c.b);
+}
+
 /*
 void ShaderProgram::loadVector3f(char * location, Vector3f v) {
 	use();

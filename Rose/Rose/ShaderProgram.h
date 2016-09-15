@@ -2,6 +2,7 @@
 
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Vector2f.h"
+#include "Color.h"
 
 class ShaderProgram
 {
@@ -24,8 +25,8 @@ public:
 	void loadFloat(char* location, float value);
 
 	void loadVector2f(char* location, Vector2f v);
-	//void loadMatrix4f(char* location, Matrix4f *mat);
-
+	void loadColor(char* location, Color c);
+	
 	/*Load a sampler uniform to the shader at a specified location. Identical to loading an integer*/
 	void loadSampler(char* location, int i);
 

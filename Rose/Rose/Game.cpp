@@ -20,18 +20,20 @@ void Game::init()
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
-	sys = ParticleSystem(true);
-	sys.position = Vector2f(0, 0);
+
+	sys = ParticleSystem(Vector2f(-10,-10), Color(0,0,0), 32.0f, 0.75f, 1000);
+	sys.init();
+
 	terrain = Terrain();
 	terrain.addTerrain();
 
 	gameTime = 0;
 
-	LightManager::addLight(new Light(Vector2f(0, 0), Vector2f(0, 0), 4.0f));
-	LightManager::addLight(new Light(Vector2f(20, 20), Vector2f(0, 0), 4.0f));
-	LightManager::addLight(new Light(Vector2f(20, -20), Vector2f(0, 0), 4.0f));
-	LightManager::addLight(new Light(Vector2f(-20, 20), Vector2f(0, 0), 4.0f));
-	LightManager::addLight(new Light(Vector2f(-20, -20), Vector2f(0, 0), 4.0f));
+	LightManager::addLight(new Light(Vector2f(-10, -10), Color(-1,-1,-1), -8.0f));
+	LightManager::addLight(new Light(Vector2f(40, 40), Color(1, 1, 1), 4.0f));
+	LightManager::addLight(new Light(Vector2f(40, -40), Color(1, 1, 1), 4.0f));
+	LightManager::addLight(new Light(Vector2f(-40, 40), Color(1, 1, 1), 4.0f));
+	LightManager::addLight(new Light(Vector2f(-40, -40), Color(1, 1, 1), 4.0f));
 
 }
 
@@ -73,6 +75,6 @@ void Game::render(){
 	wizard.draw();
 	gary.draw();
 	Textbox::draw();
-	//sys.render();
+	sys.draw();
 
 }

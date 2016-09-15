@@ -2,6 +2,51 @@
 #include "Res.h"
 #include <iostream>
 
+void ParticleSystem::init(){
+
+	systemInitiated = true;
+	particles = new Particle[max_particles];
+
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
+	GLuint vertices;
+	GLuint tex;
+
+	float vertices_[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
+	float tex_[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
+
+	glGenBuffers(1, &vertices);
+	glBindBuffer(GL_ARRAY_BUFFER, vertices);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 12, vertices_, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
+	glEnableVertexAttribArray(0);
+
+
+	glGenBuffers(1, &tex);
+	glBindBuffer(GL_ARRAY_BUFFER, tex);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 12, tex_, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+	glEnableVertexAttribArray(1);
+
+
+	glGenBuffers(1, &VBO_positions);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 2 * max_particles, 0, GL_STREAM_DRAW);
+	glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
+	glVertexAttribDivisor(2, 1);
+	glEnableVertexAttribArray(2);
+
+
+	glGenBuffers(1, &VBO_colors);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 3 * max_particles, 0, GL_STREAM_DRAW);
+	glVertexAttribPointer(3, 3, GL_FLOAT, false, 0, 0);
+	glVertexAttribDivisor(3, 1);
+	glEnableVertexAttribArray(3);
+
+}
+
 void ParticleSystem::update(float dt)
 {
 
@@ -48,36 +93,22 @@ void ParticleSystem::update(float dt)
 		pos[2 * ptr + 0] = particles[i].position.x;
 		pos[2 * ptr + 1] = particles[i].position.y;
 
-		//col[3 * ptr + 0] = particles[i].color.x;
-		//col[3 * ptr + 1] = particles[i].color.y;
-		//col[3 * ptr + 2] = particles[i].color.z;
-
-		col[3 * ptr + 0] = .7f;
-		col[3 * ptr + 1] = .5f;
-		col[3 * ptr + 2] = .1f;
+		col[3 * ptr + 0] = color.r;
+		col[3 * ptr + 1] = color.g;
+		col[3 * ptr + 2] = color.b;
 
 		ptr++;
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 2 * particle_count, pos, GL_STREAM_DRAW);
-	glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
-	glVertexAttribDivisor(2, 1);
-
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 2 * particle_count, pos);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 3 * particle_count, col, GL_STREAM_DRAW);
-	glVertexAttribPointer(3, 3, GL_FLOAT, false, 0, 0);
-	glVertexAttribDivisor(3, 1);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 3 * particle_count, col);
 
 	delete[] pos;
 	delete[] col;
 
-
-}
-
-void ParticleSystem::sortParticles()
-{
 
 }
 
@@ -105,13 +136,13 @@ void ParticleSystem::setNewParticle(int index)
 	particles[index].life = particle_life;
 	particles[index].velocity = Vector2f((
 		((float)rand() / RAND_MAX) - .5f),
-		(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed;
+		(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand()/RAND_MAX/2 + .5);
 
 	//particles[index].color = color + Vector3f(colorDev.x * (float)rand() / RAND_MAX, colorDev.y * ((float)rand() / RAND_MAX), colorDev.z * ((float)rand() / RAND_MAX));
 	particles[index].position = position;
 }
 
-void ParticleSystem::render() {
+void ParticleSystem::draw() {
 
 
 	Res::getShader("particleShader")->use();
@@ -119,79 +150,42 @@ void ParticleSystem::render() {
 
 	glBindVertexArray(this->VAO);
 
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, particle_count);
+	glDrawArraysInstanced(GL_POINTS, 0, 1, particle_count);
 
 }
 
-ParticleSystem::ParticleSystem(bool t)
+ParticleSystem::ParticleSystem()
 {
 
-	max_particles = 500;
 	particle_count = 0;
 	last_unused_particle = 0;
+	emit = true;
+
+	max_particles = 500;
 	particle_life = 0.5f;
 	particle_speed = 32.0f;
+	color = Color(1,0,0);
+	position = Vector2f(0, 0);
+}
 
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, float speed, float life, int max)
+{
+	particle_count = 0;
+	last_unused_particle = 0;
+	emit = true;
 
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-
-
-	float *pos = new float[0 * 3];
-	float *col = new float[0 * 3];
-
-	for (int i = 0; i < 0; i++) {
-		pos[3 * i + 0] = particles[i].position.x;
-		pos[3 * i + 1] = particles[i].position.y;
-
-		/*
-		col[3 * i + 0] = particles[i].color.x;
-		col[3 * i + 1] = particles[i].color.y;
-		col[3 * i + 2] = particles[i].color.z;
-		*/
-	}
-
-	GLuint vertices;
-	GLuint tex;
-
-	float vertices_[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
-	float tex_[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
-
-	glGenBuffers(1, &vertices);
-	glBindBuffer(GL_ARRAY_BUFFER, vertices);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 12, vertices_, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
-	glEnableVertexAttribArray(0);
-
-	
-	glGenBuffers(1, &tex);
-	glBindBuffer(GL_ARRAY_BUFFER, tex);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 12, tex_, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
-	glEnableVertexAttribArray(1);
-
-
-	glGenBuffers(1, &VBO_positions);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 2 * max_particles, pos, GL_STREAM_DRAW);
-	glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
-	glVertexAttribDivisor(2, 1);
-	glEnableVertexAttribArray(2);
-
-
-	glGenBuffers(1, &VBO_colors);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 3 * max_particles, col, GL_STREAM_DRAW);
-	glVertexAttribPointer(3, 3, GL_FLOAT, false, 0, 0);
-	glVertexAttribDivisor(3, 1);
-	glEnableVertexAttribArray(3);
-
-	delete[] pos;
-	delete[] col;
+	position = Vector2f(pos.x, pos.y);
+	color = Color(col.r, col.g, col.b);
+	particle_speed = speed;
+	particle_life = life;
+	max_particles = max;
 }
 
 
 ParticleSystem::~ParticleSystem()
 {
-
+	if (systemInitiated) {
+		delete[] particles;
+		std::cout << "Particles Deleted\n";
+	}
 }

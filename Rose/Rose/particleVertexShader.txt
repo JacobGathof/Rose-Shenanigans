@@ -16,7 +16,7 @@ const mat4 projectionMatrix = mat4(vec4(1.0/64,0,0,0), vec4(0,1.0/64,0,0), vec4(
 
 void main(){
 
-	gl_PointSize = 3.0;
+	gl_PointSize = 5.0f;
 
 	gl_Position = projectionMatrix * vec4(position+(vertices*4)-cameraPosition, 0.0, 1.0);
 
