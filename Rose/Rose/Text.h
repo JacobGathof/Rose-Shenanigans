@@ -23,9 +23,10 @@ public:
 
 	void writeCharacterData(std::string string, float *pos, float *tex);
 	void updateVAO(float * pos, int pos_size, float * tex, int tex_size);
+	void generateVAO();
 	void setText(std::string str);
 	int getNumberOfVertices();
-	void addCharactersToRender() { if (charsToRender < length * 6) charsToRender += 6; }
+	bool addCharactersToRender();
 	void reset() { charsToRender = 0; }
 	void draw();
 };

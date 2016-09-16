@@ -14,6 +14,7 @@ public:
 	struct Particle {
 		Vector2f position;
 		Vector2f velocity;
+		Color color;
 		float life;
 	};
 
@@ -32,8 +33,11 @@ public:
 	Particle * particles;
 
 	GLuint VAO, VBO_positions, VBO_colors;
+	float newParticlePart = 0.0f;
 
 	void init();
+	void generateVAO();
+	void updateBuffers();
 	void update(float dt);
 	int getLastUnused();
 	void setNewParticle(int index);
@@ -41,7 +45,7 @@ public:
 
 
 	ParticleSystem();
-	ParticleSystem(Vector2f pos, Color col=Color(0,0,0), float speed=32.0f, float life=1.0f, int max=500);
+	ParticleSystem(Vector2f pos, Color col = Color(0, 0, 0), bool renderAsP = true, float speed = 32.0f, float life = 1.0f, int max = 500);
 	~ParticleSystem();
 
 

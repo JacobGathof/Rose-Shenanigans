@@ -18,7 +18,7 @@ public:
 	virtual void update(float dt);
 	virtual void tick();
 
-	Direction direction = SOUTH;
+	Direction direction = IDLE;
 	float internalTime = 0;
 
 	Direction lastdirection = SOUTH;

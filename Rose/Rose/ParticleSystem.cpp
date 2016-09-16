@@ -7,28 +7,7 @@ void ParticleSystem::init(){
 	systemInitiated = true;
 	particles = new Particle[max_particles];
 
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-
-	GLuint vertices;
-	GLuint tex;
-
-	float vertices_[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
-	float tex_[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
-
-	glGenBuffers(1, &vertices);
-	glBindBuffer(GL_ARRAY_BUFFER, vertices);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 12, vertices_, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
-	glEnableVertexAttribArray(0);
-
-
-	glGenBuffers(1, &tex);
-	glBindBuffer(GL_ARRAY_BUFFER, tex);
-	glBufferData(GL_ARRAY_BUFFER, 4 * 12, tex_, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
-	glEnableVertexAttribArray(1);
-
+	generateVAO();
 
 	glGenBuffers(1, &VBO_positions);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
@@ -47,14 +26,47 @@ void ParticleSystem::init(){
 
 }
 
+void ParticleSystem::generateVAO(){
+
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
+	GLuint vertices;
+	GLuint tex;
+
+	float vertices_[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
+	float tex_[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
+
+	glGenBuffers(1, &vertices);
+	glBindBuffer(GL_ARRAY_BUFFER, vertices);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 12, vertices_, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
+	glEnableVertexAttribArray(0);
+
+	glGenBuffers(1, &tex);
+	glBindBuffer(GL_ARRAY_BUFFER, tex);
+	glBufferData(GL_ARRAY_BUFFER, 4 * 12, tex_, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+	glEnableVertexAttribArray(1);
+
+}
+
+
 void ParticleSystem::update(float dt)
 {
+	float newParticlesUnrounded = (max_particles*dt / (particle_life));
+	int new_particles = (int)newParticlesUnrounded;
 
-	int new_particles = (int)(max_particles*dt / (particle_life));
-	if (new_particles <= 0)
-		new_particles = 1;
-	if (new_particles > 1)
-		new_particles = 1;
+	if (new_particles <= 0) {
+		newParticlePart += newParticlesUnrounded;
+		if (newParticlePart >= 1.0f) {
+			new_particles = 1;
+			newParticlePart -= 1.0f;
+		}
+	}
+
+	if (new_particles > 4)
+		new_particles = 4;
 
 	if (emit) {
 		for (int i = 0; i < new_particles; i++) {
@@ -80,35 +92,7 @@ void ParticleSystem::update(float dt)
 
 	}
 
-
-	glBindVertexArray(VAO);
-
-	float *pos = new float[particle_count * 2];
-	float *col = new float[particle_count * 3];
-	int ptr = 0;
-
-	for (int i = 0; i < max_particles; i++) {
-		if (particles[i].life <= 0) continue;
-
-		pos[2 * ptr + 0] = particles[i].position.x;
-		pos[2 * ptr + 1] = particles[i].position.y;
-
-		col[3 * ptr + 0] = color.r;
-		col[3 * ptr + 1] = color.g;
-		col[3 * ptr + 2] = color.b;
-
-		ptr++;
-	}
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 2 * particle_count, pos);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 3 * particle_count, col);
-
-	delete[] pos;
-	delete[] col;
-
+	updateBuffers();
 
 }
 
@@ -138,7 +122,7 @@ void ParticleSystem::setNewParticle(int index)
 		((float)rand() / RAND_MAX) - .5f),
 		(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand()/RAND_MAX/2 + .5);
 
-	//particles[index].color = color + Vector3f(colorDev.x * (float)rand() / RAND_MAX, colorDev.y * ((float)rand() / RAND_MAX), colorDev.z * ((float)rand() / RAND_MAX));
+	particles[index].color = color;
 	particles[index].position = position;
 }
 
@@ -146,11 +130,44 @@ void ParticleSystem::draw() {
 
 
 	Res::getShader("particleShader")->use();
-	//Res::getTexture("ParticleTexture")->bindTexture();
+	//Res::getTexture("Fire")->bind();
 
 	glBindVertexArray(this->VAO);
 
-	glDrawArraysInstanced(GL_POINTS, 0, 1, particle_count);
+	glDrawArraysInstanced(	renderAsPoints ? GL_POINTS : GL_TRIANGLES, 0, 
+							renderAsPoints ? 1 : 6, particle_count);
+
+}
+
+void ParticleSystem::updateBuffers() {
+
+	glBindVertexArray(VAO);
+
+	float *pos = new float[particle_count * 2];
+	float *col = new float[particle_count * 3];
+	int ptr = 0;
+
+	for (int i = 0; i < max_particles; i++) {
+		if (particles[i].life <= 0) continue;
+
+		pos[2 * ptr + 0] = particles[i].position.x;
+		pos[2 * ptr + 1] = particles[i].position.y;
+
+		col[3 * ptr + 0] = particles[i].color.r;
+		col[3 * ptr + 1] = particles[i].color.g;
+		col[3 * ptr + 2] = particles[i].color.b;
+
+		ptr++;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_positions);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 2 * particle_count, pos);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * 3 * particle_count, col);
+
+	delete[] pos;
+	delete[] col;
 
 }
 
@@ -168,8 +185,9 @@ ParticleSystem::ParticleSystem()
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, float speed, float life, int max)
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max)
 {
+	renderAsPoints = renderAsP;
 	particle_count = 0;
 	last_unused_particle = 0;
 	emit = true;

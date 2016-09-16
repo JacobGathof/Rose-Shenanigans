@@ -13,6 +13,7 @@ public:
 
 	static Text * text;
 	static bool isDisplayingText;
+	static bool currentlyWriting;
 	static bool isVisible;
 	static bool locked;
 

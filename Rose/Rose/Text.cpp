@@ -14,12 +14,9 @@ Text::Text(Vector2f position, std::string data, Vector2f scale)
 	this->scale = scale;
 	this->charsToRender = length*6;
 	
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-	glGenBuffers(1, &pos_buffer);
-	glGenBuffers(1, &tex_buffer);
+	generateVAO();
 
-	int pos_size = data.length() * 6 * 3;
+	int pos_size = data.length() * 6 * 2;
 	int tex_size = data.length() * 6 * 2;
 	float * pos = new float[pos_size];
 	float * tex = new float[tex_size];
@@ -53,27 +50,21 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 
 		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
 		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
-		pos[vertexPointer++] = 0;
 
 		xPointer += .75f*ch->xadvance;
 
@@ -105,16 +96,30 @@ void Text::updateVAO(float * pos, int pos_size, float * tex, int tex_size)
 
 	glBindBuffer(GL_ARRAY_BUFFER, pos_buffer);
 	glBufferData(GL_ARRAY_BUFFER, pos_size * 4, pos, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, tex_buffer);
+	glBufferData(GL_ARRAY_BUFFER, tex_size * 4, tex, GL_STATIC_DRAW);
+
+}
+
+void Text::generateVAO(){
+
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+	glGenBuffers(1, &pos_buffer);
+	glGenBuffers(1, &tex_buffer);
+
+	glBindBuffer(GL_ARRAY_BUFFER, pos_buffer);
+	glBufferData(GL_ARRAY_BUFFER, 0, 0, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, tex_buffer);
-	glBufferData(GL_ARRAY_BUFFER, tex_size * 4, tex, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 0, 0, GL_STATIC_DRAW);
 	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glEnableVertexAttribArray(1);
-
 }
 
 void Text::setText(std::string str)
@@ -125,7 +130,7 @@ void Text::setText(std::string str)
 
 	glBindVertexArray(VAO);
 
-	int pos_size = str.length() * 6 * 3;
+	int pos_size = str.length() * 6 * 2;
 	int tex_size = str.length() * 6 * 2;
 	float * pos = new float[pos_size];
 	float * tex = new float[tex_size];
@@ -142,6 +147,15 @@ void Text::setText(std::string str)
 int Text::getNumberOfVertices()
 {
 	return 6 * length;
+}
+
+bool Text::addCharactersToRender()
+{
+	if (charsToRender < length * 6) {
+		charsToRender += 6;
+		return false;
+	}
+	return true;
 }
 
 void Text::draw() {

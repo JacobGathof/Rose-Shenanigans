@@ -1,8 +1,10 @@
 #include "Textbox.h"
+#include <iostream>
 
 Text * Textbox::text;
 bool Textbox::isVisible;
 bool Textbox::isDisplayingText;
+bool Textbox::currentlyWriting;
 bool Textbox::locked;
 Vector2f Textbox::topLeft;
 Vector2f Textbox::botRight;
@@ -19,13 +21,13 @@ void Textbox::draw()
 		Res::stdModel->bind();
 		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
-
 		text->draw();
 	}
 }
 
 void Textbox::init(){
-	isVisible = true;
+	isVisible = false;
+	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
 	topLeft = Vector2f(-60, -32);
@@ -55,11 +57,12 @@ void Textbox::advanceQueue(){
 	isDisplayingText = false;
 
 	if (!queue.empty()) {
+		currentlyWriting = true;
 		isDisplayingText = true;
 		isVisible = true;
 		std::string str = queue.front();
 		queue.pop();
-
+		
 		text->setText(str);
 		text->position = topLeft + Vector2f(4,-4);
 		text->reset();
@@ -75,7 +78,8 @@ void Textbox::update(){
 		advanceQueue();
 	}
 
-	text->addCharactersToRender();
+	if (text->addCharactersToRender())
+		currentlyWriting = false;
 
 }
 

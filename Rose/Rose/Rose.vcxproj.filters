@@ -246,5 +246,8 @@
     <Image Include="sword.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Fire.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

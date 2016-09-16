@@ -230,6 +230,7 @@
   <ItemGroup>
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
+    <Image Include="Fire.png" />
     <Image Include="Font_Texture.png" />
     <Image Include="Grass.png" />
     <Image Include="Exteriordecor.png" />
