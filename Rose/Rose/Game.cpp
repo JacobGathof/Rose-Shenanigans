@@ -30,7 +30,7 @@ void Game::init()
 	gameTime = 0;
 
 	LightManager::addLight(new Light(Vector2f(-10, -10), Color(-1,-1,-1), -8.0f));
-	LightManager::addLight(new Light(Vector2f(40, 40), Color(1, 1, 1), 4.0f));
+	LightManager::addLight(new Light(Vector2f(40, 40), Color(1, 1, 1), 8.0f));
 	LightManager::addLight(new Light(Vector2f(40, -40), Color(1, 1, 1), 4.0f));
 	LightManager::addLight(new Light(Vector2f(-40, 40), Color(1, 1, 1), 4.0f));
 	LightManager::addLight(new Light(Vector2f(-40, -40), Color(1, 1, 1), 4.0f));
@@ -42,7 +42,8 @@ void Game::tick() {
 	wizard.tick();
 	wizard.hands[0].tick();
 	Textbox::update();
-	//Advance each animation
+
+
 }
 
 
@@ -70,7 +71,7 @@ void Game::loop(float dt){
 
 void Game::render(){	
 	
-	//terrain.draw();
+	terrain.draw();
 	//WorldManager::drawWorld();
 	wizard.draw();
 	gary.draw();

@@ -1,9 +1,42 @@
 #version 400 core
 
 in vec2 texCoords_;
+in vec2 fragPos_;
+
+struct Light{
+	vec2 position;
+	vec2 color;
+	float intensity;
+};
 
 uniform sampler2D image;
 
+uniform int numLights;
+uniform Light pointLights[32];
+
+
+vec3 calculatePointLight(Light light, vec2 fragPosition_);
+
 void main(){
-	gl_FragColor = texture(image, texCoords_);
+	vec4 outColor = texture(image, texCoords_);
+
+	vec3 totalLight = vec3(.5,.5,.5);
+	for(int i = 0; i < numLights; i++){
+		totalLight += calculatePointLight(pointLights[i], fragPos_);
+	}
+
+	gl_FragColor = outColor * vec4(totalLight, 1.0);
+
+	if(numLights==0) gl_FragColor = vec4(1,.5,.6,1);
+
 }
+
+vec3 calculatePointLight(Light light, vec2 fragPosition_){
+
+	float distance = length(fragPosition_ - light.position);
+	float attenuation = light.intensity / (0.1*distance*distance + 0.1*distance + 1.0);
+
+	return (attenuation) * vec3(.7,.7,1);
+
+}
+

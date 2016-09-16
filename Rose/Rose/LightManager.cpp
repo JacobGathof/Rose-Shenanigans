@@ -12,7 +12,7 @@ void LightManager::addLight(Light * light) {
 	numberOfLights++;
 	updateLights("entityShader");
 	//updateLights("simpleShader");
-	//updateLights("terrainShader");
+	updateLights("terrainShader");
 }
 
 void LightManager::updateLights(char* shader) {
