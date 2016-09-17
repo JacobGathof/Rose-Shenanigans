@@ -22,19 +22,10 @@ void Game::init()
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
 
-	sys = ParticleSystem(Vector2f(-10,-10), Color(0,0,0), true, 64.0f, 1.00f, 10000, false, true);
-	sys.init();
-
-	terrain = Terrain();
-	terrain.addTerrain();
+	//terrain = Terrain();
+	//terrain.addTerrain();
 
 	gameTime = 0;
-
-	LightManager::addLight(new Light(Vector2f(-10, -10), Color(-1,-1,-1), -8.0f));
-	LightManager::addLight(new Light(Vector2f(40, 40), Color(1, 1, 1), 8.0f));
-	LightManager::addLight(new Light(Vector2f(40, -40), Color(1, 1, 1), 4.0f));
-	LightManager::addLight(new Light(Vector2f(-40, 40), Color(1, 1, 1), 4.0f));
-	LightManager::addLight(new Light(Vector2f(-40, -40), Color(1, 1, 1), 4.0f));
 
 }
 
@@ -44,6 +35,8 @@ void Game::tick() {
 	wizard.hands[0].tick();
 	Textbox::update();
 
+	WorldManager::tick();
+	WorldManager::checkWorld(&wizard);
 
 }
 
@@ -54,9 +47,9 @@ void Game::loop(float dt){
 		tick();
 	}
 
-	gameTime += dt;
+	WorldManager::update(dt);
 
-	WorldManager::checkWorld(wizard);
+	gameTime += dt;
 
 	Camera::position = wizard.position;
 	Res::getShader("entityShader")->loadVector2f("cameraPosition", Camera::position);
@@ -66,17 +59,14 @@ void Game::loop(float dt){
 
 	Res::getShader("entityShader")->loadFloat("gameTime", gameTime);
 	gary.update(dt);
-	sys.update(dt);
 
 }
 
 void Game::render(){	
-	
-	terrain.draw();
-	//WorldManager::drawWorld();
+
+	WorldManager::drawWorld();
 	gary.draw();
 	wizard.draw();
 	Textbox::draw();
-	sys.draw();
 
 }

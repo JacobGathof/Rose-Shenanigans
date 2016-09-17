@@ -44,17 +44,6 @@ void Input::processInput(float dt)
 	}
 
 
-	if (keys[GLFW_KEY_P]) {
-		keys[GLFW_KEY_P] = false;
-		game->sys.spin = !game->sys.spin;
-	}
-
-	if (keys[GLFW_KEY_O]) {
-		keys[GLFW_KEY_O] = false;
-		game->sys.direction = !game->sys.direction;
-	}
-
-
 }
 
 Input::Input()

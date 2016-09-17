@@ -43,15 +43,24 @@ void Res::init() {
 Model * Res::getModel(std::string str)
 {
 	return models[str];
+	if (models.find(str) == models.end()) {
+		std::cout << "Could not get Model" << std::endl;
+	}
 }
 
 ShaderProgram * Res::getShader(std::string str)
 {
+	if (shaders.find(str) == shaders.end()) {
+		std::cout << "Could not get Shader" << std::endl;
+	}
 	return shaders[str];
 }
 
 Texture * Res::getTexture(std::string str)
 {
+	if (textures.find(str) == textures.end()) {
+		std::cout << "Could not get Texture" << std::endl;
+	}
 	return textures[str];
 }
 
@@ -147,7 +156,7 @@ void Res::cleanResources(){
 
 	WorldManager::destroy();
 	Textbox::destroy();
-	LightManager::cleanUp();
+	//LightManager::cleanUp();
 
 	std::cout << "Resources cleaned\n";
 

@@ -25,8 +25,5 @@ public:
 	Player wizard;
 
 	NPC gary;
-	ParticleSystem sys;
-	
-	Terrain terrain;
 };
 

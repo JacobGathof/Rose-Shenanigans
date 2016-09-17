@@ -5,7 +5,7 @@ in vec2 fragPos_;
 
 struct Light{
 	vec2 position;
-	vec2 color;
+	vec3 color;
 	float intensity;
 };
 
@@ -36,7 +36,7 @@ vec3 calculatePointLight(Light light, vec2 fragPosition_){
 	float distance = length(fragPosition_ - light.position);
 	float attenuation = light.intensity / (0.1*distance*distance + 0.1*distance + 1.0);
 
-	return (attenuation) * vec3(.7,.7,1);
+	return (attenuation) * light.color;
 
 }
 

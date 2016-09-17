@@ -227,6 +227,8 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float sp
 	particle_speed = speed;
 	particle_life = life;
 	max_particles = max;
+
+	init();
 }
 
 

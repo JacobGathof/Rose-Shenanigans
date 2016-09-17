@@ -15,6 +15,11 @@ void LightManager::addLight(Light * light) {
 	updateLights("terrainShader");
 }
 
+void LightManager::clearLights(){
+	numberOfLights = 0;
+	lights.clear();
+}
+
 void LightManager::updateLights(char* shader) {
 
 	ShaderProgram * currentShader = Res::getShader(shader);

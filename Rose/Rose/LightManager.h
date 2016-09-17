@@ -24,7 +24,7 @@ public:
 	static std::vector<Light*> lights;
 
 	static void addLight(Light* light);
-	//static void removeLight(Light* light);
+	static void clearLights();
 	//static void removeLightPosition(Vector3f position);
 	static void updateLights(char* shader);
 	static void reloadLights(char* shader);

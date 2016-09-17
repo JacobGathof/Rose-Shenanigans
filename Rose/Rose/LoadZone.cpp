@@ -1,7 +1,6 @@
 #include "LoadZone.h"
 
 
-
 LoadZone::LoadZone()
 {
 }
@@ -11,9 +10,9 @@ LoadZone::~LoadZone()
 {
 }
 
-LoadZone::LoadZone(std::string name, int h, int w, Vector2f pos) {
-	world = name;
-	height = h;
-	width = w;
-	position = pos;
+LoadZone::LoadZone(World * currentWorld, World * targetWorld, Vector2f position, Vector2f scale){
+	this->currentWorld = currentWorld;
+	this->targetWorld = targetWorld;
+	this->position = position;
+	this->scale = scale;
 }

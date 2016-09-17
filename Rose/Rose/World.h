@@ -1,10 +1,11 @@
 #pragma once
-#include "Object.h"
-#include "Vector2f.h"
+#include "LightManager.h"
+#include "ParticleSystem.h"
 #include "LoadZone.h"
 #include "Player.h"
-#include "Entity.h"
+#include "Terrain.h"
 #include <vector>
+
 class World
 {
 public:
@@ -15,12 +16,22 @@ public:
 	std::string name;
 	std::vector<Object *> objects;
 	std::vector<Entity *> entities;
-	std::vector<LoadZone> loadzones;
+	std::vector<ParticleSystem *> systems;
+	std::vector<Light *> lights;
+	std::vector<Terrain *> terrain;
+	std::vector<LoadZone> zones;
 	
 	void AddEntity(Entity * obj);
 	void AddObject(Object * obj);
+	void AddSystem(ParticleSystem * s);
+	void AddLight(Light * l);
+	void addTerrain(Terrain* t);
+
+	void tick();
+	void update(float dt);
+	void loadWorldResources();
 	void AddLoadZone(LoadZone zone);
-	std::string CheckLoad(Player player);
+	World* checkLoad(Player* player);
 	void draw();
 	void unloadWorld();
 };

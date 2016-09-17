@@ -18,7 +18,7 @@ void Terrain::TerrainChunk::buildTerrain() {
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.1f;
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.1f;
 
-			tileTexture[i*tilesPerChunk + j] = rand() % 2;
+			tileTexture[i*tilesPerChunk + j] = rand() % 16;
 
 		}
 	}
