@@ -86,8 +86,19 @@ void ParticleSystem::update(float dt)
 		}
 
 		particle_count++;
-
-		particles[i].position = particles[i].position + dt* particles[i].velocity;
+		
+		if (spin && !direction) {
+			Vector2f vel = (position - particles[i].position);
+			particles[i].velocity = 2 * vel;
+			particles[i].velocity += 16 * Vector2f(vel.y, -vel.x) * (1.0 / vel.magnitude());
+		}
+		else if(spin && direction) {
+			particles[i].velocity += 1*dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
+		}
+		else {
+			
+		}
+		particles[i].position += dt* particles[i].velocity;
 		particles[i].life -= dt;
 
 	}
@@ -117,13 +128,28 @@ int ParticleSystem::getLastUnused()
 
 void ParticleSystem::setNewParticle(int index)
 {
-	particles[index].life = particle_life;
-	particles[index].velocity = Vector2f((
-		((float)rand() / RAND_MAX) - .5f),
-		(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand()/RAND_MAX/2 + .5);
+	if (direction) {
+		particles[index].life = particle_life;
+		particles[index].velocity = Vector2f((
+			((float)rand() / RAND_MAX) - .5f),
+			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 
-	particles[index].color = color;
-	particles[index].position = position;
+		particles[index].color = color;
+		particles[index].position = position;
+	}
+
+	else {
+		particles[index].life = particle_life;
+		Vector2f vel = Vector2f((
+			((float)rand() / RAND_MAX) - .5f),
+			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
+
+		particles[index].velocity = -1 * vel;
+
+		particles[index].color = color;
+		particles[index].position = position + particle_life*vel;
+	}
+
 }
 
 void ParticleSystem::draw() {
@@ -177,6 +203,8 @@ ParticleSystem::ParticleSystem()
 	particle_count = 0;
 	last_unused_particle = 0;
 	emit = true;
+	spin = false;
+	direction = direction;
 
 	max_particles = 500;
 	particle_life = 0.5f;
@@ -185,12 +213,14 @@ ParticleSystem::ParticleSystem()
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max)
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max, bool spin, bool direction)
 {
 	renderAsPoints = renderAsP;
 	particle_count = 0;
 	last_unused_particle = 0;
 	emit = true;
+	this->spin = spin;
+	this->direction = direction;
 
 	position = Vector2f(pos.x, pos.y);
 	color = Color(col.r, col.g, col.b);

@@ -18,6 +18,10 @@ public:
 		float life;
 	};
 
+	bool spin = false;
+	bool direction = false;
+	/*True == particles are blown away from center. False == Particles are suck into center*/
+
 	bool renderAsPoints = false;
 	float particleScale = 1.0f;
 
@@ -45,7 +49,7 @@ public:
 
 
 	ParticleSystem();
-	ParticleSystem(Vector2f pos, Color col = Color(0, 0, 0), bool renderAsP = true, float speed = 32.0f, float life = 1.0f, int max = 500);
+	ParticleSystem(Vector2f pos, Color col = Color(0, 0, 0), bool renderAsP = true, float speed = 32.0f, float life = 1.0f, int max = 500, bool spin = false, bool direction = false);
 	~ParticleSystem();
 
 

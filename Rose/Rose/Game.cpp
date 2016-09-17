@@ -22,7 +22,7 @@ void Game::init()
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
 
-	sys = ParticleSystem(Vector2f(-10,-10), Color(0,0,0), true, 32.0f, 1.00f, 500);
+	sys = ParticleSystem(Vector2f(-10,-10), Color(0,0,0), true, 64.0f, 1.00f, 10000, false, true);
 	sys.init();
 
 	terrain = Terrain();
