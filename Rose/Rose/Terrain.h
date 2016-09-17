@@ -10,20 +10,6 @@ public:
 
 	enum TileType {
 
-		TOP_RIGHT_CORNER,
-		TOP_LEFT_CORNER,
-		BOT_RIGHT_CORNER,
-		BOT_LEFT_CORNER,
-
-		TOP_PATH,
-		BOT_PATH,
-		LEFT_PATH,
-		RIGHT_PATH,
-
-		DIRT,
-
-
-
 	};
 
 
@@ -37,7 +23,7 @@ public:
 
 	Terrain() {
 		tilesPerChunk = 16;
-		tileScale = 10.0f;
+		tileScale = 16.0f;
 	};
 
 	void addTerrain() {

@@ -29,12 +29,4 @@ void main(){
 
 	texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.5*(instTex/2), .5*(instTex%2));
 
-	if(instTex >= 16){
-		texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.5, 0) + .125*vec2((instTex-16)/4, (instTex-16)%4);
-	}
-
-	if(instTex >= 32){
-		texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.5, .5) + .125*vec2((instTex-32)/2, (instTex-32)%2);
-	}
-
 }

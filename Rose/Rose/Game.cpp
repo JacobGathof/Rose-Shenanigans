@@ -72,7 +72,7 @@ void Game::loop(float dt){
 
 void Game::render(){	
 	
-	//terrain.draw();
+	terrain.draw();
 	//WorldManager::drawWorld();
 	gary.draw();
 	wizard.draw();
