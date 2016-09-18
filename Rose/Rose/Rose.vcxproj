@@ -239,6 +239,9 @@
     <Image Include="sword.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Town of Beginnings" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class Vector2f
 {
 public:
@@ -31,6 +32,10 @@ public:
 		x += v.x;
 		y += v.y;
 		return *this;
+	}
+
+	std::string toString() {
+		return std::to_string(x) + "," + std::to_string(y);
 	}
 
 

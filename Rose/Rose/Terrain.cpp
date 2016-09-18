@@ -22,6 +22,36 @@ void Terrain::setTile(Vector2f pos, int i){
 
 }
 
+void Terrain::loadTerrain(std::string filename){
+
+
+
+}
+
+void Terrain::saveTerrain(std::string filename){
+
+	std::ofstream file;
+	file.open(filename, file.out);
+
+	for (auto t : terrain) {
+		std::string s(t->position.toString()+"\n");
+		file.write((s).c_str(), std::strlen(s.c_str()));
+
+		for (int i = 0; i < tilesPerChunk; i++) {
+			for (int j = 0; j < tilesPerChunk; j++) {
+				int v = (t->tileTexture[tilesPerChunk*i + j]);
+				std::string q = std::to_string(v) + ",";
+				file.write(q.c_str(), q.length());
+			}
+		}
+
+		file.write("\n", 1);
+	}
+
+	file.close();
+
+}
+
 void Terrain::TerrainChunk::buildTerrain() {
 
 	tilePosition = new float[tilesPerChunk*tilesPerChunk*2];
@@ -32,7 +62,7 @@ void Terrain::TerrainChunk::buildTerrain() {
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.0f;
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.0f;
 
-			tileTexture[i*tilesPerChunk + j] = tileSequence[i*tilesPerChunk + j];
+			tileTexture[i*tilesPerChunk + j] = 0;
 
 		}
 	}

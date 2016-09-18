@@ -23,19 +23,19 @@ public:
 		addTerrain();
 	};
 
-	void addTerrain() {
-		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
-	}
-
-	void setTile(Vector2f pos, int i);
-
 	~Terrain() {
 		for (auto t : terrain) {
 			delete t;
 		}
 	};
 
+	void addTerrain() {
+		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
+	}
 
+	void setTile(Vector2f pos, int i);
+	void loadTerrain(std::string filename);
+	void saveTerrain(std::string filename);
 
 	class TerrainChunk {
 
@@ -47,24 +47,6 @@ public:
 			Vector2f position;
 			float * tilePosition;
 			int * tileTexture;
-			int tileSequence[16 * 16] = {
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-			};
 
 			TerrainChunk(Vector2f pos, int tpc, int sc) {
 				position = pos;

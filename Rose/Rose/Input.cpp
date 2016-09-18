@@ -44,9 +44,9 @@ void Input::processInput(float dt)
 		}
 	}
 
-	if (keys[GLFW_KEY_1]) {
-		keys[GLFW_KEY_1] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 0);
+	if (keys[GLFW_KEY_9]) {
+		keys[GLFW_KEY_9] = false;
+		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);
 	}
 	if (keys[GLFW_KEY_2]) {
 		keys[GLFW_KEY_2] = false;
