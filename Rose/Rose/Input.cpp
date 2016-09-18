@@ -5,6 +5,7 @@
 bool Input::keys[];
 bool Input::mouse[];
 Game* Input::game;
+int Input::tilePointer;
 
 void Input::processInput(float dt)
 {
@@ -41,6 +42,23 @@ void Input::processInput(float dt)
 		if (!Textbox::currentlyWriting) {
 			Textbox::advanceQueue();
 		}
+	}
+
+	if (keys[GLFW_KEY_1]) {
+		keys[GLFW_KEY_1] = false;
+		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 0);
+	}
+	if (keys[GLFW_KEY_2]) {
+		keys[GLFW_KEY_2] = false;
+		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 1);
+	}
+	if (keys[GLFW_KEY_3]) {
+		keys[GLFW_KEY_3] = false;
+		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 2);
+	}
+	if (keys[GLFW_KEY_4]) {
+		keys[GLFW_KEY_4] = false;
+		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 4);
 	}
 
 

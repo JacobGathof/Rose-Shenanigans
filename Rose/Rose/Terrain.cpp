@@ -8,6 +8,20 @@ void Terrain::draw() {
 	}
 }
 
+void Terrain::setTile(Vector2f pos, int i){
+
+	TerrainChunk * t = terrain[0];
+
+	int index = tilesPerChunk*(int)(pos.x / tileScale) + ((int)(pos.y / tileScale) % tilesPerChunk);
+
+	int data[] = { i };
+
+	glBindVertexArray(t->VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, t->VBO_inst_tex);
+	glBufferSubData(GL_ARRAY_BUFFER, index * 4, 4, data);
+
+}
+
 void Terrain::TerrainChunk::buildTerrain() {
 
 	tilePosition = new float[tilesPerChunk*tilesPerChunk*2];
@@ -15,10 +29,10 @@ void Terrain::TerrainChunk::buildTerrain() {
 
 	for (int i = 0; i < tilesPerChunk; i++) {
 		for (int j = 0; j < tilesPerChunk; j++) {
-			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.1f;
-			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.1f;
+			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.0f;
+			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.0f;
 
-			tileTexture[i*tilesPerChunk + j] = rand() % 16;
+			tileTexture[i*tilesPerChunk + j] = tileSequence[i*tilesPerChunk + j];
 
 		}
 	}
@@ -29,7 +43,7 @@ void Terrain::TerrainChunk::buildTerrain() {
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
-	GLuint VBO_vertices, VBO_textures, VBO_inst_pos, VBO_inst_tex;
+	
 	glGenBuffers(1, &VBO_vertices);
 	glGenBuffers(1, &VBO_textures);
 	glGenBuffers(1, &VBO_inst_pos);

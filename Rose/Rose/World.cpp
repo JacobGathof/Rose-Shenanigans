@@ -64,6 +64,10 @@ void World::addTerrain(Terrain * t){
 
 void World::draw() {
 
+	for (auto t : terrain) {
+		t->draw();
+	}
+
 	for (auto o : objects) {
 		o->draw();
 	}
@@ -76,9 +80,6 @@ void World::draw() {
 		s->draw();
 	}
 
-	for (auto t : terrain) {
-		t->draw();
-	}
 }
 
 void World::unloadWorld(){

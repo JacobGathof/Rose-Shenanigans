@@ -15,8 +15,6 @@ uniform vec2 cameraPosition;
 const float scaleFactor = 64.0;
 const mat4 projectionMatrix = mat4(vec4(1.0/scaleFactor,0,0,0), vec4(0,1.0/scaleFactor,0,0), vec4(0,0,2,-1), vec4(0,0,0,1));
 
-const int rows = 14;
-const int col = 14;
 
 void main(){
 	
@@ -30,6 +28,6 @@ void main(){
 		(vertices.x+instPosition.x)*scale.x + pos.x, 
 		(vertices.y+instPosition.y)*scale.y + pos.y);
 
-	texCoords_ = vec2(texCoords.x/16, texCoords.y/16) + vec2(.0625*(instTex%14), .0625*(instTex/14)) + vec2((instTex%14)*1/128.0,(instTex/14)*1/128.0);
+	texCoords_ = vec2(texCoords.x/4, texCoords.y/4) + vec2(.25*(instTex%4), .25*(instTex/4));
 
 }

@@ -12,8 +12,12 @@ void WorldManager::init(){
 	World * world = new World("Town of Beginnings");
 	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Edwin", 20));
 	world->AddObject(new Object(Vector2f(50, 0), Vector2f(10, 10), "Fire"));
-	world->AddSystem(new ParticleSystem(Vector2f(-10, -10), Color(0, 0, 0), true, 64.0f, 1.00f, 10000, false, true));
+	world->AddSystem(new ParticleSystem(Vector2f(-10, -10), Color(0, 0, 0), true, 64.0f, 1.00f, 1000, false, true));
+	world->AddSystem(new ParticleSystem(Vector2f(10, -10), Color(1, 0, 0), true, 64.0f, 1.00f, 1000, false, true));
+	world->AddSystem(new ParticleSystem(Vector2f(10, 10), Color(0, 1, 0), true, 64.0f, 1.00f, 1000, false, true));
+	world->AddSystem(new ParticleSystem(Vector2f(-10, 10), Color(0, 0, 1), true, 64.0f, 1.00f, 1000, false, true));
 	world->AddLight(new Light(Vector2f(0, 0), Color(1, 0, 0), 8.0f));
+	world->addTerrain(new Terrain());
 
 
 	World * world2 = new World("World 2");
@@ -21,6 +25,7 @@ void WorldManager::init(){
 	world2->AddObject(new Object(Vector2f(-50, 0), Vector2f(10, 10), "Fire"));
 	world2->AddSystem(new ParticleSystem(Vector2f(10, 10), Color(0, 0, 1), true, 64.0f, 1.00f, 1000, true, false));
 	world2->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
+	world2->addTerrain(new Terrain());
 	
 
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50,0), Vector2f(10,10)));

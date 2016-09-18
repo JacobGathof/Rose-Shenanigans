@@ -4,14 +4,10 @@
 #include <iostream>
 #include <vector>
 
+
 class Terrain
 {
 public:
-
-	enum TileType {
-
-	};
-
 
 	class TerrainChunk;
 
@@ -24,11 +20,14 @@ public:
 	Terrain() {
 		tilesPerChunk = 16;
 		tileScale = 16.0f;
+		addTerrain();
 	};
 
 	void addTerrain() {
 		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
 	}
+
+	void setTile(Vector2f pos, int i);
 
 	~Terrain() {
 		for (auto t : terrain) {
@@ -42,17 +41,37 @@ public:
 
 		public:
 			GLuint VAO;
+			GLuint VBO_vertices, VBO_textures, VBO_inst_pos, VBO_inst_tex;
 			int tilesPerChunk;
 			Vector2f scale;
 			Vector2f position;
 			float * tilePosition;
 			int * tileTexture;
+			int tileSequence[16 * 16] = {
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+			};
 
 			TerrainChunk(Vector2f pos, int tpc, int sc) {
 				position = pos;
 				tilesPerChunk = tpc;
 				scale = Vector2f(sc, sc);
 				buildTerrain();
+
 			};
 			~TerrainChunk() {
 				delete[] tilePosition;
@@ -62,6 +81,8 @@ public:
 			void draw();
 
 	};
+
+
 };
 
 

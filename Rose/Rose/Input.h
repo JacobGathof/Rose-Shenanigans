@@ -9,6 +9,7 @@ public:
 	static bool keys[1024];
 	static bool mouse[1024];
 	static Game * game;
+	static int tilePointer;
 
 	static void processInput(float dt);
 
