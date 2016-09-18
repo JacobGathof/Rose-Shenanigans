@@ -35,7 +35,7 @@ public:
 	}
 
 	std::string toString() {
-		return std::to_string(x) + "," + std::to_string(y);
+		return std::to_string((int)x) + "," + std::to_string((int)y);
 	}
 
 

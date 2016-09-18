@@ -20,7 +20,13 @@ public:
 	Terrain() {
 		tilesPerChunk = 16;
 		tileScale = 16.0f;
-		addTerrain();
+		loadTerrain("Town of Beginnings");
+	};
+
+	Terrain(std::string str) {
+		tilesPerChunk = 16;
+		tileScale = 16.0f;
+		loadTerrain(str);
 	};
 
 	~Terrain() {
@@ -52,14 +58,14 @@ public:
 				position = pos;
 				tilesPerChunk = tpc;
 				scale = Vector2f(sc, sc);
-				buildTerrain();
-
 			};
+
 			~TerrainChunk() {
 				delete[] tilePosition;
 				delete[] tileTexture;
 			};
-			void buildTerrain();
+
+			void buildTerrain(int textures[]);
 			void draw();
 
 	};

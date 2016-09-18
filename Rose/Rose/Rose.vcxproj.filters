@@ -258,5 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
+    <None Include="World 2" />
   </ItemGroup>
 </Project>

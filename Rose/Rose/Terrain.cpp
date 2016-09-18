@@ -1,5 +1,5 @@
 #include "Terrain.h"
-
+#include <sstream>
 
 
 void Terrain::draw() {
@@ -16,6 +16,8 @@ void Terrain::setTile(Vector2f pos, int i){
 
 	int data[] = { i };
 
+	t->tileTexture[index] = i;
+
 	glBindVertexArray(t->VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, t->VBO_inst_tex);
 	glBufferSubData(GL_ARRAY_BUFFER, index * 4, 4, data);
@@ -25,6 +27,52 @@ void Terrain::setTile(Vector2f pos, int i){
 void Terrain::loadTerrain(std::string filename){
 
 
+	std::ifstream file;
+	file.open(filename, file.in);
+
+	char buffer[8192];
+
+	while (!file.eof()) {
+
+		std::stringstream line;
+
+		file.getline(buffer, 64);
+		if (buffer[0] == '\0') break;
+		line << buffer;
+
+		char b1[4];
+		char b2[4];
+
+		line.getline(b1, 64, ',');
+		line.getline(b2, 64, ' ');
+
+		Vector2f pos(std::stoi(b1), std::stoi(b2));
+		TerrainChunk * chunk = new TerrainChunk(pos, tilesPerChunk, tileScale);
+
+
+		file.getline(buffer, 8192);
+		line.str(buffer);
+
+		line.seekg(line.beg);
+
+		int ptr = 0;
+		int * tileTextures = new int[tilesPerChunk*tilesPerChunk];
+		while (!line.eof()) {
+
+			line.getline(buffer, 64, ',');
+			if (buffer[0] == '\0') continue;
+			if (buffer[0] == 'a') {}
+			int i = std::stoi(buffer);
+			tileTextures[ptr++] = i;
+		}
+
+		line.str("");
+
+		chunk->buildTerrain(tileTextures);
+
+		terrain.push_back(chunk);
+
+	}
 
 }
 
@@ -52,7 +100,7 @@ void Terrain::saveTerrain(std::string filename){
 
 }
 
-void Terrain::TerrainChunk::buildTerrain() {
+void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 
 	tilePosition = new float[tilesPerChunk*tilesPerChunk*2];
 	tileTexture = new int[tilesPerChunk*tilesPerChunk];
@@ -62,10 +110,12 @@ void Terrain::TerrainChunk::buildTerrain() {
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.0f;
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.0f;
 
-			tileTexture[i*tilesPerChunk + j] = 0;
+			tileTexture[i*tilesPerChunk + j] = textures[i*tilesPerChunk+j];
 
 		}
 	}
+
+	delete[] textures;
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float texures[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
