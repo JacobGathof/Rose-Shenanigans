@@ -50,5 +50,5 @@ void NPC::interact(){
 }
 
 void NPC::act(){
-	
+
 }

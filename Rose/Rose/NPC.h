@@ -10,7 +10,7 @@ public:
 	NPC();
 	~NPC();
 
-	bool isInteracting = false;;
+	bool isInteracting = false;
 
 	void update(float dt);
 	void addAction(std::string str);
