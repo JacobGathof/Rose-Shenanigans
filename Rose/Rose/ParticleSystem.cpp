@@ -236,6 +236,5 @@ ParticleSystem::~ParticleSystem()
 {
 	if (systemInitiated) {
 		delete[] particles;
-		std::cout << "Particles Deleted\n";
 	}
 }

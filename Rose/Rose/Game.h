@@ -8,6 +8,7 @@
 #include "Text.h"
 #include "Terrain.h"
 #include "NPC.h"
+#include "Mission.h"
 
 class Game
 {

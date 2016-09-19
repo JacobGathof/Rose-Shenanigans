@@ -107,7 +107,7 @@
       <AdditionalIncludeDirectories>opengl-wrapper\GLEW\include;opengl-wrapper\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-       <SubSystem>Console</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -166,6 +166,7 @@
     <ClInclude Include="LoadZone.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Mission.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="NPC.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="LoadZone.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="NPC.cpp" />

@@ -14,14 +14,15 @@
 void Game::init()
 {
 	Res::init();
-	
+	std::vector<Weapon> blank;
 	gary = NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
 	gary.numberOfAnimationRows = 4;
 
 	wizard = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	Weapon weapon = Weapon(10, 20, 5, wizard.position, "sword");
 	wizard.hands[0] = weapon;
-
+	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
+	wizard.addMission(mission);
 	//terrain = Terrain();
 	//terrain.addTerrain();
 

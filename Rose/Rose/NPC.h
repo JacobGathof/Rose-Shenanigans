@@ -11,6 +11,7 @@ public:
 	~NPC();
 
 	bool isInteracting = false;
+	std::string name;
 	
 	void update(float dt);
 	void addAction(std::string str);
