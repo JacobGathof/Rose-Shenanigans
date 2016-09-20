@@ -10,7 +10,7 @@ void WorldManager::init(){
 
 
 	World * world = new World("Town of Beginnings");
-	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Edwin", 20));
+	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 	world->AddObject(new Object(Vector2f(50, 0), Vector2f(10, 10), "Fire"));
 	world->AddSystem(new ParticleSystem(Vector2f(-10, -10), Color(0, 0, 0), true, 64.0f, 1.00f, 1000, false, true));
 	world->AddSystem(new ParticleSystem(Vector2f(10, -10), Color(1, 0, 0), true, 64.0f, 1.00f, 1000, false, true));

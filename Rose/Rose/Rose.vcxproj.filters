@@ -105,6 +105,9 @@
     <ClInclude Include="Mission.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -261,9 +264,17 @@
     <Image Include="Fire.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Rain.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
     <None Include="World 2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rose1.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,7 @@ void Res::init() {
 	Res::loadShader("uiShader", "uiVertexShader.txt", 0, "uiFragmentShader.txt");
 
 	Res::loadTexture("Echo", "Echo.png");
+	Res::loadTexture("Rain", "Rain.png");
 	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
 	Res::loadTexture("Grass", "Grass.png");

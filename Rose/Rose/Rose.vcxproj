@@ -175,6 +175,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
@@ -238,12 +239,16 @@
     <Image Include="Font_Texture.png" />
     <Image Include="Grass.png" />
     <Image Include="Exteriordecor.png" />
+    <Image Include="Rain.png" />
     <Image Include="sword.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
     <None Include="World 2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rose1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
