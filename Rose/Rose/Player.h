@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "Mission.h"
+#include "Text.h"
 
 enum TypesOfHands {
 	right,
@@ -23,16 +24,21 @@ public:
 	int mana;
 	int morality;
 	int exp;
+	int maxXp;
+	int level;
 	Weapon hands[2];
 	std::vector<Object> inventory;
 	std::vector<Mission> missions;
+	Text stats;
 
 	virtual void move(Vector2f dir, float dt);
 
+	void talkTo(NPC npc);
 	void addMission(Mission mission);
 	void CheckMissions();
 	void attack(int hand);
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
+	void LevelUp();
 };
 

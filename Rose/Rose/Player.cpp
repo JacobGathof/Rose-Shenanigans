@@ -11,6 +11,17 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, int speed)
 	maxmana = 100;
 	morality = 50;
 	exp = 0;
+	maxXp = 50;
+	level = 1;
+	stats = Text(Vector2f(40, -60), "Level: " + std::to_string(level), Vector2f(3, 3));
+}
+
+void Player::talkTo(NPC npc)
+{
+	for (int i = 0; i < missions.size(); i++) {
+		missions.at(i).Talk(npc);
+	}
+	CheckMissions();
 }
 
 void Player::addMission(Mission mission)
@@ -32,7 +43,6 @@ void Player::CheckMissions()
 
 void Player::attack(int hand)
 {
-
 	hands[hand].attack(NPC(), position, lastdirection);
 }
 
@@ -46,8 +56,20 @@ void Player::addToInventory(Object item)
 	inventory.push_back(item);
 }
 
+void Player::LevelUp()
+{
+	level++;
+	maxXp += 20;
+	exp = 0;
+	stats = Text(Vector2f(40, -60), "Level: " + std::to_string(level), Vector2f(3, 3));
+}
+
 void Player::move(Vector2f dir, float dt) {
 	Entity::move(dir, dt);
 	CheckMissions();
+	if (maxXp <= exp) {
+		LevelUp();
+	}
+	stats.draw();
 }
 

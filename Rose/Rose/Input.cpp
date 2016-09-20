@@ -33,6 +33,7 @@ void Input::processInput(float dt)
 		if (keys[GLFW_KEY_Y]) {
 			keys[GLFW_KEY_Y] = false;
 			game->gary.interact();
+			game->wizard.talkTo(game->gary);
 		}
 	}
 

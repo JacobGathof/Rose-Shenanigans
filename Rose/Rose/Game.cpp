@@ -23,9 +23,10 @@ void Game::init()
 	wizard.hands[0] = weapon;
 	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
 	wizard.addMission(mission);
+	mission = Mission(50, 50, blank, "hello", gary);
+	wizard.addMission(mission);
 	//terrain = Terrain();
 	//terrain.addTerrain();
-
 	gameTime = 0;
 
 }
