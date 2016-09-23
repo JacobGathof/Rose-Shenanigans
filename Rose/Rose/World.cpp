@@ -24,6 +24,9 @@ void World::update(float dt){
 	for (auto s : systems) {
 		s->update(dt);
 	}
+	for (auto e : entities) {
+		e->update(dt);
+	}
 
 }
 

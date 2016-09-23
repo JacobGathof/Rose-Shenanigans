@@ -25,9 +25,23 @@ void Game::init()
 	wizard.addMission(mission);
 	mission = Mission(50, 50, blank, "hello", gary);
 	wizard.addMission(mission);
-	//terrain = Terrain();
-	//terrain.addTerrain();
 	gameTime = 0;
+
+	circleVector = Vector2f(1, 0);
+
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "Follow Me"));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(50, 20)));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(300,20)));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(100, 50)));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "It's dangerous to go alone."));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "Take this"));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(0, 0)));
+	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE_SPECIAL, &circleVector));
 
 }
 
@@ -49,6 +63,8 @@ void Game::loop(float dt){
 		tick();
 	}
 
+	circleVector = Vector2f(cos(gameTime), sin(gameTime));
+
 	WorldManager::update(dt);
 
 	gameTime += dt;
@@ -60,6 +76,11 @@ void Game::loop(float dt){
 	Res::getShader("particleShader")->loadVector2f("cameraPosition", Camera::position);
 
 	Res::getShader("entityShader")->loadFloat("gameTime", gameTime);
+
+	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !Textbox::isVisible) {
+		gary.trigger();
+	}
+
 	gary.update(dt);
 
 }
