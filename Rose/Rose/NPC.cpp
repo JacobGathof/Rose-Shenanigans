@@ -80,6 +80,20 @@ void NPC::act(){
 }
 
 void NPC::addAction(NPCAction a){
+	a.target = this;
 	actionQueue.push(a);
 }
 
+
+void NPCAction::act(float dt){
+	if (!finished) {
+		switch (type) {
+		case TALK: finished = target->print(message); break;
+		case WAIT: finished = target->idle(); break;
+		case MOVE: finished = target->moveTo(endPoint, dt); break;
+		case MOVE_SPECIAL: target->move(*dir, dt); finished = target->idle(); break;
+		}
+
+	}
+	
+}

@@ -29,19 +29,21 @@ void Game::init()
 
 	circleVector = Vector2f(1, 0);
 
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "Follow Me"));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(50, 20)));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(300,20)));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(100, 50)));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "It's dangerous to go alone."));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::TALK, "Take this"));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::WAIT));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE, Vector2f(0, 0)));
-	gary.addAction(NPC::NPCAction(&gary, NPC::NPCAction::MOVE_SPECIAL, &circleVector));
+
+
+	gary.addAction(NPCAction(WAIT));
+	gary.addAction(NPCAction(TALK, "Follow Me"));
+	gary.addAction(NPCAction(WAIT));
+	gary.addAction(NPCAction(MOVE, Vector2f(50, 20)));
+	gary.addAction(NPCAction(WAIT));
+	gary.addAction(NPCAction(MOVE, Vector2f(300,20)));
+	gary.addAction(NPCAction(MOVE, Vector2f(100, 50)));
+	gary.addAction(NPCAction(WAIT));
+	gary.addAction(NPCAction(TALK, "It's dangerous to go alone."));
+	gary.addAction(NPCAction(TALK, "Take this"));
+	gary.addAction(NPCAction(WAIT));
+	gary.addAction(NPCAction(MOVE, Vector2f(0, 0)));
+	gary.addAction(NPCAction(MOVE_SPECIAL, &circleVector));
 
 }
 

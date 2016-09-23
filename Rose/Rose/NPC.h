@@ -4,50 +4,40 @@
 #include <stack>
 #include <iostream>
 
+
+enum ActionType {
+	TALK,
+	MOVE,
+	FIGHT,
+	WAIT,
+	MOVE_SPECIAL,
+};
+
+class NPC;
+
+class NPCAction {
+
+public:
+	NPC * target;
+
+	NPCAction(ActionType type, std::string message) : type(type), message(message) {}
+	NPCAction(ActionType type) : type(type) {}
+	NPCAction(ActionType type, Vector2f endPoint) : type(type), endPoint(endPoint) {}
+	NPCAction(ActionType type, Vector2f * dir) : type(type), dir(dir) {}
+
+	bool finished = false;
+	ActionType type;
+	std::string message;
+	Vector2f endPoint;
+	Vector2f * dir;
+
+	void act(float dt);
+
+};
+
 class NPC : public Entity
 {
 public:
-	
-	class NPCAction {
-
-	public :
-		enum ActionType {
-			TALK,
-			MOVE,
-			FIGHT,
-			WAIT,
-			MOVE_SPECIAL,
-		};
-
-
-	public:
-		NPC * target;
-
-		NPCAction(NPC * target, ActionType type, std::string message)	: target(target), type(type), message(message) {}
-		NPCAction(NPC * target, ActionType type)						: target(target), type(type) {}
-		NPCAction(NPC * target, ActionType type, Vector2f endPoint)		: target(target), type(type), endPoint(endPoint) {}
-		NPCAction(NPC * target, ActionType type, Vector2f * dir) : target(target), type(type), dir(dir) {}
-
-		bool finished = false;
-		ActionType type;
-		std::string message;
-		Vector2f endPoint;
-		Vector2f * dir;
-
-		void act(float dt) {
-			if (!finished) {
-				switch (type) {
-					case TALK: finished = target->print(message); break;
-					case WAIT: finished = target->idle(); break;
-					case MOVE: finished = target->moveTo(endPoint, dt); break;
-					case MOVE_SPECIAL: target->move(*dir, dt); finished = target->idle(); break;
-				}
-
-			}
-		}
-
-	};
-
 
 	NPC(Vector2f pos, Vector2f scale, std::string texName, float speed = 1.0);
 	NPC();
