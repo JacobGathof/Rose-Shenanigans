@@ -69,7 +69,7 @@ int main() {
 			glfwSwapBuffers(window);
 		}
 		catch (exception e) {
-			std::cout << e.what();
+			std::cout << e.what() << endl;
 		}
 	}
 
