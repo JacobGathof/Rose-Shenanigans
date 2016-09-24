@@ -111,44 +111,36 @@ const char* ShaderProgram::getShaderSource(char * filename)
 }
 
 void ShaderProgram::loadInteger(char * location, int value) {
-	use();
 	glUniform1i(glGetUniformLocation(this->shader_program, location), value);
 }
 
 void ShaderProgram::loadFloat(char * location, float value) {
-	use();
 	glUniform1f(glGetUniformLocation(this->shader_program, location), value);
 }
 
 void ShaderProgram::loadVector2f(char * location, Vector2f v){
-	use();
 	glUniform2f(glGetUniformLocation(this->shader_program, location), v.x, v.y);
 }
 
 void ShaderProgram::loadMatrix(char * location, float * m){
-	use();
 	glUniformMatrix4fv(glGetUniformLocation(this->shader_program, location), 1, true, m);
 }
 
 void ShaderProgram::loadColor(char * location, Color c){
-	use();
 	glUniform3f(glGetUniformLocation(this->shader_program, location), c.r, c.g, c.b);
 }
 
 /*
 void ShaderProgram::loadVector3f(char * location, Vector3f v) {
-	use();
 	glUniform3f(glGetUniformLocation(this->shader_program, location), v.x, v.y, v.z);
 }
 
 void ShaderProgram::loadMatrix4f(char * location, Matrix4f *mat) {
-	use();
 	glUniformMatrix4fv(glGetUniformLocation(this->shader_program, location), 1, true, mat->mat);
 }
 */
 
 void ShaderProgram::loadSampler(char * location, int i) {
-	use();
 	glUniform1i(glGetUniformLocation(this->shader_program, location), i);
 }
 

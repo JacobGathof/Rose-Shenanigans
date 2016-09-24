@@ -7,30 +7,30 @@
 #include <sstream>
 
 std::map<std::string, Model*> Res::models;
-std::map<std::string, ShaderProgram*> Res::shaders;
+std::map<ShaderType, ShaderProgram*> Res::shaders;
 std::map<std::string, Texture*> Res::textures;
 std::map<std::string, Character*> Res::characters;
 
 Model * Res::stdModel;
 
 void Res::init() {
+	
+	Res::loadShader(entityShader, "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
+	Res::loadShader(particleShader, "particleVertexShader.txt", 0, "particleFragmentShader.txt");
+	Res::loadShader(staticShader, "staticVertexShader.txt", 0, "staticFragmentShader.txt");
+	Res::loadShader(textShader, "textVertexShader.txt", 0, "textFragmentShader.txt");
+	Res::loadShader(terrainShader, "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
+	Res::loadShader(uiShader, "uiVertexShader.txt", 0, "uiFragmentShader.txt");
 
-	Res::loadShader("entityShader", "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
-	Res::loadShader("particleShader", "particleVertexShader.txt", 0, "particleFragmentShader.txt");
-	Res::loadShader("staticShader", "staticVertexShader.txt", 0, "staticFragmentShader.txt");
-	Res::loadShader("textShader", "textVertexShader.txt", 0, "textFragmentShader.txt");
-	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
-	Res::loadShader("uiShader", "uiVertexShader.txt", 0, "uiFragmentShader.txt");
+	//float scaleFactor = 128.0;
+	float projMat[] = { 1.0 / SCALEFACTOR, 0, 0, 0,			0, 1.0 / SCALEFACTOR, 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
 
-	float scaleFactor = 128.0;
-	float projMat[] = { 1.0 / scaleFactor, 0, 0, 0,			0, 1.0 / scaleFactor, 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
-
-	Res::getShader("entityShader")->loadMatrix("projectionMatrix", projMat);
-	Res::getShader("particleShader")->loadMatrix("projectionMatrix", projMat);
-	Res::getShader("staticShader")->loadMatrix("projectionMatrix", projMat);
-	Res::getShader("textShader")->loadMatrix("projectionMatrix", projMat);
-	Res::getShader("terrainShader")->loadMatrix("projectionMatrix", projMat);
-	Res::getShader("uiShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
 
 	Res::loadTexture("Echo", "Echo.png");
 	Res::loadTexture("Rain", "Rain.png");
@@ -59,12 +59,14 @@ Model * Res::getModel(std::string str)
 	}
 }
 
-ShaderProgram * Res::getShader(std::string str)
+ShaderProgram * Res::getShader(ShaderType str)
 {
 	if (shaders.find(str) == shaders.end()) {
 		std::cout << "Could not get Shader" << std::endl;
 	}
-	return shaders[str];
+	ShaderProgram * sp = shaders[str];
+	sp->use();
+	return sp;
 }
 
 Texture * Res::getTexture(std::string str)
@@ -86,7 +88,7 @@ void Res::loadModel(std::string name, float * vertices, float * tex, int length)
 	models[name] = model;
 }
 
-void Res::loadShader(std::string name, char * file_vertex, char * file_geo, char * file_fragment){
+void Res::loadShader(ShaderType name, char * file_vertex, char * file_geo, char * file_fragment){
 	ShaderProgram * program = new ShaderProgram;
 	program->compileShader(file_vertex, file_geo, file_fragment);
 	shaders[name] = program;

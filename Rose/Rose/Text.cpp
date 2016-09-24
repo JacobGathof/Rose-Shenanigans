@@ -160,7 +160,7 @@ bool Text::addCharactersToRender()
 
 void Text::draw() {
 
-	ShaderProgram * currentShader = Res::getShader("textShader");
+	ShaderProgram * currentShader = Res::getShader(textShader);
 
 	glActiveTexture(GL_TEXTURE0);
 	Res::getTexture("Font")->bind();

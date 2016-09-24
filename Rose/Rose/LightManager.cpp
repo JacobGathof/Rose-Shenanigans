@@ -10,9 +10,9 @@ void LightManager::addLight(Light * light) {
 
 	lights.push_back(light);
 	numberOfLights++;
-	updateLights("entityShader");
+	updateLights(entityShader);
 	//updateLights("simpleShader");
-	updateLights("terrainShader");
+	updateLights(terrainShader);
 }
 
 void LightManager::clearLights(){
@@ -20,7 +20,7 @@ void LightManager::clearLights(){
 	lights.clear();
 }
 
-void LightManager::updateLights(char* shader) {
+void LightManager::updateLights(ShaderType shader) {
 
 	ShaderProgram * currentShader = Res::getShader(shader);
 
@@ -33,7 +33,7 @@ void LightManager::updateLights(char* shader) {
 
 }
 
-void LightManager::reloadLights(char* shader)
+void LightManager::reloadLights(ShaderType shader)
 {
 
 	ShaderProgram * currentShader = Res::getShader(shader);

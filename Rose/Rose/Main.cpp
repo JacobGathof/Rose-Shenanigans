@@ -13,6 +13,7 @@ int main() {
 	GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", 0, 0);
 	glfwMakeContextCurrent(window);
 
+	//glfwGetWindowSize();
 	
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);

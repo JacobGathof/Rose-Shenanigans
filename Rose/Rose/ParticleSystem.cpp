@@ -155,7 +155,7 @@ void ParticleSystem::setNewParticle(int index)
 void ParticleSystem::draw() {
 
 
-	Res::getShader("particleShader")->use();
+	Res::getShader(particleShader);
 	//Res::getTexture("Fire")->bind();
 
 	glBindVertexArray(this->VAO);

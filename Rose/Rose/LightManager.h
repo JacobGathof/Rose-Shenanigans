@@ -26,8 +26,8 @@ public:
 	static void addLight(Light* light);
 	static void clearLights();
 	//static void removeLightPosition(Vector3f position);
-	static void updateLights(char* shader);
-	static void reloadLights(char* shader);
+	static void updateLights(ShaderType shader);
+	static void reloadLights(ShaderType shader);
 
 	static void cleanUp();
 

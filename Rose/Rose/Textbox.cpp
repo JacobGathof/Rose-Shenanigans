@@ -14,7 +14,7 @@ void Textbox::draw()
 {
 	if (isVisible) {
 
-		ShaderProgram * shader = Res::getShader("uiShader");
+		ShaderProgram * shader = Res::getShader(uiShader);
 		shader->loadVector2f("scale", -1*topLeft + botRight);
 		shader->loadVector2f("pos", topLeft);
 
@@ -30,9 +30,9 @@ void Textbox::init(){
 	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
-	topLeft = Vector2f(-60*2, -32*2);
-	botRight = Vector2f(60*2, -60*2);
-	text = new Text(Vector2f(0, 0), "", Vector2f(4*2, 4*2));
+	topLeft = Vector2f(-60 * SCALEFACTOR / 64, -32 * SCALEFACTOR / 64);
+	botRight = Vector2f(60* SCALEFACTOR / 64, -60* SCALEFACTOR / 64);
+	text = new Text(Vector2f(0, 0), "", Vector2f(4* SCALEFACTOR / 64, 4* SCALEFACTOR / 64));
 }
 
 void Textbox::destroy()
@@ -64,7 +64,7 @@ void Textbox::advanceQueue(){
 		queue.pop();
 		
 		text->setText(str);
-		text->position = topLeft + Vector2f(4*2,-4*2);
+		text->position = topLeft + Vector2f(4* SCALEFACTOR / 64,-4* SCALEFACTOR / 64);
 		text->reset();
 	}
 	else {

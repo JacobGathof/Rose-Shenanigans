@@ -16,7 +16,8 @@ void WorldManager::init(){
 	world->AddSystem(new ParticleSystem(Vector2f(10, -10), Color(1, 0, 0), true, 64.0f, 1.00f, 1000, false, true));
 	world->AddSystem(new ParticleSystem(Vector2f(10, 10), Color(0, 1, 0), true, 64.0f, 1.00f, 1000, false, true));
 	world->AddSystem(new ParticleSystem(Vector2f(-10, 10), Color(0, 0, 1), true, 64.0f, 1.00f, 1000, false, true));
-	world->AddLight(new Light(Vector2f(0, 0), Color(1, 0, 0), 8.0f));
+	world->AddLight(new Light(Vector2f(20, 20), Color(1, 0, 0), 8.0f));
+	world->AddLight(new Light(Vector2f(0, 0), Color(0, 1, 0), 8.0f));
 	world->addTerrain(new Terrain("Town of Beginnings"));
 
 

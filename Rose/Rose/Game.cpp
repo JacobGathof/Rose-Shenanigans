@@ -72,12 +72,12 @@ void Game::loop(float dt){
 	gameTime += dt;
 
 	Camera::position = wizard.position;
-	Res::getShader("entityShader")->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader("staticShader")->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader("terrainShader")->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader("particleShader")->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader(entityShader)->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader(staticShader)->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader(terrainShader)->loadVector2f("cameraPosition", Camera::position);
+	Res::getShader(particleShader)->loadVector2f("cameraPosition", Camera::position);
 
-	Res::getShader("entityShader")->loadFloat("gameTime", gameTime);
+	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
 
 	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !Textbox::isVisible) {
 		gary.trigger();

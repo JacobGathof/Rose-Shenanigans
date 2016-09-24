@@ -17,7 +17,7 @@ bool Object::collide(Object obj)
 void Object::draw(){
 	tex->bind();
 	
-	ShaderProgram * shader = Res::getShader("staticShader");
+	ShaderProgram * shader = Res::getShader(staticShader);
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);
 

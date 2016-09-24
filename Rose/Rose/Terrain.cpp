@@ -162,7 +162,7 @@ void Terrain::TerrainChunk::draw() {
 
 	Res::getTexture("Grass")->bind();
 
-	ShaderProgram * shader = Res::getShader("terrainShader");
+	ShaderProgram * shader = Res::getShader(terrainShader);
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);
 
