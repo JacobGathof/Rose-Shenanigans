@@ -12,8 +12,8 @@ uniform vec2 scale;
 uniform vec2 pos;
 uniform vec2 cameraPosition;
 
-const float scaleFactor = 64.0;
-const mat4 projectionMatrix = mat4(vec4(1.0/scaleFactor,0,0,0), vec4(0,1.0/scaleFactor,0,0), vec4(0,0,2,-1), vec4(0,0,0,1));
+
+uniform mat4 projectionMatrix;
 
 
 void main(){

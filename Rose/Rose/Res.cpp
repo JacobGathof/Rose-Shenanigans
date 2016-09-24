@@ -22,6 +22,16 @@ void Res::init() {
 	Res::loadShader("terrainShader", "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
 	Res::loadShader("uiShader", "uiVertexShader.txt", 0, "uiFragmentShader.txt");
 
+	float scaleFactor = 128.0;
+	float projMat[] = { 1.0 / scaleFactor, 0, 0, 0,			0, 1.0 / scaleFactor, 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
+
+	Res::getShader("entityShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader("particleShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader("staticShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader("textShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader("terrainShader")->loadMatrix("projectionMatrix", projMat);
+	Res::getShader("uiShader")->loadMatrix("projectionMatrix", projMat);
+
 	Res::loadTexture("Echo", "Echo.png");
 	Res::loadTexture("Rain", "Rain.png");
 	Res::loadTexture("Inn", "Echo.png");
