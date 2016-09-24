@@ -15,8 +15,8 @@ Mission::Mission(int $$, int exp, std::vector<Weapon> wep, std::string tex, Vect
 {
 	money = $$;
 	experience = exp;
-	for (int i = 0; i < wep.size(); i++) {
-		weapons.push_back(wep.at(i));
+	for (unsigned int i = 0; i < wep.size(); i++) {
+		weapons.push_back(wep[i]);
 	}
 	text = tex;
 	posToComplete = pos;
@@ -28,8 +28,8 @@ Mission::Mission(int $$, int exp, std::vector<Weapon> wep, std::string tex, NPC 
 {
 	money = $$;
 	experience = exp;
-	for (int i = 0; i < wep.size(); i++) {
-		weapons.push_back(wep.at(i));
+	for (unsigned int i = 0; i < wep.size(); i++) {
+		weapons.push_back(wep[i]);
 	}
 	talkedTo = false;
 	text = tex;
@@ -41,8 +41,8 @@ Mission::Mission(int $$, int exp, std::vector<Weapon> wep, std::string tex, Obje
 {
 	money = $$;
 	experience = exp;
-	for (int i = 0; i < wep.size(); i++) {
-		weapons.push_back(wep.at(i));
+	for (unsigned int i = 0; i < wep.size(); i++) {
+		weapons.push_back(wep[i]);
 	}
 	text = tex;
 	monster = obj;
@@ -77,6 +77,8 @@ bool Mission::checkComplete(Vector2f pos)
 	else if (type == "position") {
 		return (pos.x < posToComplete.x + 10 && pos.x > posToComplete.x - 10 && pos.y < posToComplete.y + 10 && pos.y > posToComplete.y - 10);
 	}
+
+	return false;
 }
 
 std::vector<Weapon> Mission::getReward(int i)

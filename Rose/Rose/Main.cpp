@@ -3,7 +3,7 @@
 
 int main() {
 
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -40,7 +40,7 @@ int main() {
 
 	while (!glfwWindowShouldClose(window)) {
 		try {
-			current_time = glfwGetTime();
+			current_time = (float)glfwGetTime();
 			dt = current_time - last_time;
 			last_time = current_time;
 			framesPerSecond++;

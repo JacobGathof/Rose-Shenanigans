@@ -30,9 +30,9 @@ void Textbox::init(){
 	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
-	topLeft = Vector2f(-60, -32);
-	botRight = Vector2f(60, -60);
-	text = new Text(Vector2f(0, 0), "", Vector2f(4, 4));
+	topLeft = Vector2f(-60*2, -32*2);
+	botRight = Vector2f(60*2, -60*2);
+	text = new Text(Vector2f(0, 0), "", Vector2f(4*2, 4*2));
 }
 
 void Textbox::destroy()
@@ -64,7 +64,7 @@ void Textbox::advanceQueue(){
 		queue.pop();
 		
 		text->setText(str);
-		text->position = topLeft + Vector2f(4,-4);
+		text->position = topLeft + Vector2f(4*2,-4*2);
 		text->reset();
 	}
 	else {

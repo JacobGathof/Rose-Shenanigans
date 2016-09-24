@@ -26,5 +26,7 @@ public:
 	Player wizard;
 
 	NPC gary;
+
+	Vector2f circleVector;
 };
 

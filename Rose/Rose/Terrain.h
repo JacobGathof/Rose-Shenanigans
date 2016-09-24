@@ -36,7 +36,7 @@ public:
 	};
 
 	void addTerrain() {
-		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
+		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, (int)tileScale));
 	}
 
 	void setTile(Vector2f pos, int i);
@@ -57,7 +57,7 @@ public:
 			TerrainChunk(Vector2f pos, int tpc, int sc) {
 				position = pos;
 				tilesPerChunk = tpc;
-				scale = Vector2f(sc, sc);
+				scale = Vector2f((float)sc, (float)sc);
 			};
 
 			~TerrainChunk() {

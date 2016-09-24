@@ -2,7 +2,7 @@
 
 
 
-Player::Player(Vector2f pos, Vector2f sc, std::string image, int speed)
+Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
 	maxhp = 100;
@@ -18,7 +18,7 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, int speed)
 
 void Player::talkTo(NPC npc)
 {
-	for (int i = 0; i < missions.size(); i++) {
+	for (unsigned int i = 0; i < missions.size(); i++) {
 		missions.at(i).Talk(npc);
 	}
 	CheckMissions();
@@ -31,7 +31,7 @@ void Player::addMission(Mission mission)
 
 void Player::CheckMissions()
 {
-	for (int i = 0; i < missions.size(); i++) {
+	for (unsigned int i = 0; i < missions.size(); i++) {
 		if (missions.at(i).checkComplete(position)) {
 			exp += missions.at(i).getExp();
 			missions.at(i).getReward();

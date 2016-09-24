@@ -45,6 +45,7 @@ void Input::processInput(float dt)
 		}
 	}
 
+
 	if (keys[GLFW_KEY_9]) {
 		keys[GLFW_KEY_9] = false;
 		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);

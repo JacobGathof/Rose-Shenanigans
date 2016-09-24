@@ -25,6 +25,9 @@ public:
 	void loadFloat(char* location, float value);
 
 	void loadVector2f(char* location, Vector2f v);
+
+	void loadMatrix(char* location, float * m);
+
 	void loadColor(char* location, Color c);
 	
 	/*Load a sampler uniform to the shader at a specified location. Identical to loading an integer*/

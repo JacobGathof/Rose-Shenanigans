@@ -16,7 +16,7 @@ class Player: public Entity
 public:
 	Player() {};
 	~Player() {};
-	Player(Vector2f pos, Vector2f sc, std::string image, int speed);
+	Player(Vector2f pos, Vector2f sc, std::string image, float speed);
 
 	int maxhp;
 	int hp;
