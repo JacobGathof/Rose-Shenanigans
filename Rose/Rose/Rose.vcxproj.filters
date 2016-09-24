@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -199,44 +202,44 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="simpleVertexShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="simpleFragmentShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="staticVertexShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="staticFragmentShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="textVertexShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="textFragmentShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="Font.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="terrainVertexShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="terrainFragmentShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="uiVertexShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="uiFragmentShader.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="particleFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
     </Text>
     <Text Include="particleVertexShader.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders</Filter>
     </Text>
-    <Text Include="particleFragmentShader.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="simpleFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="simpleVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="staticFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="staticVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="terrainFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="terrainVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="textFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="textVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="uiFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="uiVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
