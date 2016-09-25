@@ -30,7 +30,7 @@ void Game::init()
 	circleVector = Vector2f(1, 0);
 
 
-
+	/*
 	gary.addAction(NPCAction(WAIT));
 	gary.addAction(NPCAction(TALK, "Follow Me"));
 	gary.addAction(NPCAction(WAIT));
@@ -44,7 +44,7 @@ void Game::init()
 	gary.addAction(NPCAction(WAIT));
 	gary.addAction(NPCAction(MOVE, Vector2f(0, 0)));
 	gary.addAction(NPCAction(MOVE_SPECIAL, &circleVector));
-
+	*/
 }
 
 void Game::tick() {
@@ -84,7 +84,6 @@ void Game::loop(float dt){
 	}
 
 	gary.update(dt);
-
 }
 
 void Game::render(){	
@@ -93,5 +92,6 @@ void Game::render(){
 	gary.draw();
 	wizard.draw();
 	Textbox::draw();
+	box.draw();
 
 }

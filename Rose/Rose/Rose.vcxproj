@@ -181,6 +181,7 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="Textbox.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UIElement.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Textbox.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />
