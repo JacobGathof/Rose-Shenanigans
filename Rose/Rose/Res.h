@@ -38,6 +38,8 @@ public:
 	static void loadTexture(std::string name, char* filename);
 	static void loadFont(std::string name, char * filename_font, char* filename_texture);
 
+	static void window_resize_callback(int width, int height);
+
 	static void init();
 	static void cleanResources();
 

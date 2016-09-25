@@ -175,6 +175,32 @@ void Res::cleanResources(){
 
 }
 
+void Res::window_resize_callback(int width, int height) {
+	int size;
+	int offy = 0;
+	int offx = 0;
+
+	if (width > height) {
+		size = height;
+		offx = (width - height) / 2;
+	}
+	else {
+		size = width;
+		offy = (height - width) / 2;
+	}
+
+	glViewport(offx, offy, size, size);
+	//float projMat[] = { 1.0 / (SCALEFACTOR*size / 800.0), 0, 0, 0,			0, 1.0 / (SCALEFACTOR*size / 800.0), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
+	float projMat[] = { 1.0 / (SCALEFACTOR), 0, 0, 0,			0, 1.0 / (SCALEFACTOR), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
+
+	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
+}
+
 
 Res::Res()
 {

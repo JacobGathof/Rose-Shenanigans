@@ -9,12 +9,14 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, 0);
 
+	//GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", glfwGetPrimaryMonitor(), 0);
 	GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", 0, 0);
 	glfwMakeContextCurrent(window);
 
-	//glfwGetWindowSize();
-	
+	//glfwSetWindowSizeCallback(window, window_resize_callback);
+
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
@@ -98,7 +100,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 }
 
-
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
 
 	if (action == GLFW_PRESS) {
@@ -110,7 +111,10 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
 }
 
-
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 	return;
+}
+
+void window_resize_callback(GLFWwindow* window, int width, int height) {
+	Res::window_resize_callback(width, height);
 }
