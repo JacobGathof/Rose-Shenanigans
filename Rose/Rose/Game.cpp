@@ -71,7 +71,7 @@ void Game::loop(float dt){
 
 	gameTime += dt;
 
-	Camera::position = wizard.position;
+	Camera::position = Vector2f(wizard.position.x + wizard.scale.x / 2, wizard.position.y + wizard.scale.y / 2);
 	Res::getShader(entityShader)->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader(staticShader)->loadVector2f("cameraPosition", Camera::position);
 	Res::getShader(terrainShader)->loadVector2f("cameraPosition", Camera::position);

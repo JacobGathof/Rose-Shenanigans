@@ -15,7 +15,7 @@ int main() {
 	GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", 0, 0);
 	glfwMakeContextCurrent(window);
 
-	//glfwSetWindowSizeCallback(window, window_resize_callback);
+	glfwSetWindowSizeCallback(window, window_resize_callback);
 
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
@@ -72,7 +72,7 @@ int main() {
 			glfwSwapBuffers(window);
 		}
 		catch (exception e) {
-			std::cout << e.what() << endl;
+			std::cout << "Caught error: " << e.what() << endl;
 		}
 	}
 

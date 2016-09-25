@@ -180,6 +180,7 @@ void Res::window_resize_callback(int width, int height) {
 	int offy = 0;
 	int offx = 0;
 
+	// makes the viewport always square and always centered in window
 	if (width > height) {
 		size = height;
 		offx = (width - height) / 2;
@@ -188,17 +189,22 @@ void Res::window_resize_callback(int width, int height) {
 		size = width;
 		offy = (height - width) / 2;
 	}
-
 	glViewport(offx, offy, size, size);
-	//float projMat[] = { 1.0 / (SCALEFACTOR*size / 800.0), 0, 0, 0,			0, 1.0 / (SCALEFACTOR*size / 800.0), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
-	float projMat[] = { 1.0 / (SCALEFACTOR), 0, 0, 0,			0, 1.0 / (SCALEFACTOR), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
 
-	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
+	if (0) {
+		// keeps sizes the same when changing window size: make window bigger, people stay same size 
+		float projMat[] = { 1.0 / (SCALEFACTOR*size / 800.0), 0, 0, 0,			0, 1.0 / (SCALEFACTOR*size / 800.0), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
+
+		Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
+		Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
+		Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
+		Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
+		Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
+		Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
+	}
+	else {
+		// scales image size to window size: make window bigger, make people bigger
+	}
 }
 
 
