@@ -1,6 +1,5 @@
 #pragma once
 #include <map>
-#include "Model.h"
 #include "ModelLoader.h"
 #include "ShaderProgram.h"
 #include "Texture.h"

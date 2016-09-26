@@ -50,7 +50,6 @@ void LightManager::reloadLights(ShaderType shader)
 }
 
 
-
 void LightManager::cleanUp()
 {
 	for (auto l : lights) {

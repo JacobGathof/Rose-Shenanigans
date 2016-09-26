@@ -250,6 +250,9 @@
     <Image Include="Wizard.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Town of Beginnings" />
     <None Include="World 2" />
   </ItemGroup>

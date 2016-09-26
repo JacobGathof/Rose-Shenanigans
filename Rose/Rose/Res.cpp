@@ -170,7 +170,6 @@ void Res::cleanResources(){
 
 	WorldManager::destroy();
 	UIManager::destroy();
-	//LightManager::cleanUp();
 
 	std::cout << "Resources cleaned\n";
 
