@@ -36,7 +36,7 @@ public:
 private:
 
 	/*Checks and prints any errors in the compilation of shaders*/
-	void checkCompileErrors(int shader);
+	void checkCompileErrors(int shader, char type);
 
 	/*Checks and prints any errors in the linking of shaders*/
 	void checkLinkErrors(int shader);

@@ -15,11 +15,11 @@ void Entity::move(Vector2f dir, float dt)
 	if (dir.x == 0 && dir.y == 0) {
 		direction = IDLE;
 	}
-	if (dir.x > .75) direction = WEST; 
-	if (dir.x < -.75) direction = EAST;
+	if (dir.y > .707) direction = NORTH;
+	if (dir.y < -.707) direction = SOUTH;
 
-	if (dir.y > .75) direction = NORTH;
-	if (dir.y < -.75) direction = SOUTH;
+	if (dir.x > .707) direction = WEST;
+	if (dir.x < -.707) direction = EAST;
 	if (direction != IDLE) {
 		lastdirection = direction;
 	}

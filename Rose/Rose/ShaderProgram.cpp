@@ -30,7 +30,7 @@ void ShaderProgram::compileShader(char * file_vertex, char * file_geo, char * fi
 		glCompileShader(shader_geometry);
 		glAttachShader(shader_program, shader_geometry);
 
-		checkCompileErrors(shader_geometry);
+		checkCompileErrors(shader_geometry, 'g');
 		delete[] source_geometry;
 	}
 
@@ -43,8 +43,8 @@ void ShaderProgram::compileShader(char * file_vertex, char * file_geo, char * fi
 	delete[] source_fragment;
 
 
-	checkCompileErrors(shader_vertex);
-	checkCompileErrors(shader_fragment);
+	checkCompileErrors(shader_vertex, 'v');
+	checkCompileErrors(shader_fragment, 'f');
 
 
 	glLinkProgram(shader_program);
@@ -58,7 +58,7 @@ void ShaderProgram::use()
 	glUseProgram(this->shader_program);
 }
 
-void ShaderProgram::checkCompileErrors(int shader)
+void ShaderProgram::checkCompileErrors(int shader, char type)
 {
 	int success;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
@@ -66,7 +66,7 @@ void ShaderProgram::checkCompileErrors(int shader)
 	if (!success) {
 		char infolog[2048];
 		glGetShaderInfoLog(shader, 2048, 0, infolog);
-		std::cout << "Shader : " << (shader == GL_VERTEX_SHADER) ? "Vertex Shader" : (shader == GL_FRAGMENT_SHADER) ? "Fragment Shader" : "Geometry Shader";
+		std::cout << "Shader : " << ((type == 'v') ? "Vertex Shader" : (type == 'f') ? "Fragment Shader" : "Geometry Shader") << "\n";
 		std::cout << infolog << std::endl;
 		std::cout << "--------------------\n";
 	}
