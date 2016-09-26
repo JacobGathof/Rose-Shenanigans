@@ -127,6 +127,7 @@ void Text::setText(std::string str)
 
 	this->length = str.length();
 	this->data = str;
+	this->charsToRender = length * 6;
 
 	glBindVertexArray(VAO);
 

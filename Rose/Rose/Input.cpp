@@ -1,5 +1,5 @@
 #include "Input.h"
-#include "Textbox.h"
+#include "UIManager.h"
 #include <iostream>
 
 bool Input::keys[];
@@ -10,7 +10,7 @@ int Input::tilePointer;
 void Input::processInput(float dt)
 {
 
-	if (!Textbox::isVisible) {
+	if (!UIManager::textbox.isVisible) {
 		Vector2f movement;
 		if (keys[GLFW_KEY_W]) {
 			movement = movement + Vector2f(0, 1);
@@ -40,8 +40,8 @@ void Input::processInput(float dt)
 
 	if (keys[GLFW_KEY_T]) {
 		keys[GLFW_KEY_T] = false;
-		if (!Textbox::currentlyWriting) {
-			Textbox::advanceQueue();
+		if (!UIManager::textbox.currentlyWriting) {
+			UIManager::textbox.advanceQueue();
 		}
 	}
 

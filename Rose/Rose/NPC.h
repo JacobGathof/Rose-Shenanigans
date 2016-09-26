@@ -1,7 +1,6 @@
 #pragma once
 #include "Entity.h"
-#include "Textbox.h"
-#include <stack>
+#include <queue>
 #include <iostream>
 
 

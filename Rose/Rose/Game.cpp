@@ -8,6 +8,7 @@
 #include "Weapon.h"
 #include "Textbox.h"
 #include "LightManager.h"
+#include "UIManager.h"
 
 #include <iostream>
 
@@ -29,8 +30,9 @@ void Game::init()
 
 	circleVector = Vector2f(1, 0);
 
+	UIManager::statbox.player = &wizard;
 
-
+	/*
 	gary.addAction(NPCAction(WAIT));
 	gary.addAction(NPCAction(TALK, "Follow Me"));
 	gary.addAction(NPCAction(WAIT));
@@ -44,14 +46,14 @@ void Game::init()
 	gary.addAction(NPCAction(WAIT));
 	gary.addAction(NPCAction(MOVE, Vector2f(0, 0)));
 	gary.addAction(NPCAction(MOVE_SPECIAL, &circleVector));
-
+	*/
 }
 
 void Game::tick() {
 	
 	wizard.tick();
 	wizard.hands[0].tick();
-	Textbox::update();
+	UIManager::update();
 
 	WorldManager::tick();
 	WorldManager::checkWorld(&wizard);
@@ -79,12 +81,11 @@ void Game::loop(float dt){
 
 	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
 
-	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !Textbox::isVisible) {
+	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !UIManager::textbox.isVisible) {
 		gary.trigger();
 	}
 
 	gary.update(dt);
-
 }
 
 void Game::render(){	
@@ -92,6 +93,7 @@ void Game::render(){
 	WorldManager::drawWorld();
 	gary.draw();
 	wizard.draw();
-	Textbox::draw();
+	UIManager::textbox.draw();
+	UIManager::statbox.draw();
 
 }

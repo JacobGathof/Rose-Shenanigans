@@ -9,6 +9,7 @@
 #include "Terrain.h"
 #include "NPC.h"
 #include "Mission.h"
+#include "UIElement.h"
 
 class Game
 {

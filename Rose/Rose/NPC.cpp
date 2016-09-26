@@ -1,5 +1,6 @@
 #include "NPC.h"
 #include <iostream>
+#include "UIManager.h"
 
 
 NPC::NPC(Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed){
@@ -43,11 +44,11 @@ bool NPC::print(std::string str){
 	}
 	if (str.length() > 120) {
 		int index = str.find(" ", 120);
-		Textbox::print(str.substr(0, index));
+		UIManager::textbox.print(str.substr(0, index));
 		print(str.substr(index));
 	}
 	else
-		Textbox::print(str);
+		UIManager::textbox.print(str);
 
 	return true;
 }

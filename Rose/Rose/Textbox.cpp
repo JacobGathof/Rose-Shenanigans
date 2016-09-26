@@ -1,6 +1,7 @@
 #include "Textbox.h"
 #include <iostream>
 
+/*
 Text * Textbox::text;
 bool Textbox::isVisible;
 bool Textbox::isDisplayingText;
@@ -8,24 +9,19 @@ bool Textbox::currentlyWriting;
 bool Textbox::locked;
 Vector2f Textbox::topLeft;
 Vector2f Textbox::botRight;
+*/
 std::queue<std::string> Textbox::queue;
 
 void Textbox::draw()
 {
 	if (isVisible) {
-
-		ShaderProgram * shader = Res::getShader(uiShader);
-		shader->loadVector2f("scale", -1*topLeft + botRight);
-		shader->loadVector2f("pos", topLeft);
-
-		Res::stdModel->bind();
-		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
-
+		UIElement::draw();
 		text->draw();
 	}
 }
 
 void Textbox::init(){
+
 	isVisible = false;
 	currentlyWriting = false;
 	isDisplayingText = false;
