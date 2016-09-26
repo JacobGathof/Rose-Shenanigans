@@ -3,34 +3,35 @@
 #include <string>
 #include "Text.h"
 #include "Res.h"
+#include "UIElement.h"
 
-class Textbox
+class Textbox : public UIElement
 {
 public:
 
 	//Textbox();
 	//~Textbox();
 
-	static Text * text;
-	static bool isDisplayingText;
-	static bool currentlyWriting;
-	static bool isVisible;
-	static bool locked;
+	Text * text;
+	bool isDisplayingText;
+	bool currentlyWriting;
+	bool isVisible;
+	bool locked;
 
-	static Vector2f topLeft;
-	static Vector2f botRight;
+	//Vector2f topLeft;
+	//Vector2f botRight;
 
 	static std::queue<std::string> queue;
 
-	static void draw();
-	static void init();
-	static void destroy();
+	virtual void draw();
+	void init();
+	void destroy();
 
-	static void lock();
-	static void unlock();
-	static void advanceQueue();
-	static void update();
-	static void print(std::string message);
+	void lock();
+	void unlock();
+	void advanceQueue();
+	void update();
+	void print(std::string message);
 
 };
 

@@ -8,6 +8,7 @@
 #include "Weapon.h"
 #include "Textbox.h"
 #include "LightManager.h"
+#include "UIManager.h"
 
 #include <iostream>
 
@@ -51,7 +52,7 @@ void Game::tick() {
 	
 	wizard.tick();
 	wizard.hands[0].tick();
-	Textbox::update();
+	UIManager::update();
 
 	WorldManager::tick();
 	WorldManager::checkWorld(&wizard);
@@ -79,7 +80,7 @@ void Game::loop(float dt){
 
 	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
 
-	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !Textbox::isVisible) {
+	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !UIManager::textbox.isVisible) {
 		gary.trigger();
 	}
 
@@ -91,7 +92,7 @@ void Game::render(){
 	WorldManager::drawWorld();
 	gary.draw();
 	wizard.draw();
-	Textbox::draw();
+	UIManager::textbox.draw();
 	box.draw();
 
 }

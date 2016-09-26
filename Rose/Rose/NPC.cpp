@@ -43,11 +43,11 @@ bool NPC::print(std::string str){
 	}
 	if (str.length() > 120) {
 		int index = str.find(" ", 120);
-		Textbox::print(str.substr(0, index));
+		UIManager::textbox.print(str.substr(0, index));
 		print(str.substr(index));
 	}
 	else
-		Textbox::print(str);
+		UIManager::textbox.print(str);
 
 	return true;
 }

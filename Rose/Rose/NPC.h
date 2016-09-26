@@ -1,6 +1,6 @@
 #pragma once
 #include "Entity.h"
-#include "Textbox.h"
+#include "UIManager.h"
 #include <stack>
 #include <iostream>
 
