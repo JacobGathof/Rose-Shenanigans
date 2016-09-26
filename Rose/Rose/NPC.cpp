@@ -1,5 +1,6 @@
 #include "NPC.h"
 #include <iostream>
+#include "UIManager.h"
 
 
 NPC::NPC(Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed){

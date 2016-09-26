@@ -30,6 +30,7 @@ public:
 	std::vector<Object> inventory;
 	std::vector<Mission> missions;
 	Text stats;
+	bool statsChanged = false;
 
 	virtual void move(Vector2f dir, float dt);
 

@@ -24,6 +24,17 @@ void UIElement::draw()
 
 		Res::stdModel->bind();
 		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
-
 	}
+}
+
+void UIElement::init()
+{
+}
+
+void UIElement::destroy()
+{
+}
+
+void UIElement::update()
+{
 }

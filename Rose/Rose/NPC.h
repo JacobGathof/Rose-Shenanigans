@@ -1,7 +1,6 @@
 #pragma once
 #include "Entity.h"
-#include "UIManager.h"
-#include <stack>
+#include <queue>
 #include <iostream>
 
 

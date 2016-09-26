@@ -2,6 +2,7 @@
 #include "Textbox.h"
 #include "WorldManager.h"
 #include "LightManager.h"
+#include "UIManager.h"
 #include <iostream>
 #include <string>
 #include <sstream>

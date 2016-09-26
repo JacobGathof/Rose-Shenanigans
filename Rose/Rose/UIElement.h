@@ -12,6 +12,10 @@ public:
 	Vector2f botRight;
 
 	virtual void draw();
+	virtual void init();
+	virtual void destroy();
+	virtual void update();
+
 	bool isVisible;
 };
 

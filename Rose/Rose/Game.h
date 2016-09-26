@@ -28,8 +28,6 @@ public:
 
 	NPC gary;
 
-	UIElement box;
-
 	Vector2f circleVector;
 };
 

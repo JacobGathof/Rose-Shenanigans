@@ -21,6 +21,7 @@ void Textbox::draw()
 }
 
 void Textbox::init(){
+
 	isVisible = false;
 	currentlyWriting = false;
 	isDisplayingText = false;

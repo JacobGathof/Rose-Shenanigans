@@ -30,6 +30,7 @@ void Game::init()
 
 	circleVector = Vector2f(1, 0);
 
+	UIManager::statbox.player = &wizard;
 
 	/*
 	gary.addAction(NPCAction(WAIT));
@@ -93,6 +94,6 @@ void Game::render(){
 	gary.draw();
 	wizard.draw();
 	UIManager::textbox.draw();
-	box.draw();
+	UIManager::statbox.draw();
 
 }

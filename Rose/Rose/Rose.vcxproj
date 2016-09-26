@@ -177,6 +177,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Statbox.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Textbox.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Statbox.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Textbox.cpp" />

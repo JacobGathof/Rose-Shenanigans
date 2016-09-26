@@ -9,28 +9,22 @@ class Textbox : public UIElement
 {
 public:
 
-	//Textbox();
-	//~Textbox();
-
 	Text * text;
 	bool isDisplayingText;
 	bool currentlyWriting;
-	bool isVisible;
 	bool locked;
-
-	//Vector2f topLeft;
-	//Vector2f botRight;
 
 	static std::queue<std::string> queue;
 
 	virtual void draw();
-	void init();
-	void destroy();
+	virtual void init();
+	virtual void destroy();
+	virtual void update();
 
 	void lock();
 	void unlock();
+
 	void advanceQueue();
-	void update();
 	void print(std::string message);
 
 };
