@@ -116,5 +116,5 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 }
 
 void window_resize_callback(GLFWwindow* window, int width, int height) {
-	Res::window_resize_callback(width, height);
+	Res::resizeWindow(width, height);
 }

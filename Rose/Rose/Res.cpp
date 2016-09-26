@@ -1,11 +1,27 @@
 #include "Res.h"
-#include "Textbox.h"
 #include "WorldManager.h"
 #include "LightManager.h"
 #include "UIManager.h"
 #include <iostream>
 #include <string>
 #include <sstream>
+
+/*-----------------------------------------------------------------------
+
+							*ResourceManager*
+
+	A static class to hold all resources -> Models, Textures, Shaders.
+	Res will include several helper classes to load resources, and
+	the various static Managers, but will have no reference to other
+	objects, making this class safe to include anywhere. 
+
+	Almost all random crashes will be linked to this class somehow
+
+
+------------------------------------------------------------------------*/
+
+
+
 
 std::map<std::string, Model*> Res::models;
 std::map<ShaderType, ShaderProgram*> Res::shaders;
@@ -14,25 +30,32 @@ std::map<std::string, Character*> Res::characters;
 
 Model * Res::stdModel;
 
+
+
+/*---------------------------------------
+		RES Initialization
+----------------------------------------*/
+
 void Res::init() {
 	
+	initShaders();
+	initProjections();
+	initTextures();
+	initFonts();
+	initModels();
+	initManagers();
+}
+
+void Res::initShaders(){
 	Res::loadShader(entityShader, "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
 	Res::loadShader(particleShader, "particleVertexShader.txt", 0, "particleFragmentShader.txt");
 	Res::loadShader(staticShader, "staticVertexShader.txt", 0, "staticFragmentShader.txt");
 	Res::loadShader(textShader, "textVertexShader.txt", 0, "textFragmentShader.txt");
 	Res::loadShader(terrainShader, "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
 	Res::loadShader(uiShader, "uiVertexShader.txt", 0, "uiFragmentShader.txt");
+}
 
-	//float scaleFactor = 128.0;
-	float projMat[] = { 1.0 / SCALEFACTOR, 0, 0, 0,			0, 1.0 / SCALEFACTOR, 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
-
-	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
-	Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
-
+void Res::initTextures(){
 	Res::loadTexture("Echo", "Echo.png");
 	Res::loadTexture("Rain", "Rain.png");
 	Res::loadTexture("Inn", "Echo.png");
@@ -40,31 +63,48 @@ void Res::init() {
 	Res::loadTexture("Grass", "Grass.png");
 	Res::loadTexture("sword", "sword.png");
 	Res::loadTexture("Fire", "Fire.png");
+}
 
-	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
-
+void Res::initModels(){
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
+}
 
+void Res::initFonts(){
+	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
+}
+
+void Res::initProjections(){
+	float projMat[] = { 1.0 / SCALEFACTOR, 0, 0, 0,		0, 1.0 / SCALEFACTOR, 0, 0,		0, 0, 2, -1,	0, 0, 0, 1 };
+	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(textShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(terrainShader)->loadMatrix("projectionMatrix", projMat);
+	Res::getShader(uiShader)->loadMatrix("projectionMatrix", projMat);
+}
+
+void Res::initManagers(){
 	WorldManager::init();
 	UIManager::init();
 }
 
+
+
+
+/*---------------------------------------
+		Getters and Loaders
+----------------------------------------*/
+
 Model * Res::getModel(std::string str)
 {
 	return models[str];
-	if (models.find(str) == models.end()) {
-		std::cout << "Could not get Model" << std::endl;
-	}
 }
 
 ShaderProgram * Res::getShader(ShaderType str)
 {
-	if (shaders.find(str) == shaders.end()) {
-		std::cout << "Could not get Shader" << std::endl;
-	}
 	ShaderProgram * sp = shaders[str];
 	sp->use();
 	return sp;
@@ -72,9 +112,6 @@ ShaderProgram * Res::getShader(ShaderType str)
 
 Texture * Res::getTexture(std::string str)
 {
-	if (textures.find(str) == textures.end()) {
-		std::cout << "Could not get Texture" << std::endl;
-	}
 	return textures[str];
 }
 
@@ -150,6 +187,12 @@ void Res::loadFont(std::string name, char * filename_font, char* filename_textur
 
 }
 
+/*---------------------------------------
+
+	Destroy all contained resources;
+	Call all other "Clean" methods
+
+----------------------------------------*/
 
 void Res::cleanResources(){
 	for (auto m : models) {
@@ -175,7 +218,7 @@ void Res::cleanResources(){
 
 }
 
-void Res::window_resize_callback(int width, int height) {
+void Res::resizeWindow(int width, int height) {
 	int size;
 	int offy = 0;
 	int offx = 0;
@@ -205,14 +248,4 @@ void Res::window_resize_callback(int width, int height) {
 	else {
 		// scales image size to window size: make window bigger, make people bigger
 	}
-}
-
-
-Res::Res()
-{
-}
-
-
-Res::~Res()
-{
 }

@@ -292,9 +292,6 @@
   <ItemGroup>
     <None Include="Town of Beginnings" />
     <None Include="World 2" />
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc">

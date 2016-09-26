@@ -5,7 +5,7 @@
 #include "Texture.h"
 #include "Character.h"
 
-#define SCALEFACTOR 96.0
+#define SCALEFACTOR 128.0
 
 enum ShaderType {
 	entityShader,
@@ -24,6 +24,13 @@ private:
 	static std::map<std::string, Texture*> textures;
 	static std::map<std::string, Character*> characters;
 
+	static void initShaders();
+	static void initTextures();
+	static void initModels();
+	static void initFonts();
+	static void initProjections();
+	static void initManagers();
+
 public:
 	static Model * stdModel;
 
@@ -37,12 +44,10 @@ public:
 	static void loadTexture(std::string name, char* filename);
 	static void loadFont(std::string name, char * filename_font, char* filename_texture);
 
-	static void window_resize_callback(int width, int height);
+	static void resizeWindow(int width, int height);
 
 	static void init();
 	static void cleanResources();
 
-	Res();
-	~Res();
 };
 
