@@ -9,7 +9,6 @@
 #include "Textbox.h"
 #include "LightManager.h"
 #include "UIManager.h"
-
 #include <iostream>
 
 void Game::init()
@@ -50,7 +49,7 @@ void Game::init()
 }
 
 void Game::tick() {
-	
+
 	wizard.tick();
 	wizard.hands[0].tick();
 	UIManager::update();
@@ -88,7 +87,7 @@ void Game::loop(float dt){
 	gary.update(dt);
 }
 
-void Game::render(){	
+void Game::render(){
 
 	WorldManager::drawWorld();
 	gary.draw();
