@@ -82,7 +82,7 @@ void Terrain::saveTerrain(std::string filename){
 	file.open(filename, file.out);
 
 	for (auto t : terrain) {
-		std::string s(t->position.toString()+"\n");
+		std::string s(t->position.toIntString()+"\n");
 		file.write((s).c_str(), std::strlen(s.c_str()));
 
 		for (int i = 0; i < tilesPerChunk; i++) {

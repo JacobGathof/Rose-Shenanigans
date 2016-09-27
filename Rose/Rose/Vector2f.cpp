@@ -43,6 +43,15 @@ Vector2f & Vector2f::operator/=(const float f) {
 	return *this;
 }
 
+std::string Vector2f::toIntString(){
+	return std::to_string((int)x) + "," + std::to_string((int)y);
+}
+
+std::ostream &operator<<(std::ostream& os, const Vector2f &v){
+	os << "[" << v.x << "," << v.y << "]";
+	return os;
+}
+
 Vector2f operator*(float f, const Vector2f &v) {
 	return Vector2f(v.x * f, v.y * f);
 }
@@ -60,6 +69,16 @@ Vector2f operator+(const Vector2f &v, const Vector2f &v2) {
 }
 Vector2f operator-(const Vector2f &v, const Vector2f &v2) {
 	return Vector2f(v.x - v2.x, v.y - v2.y);
+}
+
+//Distance operator
+float operator^(const Vector2f &v, const Vector2f &v2) {
+	return Vector2f(v.x - v2.x, v.y - v2.y).magnitude();
+}
+
+//Magnitude operator
+float operator~(const Vector2f &v) {
+	return sqrt(v.x*v.x + v.y*v.y);
 }
 
 Vector2f::Vector2f(){

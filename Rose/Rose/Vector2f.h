@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 class Vector2f
 {
 public:
@@ -15,19 +16,16 @@ public:
 	friend Vector2f operator/(const Vector2f &v, float f);
 	friend Vector2f operator+(const Vector2f &v, const Vector2f &v2);
 	friend Vector2f operator-(const Vector2f &v, const Vector2f &v2);
+	friend float operator^(const Vector2f &v, const Vector2f &v2);
+	friend std::ostream &operator<<(std::ostream& os, const Vector2f &v);
+	friend float operator~(const Vector2f &v);
+
 	Vector2f& operator+=(const Vector2f &v);
 	Vector2f& operator-=(const Vector2f &v);
 	Vector2f& operator*=(const float f);
 	Vector2f& operator/=(const float f);
 
-	static float distance(const Vector2f &v, const Vector2f &v2) {
-		return Vector2f(v.x - v2.x, v.y - v2.y).magnitude();
-	}
-
-	std::string toString() {
-		return std::to_string(x) + "," + std::to_string(y);
-	}
-
+	std::string toIntString();
 
 	Vector2f();
 	Vector2f(float x, float y);

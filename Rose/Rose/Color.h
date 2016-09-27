@@ -23,6 +23,6 @@ public:
 		b = ((data & 0x0000FF00) / 255.0f);
 		a = ((data & 0x000000FF) / 255.0f);
 	}
-	~Color();
+	~Color() {};
 };
 

@@ -9,7 +9,9 @@
 #include "Textbox.h"
 #include "LightManager.h"
 #include "UIManager.h"
+#include "Vector2f.h"
 #include <iostream>
+
 
 void Game::init()
 {
@@ -80,7 +82,7 @@ void Game::loop(float dt){
 
 	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
 
-	if (Vector2f::distance(wizard.position, gary.position) <= 2.0f && !UIManager::textbox.isVisible) {
+	if ((wizard.position^gary.position) <= 2.0f && !UIManager::textbox.isVisible) {
 		gary.trigger();
 	}
 
