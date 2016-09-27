@@ -28,20 +28,16 @@ void Object::draw(){
 }
 
 Object::Object(){
-	//this->tex = Res::getTexture("Wizard");
-	//this->position = Vector2f(0, 0);
-	//this->scale = Vector2f(1,1);
-	//this->speed = 1.0f;
+	this->tex = 0;
+	this->position = Vector2f(0, 0);
+	this->scale = Vector2f(1,1);
 }
 
 
-Object::Object(Vector2f pos, Vector2f scale, std::string texName, float speed)
-{
+Object::Object(Vector2f pos, Vector2f scale, std::string texName){
 	this->tex = Res::getTexture(texName);
-	this->position = Vector2f(pos.x, pos.y);
-	this->scale = Vector2f(scale.x, scale.y);
-	this->speed = speed;
-
+	this->position = Vector2f(pos);
+	this->scale = Vector2f(scale);
 }
 
 Object::~Object()

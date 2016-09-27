@@ -13,15 +13,17 @@ class Entity :	public Object
 {
 public:
 
+	float speed;
+
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();
 	virtual void update(float dt);
 	virtual void tick();
 
 	Direction direction = IDLE;
-	float internalTime = 0;
-
 	Direction lastdirection = SOUTH;
+
+	float internalTime = 0;
 	int numberOfAnimationRows;
 	int framesPerAnimation;
 

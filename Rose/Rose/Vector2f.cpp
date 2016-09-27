@@ -81,6 +81,15 @@ float operator~(const Vector2f &v) {
 	return sqrt(v.x*v.x + v.y*v.y);
 }
 
+//Random deviation operator
+Vector2f operator%(const Vector2f& v, const Vector2f& v2) {
+
+	float random_x = ((float)rand() / RAND_MAX);
+	float random_y = ((float)rand() / RAND_MAX);
+
+	return Vector2f(v.x + random_x*v2.x, v.y + random_y*v2.y);
+}
+
 Vector2f::Vector2f(){
 	x = 0;
 	y = 0;
@@ -90,3 +99,10 @@ Vector2f::Vector2f(float x, float y){
 	this->x = x;
 	this->y = y;
 }
+
+Vector2f::Vector2f(const Vector2f & v){
+	this->x = v.x;
+	this->y = v.y;
+}
+
+

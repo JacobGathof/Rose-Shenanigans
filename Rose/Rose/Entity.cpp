@@ -2,9 +2,9 @@
 #include <iostream>
 
 
-Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)
-	: Object(pos, scale, texName, speed)
+Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)	: Object(pos, scale, texName)
 {
+	this->speed = speed;
 	numberOfAnimationRows = 5;
 	framesPerAnimation = 3;
 }

@@ -239,6 +239,7 @@
     <Text Include="uiVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Default.png" />
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
     <Image Include="Fire.png" />

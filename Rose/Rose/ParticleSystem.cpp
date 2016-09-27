@@ -134,8 +134,8 @@ void ParticleSystem::setNewParticle(int index)
 			((float)rand() / RAND_MAX) - .5f),
 			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 
-		particles[index].color = color;
-		particles[index].position = position;
+		particles[index].color = color % colorDev;
+		particles[index].position = position % positionDev;
 	}
 
 	else {
@@ -146,8 +146,8 @@ void ParticleSystem::setNewParticle(int index)
 
 		particles[index].velocity = -1 * vel;
 
-		particles[index].color = color;
-		particles[index].position = position + particle_life*vel;
+		particles[index].color = color % colorDev;
+		particles[index].position = position + particle_life*vel % positionDev;
 	}
 
 }
@@ -223,7 +223,9 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float sp
 	this->direction = direction;
 
 	position = Vector2f(pos.x, pos.y);
+	positionDev = Vector2f(0,0);
 	color = Color(col.r, col.g, col.b);
+	colorDev = Color(1,1,0);
 	particle_speed = speed;
 	particle_life = life;
 	max_particles = max;

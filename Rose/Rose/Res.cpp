@@ -22,7 +22,6 @@
 
 
 
-
 std::map<std::string, Model*> Res::models;
 std::map<ShaderType, ShaderProgram*> Res::shaders;
 std::map<std::string, Texture*> Res::textures;
@@ -63,6 +62,7 @@ void Res::initTextures(){
 	Res::loadTexture("Grass", "Grass.png");
 	Res::loadTexture("sword", "sword.png");
 	Res::loadTexture("Fire", "Fire.png");
+	Res::loadTexture("Default", "Default.png");
 }
 
 void Res::initModels(){

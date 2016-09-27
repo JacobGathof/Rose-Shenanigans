@@ -19,6 +19,7 @@ public:
 	friend float operator^(const Vector2f &v, const Vector2f &v2);
 	friend std::ostream &operator<<(std::ostream& os, const Vector2f &v);
 	friend float operator~(const Vector2f &v);
+	friend Vector2f operator%(const Vector2f& v, const Vector2f& v2);
 
 	Vector2f& operator+=(const Vector2f &v);
 	Vector2f& operator-=(const Vector2f &v);
@@ -29,5 +30,6 @@ public:
 
 	Vector2f();
 	Vector2f(float x, float y);
+	Vector2f(const Vector2f &v);
 };
 
