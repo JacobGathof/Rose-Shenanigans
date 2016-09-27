@@ -225,7 +225,7 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float sp
 	position = Vector2f(pos.x, pos.y);
 	positionDev = Vector2f(0,0);
 	color = Color(col.r, col.g, col.b);
-	colorDev = Color(1,1,0);
+	colorDev = Color(0,0,0);
 	particle_speed = speed;
 	particle_life = life;
 	max_particles = max;
