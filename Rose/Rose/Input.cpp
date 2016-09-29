@@ -25,15 +25,15 @@ void Input::processInput(float dt)
 			movement = movement + Vector2f(1, 0);
 		}
 		if (keys[GLFW_KEY_1]) {
-			game->wizard.attack(0);
+			game->player.attack(0);
 		}
-		game->wizard.move(movement.normalize(), dt);
+		game->player.move(movement.normalize(), dt);
 
 
 		if (keys[GLFW_KEY_Y]) {
 			keys[GLFW_KEY_Y] = false;
-			game->gary.interact();
-			game->wizard.talkTo(game->gary);
+			game->basicNPC.interact();
+			game->player.talkTo(game->basicNPC);
 		}
 	}
 
@@ -45,6 +45,11 @@ void Input::processInput(float dt)
 		}
 	}
 
+	if (keys[GLFW_KEY_P]) {
+		keys[GLFW_KEY_P] = false;
+		WorldManager::getCurrentWorld()->terrain[0]->setTile(game->player.position, 1);
+	}
+
 
 	if (keys[GLFW_KEY_9]) {
 		keys[GLFW_KEY_9] = false;
@@ -52,15 +57,15 @@ void Input::processInput(float dt)
 	}
 	if (keys[GLFW_KEY_2]) {
 		keys[GLFW_KEY_2] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 1);
+		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 1);
 	}
 	if (keys[GLFW_KEY_3]) {
 		keys[GLFW_KEY_3] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 2);
+		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 2);
 	}
 	if (keys[GLFW_KEY_4]) {
 		keys[GLFW_KEY_4] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->wizard.position, 4);
+		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 4);
 	}
 
 

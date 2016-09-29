@@ -3,6 +3,7 @@
 #include "Res.h"
 #include <iostream>
 #include <vector>
+#include <map>
 
 
 class Terrain
@@ -11,7 +12,8 @@ public:
 
 	class TerrainChunk;
 
-	std::vector<TerrainChunk*> terrain;
+	std::map<Vector2f, TerrainChunk*> terrain;
+
 	void draw();
 
 	int tilesPerChunk;
@@ -21,8 +23,7 @@ public:
 	Terrain(std::string str);
 	~Terrain();
 
-	void addTerrain();
-	void addTerrain(Vector2f position);
+	void addTerrain(Vector2f position = Vector2f(0,0));
 
 	void setTile(Vector2f pos, int i);
 	void loadTerrain(std::string filename);
@@ -34,7 +35,7 @@ public:
 			GLuint VAO;
 			GLuint VBO_vertices, VBO_textures, VBO_inst_pos, VBO_inst_tex;
 			int tilesPerChunk;
-			Vector2f scale;
+			float scale;
 			Vector2f position;
 			float * tilePosition;
 			int * tileTexture;
@@ -42,7 +43,7 @@ public:
 			TerrainChunk(Vector2f pos, int tpc, float sc) {
 				position = pos;
 				tilesPerChunk = tpc;
-				scale = Vector2f(sc, sc);
+				scale = sc;
 			};
 
 			~TerrainChunk() {

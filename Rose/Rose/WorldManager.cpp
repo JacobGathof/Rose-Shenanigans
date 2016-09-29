@@ -27,7 +27,7 @@ void WorldManager::init(){
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 1), true, 32.0f, 1.00f, 1000, true, false));
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), true, 128.0f, 2.00f, 10000, false, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
-	world3->addTerrain(new Terrain("World 2"));
+	world3->addTerrain(new Terrain("World 3"));
 	
 
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50,0), Vector2f(10,10)));

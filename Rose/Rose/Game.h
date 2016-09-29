@@ -24,9 +24,9 @@ public:
 
 	bool gameTick;
 	float gameTime;
-	Player wizard;
+	Player player;
 
-	NPC gary;
+	NPC basicNPC;
 
 	Vector2f circleVector;
 };

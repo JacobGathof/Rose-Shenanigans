@@ -253,6 +253,7 @@
   <ItemGroup>
     <None Include="Town of Beginnings" />
     <None Include="World 2" />
+    <None Include="World 3" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc" />

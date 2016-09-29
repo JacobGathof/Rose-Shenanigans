@@ -3,41 +3,50 @@
 
 
 Terrain::Terrain() {
-	tilesPerChunk = 16;
+	tilesPerChunk = 4;
 	tileScale = 16.0f;
 	loadTerrain("Town of Beginnings");
 };
 
 Terrain::Terrain(std::string str) {
-	tilesPerChunk = 16;
+	tilesPerChunk = 4;
 	tileScale = 16.0f;
 	loadTerrain(str);
 };
 
 Terrain::~Terrain() {
 	for (auto t : terrain) {
-		delete t;
+		delete t.second;
 	}
 };
 
-void Terrain::addTerrain() {
-	terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
-}
+
 void Terrain::addTerrain(Vector2f pos) {
-	terrain.push_back(new TerrainChunk(pos, tilesPerChunk, tileScale));
+	TerrainChunk * c = new TerrainChunk(pos, tilesPerChunk, tileScale);
+	c->buildTerrain(0);
+	terrain[pos] = c;
 }
 
 void Terrain::draw() {
 	for (auto t : terrain) {
-		t->draw();
+		t.second->draw();
 	}
 }
 
 void Terrain::setTile(Vector2f pos, int i){
 
-	TerrainChunk * t = terrain[0];
+	Vector2f cPos = pos / (tileScale*tilesPerChunk);
+	cPos = cPos.round();
 
-	int index = tilesPerChunk*(int)(pos.x / tileScale) + ((int)(pos.y / tileScale) % tilesPerChunk);
+	if (terrain.find(cPos) == terrain.end()) {
+		addTerrain(cPos);
+		return;
+	}
+
+	TerrainChunk * t = terrain[cPos];
+	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
+
+	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
 	int data[] = { i };
 
@@ -62,6 +71,7 @@ void Terrain::loadTerrain(std::string filename){
 		std::stringstream line;
 
 		file.getline(buffer, 64);
+
 		if (buffer[0] == '\0') break;
 		line << buffer;
 
@@ -74,7 +84,6 @@ void Terrain::loadTerrain(std::string filename){
 		Vector2f pos(std::stoi(b1), std::stoi(b2));
 		TerrainChunk * chunk = new TerrainChunk(pos, tilesPerChunk, tileScale);
 
-
 		file.getline(buffer, 8192);
 		line.str(buffer);
 
@@ -86,7 +95,6 @@ void Terrain::loadTerrain(std::string filename){
 
 			line.getline(buffer, 64, ',');
 			if (buffer[0] == '\0') continue;
-			if (buffer[0] == 'a') {}
 			int i = std::stoi(buffer);
 			tileTextures[ptr++] = i;
 		}
@@ -94,9 +102,7 @@ void Terrain::loadTerrain(std::string filename){
 		line.str("");
 
 		chunk->buildTerrain(tileTextures);
-
-		terrain.push_back(chunk);
-
+		terrain[pos] = chunk;
 	}
 
 }
@@ -107,12 +113,12 @@ void Terrain::saveTerrain(std::string filename){
 	file.open(filename, file.out);
 
 	for (auto t : terrain) {
-		std::string s(t->position.toIntString()+"\n");
+		std::string s(t.second->position.toIntString()+"\n");
 		file.write((s).c_str(), std::strlen(s.c_str()));
 
 		for (int i = 0; i < tilesPerChunk; i++) {
 			for (int j = 0; j < tilesPerChunk; j++) {
-				int v = (t->tileTexture[tilesPerChunk*i + j]);
+				int v = (t.second->tileTexture[tilesPerChunk*i + j]);
 				std::string q = std::to_string(v) + ",";
 				file.write(q.c_str(), q.length());
 			}
@@ -151,7 +157,8 @@ void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.0f;
 			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.0f;
 
-			tileTexture[i*tilesPerChunk + j] = textures[i*tilesPerChunk+j];
+			if (textures == 0) tileTexture[i*tilesPerChunk + j] = 0;
+			else tileTexture[i*tilesPerChunk + j] = textures[i*tilesPerChunk+j];
 
 		}
 	}
@@ -196,11 +203,12 @@ void Terrain::TerrainChunk::draw() {
 	Res::getTexture("Grass")->bind();
 
 	ShaderProgram * shader = Res::getShader(terrainShader);
-	shader->loadVector2f("scale", scale);
-	shader->loadVector2f("pos", position);
+	shader->loadVector2f("scale", Vector2f(scale, scale));
+
+	shader->loadVector2f("pos", position*(tilesPerChunk*scale));
 
 	glBindVertexArray(VAO);
 
 	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, tilesPerChunk*tilesPerChunk);
-
+	
 }
