@@ -2,6 +2,7 @@
 #include "WorldManager.h"
 #include "LightManager.h"
 #include "UIManager.h"
+#include "Camera.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -34,6 +35,16 @@ Model * Res::stdModel;
 /*---------------------------------------
 		RES Initialization
 ----------------------------------------*/
+
+
+void Res::updateShaders(float gameTime){
+	getShader(entityShader)->loadVector2f("cameraPosition", Camera::position);
+	getShader(staticShader)->loadVector2f("cameraPosition", Camera::position);
+	getShader(terrainShader)->loadVector2f("cameraPosition", Camera::position);
+	getShader(particleShader)->loadVector2f("cameraPosition", Camera::position);
+
+	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
+}
 
 void Res::init() {
 	

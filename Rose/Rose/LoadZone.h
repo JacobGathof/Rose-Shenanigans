@@ -18,5 +18,7 @@ public:
 	Vector2f scale;
 	Vector2f position;
 
+	void draw();
+
 };
 

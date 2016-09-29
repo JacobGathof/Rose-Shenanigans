@@ -40,7 +40,6 @@ void World::loadWorldResources(){
 }
 
 void World::AddLoadZone(LoadZone zone) {
-	
 	zones.push_back(zone);
 }
 
@@ -81,6 +80,10 @@ void World::draw() {
 
 	for (auto s : systems) {
 		s->draw();
+	}
+
+	for (auto l : zones) {
+		l.draw();
 	}
 
 }

@@ -44,6 +44,8 @@ public:
 	static void loadTexture(std::string name, char* filename);
 	static void loadFont(std::string name, char * filename_font, char* filename_texture);
 
+	static void updateShaders(float gameTime);
+
 	static void resizeWindow(int width, int height);
 
 	static void init();

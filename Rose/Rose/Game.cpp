@@ -75,12 +75,7 @@ void Game::loop(float dt){
 	gameTime += dt;
 
 	Camera::position = Vector2f(wizard.position.x + wizard.scale.x / 2, wizard.position.y + wizard.scale.y / 2);
-	Res::getShader(entityShader)->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader(staticShader)->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader(terrainShader)->loadVector2f("cameraPosition", Camera::position);
-	Res::getShader(particleShader)->loadVector2f("cameraPosition", Camera::position);
-
-	Res::getShader(entityShader)->loadFloat("gameTime", gameTime);
+	Res::updateShaders(gameTime);
 
 	if ((wizard.position^gary.position) <= 2.0f && !UIManager::textbox.isVisible) {
 		gary.trigger();
@@ -91,10 +86,10 @@ void Game::loop(float dt){
 
 void Game::render(){
 
-	WorldManager::drawWorld();
-	gary.draw();
-	wizard.draw();
-	UIManager::textbox.draw();
-	UIManager::statbox.draw();
+	//WorldManager::drawWorld();
+	//gary.draw();
+	//wizard.draw();
+	//UIManager::textbox.draw();
+	//UIManager::statbox.draw();
 
 }

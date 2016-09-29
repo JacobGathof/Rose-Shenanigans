@@ -30,17 +30,12 @@ void WorldManager::init(){
 	world3->addTerrain(new Terrain("World 2"));
 	
 
-
-	world->AddObject(new Object(Vector2f(50, 0), Vector2f(10, 10), "Fire"));
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50,0), Vector2f(10,10)));
 
-	world->AddObject(new Object(Vector2f(50, 50), Vector2f(10, 10), "Fire"));
 	world->AddLoadZone(LoadZone(world, world3, Vector2f(50, 50), Vector2f(10, 10)));
 
-	world3->AddObject(new Object(Vector2f(0, 0), Vector2f(10, 10), "Fire"));
 	world3->AddLoadZone(LoadZone(world3, world, Vector2f(0, 0), Vector2f(10, 10)));
 
-	world2->AddObject(new Object(Vector2f(-50, 0), Vector2f(10, 10), "Fire"));
 	world2->AddLoadZone(LoadZone(world2, world, Vector2f(-50, 0), Vector2f(10, 10)));
 
 
