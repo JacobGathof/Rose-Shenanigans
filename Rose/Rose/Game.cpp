@@ -17,7 +17,7 @@ void Game::init()
 {
 	Res::init();
 	std::vector<Weapon> blank;
-	basicNPC = NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
+	basicNPC = NPC(Vector2f(10, -10), Vector2f(20, 20), "Edwin", 50);
 	basicNPC.numberOfAnimationRows = 4;
 
 	player = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);

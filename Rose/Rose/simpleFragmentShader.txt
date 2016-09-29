@@ -25,7 +25,7 @@ void main(){
 		outColor.a = 1.0f;
 	}
 
-	vec3 totalLight = vec3(.5,.5,.5);
+	vec3 totalLight = vec3(.1,.1,.1);
 	for(int i = 0; i < numLights; i++){
 		totalLight += calculatePointLight(pointLights[i], fragPos_);
 	}

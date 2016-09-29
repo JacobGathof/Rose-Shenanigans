@@ -45,9 +45,20 @@ void Input::processInput(float dt)
 		}
 	}
 
+
+	if (keys[GLFW_KEY_O]) {
+		keys[GLFW_KEY_O] = false;
+		tilePointer = (tilePointer + 1) % 12;
+	}
+
+	if (keys[GLFW_KEY_I]) {
+		keys[GLFW_KEY_I] = false;
+		tilePointer = (tilePointer - 1) % 12;
+	}
+
 	if (keys[GLFW_KEY_P]) {
 		keys[GLFW_KEY_P] = false;
-		WorldManager::getCurrentWorld()->terrain[0]->setTile(game->player.position, 1);
+		WorldManager::getCurrentWorld()->terrain[0]->setTile(game->player.position + game->player.scale / 2, tilePointer);
 	}
 
 
@@ -55,19 +66,6 @@ void Input::processInput(float dt)
 		keys[GLFW_KEY_9] = false;
 		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);
 	}
-	if (keys[GLFW_KEY_2]) {
-		keys[GLFW_KEY_2] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 1);
-	}
-	if (keys[GLFW_KEY_3]) {
-		keys[GLFW_KEY_3] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 2);
-	}
-	if (keys[GLFW_KEY_4]) {
-		keys[GLFW_KEY_4] = false;
-		WorldManager::currentWorld->terrain[0]->setTile(game->player.position, 4);
-	}
-
 
 }
 
