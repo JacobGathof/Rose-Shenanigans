@@ -2,6 +2,31 @@
 #include <sstream>
 
 
+Terrain::Terrain() {
+	tilesPerChunk = 16;
+	tileScale = 16.0f;
+	loadTerrain("Town of Beginnings");
+};
+
+Terrain::Terrain(std::string str) {
+	tilesPerChunk = 16;
+	tileScale = 16.0f;
+	loadTerrain(str);
+};
+
+Terrain::~Terrain() {
+	for (auto t : terrain) {
+		delete t;
+	}
+};
+
+void Terrain::addTerrain() {
+	terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, tileScale));
+}
+void Terrain::addTerrain(Vector2f pos) {
+	terrain.push_back(new TerrainChunk(pos, tilesPerChunk, tileScale));
+}
+
 void Terrain::draw() {
 	for (auto t : terrain) {
 		t->draw();
@@ -100,6 +125,22 @@ void Terrain::saveTerrain(std::string filename){
 
 }
 
+void Terrain::TerrainChunk::generateBuffers(){
+
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
+	glGenBuffers(1, &VBO_vertices);
+	glGenBuffers(1, &VBO_textures);
+	glGenBuffers(1, &VBO_inst_pos);
+	glGenBuffers(1, &VBO_inst_tex);
+
+}
+
+void Terrain::TerrainChunk::loadBuffers()
+{
+}
+
 void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 
 	tilePosition = new float[tilesPerChunk*tilesPerChunk*2];
@@ -120,15 +161,7 @@ void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float texures[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
 
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-
-	
-	glGenBuffers(1, &VBO_vertices);
-	glGenBuffers(1, &VBO_textures);
-	glGenBuffers(1, &VBO_inst_pos);
-	glGenBuffers(1, &VBO_inst_tex);
-
+	generateBuffers();
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_vertices);
 	glBufferData(GL_ARRAY_BUFFER, 48, vertices, GL_STATIC_DRAW);

@@ -17,27 +17,12 @@ public:
 	int tilesPerChunk;
 	float tileScale;
 
-	Terrain() {
-		tilesPerChunk = 16;
-		tileScale = 16.0f;
-		loadTerrain("Town of Beginnings");
-	};
+	Terrain();
+	Terrain(std::string str);
+	~Terrain();
 
-	Terrain(std::string str) {
-		tilesPerChunk = 16;
-		tileScale = 16.0f;
-		loadTerrain(str);
-	};
-
-	~Terrain() {
-		for (auto t : terrain) {
-			delete t;
-		}
-	};
-
-	void addTerrain() {
-		terrain.push_back(new TerrainChunk(Vector2f(0, 0), tilesPerChunk, (int)tileScale));
-	}
+	void addTerrain();
+	void addTerrain(Vector2f position);
 
 	void setTile(Vector2f pos, int i);
 	void loadTerrain(std::string filename);
@@ -54,10 +39,10 @@ public:
 			float * tilePosition;
 			int * tileTexture;
 
-			TerrainChunk(Vector2f pos, int tpc, int sc) {
+			TerrainChunk(Vector2f pos, int tpc, float sc) {
 				position = pos;
 				tilesPerChunk = tpc;
-				scale = Vector2f((float)sc, (float)sc);
+				scale = Vector2f(sc, sc);
 			};
 
 			~TerrainChunk() {
@@ -65,6 +50,8 @@ public:
 				delete[] tileTexture;
 			};
 
+			void generateBuffers();
+			void loadBuffers();
 			void buildTerrain(int textures[]);
 			void draw();
 
