@@ -1,5 +1,5 @@
 #include "World.h"
-
+#include <algorithm>
 
 
 World::World(){}
@@ -14,8 +14,8 @@ World::World(std::string title)
 
 void World::tick()
 {
-	for (auto e : entities) {
-		e->tick();
+	for (auto o : objects) {
+		o->tick();
 	}
 }
 
@@ -24,9 +24,11 @@ void World::update(float dt){
 	for (auto s : systems) {
 		s->update(dt);
 	}
-	for (auto e : entities) {
-		e->update(dt);
+	for (auto o : objects) {
+		o->update(dt);
 	}
+
+	std::sort(objects.begin(), objects.end(), Object::compare);
 
 }
 
@@ -36,7 +38,6 @@ void World::loadWorldResources(){
 	for (auto l : lights) {
 		LightManager::addLight(l);
 	}
-
 }
 
 void World::AddLoadZone(LoadZone zone) {
@@ -48,7 +49,8 @@ void World::AddObject(Object * obj) {
 }
 
 void World::AddEntity(Entity * e) {
-	entities.push_back(e);
+	//entities.push_back(e);
+	objects.push_back(e);
 }
 
 void World::AddSystem(ParticleSystem * s) {
@@ -74,9 +76,9 @@ void World::draw() {
 		o->draw();
 	}
 
-	for (auto e : entities) {
-		e->draw();
-	}
+	//for (auto e : entities) {
+		//e->draw();
+	//}
 
 	for (auto s : systems) {
 		s->draw();
@@ -91,7 +93,8 @@ void World::draw() {
 void World::unloadWorld(){
 
 	for (auto o : objects) {
-		delete o;
+		if(o->getType() != PLAYER)
+			delete o;
 	}
 	for (auto e : entities) {
 		delete e;

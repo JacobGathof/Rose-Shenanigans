@@ -47,6 +47,12 @@ void WorldManager::init(){
 
 }
 
+void WorldManager::addToAllWorlds(Entity * e){
+	for (auto w : worlds) {
+		w.second->AddEntity(e);
+	}
+}
+
 void WorldManager::addWorld(World* w) {
 	worlds[w->name] = w;
 }

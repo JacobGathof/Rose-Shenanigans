@@ -8,6 +8,7 @@ class WorldManager
 public:
 
 	static void init();
+	static void addToAllWorlds(Entity * e);
 	static void addWorld(World * w);
 	static void loadWorld(World w);
 	static World* getWorld(std::string name);

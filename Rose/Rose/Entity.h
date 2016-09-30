@@ -19,6 +19,7 @@ public:
 	virtual void draw();
 	virtual void update(float dt);
 	virtual void tick();
+	virtual ObjectType getType() { return ENTITY; }
 
 	Direction direction = IDLE;
 	Direction lastdirection = SOUTH;

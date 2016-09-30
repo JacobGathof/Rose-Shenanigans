@@ -14,6 +14,8 @@ enum TypesOfHands {
 class Player: public Entity
 {
 public:
+	virtual ObjectType getType() { return PLAYER; }
+
 	Player() {};
 	~Player() {};
 	Player(Vector2f pos, Vector2f sc, std::string image, float speed);

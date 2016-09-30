@@ -33,6 +33,8 @@ void Game::init()
 
 	UIManager::statbox.player = &player;
 
+	WorldManager::addToAllWorlds(&player);
+
 
 }
 
@@ -73,8 +75,8 @@ void Game::loop(float dt){
 void Game::render(){
 
 	WorldManager::drawWorld();
-	basicNPC.draw();
-	player.draw();
+	//basicNPC.draw();
+	//player.draw();
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
 

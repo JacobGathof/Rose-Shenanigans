@@ -27,6 +27,19 @@ void Object::draw(){
 
 }
 
+void Object::tick()
+{
+}
+
+void Object::update(float dt)
+{
+}
+
+bool Object::compare(Object * o, Object * o2)
+{
+	return o->position.y > o2->position.y;
+}
+
 Object::Object(){
 	this->tex = 0;
 	this->position = Vector2f(0, 0);
