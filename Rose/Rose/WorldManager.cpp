@@ -12,8 +12,11 @@ void WorldManager::init(){
 	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 4; i++) {
-		world->AddObject(new Object(Vector2f(-30 + 40*i, 0), Vector2f(20, 20), "Candle"));
-		world->AddLight(new Light(Vector2f(-20 + 40*i, 20 - 3), Color(1, 0, 0), 2.0f));
+
+		for (int j = 0; j < 4; j++) {
+			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0+-40*j), Vector2f(20, 20), "Candle"));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40*j + 20 - 3), Color(1, i / 4.0, j / 4.0), 2.0f));
+		}
 	}
 
 	world->addTerrain(new Terrain("Town of Beginnings"));
