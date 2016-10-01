@@ -259,6 +259,9 @@
     <Text Include="uiVertexShader.txt">
       <Filter>Resource Files\Shaders</Filter>
     </Text>
+    <Text Include="Storyboard.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Wizard.png">

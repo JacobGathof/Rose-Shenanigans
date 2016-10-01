@@ -50,7 +50,7 @@ int main() {
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 

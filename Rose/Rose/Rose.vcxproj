@@ -231,6 +231,7 @@
     <Text Include="simpleVertexShader.txt" />
     <Text Include="staticFragmentShader.txt" />
     <Text Include="staticVertexShader.txt" />
+    <Text Include="Storyboard.txt" />
     <Text Include="terrainFragmentShader.txt" />
     <Text Include="terrainVertexShader.txt" />
     <Text Include="textFragmentShader.txt" />
