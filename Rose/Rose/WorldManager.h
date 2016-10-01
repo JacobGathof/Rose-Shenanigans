@@ -16,6 +16,7 @@ public:
 	static void makeWorldCurrent(std::string name);
 	static void drawWorld();
 	static void destroy();
+	static bool collide(Object o);
 
 	static World * currentWorld;
 	static std::map<std::string, World*> worlds;

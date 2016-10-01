@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "WorldManager.h"
 #include <iostream>
 
 
@@ -23,7 +24,18 @@ void Entity::move(Vector2f dir, float dt)
 	if (direction != IDLE) {
 		lastdirection = direction;
 	}
-	position = position + dir*speed*dt;
+
+	//position += dir*speed*dt;
+
+	position.x += dir.x*speed*dt;
+	if (WorldManager::collide(*this)) {
+		position.x -= dir.x*speed*dt;
+	}
+
+	position.y += dir.y*speed*dt;
+	if (WorldManager::collide(*this)) {
+		position.y -= dir.y*speed*dt;
+	}
 
 }
 

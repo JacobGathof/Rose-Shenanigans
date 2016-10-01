@@ -58,6 +58,29 @@ void Terrain::setTile(Vector2f pos, int i){
 
 }
 
+bool Terrain::getSolid(Object o)
+{
+	return getSolid(o.position + Vector2f(0+4,0)) || getSolid(o.position + Vector2f(o.scale.x-4, 0)) || getSolid(o.position + Vector2f(4, .3*o.scale.y)) || getSolid(o.position + Vector2f(o.scale.x-4, .3*o.scale.y));
+}
+
+bool Terrain::getSolid(Vector2f pos){
+
+	Vector2f cPos = pos / (tileScale*tilesPerChunk);
+	cPos = cPos.round();
+
+	if (terrain.find(cPos) == terrain.end()) {
+		return false;
+	}
+
+	TerrainChunk * t = terrain[cPos];
+	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
+
+	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
+
+	return t->tileTexture[index] == 13;
+	
+}
+
 void Terrain::loadTerrain(std::string filename){
 
 

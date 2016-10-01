@@ -16,6 +16,9 @@
 void Game::init()
 {
 	Res::init();
+	gameTime = 0;
+
+
 	std::vector<Weapon> blank;
 	basicNPC = NPC(Vector2f(10, -10), Vector2f(20, 20), "Edwin", 50);
 	basicNPC.numberOfAnimationRows = 4;
@@ -27,12 +30,11 @@ void Game::init()
 	player.addMission(mission);
 	mission = Mission(50, 50, blank, "hello", basicNPC);
 	player.addMission(mission);
-	gameTime = 0;
+	
+
 
 	circleVector = Vector2f(1, 0);
-
 	UIManager::statbox.player = &player;
-
 	WorldManager::addToAllWorlds(&player);
 
 
@@ -54,6 +56,7 @@ void Game::loop(float dt){
 
 	if (gameTick) {
 		tick();
+		gameTick = false;
 	}
 
 	circleVector = Vector2f(cos(gameTime), sin(gameTime));

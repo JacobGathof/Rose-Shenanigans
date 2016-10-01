@@ -1,6 +1,7 @@
 #pragma once
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Res.h"
+#include "Object.h"
 #include <iostream>
 #include <vector>
 #include <map>
@@ -26,6 +27,8 @@ public:
 	void addTerrain(Vector2f position = Vector2f(0,0));
 
 	void setTile(Vector2f pos, int i);
+	bool getSolid(Object o);
+	bool getSolid(Vector2f pos);
 	void loadTerrain(std::string filename);
 	void saveTerrain(std::string filename);
 

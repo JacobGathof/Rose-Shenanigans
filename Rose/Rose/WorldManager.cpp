@@ -12,7 +12,6 @@ void WorldManager::init(){
 	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 4; i++) {
-
 		for (int j = 0; j < 4; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0+-40*j), Vector2f(20, 20), "Candle"));
 			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40*j + 20 - 3), Color(1, i / 4.0, j / 4.0), 2.0f));
@@ -29,17 +28,14 @@ void WorldManager::init(){
 
 
 	World * world3 = new World("World 3");
-	//world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), true, 128.0f, 2.00f, 10000, false, false));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), true, 128.0f, 2.00f, 10000, false, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("World 3"));
 	
 
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50,80), Vector2f(10,10)));
-
 	world->AddLoadZone(LoadZone(world, world3, Vector2f(50, 50), Vector2f(10, 10)));
-
 	world3->AddLoadZone(LoadZone(world3, world, Vector2f(0, 0), Vector2f(10, 10)));
-
 	world2->AddLoadZone(LoadZone(world2, world, Vector2f(-50, 0), Vector2f(10, 10)));
 
 
@@ -86,6 +82,10 @@ void WorldManager::destroy(){
 		w.second->unloadWorld();
 		delete w.second;
 	}
+}
+
+bool WorldManager::collide(Object o){
+	return currentWorld->terrain[0]->getSolid(o);
 }
 
 void WorldManager::checkWorld(Player* player) {
