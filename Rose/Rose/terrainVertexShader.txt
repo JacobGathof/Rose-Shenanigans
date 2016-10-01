@@ -28,6 +28,6 @@ void main(){
 		(vertices.x+instPosition.x)*scale.x + pos.x, 
 		(vertices.y+instPosition.y)*scale.y + pos.y);
 
-	texCoords_ = vec2(texCoords.x/4, texCoords.y/4) + vec2(.25*(instTex%4), .25*(instTex/4));
+	texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.25*(instTex%8), .25*(instTex/8));
 
 }

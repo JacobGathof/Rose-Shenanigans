@@ -20,9 +20,9 @@ vec3 calculatePointLight(Light light, vec2 fragPosition_);
 void main(){
 	vec4 outColor = texture(image, texCoords_);
 
-	vec3 totalLight = vec3(.1,.1,.1);
+	vec3 totalLight = vec3(1,1,1);
 	for(int i = 0; i < numLights; i++){
-		totalLight += calculatePointLight(pointLights[i], fragPos_);
+		//totalLight += calculatePointLight(pointLights[i], fragPos_);
 	}
 
 	gl_FragColor = outColor * vec4(totalLight, 1.0);
