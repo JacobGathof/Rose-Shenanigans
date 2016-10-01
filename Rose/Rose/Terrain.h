@@ -27,6 +27,7 @@ public:
 	void addTerrain(Vector2f position = Vector2f(0,0));
 
 	void setTile(Vector2f pos, int i);
+	void deleteChunk(Vector2f pos);
 	bool getSolid(Object o);
 	bool getSolid(Vector2f pos);
 	void loadTerrain(std::string filename);

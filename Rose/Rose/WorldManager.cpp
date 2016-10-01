@@ -11,6 +11,11 @@ void WorldManager::init(){
 	World * world = new World("Town of Beginnings");
 	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
+	for (int i = 0; i < 100; i++) {
+		Vector2f random = Vector2f(250*(-.5+(float)(rand())/RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
+		world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
+	}
+
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0+-40*j), Vector2f(20, 20), "Candle"));

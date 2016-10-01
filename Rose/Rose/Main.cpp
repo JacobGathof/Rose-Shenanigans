@@ -50,7 +50,7 @@ int main() {
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 
@@ -70,7 +70,7 @@ int main() {
 			glfwPollEvents();
 			glfwSwapBuffers(window);
 
-			_sleep(8.33333333333333 - dt);
+			//_sleep(8.33333333333333 - dt);
 		}
 		catch (exception e) {
 			std::cout << "Caught error: " << e.what() << endl;

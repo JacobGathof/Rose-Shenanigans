@@ -249,6 +249,7 @@
     <Image Include="Rain.png" />
     <Image Include="Sprites.png" />
     <Image Include="sword.png" />
+    <Image Include="Tree.png" />
     <Image Include="Wizard.png" />
   </ItemGroup>
   <ItemGroup>
