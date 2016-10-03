@@ -7,6 +7,7 @@ enum ObjectType {
 	OBJECT,
 	ENTITY,
 	PLAYER,
+	NPC_,
 };
 
 class Object

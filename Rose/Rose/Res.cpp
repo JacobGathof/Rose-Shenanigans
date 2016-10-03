@@ -1,6 +1,7 @@
 #include "Res.h"
 #include "WorldManager.h"
 #include "LightManager.h"
+#include "NPCManager.h"
 #include "UIManager.h"
 #include "Camera.h"
 #include <iostream>
@@ -102,6 +103,7 @@ void Res::initProjections(){
 void Res::initManagers(){
 	WorldManager::init();
 	UIManager::init();
+	NPCManager::init();
 }
 
 
@@ -226,6 +228,7 @@ void Res::cleanResources(){
 
 	WorldManager::destroy();
 	UIManager::destroy();
+	NPCManager::destroy();
 
 	std::cout << "Resources cleaned\n";
 

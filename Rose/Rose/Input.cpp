@@ -32,8 +32,12 @@ void Input::processInput(float dt)
 
 		if (keys[GLFW_KEY_Y]) {
 			keys[GLFW_KEY_Y] = false;
-			game->basicNPC.interact();
-			game->player.talkTo(game->basicNPC);
+			NPC* n = findClosestNPC(game->player.position);
+
+			if (n == 0);
+			else if((game->player.position^n->position) <= 10.0f){
+				n->trigger();
+			}
 		}
 	}
 
@@ -72,6 +76,10 @@ void Input::processInput(float dt)
 		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);
 	}
 
+}
+
+NPC* Input::findClosestNPC(Vector2f position){
+	return WorldManager::currentWorld->findClosestNPC(position);
 }
 
 Input::Input()

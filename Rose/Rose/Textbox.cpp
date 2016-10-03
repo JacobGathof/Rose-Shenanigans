@@ -80,7 +80,39 @@ void Textbox::update(){
 }
 
 void Textbox::print(std::string message){
-	
-	queue.emplace(message);
+	//One line is 37 characters long
+	message = splitString(message);
+	//queue.emplace(message);
+}
 
+std::string Textbox::splitString(std::string str){
+
+	int currentIndex = 0;
+
+	for (int i = 0; i < 4; i++) {
+		if (str.length() - currentIndex > 37) {
+			currentIndex = findIndex(str, 37 + currentIndex - 37, 37 + currentIndex);
+			str.replace(currentIndex, 1, "/");
+		}
+	}
+
+	if (str.length() - currentIndex > 37) {
+		currentIndex = findIndex(str, 37 + currentIndex - 37, 37 + currentIndex);
+
+		queue.emplace(str.substr(0, currentIndex));
+		print(str.substr(currentIndex));
+		return str;
+	}
+
+	queue.emplace(str);
+	return str;
+
+}
+
+int Textbox::findIndex(std::string str, int start, int end){
+	for (int i = end; i > start; i--) {
+		if (str[i] == ' ')
+			return i;
+	}
+	return -1;
 }

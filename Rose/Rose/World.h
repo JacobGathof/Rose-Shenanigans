@@ -15,7 +15,7 @@ public:
 	
 	std::string name;
 	std::vector<Object *> objects;
-	std::vector<Entity *> entities;
+	std::vector<NPC *> npcs;
 	std::vector<ParticleSystem *> systems;
 	std::vector<Light *> lights;
 	std::vector<Terrain *> terrain;
@@ -26,6 +26,9 @@ public:
 	void AddSystem(ParticleSystem * s);
 	void AddLight(Light * l);
 	void addTerrain(Terrain* t);
+	void addNPC(NPC* n);
+
+	NPC* findClosestNPC(Vector2f position);
 
 	void tick();
 	void update(float dt);

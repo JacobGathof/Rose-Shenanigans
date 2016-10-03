@@ -20,16 +20,15 @@ void Game::init()
 
 
 	std::vector<Weapon> blank;
-	basicNPC = NPC(Vector2f(10, -10), Vector2f(20, 20), "Edwin", 50);
-	basicNPC.numberOfAnimationRows = 4;
 
 	player = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	Weapon weapon = Weapon(10, 20, 5, player.position, "sword");
 	player.hands[0] = weapon;
 	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
 	player.addMission(mission);
-	mission = Mission(50, 50, blank, "hello", basicNPC);
-	player.addMission(mission);
+
+	//mission = Mission(50, 50, blank, "hello", basicNPC);
+	//player.addMission(mission);
 	
 
 
@@ -68,18 +67,11 @@ void Game::loop(float dt){
 	Camera::position = Vector2f(player.position.x + player.scale.x / 2, player.position.y + player.scale.y / 2);
 	Res::updateShaders(gameTime);
 
-	if ((player.position^basicNPC.position) <= 2.0f && !UIManager::textbox.isVisible) {
-		basicNPC.trigger();
-	}
-
-	basicNPC.update(dt);
 }
 
 void Game::render(){
 
 	WorldManager::drawWorld();
-	//basicNPC.draw();
-	//player.draw();
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
 

@@ -26,6 +26,7 @@ public:
 
 	void advanceQueue();
 	void print(std::string message);
-
+	std::string splitString(std::string str);
+	int findIndex(std::string str, int start, int end);
 };
 
