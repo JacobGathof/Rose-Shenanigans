@@ -4,6 +4,7 @@
 #include "LoadZone.h"
 #include "Player.h"
 #include "Terrain.h"
+#include "Camera.h"
 #include <vector>
 
 class World

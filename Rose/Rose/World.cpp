@@ -73,7 +73,11 @@ void World::draw() {
 	}
 
 	for (auto o : objects) {
-		o->draw();
+		if (((o->position.x + o->scale.x) > (Camera::position.x - SCALEFACTOR)) && (o->position.x < (Camera::position.x + SCALEFACTOR)) &&
+			((o->position.y + o->scale.y) > (Camera::position.y - SCALEFACTOR)) && (o->position.y < (Camera::position.y + SCALEFACTOR))) {
+			o->draw();
+		}
+
 	}
 
 	//for (auto e : entities) {
