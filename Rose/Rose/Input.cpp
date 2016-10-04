@@ -52,12 +52,14 @@ void Input::processInput(float dt)
 
 	if (keys[GLFW_KEY_O]) {
 		keys[GLFW_KEY_O] = false;
-		tilePointer = (tilePointer + 1) % 14;
+		tilePointer = (tilePointer + 1) % 64;
+		Res::getShader(uiShader)->loadInteger("tile", tilePointer);
 	}
 
 	if (keys[GLFW_KEY_I]) {
 		keys[GLFW_KEY_I] = false;
-		tilePointer = (tilePointer - 1) % 14;
+		tilePointer = (tilePointer - 1) % 64;
+		Res::getShader(uiShader)->loadInteger("tile", tilePointer);
 	}
 
 	if (keys[GLFW_KEY_P]) {
