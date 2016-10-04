@@ -68,7 +68,7 @@ void ParticleSystem::update(float dt)
 	if (new_particles > 4)
 		new_particles = 4;
 
-	if (emit) {
+	if (active) {
 		for (int i = 0; i < new_particles; i++) {
 			int index = getLastUnused();
 			if (index == -1) continue;
@@ -87,12 +87,13 @@ void ParticleSystem::update(float dt)
 
 		particle_count++;
 		
-		if (spin && !direction) {
+		if (spin && !emit) {
 			Vector2f vel = (position - particles[i].position);
-			particles[i].velocity = 2 * vel;
-			particles[i].velocity += 16 * Vector2f(vel.y, -vel.x) * (1.0 / vel.magnitude());
+			particles[i].velocity = vel.normalize()*particle_speed;
+			//TODO: work on calculation optimization
+			particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / vel.magnitude()) );
 		}
-		else if(spin && direction) {
+		else if(spin && emit) {
 			particles[i].velocity += 1*dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
 		}
 		else {
@@ -128,7 +129,7 @@ int ParticleSystem::getLastUnused()
 
 void ParticleSystem::setNewParticle(int index)
 {
-	if (direction) {
+	if (emit) {
 		particles[index].life = particle_life;
 		particles[index].velocity = Vector2f((
 			((float)rand() / RAND_MAX) - .5f),
@@ -202,9 +203,9 @@ ParticleSystem::ParticleSystem()
 
 	particle_count = 0;
 	last_unused_particle = 0;
-	emit = true;
+	active = true;
 	spin = false;
-	direction = direction;
+	emit = emit;
 
 	max_particles = 500;
 	particle_life = 0.5f;
@@ -213,14 +214,14 @@ ParticleSystem::ParticleSystem()
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max, bool spin, bool direction)
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max, bool spin, bool emit)
 {
 	renderAsPoints = renderAsP;
 	particle_count = 0;
 	last_unused_particle = 0;
-	emit = true;
+	active = true;
 	this->spin = spin;
-	this->direction = direction;
+	this->emit = emit;
 
 	position = Vector2f(pos.x, pos.y);
 	positionDev = Vector2f(0,0);
