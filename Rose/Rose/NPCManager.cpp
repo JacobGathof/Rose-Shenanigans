@@ -19,7 +19,7 @@ void NPCManager::init(){
 	NPC* edwin = new NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
 	edwin->numberOfAnimationRows = 4;
 	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(MOVE, Vector2f(100,100)));
+	edwin->addAction(NPCAction(MOVE, Vector2f(100,120)));
 	edwin->addAction(NPCAction(WAIT));
 	edwin->addAction(NPCAction(TALK, "It's dangerous to go alone/Take this"));
 

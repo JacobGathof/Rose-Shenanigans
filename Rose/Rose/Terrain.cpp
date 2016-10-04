@@ -92,7 +92,7 @@ bool Terrain::getSolid(Vector2f pos){
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
-	return t->tileTexture[index] == 13;
+	return t->tileTexture[index] == 4;
 	
 }
 

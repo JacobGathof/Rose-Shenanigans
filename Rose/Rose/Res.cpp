@@ -84,6 +84,7 @@ void Res::initModels(){
 	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
 	Res::loadModel("Square", vertices, tex, 12);
 	Res::stdModel = Res::getModel("Square");
+
 }
 
 void Res::initFonts(){

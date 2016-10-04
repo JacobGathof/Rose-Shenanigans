@@ -4,8 +4,8 @@
 
 UIElement::UIElement(){
 
-	topLeft = Vector2f(40 * SCALEFACTOR / 64, 60 * SCALEFACTOR / 64);
-	botRight = Vector2f(60 * SCALEFACTOR / 64, 40 * SCALEFACTOR / 64);
+	topLeft = Vector2f(40 * SCALEFACTOR / 64, 40 * SCALEFACTOR / 64);
+	botRight = Vector2f(60 * SCALEFACTOR / 64, 60 * SCALEFACTOR / 64);
 	isVisible = true;
 
 }
