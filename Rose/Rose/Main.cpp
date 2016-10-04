@@ -16,7 +16,7 @@ int main() {
 	glfwMakeContextCurrent(window);
 
 	glfwSetWindowSizeCallback(window, window_resize_callback);
-
+	//glfwSetJoystickCallback(joystick_callback);
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
@@ -118,4 +118,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 
 void window_resize_callback(GLFWwindow* window, int width, int height) {
 	Res::resizeWindow(width, height);
+}
+
+void joystick_callback(GLFWwindow* window, int joystick) {
+	
 }
