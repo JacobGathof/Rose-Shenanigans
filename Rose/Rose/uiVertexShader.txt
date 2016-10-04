@@ -19,5 +19,4 @@ void main(){
 		vertices.y*scale.y + pos.y, 0.0 , 1.0);
 
 	texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.125*(tile%8), .125*(tile/8));
-
 }
