@@ -16,10 +16,17 @@ int main() {
 	glfwMakeContextCurrent(window);
 
 	glfwSetWindowSizeCallback(window, window_resize_callback);
-	//glfwSetJoystickCallback(joystick_callback);
+	glfwSetJoystickCallback(joystick_callback);
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetErrorCallback(error_callback);
+
+	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
+		Input::isUsingJoystick = true;
+		Input::joystick = GLFW_JOYSTICK_1;
+	}
+
 
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
@@ -50,7 +57,7 @@ int main() {
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-			//	std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 
@@ -120,6 +127,19 @@ void window_resize_callback(GLFWwindow* window, int width, int height) {
 	Res::resizeWindow(width, height);
 }
 
-void joystick_callback(GLFWwindow* window, int joystick) {
-	
+void joystick_callback(int joystick, int action) {
+	if (action == GLFW_CONNECTED) {
+		Input::isUsingJoystick = true;
+		Input::joystick = joystick;
+	}
+
+	if (action == GLFW_DISCONNECTED) {
+		Input::isUsingJoystick = false;
+	}
+}
+
+void error_callback(int error, const char* desc) {
+
+	std::cout << desc << std::endl;
+
 }

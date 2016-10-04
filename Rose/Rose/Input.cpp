@@ -6,9 +6,32 @@ bool Input::keys[];
 bool Input::mouse[];
 Game* Input::game;
 int Input::tilePointer;
+bool Input::isUsingJoystick = false;
+int Input::joystick = 0;
 
 void Input::processInput(float dt)
 {
+
+	if (isUsingJoystick) {
+		
+		Vector2f movement;
+		int count;
+		const float * axes = glfwGetJoystickAxes(joystick, &count);
+
+		float x = (abs(axes[0]) > .1f) ? axes[0] : 0;
+		float y = (abs(axes[1]) > .1f) ? -axes[1] : 0;
+
+		movement = Vector2f(x, y);
+		game->player.move(movement*3, dt);
+
+
+		const unsigned char* buttons = glfwGetJoystickButtons(joystick, &count);
+		if (buttons[0] == GLFW_PRESS) {
+			
+		}
+	}
+
+
 
 	if (!UIManager::textbox.isVisible) {
 		Vector2f movement;
@@ -35,11 +58,12 @@ void Input::processInput(float dt)
 			NPC* n = findClosestNPC(game->player.position);
 
 			if (n == 0);
-			else if((game->player.position^n->position) <= 10.0f){
+			else if ((game->player.position^n->position) <= 10.0f) {
 				n->trigger();
 			}
 		}
 	}
+	
 
 
 	if (keys[GLFW_KEY_T]) {

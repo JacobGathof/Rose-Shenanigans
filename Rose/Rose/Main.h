@@ -13,7 +13,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void window_resize_callback(GLFWwindow* window, int width, int height);
-void joystick_callback(GLFWwindow* window, int joystick);
+void joystick_callback(int joy, int action);
+void error_callback(int error, const char* desc);
 
 Game game;
 

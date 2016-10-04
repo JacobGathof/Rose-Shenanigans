@@ -10,6 +10,8 @@ public:
 	static bool mouse[1024];
 	static Game * game;
 	static int tilePointer;
+	static bool isUsingJoystick;
+	static int joystick;
 
 	static void processInput(float dt);
 	static NPC* findClosestNPC(Vector2f position);
