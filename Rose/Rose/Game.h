@@ -26,8 +26,6 @@ public:
 	float gameTime;
 	Player player;
 
-	NPC basicNPC;
-
 	Vector2f circleVector;
 };
 

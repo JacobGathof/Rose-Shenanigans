@@ -9,7 +9,7 @@ std::map<std::string, World*> WorldManager::worlds;
 void WorldManager::init(){
 
 	World * world = new World("Town of Beginnings");
-	world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
+	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 10; i++) {
 		Vector2f random = Vector2f(250*(-.5+(float)(rand())/RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
@@ -27,7 +27,7 @@ void WorldManager::init(){
 
 
 	World * world2 = new World("World 2");
-	world2->AddEntity(new Entity(Vector2f(0, 10), Vector2f(10, 10), "Edwin", 20));
+	//world2->AddEntity(new Entity(Vector2f(0, 10), Vector2f(10, 10), "Edwin", 20));
 	world2->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
 	world2->addTerrain(new Terrain("World 2"));
 
@@ -91,6 +91,11 @@ void WorldManager::destroy(){
 
 bool WorldManager::collide(Object o){
 	return currentWorld->terrain[0]->getSolid(o);
+}
+
+NPC * WorldManager::findClosestNPC(Vector2f pos)
+{
+	return currentWorld->findClosestNPC(pos);
 }
 
 void WorldManager::checkWorld(Player* player) {

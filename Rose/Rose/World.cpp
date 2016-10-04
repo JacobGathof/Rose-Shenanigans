@@ -65,6 +65,25 @@ void World::addTerrain(Terrain * t){
 	terrain.push_back(t);
 }
 
+void World::addNPC(NPC * n){
+	npcs.push_back(n);
+	objects.push_back(n);
+}
+
+NPC * World::findClosestNPC(Vector2f position)
+{
+	int min = -1;
+	int minDist = 100;
+	for (int i = 0; i < npcs.size(); i++) {
+		float dist = position^npcs[i]->position;
+		if (dist < minDist) {
+			min = i;
+			minDist = dist;
+		}
+	}
+	return (min == -1) ? 0 : npcs[min];
+}
+
 
 void World::draw() {
 
@@ -97,11 +116,8 @@ void World::draw() {
 void World::unloadWorld(){
 
 	for (auto o : objects) {
-		if(o->getType() != PLAYER)
+		if(o->getType() != PLAYER && o->getType() != NPC_)
 			delete o;
-	}
-	for (auto e : entities) {
-		delete e;
 	}
 	for (auto e : systems) {
 		delete e;

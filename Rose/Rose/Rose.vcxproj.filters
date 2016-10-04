@@ -120,6 +120,9 @@
     <ClInclude Include="Statbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NPCManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -216,6 +219,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Statbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

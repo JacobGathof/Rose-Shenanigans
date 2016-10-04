@@ -12,6 +12,7 @@ public:
 	static int tilePointer;
 
 	static void processInput(float dt);
+	static NPC* findClosestNPC(Vector2f position);
 
 	Input();
 	~Input();

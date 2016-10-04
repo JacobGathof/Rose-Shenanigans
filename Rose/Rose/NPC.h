@@ -38,6 +38,8 @@ class NPC : public Entity
 {
 public:
 
+	virtual ObjectType getType() { return NPC_; }
+
 	NPC(Vector2f pos, Vector2f scale, std::string texName, float speed = 1.0);
 	NPC();
 	~NPC();

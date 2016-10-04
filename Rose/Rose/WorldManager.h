@@ -17,6 +17,7 @@ public:
 	static void drawWorld();
 	static void destroy();
 	static bool collide(Object o);
+	static NPC* findClosestNPC(Vector2f pos);
 
 	static World * currentWorld;
 	static std::map<std::string, World*> worlds;

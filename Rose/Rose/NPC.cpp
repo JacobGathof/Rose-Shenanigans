@@ -33,23 +33,8 @@ void NPC::trigger(){
 }
 
 bool NPC::print(std::string str){
-	if (str.length() > 30) {
-		str.replace(str.find(" ", 30), 1, "/");
-	}
-	if (str.length() > 60) {
-		str.replace(str.find(" ", 60), 1, "/");
-	}
-	if (str.length() > 90) {
-		str.replace(str.find(" ", 90), 1, "/");
-	}
-	if (str.length() > 120) {
-		int index = str.find(" ", 120);
-		UIManager::textbox.print(str.substr(0, index));
-		print(str.substr(index));
-	}
-	else
-		UIManager::textbox.print(str);
 
+	UIManager::textbox.print(str);
 	return true;
 }
 
@@ -66,14 +51,12 @@ bool NPC::moveTo(Vector2f endPoint, float dt)
 	return false;
 }
 
-bool NPC::idle()
-{
+bool NPC::idle(){
 	return triggered;
 }
 
 void NPC::interact(){
-
-	print("hello");
+	print("We must save my family!");
 }
 
 void NPC::act(){
