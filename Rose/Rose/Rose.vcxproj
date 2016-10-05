@@ -250,6 +250,8 @@
     <Image Include="Grass.png" />
     <Image Include="Exteriordecor.png" />
     <Image Include="Rain.png" />
+    <Image Include="slime.png" />
+    <Image Include="slimebasic.png" />
     <Image Include="Sprites.png" />
     <Image Include="sword.png" />
     <Image Include="Tree.png" />
