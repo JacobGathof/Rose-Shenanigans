@@ -67,7 +67,7 @@ void Res::initShaders(){
 }
 
 void Res::initTextures(){
-	Res::loadTexture("Echo", "Echo.png");
+	Res::loadTexture("Echo", "slime.png");
 	Res::loadTexture("Rain", "Rain.png");
 	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
