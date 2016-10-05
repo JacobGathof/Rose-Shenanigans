@@ -50,6 +50,13 @@ void Input::processInput(float dt)
 		if (keys[GLFW_KEY_1]) {
 			game->player.attack(0);
 		}
+		else {
+			for (Weapon weapon : game->player.hands) {
+				weapon.attacking = false;
+			}
+			game->player.hands[0].attacking = false;
+		}
+
 		game->player.move(movement.normalize(), dt);
 
 

@@ -35,6 +35,7 @@ public:
 	bool statsChanged = false;
 
 	virtual void move(Vector2f dir, float dt);
+	virtual void draw();
 
 	void talkTo(NPC npc);
 	void addMission(Mission mission);

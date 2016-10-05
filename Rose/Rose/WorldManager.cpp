@@ -33,7 +33,7 @@ void WorldManager::init(){
 
 
 	World * world3 = new World("World 3");
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), true, 128.0f, 1.00f, 10000, true, false));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 64.0f, 1.00f, 10000, true, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("World 3"));
 	

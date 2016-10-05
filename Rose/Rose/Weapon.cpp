@@ -46,7 +46,7 @@ bool Weapon::attack(NPC obj, Vector2f pos, int dir)
 	else {
 		direction = NORTH;
 	}
-	draw();
+	attacking = true;
 	/*
 	if (collide(obj)) {
 		if (rand() % 100 <= critpercent) {

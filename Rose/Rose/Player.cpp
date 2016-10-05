@@ -74,3 +74,10 @@ void Player::move(Vector2f dir, float dt) {
 	}
 }
 
+void Player::draw() {
+	if (hands[0].attacking) {
+		hands[0].draw();
+	}
+	Entity::draw();
+}
+

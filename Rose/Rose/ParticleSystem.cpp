@@ -65,8 +65,8 @@ void ParticleSystem::update(float dt)
 		}
 	}
 
-	if (new_particles > 4)
-		new_particles = 4;
+	if (new_particles > 50)
+		new_particles = 50;
 
 	if (active) {
 		for (int i = 0; i < new_particles; i++) {
@@ -91,7 +91,7 @@ void ParticleSystem::update(float dt)
 			Vector2f vel = (position - particles[i].position);
 			particles[i].velocity = vel.normalize()*particle_speed;
 			//TODO: work on calculation optimization
-			particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / vel.magnitude()) );
+			particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / (vel.magnitude())) );
 		}
 		else if(spin && emit) {
 			particles[i].velocity += 1*dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
