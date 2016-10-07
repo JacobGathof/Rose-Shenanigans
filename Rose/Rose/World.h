@@ -1,5 +1,5 @@
 #pragma once
-#include "LightManager.h"
+#include "WorldManager.h"
 #include "ParticleSystem.h"
 #include "LoadZone.h"
 #include "Player.h"
@@ -10,6 +10,7 @@
 class World
 {
 public:
+
 	World();
 	~World();
 	World(std::string title);

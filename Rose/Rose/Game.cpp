@@ -1,14 +1,10 @@
 #include "Game.h"
-#include "ShaderProgram.h"
-#include "ModelLoader.h"
-#include "Model.h"
 #include "Res.h"
 #include "Camera.h"
 #include "Player.h"
 #include "Weapon.h"
 #include "Textbox.h"
-#include "LightManager.h"
-#include "UIManager.h"
+#include "WorldManager.h"
 #include "Vector2f.h"
 #include <iostream>
 
