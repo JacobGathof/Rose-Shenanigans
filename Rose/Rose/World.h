@@ -1,5 +1,5 @@
 #pragma once
-#include "LightManager.h"
+#include "WorldManager.h"
 #include "ParticleSystem.h"
 #include "LoadZone.h"
 #include "Player.h"
@@ -10,6 +10,7 @@
 class World
 {
 public:
+
 	World();
 	~World();
 	World(std::string title);
@@ -17,7 +18,7 @@ public:
 	std::string name;
 	std::vector<Object *> objects;
 	std::vector<NPC *> npcs;
-	std::vector<ParticleSystem *> systems;
+	//std::vector<ParticleSystem *> systems;
 	std::vector<Light *> lights;
 	std::vector<Terrain *> terrain;
 	std::vector<LoadZone> zones;

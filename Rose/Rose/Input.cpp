@@ -1,5 +1,5 @@
 #include "Input.h"
-#include "UIManager.h"
+#include "WorldManager.h"
 #include <iostream>
 
 bool Input::keys[];
@@ -8,6 +8,7 @@ Game* Input::game;
 int Input::tilePointer;
 bool Input::isUsingJoystick = false;
 int Input::joystick = 0;
+int Input::lastFive[];
 
 void Input::processInput(float dt)
 {
@@ -72,6 +73,10 @@ void Input::processInput(float dt)
 	}
 	
 
+	if (keys[GLFW_KEY_J] && keys[GLFW_KEY_K]) {
+		game->player.attack(0);
+	}
+
 
 	if (keys[GLFW_KEY_T]) {
 		keys[GLFW_KEY_T] = false;
@@ -108,7 +113,21 @@ void Input::processInput(float dt)
 		keys[GLFW_KEY_9] = false;
 		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);
 	}
+	
+	if (lastFive[0] == 85 && lastFive[1] == 82 && lastFive[2] == 65 && lastFive[3] == 78 && lastFive[4] == 79) {
+		game->player.speed *= 2;
+		lastFive[0] = 0;
+	}
 
+}
+
+void Input::turnKeyOn(int key){
+	if (keys[key]) return;
+	keys[key] = true;
+	for (int i = 1; i < 5; i++) {
+		lastFive[i - 1] = lastFive[i];
+	}
+	lastFive[4] = key;
 }
 
 NPC* Input::findClosestNPC(Vector2f position){

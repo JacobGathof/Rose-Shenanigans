@@ -8,6 +8,7 @@ Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)	:
 	this->speed = speed;
 	numberOfAnimationRows = 5;
 	framesPerAnimation = 3;
+	internalTime = (float)(rand()) / RAND_MAX;
 }
 
 
@@ -64,7 +65,7 @@ void Entity::update(float dt){
 
 void Entity::tick(){
 
-	internalTime += .05f;
+	internalTime += .10f;
 	if (internalTime > framesPerAnimation)
 		internalTime -= framesPerAnimation;
 }

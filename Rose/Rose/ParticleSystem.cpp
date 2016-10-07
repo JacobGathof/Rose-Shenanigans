@@ -198,7 +198,7 @@ void ParticleSystem::updateBuffers() {
 
 }
 
-ParticleSystem::ParticleSystem()
+ParticleSystem::ParticleSystem() : Object()
 {
 
 	particle_count = 0;
@@ -214,7 +214,7 @@ ParticleSystem::ParticleSystem()
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float life, int max, bool spin, bool emit)
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float size, int max, bool spin, bool emit) : Object()
 {
 	renderAsPoints = renderAsP;
 	particle_count = 0;
@@ -228,7 +228,7 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float sp
 	color = Color(col.r, col.g, col.b);
 	colorDev = Color(0,0,0);
 	particle_speed = speed;
-	particle_life = life;
+	particle_life = size/speed;
 	max_particles = max;
 
 	init();

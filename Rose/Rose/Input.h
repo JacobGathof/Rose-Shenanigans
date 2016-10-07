@@ -8,12 +8,14 @@ public:
 	
 	static bool keys[1024];
 	static bool mouse[1024];
+	static int lastFive[5];
 	static Game * game;
 	static int tilePointer;
 	static bool isUsingJoystick;
 	static int joystick;
 
 	static void processInput(float dt);
+	static void turnKeyOn(int key);
 	static NPC* findClosestNPC(Vector2f position);
 
 	Input();

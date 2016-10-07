@@ -1,5 +1,4 @@
 #include "Text.h"
-#include "Character.h"
 #include "Res.h"
 
 #include <iostream>
@@ -172,5 +171,19 @@ void Text::draw() {
 	currentShader->loadVector2f("scale", this->scale);
 
 	glDrawArrays(GL_TRIANGLES, 0, this->charsToRender);
+
+}
+
+
+Character::Character(std::vector<int> data)
+{
+	ID = (char)data[0];
+	x = data[1];
+	y = data[2];
+	width = data[3];
+	height = data[4];
+	xoffset = data[5];
+	yoffset = data[6];
+	xadvance = data[7];
 
 }
