@@ -15,9 +15,9 @@ void WorldManager::init() {
 	for (int i = 0; i < 30; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
-		Entity * slime = new Entity(random, Vector2f(30, 30), "Tree");
-		slime->framesPerAnimation = 1;
-		slime->numberOfAnimationRows = 1;
+		Entity * slime = new Entity(random, Vector2f(15, 15), "Slime");
+		slime->framesPerAnimation = 3;
+		slime->numberOfAnimationRows = 4;
 		world->AddEntity(slime);
 	}
 
