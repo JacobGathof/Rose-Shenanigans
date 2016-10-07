@@ -8,6 +8,7 @@ Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)	:
 	this->speed = speed;
 	numberOfAnimationRows = 5;
 	framesPerAnimation = 3;
+	internalTime = (float)(rand()) / RAND_MAX;
 }
 
 

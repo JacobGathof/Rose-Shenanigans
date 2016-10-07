@@ -264,6 +264,9 @@
     <Image Include="slime.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="SlimeSprite.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
