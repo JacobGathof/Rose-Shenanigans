@@ -21,9 +21,6 @@ void World::tick()
 
 void World::update(float dt){
 
-	for (auto s : systems) {
-		s->update(dt);
-	}
 	for (auto o : objects) {
 		o->update(dt);
 	}
@@ -54,7 +51,8 @@ void World::AddEntity(Entity * e) {
 }
 
 void World::AddSystem(ParticleSystem * s) {
-	systems.push_back(s);
+	//systems.push_back(s);
+	objects.push_back(s);
 }
 
 void World::AddLight(Light * l){
@@ -103,9 +101,9 @@ void World::draw() {
 		//e->draw();
 	//}
 
-	for (auto s : systems) {
-		s->draw();
-	}
+	//for (auto s : systems) {
+		//s->draw();
+	//}
 
 	for (auto l : zones) {
 		l.draw();
@@ -119,9 +117,9 @@ void World::unloadWorld(){
 		if(o->getType() != PLAYER && o->getType() != NPC_)
 			delete o;
 	}
-	for (auto e : systems) {
-		delete e;
-	}
+	//for (auto e : systems) {
+		//delete e;
+	//}
 	for (auto e : lights) {
 		delete e;
 	}

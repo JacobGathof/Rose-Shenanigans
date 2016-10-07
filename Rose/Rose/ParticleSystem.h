@@ -2,10 +2,11 @@
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Vector2f.h"
 #include "Color.h"
+#include "Object.h"
 #include <vector>
 
 
-class ParticleSystem
+class ParticleSystem : public Object
 {
 public:
 

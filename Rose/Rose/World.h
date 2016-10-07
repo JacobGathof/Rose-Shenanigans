@@ -18,7 +18,7 @@ public:
 	std::string name;
 	std::vector<Object *> objects;
 	std::vector<NPC *> npcs;
-	std::vector<ParticleSystem *> systems;
+	//std::vector<ParticleSystem *> systems;
 	std::vector<Light *> lights;
 	std::vector<Terrain *> terrain;
 	std::vector<LoadZone> zones;
