@@ -27,6 +27,8 @@ void World::update(float dt){
 
 	std::sort(objects.begin(), objects.end(), Object::compare);
 
+	removeDead();
+
 }
 
 void World::loadWorldResources(){
@@ -126,6 +128,30 @@ void World::unloadWorld(){
 	for (auto e : terrain) {
 		delete e;
 	}
+}
+
+void World::checkEnemyCollisions(Player * player){
+	for (auto o : objects) {
+		if (o->getType() == SLIME) {
+			if (o->collide(*player)) {
+				player->takeDamage();
+				o->destroy();
+			}
+		}
+	}
+}
+
+void World::removeDead()
+{
+	for (int i = 0; i < objects.size(); i++) {
+		Object * obj = objects[i];
+		if (obj->getType() == SLIME && obj->alive == false) {
+			delete obj;
+			objects.erase(objects.begin() + i);
+			i--;
+		}
+	}
+
 }
 
 World * World::checkLoad(Player* player) {

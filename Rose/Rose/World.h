@@ -39,5 +39,7 @@ public:
 	World* checkLoad(Player* player);
 	void draw();
 	void unloadWorld();
+	void checkEnemyCollisions(Player* player);
+	void removeDead();
 };
 

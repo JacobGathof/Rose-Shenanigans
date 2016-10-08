@@ -66,6 +66,18 @@ void Player::LevelUp()
 	statsChanged = true;
 }
 
+void Player::takeDamage(){
+
+	if (iFrames > 0) {
+		return;
+	}
+	this->hp -= 1;
+	iFrames = 10;
+	this->statsChanged = true;
+
+
+}
+
 void Player::move(Vector2f dir, float dt) {
 	Entity::move(dir, dt);
 	CheckMissions();
@@ -79,5 +91,10 @@ void Player::draw() {
 		hands[0].draw();
 	}
 	Entity::draw();
+}
+
+void Player::tick(){
+	if(iFrames > 0)
+		iFrames--;
 }
 

@@ -4,8 +4,8 @@
 
 bool Object::collide(Object obj)
 {
-	if (obj.position.x <= position.x + scale.x || obj.position.x + obj.scale.x >= position.x) {
-		if (obj.position.y <= position.y + scale.y || obj.position.y + obj.scale.y>= position.y) {
+	if (obj.position.x <= position.x + scale.x && obj.position.x + obj.scale.x >= position.x) {
+		if (obj.position.y <= position.y + scale.y && obj.position.y + obj.scale.y >= position.y) {
 			return true;
 		}
 	}
@@ -39,6 +39,12 @@ bool Object::compare(Object * o, Object * o2)
 {
 	return o->position.y > o2->position.y;
 }
+
+
+void Object::destroy() {
+	alive = false;
+}
+
 
 Object::Object(){
 	this->tex = 0;

@@ -65,7 +65,7 @@ void Entity::update(float dt){
 
 void Entity::tick(){
 
-	internalTime += .10f;
+	internalTime += .15f;
 	if (internalTime > framesPerAnimation)
 		internalTime -= framesPerAnimation;
 }

@@ -1,5 +1,6 @@
 #include "WorldManager.h"
 #include "World.h"
+#include "Slime.h"
 
 #pragma region WORLDMANAGER
 
@@ -12,12 +13,12 @@ void WorldManager::init() {
 	World * world = new World("Town of Beginnings");
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 30; i++) {
+	for (int i = 0; i < 3; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
-		Entity * slime = new Entity(random, Vector2f(15, 15), "Slime");
+		Entity * slime = new Slime(random, Vector2f(15*2, 15*2), "Slime", 10.0f, 0);
 		slime->framesPerAnimation = 3;
-		slime->numberOfAnimationRows = 4;
+		slime->numberOfAnimationRows = 5;
 		world->AddEntity(slime);
 	}
 
@@ -103,6 +104,21 @@ bool WorldManager::collide(Object o) {
 NPC * WorldManager::findClosestNPC(Vector2f pos)
 {
 	return currentWorld->findClosestNPC(pos);
+}
+
+void WorldManager::checkEnemyCollisions(Player * player){
+
+	return currentWorld->checkEnemyCollisions(player);
+}
+
+void WorldManager::addPlayerToSlimes(Entity * player){
+	for (auto w : worlds) {
+		for (auto o : w.second->objects) {
+			if (o->getType() == SLIME) {
+				((Slime*)(o))->target = player;
+			}
+		}
+	}
 }
 
 void WorldManager::checkWorld(Player* player) {

@@ -20,6 +20,8 @@ public:
 	~Player() {};
 	Player(Vector2f pos, Vector2f sc, std::string image, float speed);
 
+	int iFrames = 0;
+
 	int maxhp;
 	int hp;
 	int maxmana;
@@ -36,6 +38,8 @@ public:
 
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();
+	virtual void tick();
+
 
 	void talkTo(NPC npc);
 	void addMission(Mission mission);
@@ -44,5 +48,6 @@ public:
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
 	void LevelUp();
+	void takeDamage();
 };
 
