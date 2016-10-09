@@ -135,7 +135,7 @@ void World::checkEnemyCollisions(Player * player){
 		if (o->getType() == SLIME) {
 			if (o->collide(*player)) {
 				player->takeDamage();
-				o->destroy();
+				//o->destroy();
 			}
 		}
 	}

@@ -30,6 +30,6 @@ void Slime::tick(){
 
 void Slime::follow(float dt){
 
-	Entity::move((target->position-position).normalize(), dt);
+	Entity::move(((target->position+target->scale/2)-(position+scale/2)).normalize(), dt);
 
 }

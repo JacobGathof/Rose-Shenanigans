@@ -2,6 +2,7 @@
 #include "World.h"
 #include "Slime.h"
 
+
 #pragma region WORLDMANAGER
 
 World * WorldManager::currentWorld;
@@ -16,7 +17,16 @@ void WorldManager::init() {
 	for (int i = 0; i < 3; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
-		Entity * slime = new Slime(random, Vector2f(15*2, 15*2), "Slime", 10.0f, 0);
+		Entity * slime;
+		if (i == 0){
+			slime = new Slime(random, Vector2f(30,30), "GreenSlime", 15.0f, 0);
+		}
+		if (i == 1) {
+			slime = new Slime(random, Vector2f(30,30), "FireSlime", 10.0f, 0);
+		}
+		if (i == 2) {
+			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
+		}
 		slime->framesPerAnimation = 3;
 		slime->numberOfAnimationRows = 5;
 		world->AddEntity(slime);
@@ -26,7 +36,7 @@ void WorldManager::init() {
 		for (int j = 0; j < 4; j++) {
 			
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1, i / 4.0, j / 4.0), 2.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 2.0f));
 		}
 	}
 
@@ -221,13 +231,12 @@ NPCManager::~NPCManager()
 
 void NPCManager::init() {
 
-	NPC* edwin = new NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
+	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
 	edwin->numberOfAnimationRows = 4;
 	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(MOVE, Vector2f(100, 120)));
-	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(TALK, "It's dangerous to go alone/Take this"));
-
+	edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
+	edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
+	edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
 
 	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
 	george->numberOfAnimationRows = 5;
@@ -295,4 +304,5 @@ UIManager::~UIManager()
 }
 
 #pragma endregion
+
 

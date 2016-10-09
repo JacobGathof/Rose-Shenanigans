@@ -232,10 +232,13 @@
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
     <Image Include="Fire.png" />
+    <Image Include="FireSlime.png" />
     <Image Include="Font_Texture.png" />
     <Image Include="Grass.png" />
     <Image Include="Exteriordecor.png" />
+    <Image Include="GreenSlime.png" />
     <Image Include="Rain.png" />
+    <Image Include="SkySlime.png" />
     <Image Include="slime.png" />
     <Image Include="slimebasic.png" />
     <Image Include="Sprites.png" />

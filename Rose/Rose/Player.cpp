@@ -94,6 +94,7 @@ void Player::draw() {
 }
 
 void Player::tick(){
+	Entity::tick();
 	if(iFrames > 0)
 		iFrames--;
 }

@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\ExperimentalTextures">
+      <UniqueIdentifier>{5f999fe8-e41c-4624-b8ee-953f07522ba6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -269,6 +272,15 @@
     </Image>
     <Image Include="slime.png">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GreenSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="FireSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="SkySlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
