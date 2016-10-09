@@ -63,7 +63,7 @@ int main() {
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 
@@ -109,7 +109,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 
 	if (action == GLFW_PRESS) {
-		Input::keys[key] = true;
+		Input::turnKeyOn(key);
 	}
 	if (action == GLFW_RELEASE) {
 		Input::keys[key] = false;

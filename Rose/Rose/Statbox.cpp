@@ -28,7 +28,7 @@ void Statbox::update(){
 			"/Name : " + "Eric" + 
 			"/EXP : " + std::to_string(player->exp) + 
 			"/Age : " + "???" + 
-			"/Extra : " + std::to_string(player->hp - 1));
+			"/HP : " + std::to_string(player->hp));
 
 		text->position = topLeft + Vector2f(4 * SCALEFACTOR / 64, -4 * SCALEFACTOR / 64);
 	}

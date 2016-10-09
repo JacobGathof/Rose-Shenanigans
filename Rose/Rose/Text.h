@@ -1,8 +1,22 @@
 #pragma once
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Vector2f.h"
+#include <vector>
 #include <string>
 
+
+
+class Character
+{
+public:
+
+	char ID;
+	int x, y, width, height, xoffset, yoffset, xadvance;
+
+	Character(std::vector<int> data);
+	Character() {};
+	~Character() {};
+};
 
 class Text
 {
@@ -30,4 +44,6 @@ public:
 	void reset() { charsToRender = 0; }
 	void draw();
 };
+
+
 

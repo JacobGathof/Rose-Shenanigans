@@ -1,9 +1,8 @@
 #pragma once
 #include <map>
-#include "ModelLoader.h"
-#include "ShaderProgram.h"
 #include "Texture.h"
-#include "Character.h"
+#include "Color.h"
+#include "Text.h"
 
 #define SCALEFACTOR 128.0
 
@@ -15,6 +14,11 @@ enum ShaderType {
 	terrainShader,
 	uiShader
 };
+
+
+class Model;
+class ModelLoader;
+class ShaderProgram;
 
 class Res
 {
@@ -53,3 +57,60 @@ public:
 
 };
 
+
+
+class ShaderProgram
+{
+public:
+	int shader_program;
+
+	ShaderProgram();
+	~ShaderProgram();
+
+	void compileShader(char* file_vertex, char* file_geo, char* file_fragment);
+	void use();
+
+	void loadInteger(char* location, int value);
+	void loadFloat(char* location, float value);
+	void loadVector2f(char* location, Vector2f v);
+	void loadMatrix(char* location, float * m);
+	void loadColor(char* location, Color c);
+	void loadSampler(char* location, int i);
+
+private:
+
+	void checkCompileErrors(int shader, char type);
+	void checkLinkErrors(int shader);
+	const char * getShaderSource(char* filename);
+
+};
+
+
+
+class ModelLoader{
+public:
+
+	static Model* loadModel(float* vertices, int length);
+	static Model* loadModel(float* vertices, float* texCoords, int length);
+
+	ModelLoader();
+	~ModelLoader();
+
+private:
+	/*Attrib location in the Shaders, number of components per Vec, Pointer to data, size of data in bytes*/
+	static void loadBuffer(int attribLocation, int size, float* data, int length);
+};
+
+
+
+class Model{
+public:
+	GLuint VAO;
+	int numberOfVertices;
+	void bind();
+
+	/*Construct a Model Object with a VAO and the Number of Vertices to render*/
+	Model(int vao, int num);
+	Model();
+	~Model();
+};

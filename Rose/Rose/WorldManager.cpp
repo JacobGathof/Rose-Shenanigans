@@ -1,25 +1,42 @@
 #include "WorldManager.h"
+#include "World.h"
+#include "Slime.h"
 
+
+#pragma region WORLDMANAGER
 
 World * WorldManager::currentWorld;
 std::map<std::string, World*> WorldManager::worlds;
 
 
-
-void WorldManager::init(){
+void WorldManager::init() {
 
 	World * world = new World("Town of Beginnings");
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 10; i++) {
-		Vector2f random = Vector2f(250*(-.5+(float)(rand())/RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
-		world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
+	for (int i = 0; i < 3; i++) {
+		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
+		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
+		Entity * slime;
+		if (i == 0){
+			slime = new Slime(random, Vector2f(30,30), "GreenSlime", 15.0f, 0);
+		}
+		if (i == 1) {
+			slime = new Slime(random, Vector2f(30,30), "FireSlime", 10.0f, 0);
+		}
+		if (i == 2) {
+			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
+		}
+		slime->framesPerAnimation = 3;
+		slime->numberOfAnimationRows = 5;
+		world->AddEntity(slime);
 	}
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0+-40*j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40*j + 20 - 3), Color(1, i / 4.0, j / 4.0), 2.0f));
+			
+			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 2.0f));
 		}
 	}
 
@@ -37,9 +54,9 @@ void WorldManager::init(){
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 32.0f, 96.00f, 5000, true, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("World 3"));
-	
 
-	world->AddLoadZone(LoadZone(world, world2, Vector2f(50,80), Vector2f(10,10)));
+
+	world->AddLoadZone(LoadZone(world, world2, Vector2f(50, 80), Vector2f(10, 10)));
 	world->AddLoadZone(LoadZone(world, world3, Vector2f(50, 50), Vector2f(10, 10)));
 	world3->AddLoadZone(LoadZone(world3, world, Vector2f(0, 0), Vector2f(10, 10)));
 	world2->AddLoadZone(LoadZone(world2, world, Vector2f(-50, 0), Vector2f(10, 10)));
@@ -52,7 +69,7 @@ void WorldManager::init(){
 
 }
 
-void WorldManager::addToAllWorlds(Entity * e){
+void WorldManager::addToAllWorlds(Entity * e) {
 	for (auto w : worlds) {
 		w.second->AddEntity(e);
 	}
@@ -62,41 +79,56 @@ void WorldManager::addWorld(World* w) {
 	worlds[w->name] = w;
 }
 
-void WorldManager::loadWorld(World w){
+void WorldManager::loadWorld(World w) {
 	//Dynamic loading, if we get around to it
 }
 
-World* WorldManager::getWorld(std::string name){
+World* WorldManager::getWorld(std::string name) {
 	return worlds[name];
 }
 
-World* WorldManager::getCurrentWorld(){
+World* WorldManager::getCurrentWorld() {
 	return currentWorld;
 }
 
-void WorldManager::makeWorldCurrent(std::string name){
+void WorldManager::makeWorldCurrent(std::string name) {
 	currentWorld = worlds[name];
 	currentWorld->loadWorldResources();
 }
 
-void WorldManager::drawWorld(){
+void WorldManager::drawWorld() {
 	currentWorld->draw();
 }
 
-void WorldManager::destroy(){
+void WorldManager::destroy() {
 	for (auto w : worlds) {
 		w.second->unloadWorld();
 		delete w.second;
 	}
 }
 
-bool WorldManager::collide(Object o){
+bool WorldManager::collide(Object o) {
 	return currentWorld->terrain[0]->getSolid(o);
 }
 
 NPC * WorldManager::findClosestNPC(Vector2f pos)
 {
 	return currentWorld->findClosestNPC(pos);
+}
+
+void WorldManager::checkEnemyCollisions(Player * player){
+
+	return currentWorld->checkEnemyCollisions(player);
+}
+
+void WorldManager::addPlayerToSlimes(Entity * player){
+	for (auto w : worlds) {
+		for (auto o : w.second->objects) {
+			if (o->getType() == SLIME) {
+				((Slime*)(o))->target = player;
+			}
+		}
+	}
 }
 
 void WorldManager::checkWorld(Player* player) {
@@ -106,10 +138,171 @@ void WorldManager::checkWorld(Player* player) {
 	}
 }
 
-void WorldManager::tick(){
+void WorldManager::tick() {
 	currentWorld->tick();
 }
 
-void WorldManager::update(float dt){
+void WorldManager::update(float dt) {
 	currentWorld->update(dt);
 }
+
+#pragma endregion
+
+
+#pragma region LIGHTMANAGER
+std::vector<Light*> LightManager::lights;
+int LightManager::numberOfLights;
+
+
+void LightManager::addLight(Light * light) {
+
+	lights.push_back(light);
+	numberOfLights++;
+	updateLights(entityShader);
+	updateLights(staticShader);
+	updateLights(terrainShader);
+}
+
+void LightManager::clearLights() {
+	numberOfLights = 0;
+	lights.clear();
+}
+
+void LightManager::updateLights(ShaderType shader) {
+
+	ShaderProgram * currentShader = Res::getShader(shader);
+
+	currentShader->loadInteger("numLights", numberOfLights);
+
+	currentShader->loadVector2f((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].position").c_str(), lights[numberOfLights - 1]->position);
+	currentShader->loadColor((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].color").c_str(), lights[numberOfLights - 1]->color);
+	currentShader->loadFloat((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].intensity").c_str(), lights[numberOfLights - 1]->intensity);
+
+
+}
+
+void LightManager::reloadLights(ShaderType shader)
+{
+
+	ShaderProgram * currentShader = Res::getShader(shader);
+
+	currentShader->loadInteger("numLights", numberOfLights);
+
+	for (int i = 0; i < lights.size(); i++) {
+
+		currentShader->loadVector2f((char *)("pointLights[" + std::to_string(i) + "].position").c_str(), lights[i]->position);
+		currentShader->loadColor((char *)("pointLights[" + std::to_string(i) + "].color").c_str(), lights[i]->color);
+		currentShader->loadFloat((char *)("pointLights[" + std::to_string(i) + "].intensity").c_str(), lights[i]->intensity);
+	}
+
+}
+
+
+void LightManager::cleanUp()
+{
+	for (auto l : lights) {
+		delete l;
+	}
+}
+
+LightManager::LightManager()
+{
+}
+
+
+LightManager::~LightManager()
+{
+}
+#pragma endregion
+
+
+#pragma region NPCMANAGER
+std::map<std::string, NPC*> NPCManager::npcs;
+
+
+NPCManager::NPCManager()
+{
+}
+
+
+NPCManager::~NPCManager()
+{
+}
+
+void NPCManager::init() {
+
+	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
+	edwin->numberOfAnimationRows = 4;
+	edwin->addAction(NPCAction(WAIT));
+	edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
+	edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
+	edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
+
+	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
+	george->numberOfAnimationRows = 5;
+	george->addAction(NPCAction(WAIT));
+	george->addAction(NPCAction(MOVE, Vector2f(-100, -100)));
+	george->addAction(NPCAction(WAIT));
+	george->addAction(NPCAction(MOVE, Vector2f(100, -100)));
+	george->addAction(NPCAction(MOVE, Vector2f(0, 0)));
+	george->addAction(NPCAction(WAIT));
+	george->addAction(NPCAction(TALK, "Stop following me"));
+
+
+	WorldManager::currentWorld->addNPC(edwin);
+	WorldManager::currentWorld->addNPC(george);
+}
+
+void NPCManager::destroy()
+{
+	for (auto n : npcs) {
+		delete n.second;
+	}
+}
+
+#pragma endregion
+
+
+#pragma region UIMANAGER
+Textbox UIManager::textbox;
+Statbox UIManager::statbox;
+UIElement UIManager::tilebox;
+
+void UIManager::init() {
+	textbox.init();
+	statbox.init();
+	tilebox.init();
+}
+
+void UIManager::destroy() {
+	textbox.destroy();
+	statbox.destroy();
+	tilebox.destroy();
+}
+
+void UIManager::update() {
+	textbox.update();
+	statbox.update();
+	tilebox.update();
+}
+
+void UIManager::tick() {
+
+}
+
+void UIManager::drawTextured() {
+
+}
+
+UIManager::UIManager()
+{
+}
+
+
+UIManager::~UIManager()
+{
+}
+
+#pragma endregion
+
+

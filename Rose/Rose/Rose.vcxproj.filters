@@ -16,18 +16,15 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\ExperimentalTextures">
+      <UniqueIdentifier>{5f999fe8-e41c-4624-b8ee-953f07522ba6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
@@ -69,9 +66,6 @@
     <ClInclude Include="LoadZone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -93,13 +87,7 @@
     <ClInclude Include="ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LightManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mission.h">
@@ -111,13 +99,10 @@
     <ClInclude Include="UIElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Statbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NPCManager.h">
+    <ClInclude Include="Slime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShaderProgram.h">
@@ -131,16 +116,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -182,9 +158,6 @@
     <ClCompile Include="LoadZone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -203,13 +176,7 @@
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LightManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mission.cpp">
@@ -218,13 +185,10 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Statbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NPCManager.cpp">
+    <ClCompile Include="Slime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PopUpManager.cpp">
@@ -317,6 +281,15 @@
     </Image>
     <Image Include="slime.png">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GreenSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="FireSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="SkySlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
