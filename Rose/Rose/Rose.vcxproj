@@ -96,6 +96,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +115,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\X64;opengl-wrapper\GLFW\lib-vc2013-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -132,6 +138,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,6 +161,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\X64;opengl-wrapper\GLFW\lib-vc2013-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
@@ -160,6 +172,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="PopUpManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LightManager.h" />
@@ -197,6 +210,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LightManager.cpp" />
