@@ -27,8 +27,8 @@ void WorldManager::init() {
 		if (i == 2) {
 			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
 		}
-		slime->framesPerAnimation = 3;
-		slime->numberOfAnimationRows = 5;
+		slime->framesPerAnimation = 8;
+		slime->numberOfAnimationRows = 1;
 		world->AddEntity(slime);
 	}
 
