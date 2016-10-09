@@ -114,7 +114,7 @@ void Input::processInput(float dt)
 		WorldManager::currentWorld->terrain[0]->saveTerrain(WorldManager::currentWorld->name);
 	}
 	
-	if (lastFive[0] == 85 && lastFive[1] == 82 && lastFive[2] == 65 && lastFive[3] == 78 && lastFive[4] == 79) {
+	if (lastFive[0] == 83 && lastFive[1] == 65 && lastFive[2] == 78 && lastFive[3] == 73 && lastFive[4] == 67) {
 		game->player.speed *= 2;
 		lastFive[0] = 0;
 	}

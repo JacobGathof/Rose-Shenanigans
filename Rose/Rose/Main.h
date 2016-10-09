@@ -16,6 +16,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void window_resize_callback(GLFWwindow* window, int width, int height);
 void joystick_callback(int joy, int action);
 void error_callback(int error, const char* desc);
+void window_refresh_callback(GLFWwindow* window);
 
 Game game;
 
