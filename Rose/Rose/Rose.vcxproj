@@ -252,6 +252,7 @@
     <Image Include="Exteriordecor.png" />
     <Image Include="GreenSlime.png" />
     <Image Include="Rain.png" />
+    <Image Include="Rose.png" />
     <Image Include="SkySlime.png" />
     <Image Include="slime.png" />
     <Image Include="slimebasic.png" />

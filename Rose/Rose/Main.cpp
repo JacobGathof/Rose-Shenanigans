@@ -21,6 +21,7 @@ int main() {
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetErrorCallback(error_callback);
+	glfwSetWindowRefreshCallback(window, window_refresh_callback);
 
 	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
 		Input::isUsingJoystick = true;
@@ -151,4 +152,9 @@ void error_callback(int error, const char* desc) {
 
 	std::cout << desc << std::endl;
 
+}
+
+void window_refresh_callback(GLFWwindow* window){
+
+	glfwSwapBuffers(window);
 }
