@@ -248,9 +248,14 @@ void NPCManager::init() {
 	george->addAction(NPCAction(WAIT));
 	george->addAction(NPCAction(TALK, "Stop following me"));
 
+	NPC* rose = new NPC(Vector2f(30, -60), Vector2f(20, 20), "Rose", 50);
+	rose->numberOfAnimationRows = 1;
+	rose->framesPerAnimation = 4;
+
 
 	WorldManager::currentWorld->addNPC(edwin);
 	WorldManager::currentWorld->addNPC(george);
+	WorldManager::currentWorld->addNPC(rose);
 }
 
 void NPCManager::destroy()
