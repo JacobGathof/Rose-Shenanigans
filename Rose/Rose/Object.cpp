@@ -25,6 +25,18 @@ void Object::draw(){
 
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
+	drawHitbox();
+
+}
+
+void Object::drawHitbox(){
+
+	ShaderProgram * shader = Res::getShader(staticShader);
+	shader->loadInteger("useTexture", 0);
+	shader->loadVector2f("scale", hitbox.scale);
+	shader->loadVector2f("pos", hitbox.position + position);
+	glDrawArrays(GL_LINE_LOOP, 0, Res::stdModel->numberOfVertices);
+	shader->loadInteger("useTexture", 1);
 }
 
 void Object::tick()
@@ -50,6 +62,8 @@ Object::Object(){
 	this->tex = 0;
 	this->position = Vector2f(0, 0);
 	this->scale = Vector2f(1,1);
+	this->hitbox.position = Vector2f(0, 0);
+	this->hitbox.scale = scale;
 }
 
 
@@ -57,6 +71,8 @@ Object::Object(Vector2f pos, Vector2f scale, std::string texName){
 	this->tex = Res::getTexture(texName);
 	this->position = Vector2f(pos);
 	this->scale = Vector2f(scale);
+	this->hitbox.position = Vector2f(0, 0);
+	this->hitbox.scale = Vector2f(scale);
 }
 
 Object::~Object()

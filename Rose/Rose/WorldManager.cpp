@@ -12,6 +12,7 @@ std::map<std::string, World*> WorldManager::worlds;
 void WorldManager::init() {
 
 	World * world = new World("Town of Beginnings");
+	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 3; i++) {
@@ -43,17 +44,17 @@ void WorldManager::init() {
 	world->addTerrain(new Terrain("Town of Beginnings"));
 
 
-	World * world2 = new World("World 2");
+	World * world2 = new World("Carpenter House");
 	//world2->AddEntity(new Entity(Vector2f(0, 10), Vector2f(10, 10), "Edwin", 20));
 	world2->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
-	world2->addTerrain(new Terrain("World 2"));
+	world2->addTerrain(new Terrain("Carpenter House"));
 
 
-	World * world3 = new World("World 3");
+	World * world3 = new World("Library of Aventheim");
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 64.0f, 128.00f, 2000, true, false));
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 32.0f, 96.00f, 5000, true, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
-	world3->addTerrain(new Terrain("World 3"));
+	world3->addTerrain(new Terrain("Library of Aventheim"));
 
 
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50, 80), Vector2f(10, 10)));
@@ -108,7 +109,7 @@ void WorldManager::destroy() {
 }
 
 bool WorldManager::collide(Object o) {
-	return currentWorld->terrain[0]->getSolid(o);
+	return currentWorld->terrain->getSolid(o);
 }
 
 NPC * WorldManager::findClosestNPC(Vector2f pos)
@@ -234,9 +235,9 @@ void NPCManager::init() {
 	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
 	edwin->numberOfAnimationRows = 4;
 	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
-	edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
-	edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
+	//edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
+	//edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
+	//edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
 
 	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
 	george->numberOfAnimationRows = 5;

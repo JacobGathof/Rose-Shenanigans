@@ -26,6 +26,5 @@ public:
 	float gameTime;
 	Player player;
 
-	Vector2f circleVector;
 };
 

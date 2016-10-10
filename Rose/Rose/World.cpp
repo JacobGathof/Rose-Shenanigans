@@ -62,7 +62,7 @@ void World::AddLight(Light * l){
 }
 
 void World::addTerrain(Terrain * t){
-	terrain.push_back(t);
+	terrain = t;
 }
 
 void World::addNPC(NPC * n){
@@ -87,9 +87,7 @@ NPC * World::findClosestNPC(Vector2f position)
 
 void World::draw() {
 
-	for (auto t : terrain) {
-		t->draw();
-	}
+	terrain->draw();
 
 	for (auto o : objects) {
 		if (((o->position.x + o->scale.x) > (Camera::position.x - SCALEFACTOR)) && (o->position.x < (Camera::position.x + SCALEFACTOR)) &&
@@ -125,9 +123,7 @@ void World::unloadWorld(){
 	for (auto e : lights) {
 		delete e;
 	}
-	for (auto e : terrain) {
-		delete e;
-	}
+	delete terrain;
 }
 
 void World::checkEnemyCollisions(Player * player){

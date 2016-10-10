@@ -13,6 +13,12 @@ public:
 
 	class TerrainChunk;
 
+	struct Tile {
+		int texture = 0;
+		Vector2f position;
+		bool isWalkable = true;
+	};
+
 	std::map<Vector2f, TerrainChunk*> terrain;
 
 	void draw();
@@ -27,6 +33,7 @@ public:
 	void addTerrain(Vector2f position = Vector2f(0,0));
 
 	void setTile(Vector2f pos, int i);
+	void setTile(Vector2f pos, bool b);
 	void deleteChunk(Vector2f pos);
 	bool getSolid(Object o);
 	bool getSolid(Vector2f pos);
@@ -41,24 +48,25 @@ public:
 			int tilesPerChunk;
 			float scale;
 			Vector2f position;
-			float * tilePosition;
-			int * tileTexture;
+			Tile * tiles;
 
 			TerrainChunk(Vector2f pos, int tpc, float sc) {
 				position = pos;
 				tilesPerChunk = tpc;
 				scale = sc;
+				tiles = new Tile[tpc*tpc];
 			};
 
 			~TerrainChunk() {
-				delete[] tilePosition;
-				delete[] tileTexture;
+				delete[] tiles;
 			};
 
 			void generateBuffers();
 			void loadBuffers();
-			void buildTerrain(int textures[]);
+			void buildTerrain(int textures[], int walkable[]);
+			void rebuildAll();
 			void draw();
+
 
 	};
 

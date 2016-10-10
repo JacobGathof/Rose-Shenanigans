@@ -30,7 +30,6 @@ void Game::init()
 	
 
 
-	circleVector = Vector2f(1, 0);
 	UIManager::statbox.player = &player;
 	WorldManager::addToAllWorlds(&player);
 
@@ -40,8 +39,6 @@ void Game::init()
 
 void Game::tick() {
 
-	//player.tick();
-	//player.hands[0].tick();
 	UIManager::update();
 
 	WorldManager::tick();
@@ -57,8 +54,6 @@ void Game::loop(float dt){
 		tick();
 		gameTick = false;
 	}
-
-	circleVector = Vector2f(cos(gameTime), sin(gameTime));
 
 	WorldManager::update(dt);
 

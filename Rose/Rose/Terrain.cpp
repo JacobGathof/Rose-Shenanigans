@@ -23,7 +23,7 @@ Terrain::~Terrain() {
 
 void Terrain::addTerrain(Vector2f pos) {
 	TerrainChunk * c = new TerrainChunk(pos, tilesPerChunk, tileScale);
-	c->buildTerrain(0);
+	c->buildTerrain(0, 0);
 	terrain[pos] = c;
 }
 
@@ -50,12 +50,29 @@ void Terrain::setTile(Vector2f pos, int i){
 
 	int data[] = { i };
 
-	t->tileTexture[index] = i;
+	t->tiles[index].texture = i;
 
 	glBindVertexArray(t->VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, t->VBO_inst_tex);
 	glBufferSubData(GL_ARRAY_BUFFER, index * 4, 4, data);
 
+}
+
+void Terrain::setTile(Vector2f pos, bool b){
+	Vector2f cPos = pos / (tileScale*tilesPerChunk);
+	cPos = cPos.round();
+
+	if (terrain.find(cPos) == terrain.end()) {
+		addTerrain(cPos);
+		return;
+	}
+
+	TerrainChunk * t = terrain[cPos];
+	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
+
+	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
+
+	t->tiles[index].isWalkable = b;
 }
 
 void Terrain::deleteChunk(Vector2f pos){
@@ -92,7 +109,7 @@ bool Terrain::getSolid(Vector2f pos){
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
-	return t->tileTexture[index] == 4;
+	return !t->tiles[index].isWalkable;
 	
 }
 
@@ -129,17 +146,21 @@ void Terrain::loadTerrain(std::string filename){
 
 		int ptr = 0;
 		int * tileTextures = new int[tilesPerChunk*tilesPerChunk];
+		int * tileWalkable = new int[tilesPerChunk*tilesPerChunk];
+
 		while (!line.eof()) {
 
 			line.getline(buffer, 64, ',');
 			if (buffer[0] == '\0') continue;
-			int i = std::stoi(buffer);
-			tileTextures[ptr++] = i;
+			int w = (int)(buffer[0]);
+			int t = std::stoi(&buffer[1]);
+			tileWalkable[ptr] = w;
+			tileTextures[ptr++] = t;
 		}
 
 		line.str("");
 
-		chunk->buildTerrain(tileTextures);
+		chunk->buildTerrain(tileTextures, tileWalkable);
 		terrain[pos] = chunk;
 	}
 
@@ -156,8 +177,10 @@ void Terrain::saveTerrain(std::string filename){
 
 		for (int i = 0; i < tilesPerChunk; i++) {
 			for (int j = 0; j < tilesPerChunk; j++) {
-				int v = (t.second->tileTexture[tilesPerChunk*i + j]);
-				std::string q = std::to_string(v) + ",";
+				Tile tile = t.second->tiles[tilesPerChunk*i + j];
+				int v = tile.texture;
+				int w = tile.isWalkable;
+				std::string q = std::to_string(w) + std::to_string(v) + ",";
 				file.write(q.c_str(), q.length());
 			}
 		}
@@ -185,23 +208,24 @@ void Terrain::TerrainChunk::loadBuffers()
 {
 }
 
-void Terrain::TerrainChunk::buildTerrain(int textures[]) {
-
-	tilePosition = new float[tilesPerChunk*tilesPerChunk*2];
-	tileTexture = new int[tilesPerChunk*tilesPerChunk];
+void Terrain::TerrainChunk::buildTerrain(int textures[], int walkable[]) {
 
 	for (int i = 0; i < tilesPerChunk; i++) {
 		for (int j = 0; j < tilesPerChunk; j++) {
-			tilePosition[2 * i*tilesPerChunk + 2 * j + 0] = i*1.0f;
-			tilePosition[2 * i*tilesPerChunk + 2 * j + 1] = j*1.0f;
+			tiles[i*tilesPerChunk + j].position.x = i*1.0f;
+			tiles[i*tilesPerChunk + j].position.y = j*1.0f;
 
-			if (textures == 0) tileTexture[i*tilesPerChunk + j] = 0;
-			else tileTexture[i*tilesPerChunk + j] = textures[i*tilesPerChunk+j];
+			if (walkable == 0) tiles[i*tilesPerChunk + j].isWalkable = true;
+			else tiles[i*tilesPerChunk + j].isWalkable = walkable[i*tilesPerChunk + j];
+
+			if (textures == 0) tiles[i*tilesPerChunk + j].texture = 0;
+			else tiles[i*tilesPerChunk + j].texture = textures[i*tilesPerChunk+j];
 
 		}
 	}
 
 	delete[] textures;
+	delete[] walkable;
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float texures[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
@@ -217,12 +241,12 @@ void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 	glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_inst_pos);
-	glBufferData(GL_ARRAY_BUFFER, tilesPerChunk * tilesPerChunk * 4 * 2, tilePosition, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, tilesPerChunk * tilesPerChunk * 4 * 2, 0, GL_STATIC_DRAW);
 	glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
 	glVertexAttribDivisor(2, 1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO_inst_tex);
-	glBufferData(GL_ARRAY_BUFFER, tilesPerChunk * tilesPerChunk * 4, tileTexture, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, tilesPerChunk * tilesPerChunk * 4, 0, GL_STATIC_DRAW);
 	glVertexAttribPointer(3, 1, GL_FLOAT, false, 0, 0);
 	glVertexAttribDivisor(3, 1);
 
@@ -233,6 +257,36 @@ void Terrain::TerrainChunk::buildTerrain(int textures[]) {
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
+	rebuildAll();
+
+}
+
+void Terrain::TerrainChunk::rebuildAll(){
+
+	float* pos = new float[tilesPerChunk*tilesPerChunk * 2];
+	int* tex = new int[tilesPerChunk*tilesPerChunk];
+
+	for (int i = 0; i < tilesPerChunk; i++) {
+		for (int j = 0; j < tilesPerChunk; j++) {
+			pos[2 * i*tilesPerChunk + 2 * j + 0] = tiles[i*tilesPerChunk + j].position.x;
+			pos[2 * i*tilesPerChunk + 2 * j + 1] = tiles[i*tilesPerChunk + j].position.y;
+
+			tex[i*tilesPerChunk + j] = tiles[i*tilesPerChunk + j].texture;
+
+		}
+	}
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_inst_pos);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4*tilesPerChunk*tilesPerChunk*2, pos);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_inst_tex);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * tilesPerChunk*tilesPerChunk, tex);
+
+	delete[] pos;
+	delete[] tex;
 
 }
 

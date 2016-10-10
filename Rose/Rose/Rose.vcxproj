@@ -242,6 +242,7 @@
     <Text Include="uiVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="CarpenterHouse.png" />
     <Image Include="Default.png" />
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
@@ -263,8 +264,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
-    <None Include="World 2" />
-    <None Include="World 3" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc" />

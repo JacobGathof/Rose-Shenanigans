@@ -82,6 +82,7 @@ void Res::initTextures(){
 	Res::loadTexture("FireSlime", "FireSlime.png");
 	Res::loadTexture("SkySlime", "SkySlime.png");
 	Res::loadTexture("Rose", "Rose.png");
+	Res::loadTexture("House", "CarpenterHouse.png");
 }
 
 void Res::initModels(){

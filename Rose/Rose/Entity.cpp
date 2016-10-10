@@ -57,6 +57,8 @@ void Entity::draw() {
 
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
+	drawHitbox();
+
 }
 
 void Entity::update(float dt){

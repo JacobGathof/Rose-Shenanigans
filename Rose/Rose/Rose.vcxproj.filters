@@ -291,11 +291,12 @@
     <Image Include="Rose.png">
       <Filter>Resource Files\ExperimentalTextures</Filter>
     </Image>
+    <Image Include="CarpenterHouse.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
-    <None Include="World 2" />
-    <None Include="World 3" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc">

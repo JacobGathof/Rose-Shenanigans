@@ -20,8 +20,8 @@ public:
 	std::vector<NPC *> npcs;
 	//std::vector<ParticleSystem *> systems;
 	std::vector<Light *> lights;
-	std::vector<Terrain *> terrain;
 	std::vector<LoadZone> zones;
+	Terrain * terrain;
 	
 	void AddEntity(Entity * obj);
 	void AddObject(Object * obj);
