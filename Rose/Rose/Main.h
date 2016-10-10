@@ -5,7 +5,8 @@
 #include "Res.h"
 #include "Input.h"
 #include <iostream>
-#include "PopUpManager.h"
+#include <Windows.h>
+//#include "PopUpManager.h"
 
 
 int main();
