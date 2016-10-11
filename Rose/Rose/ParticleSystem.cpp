@@ -198,7 +198,7 @@ void ParticleSystem::updateBuffers() {
 
 }
 
-ParticleSystem::ParticleSystem() : Object()
+ParticleSystem::ParticleSystem()
 {
 
 	particle_count = 0;
@@ -214,7 +214,7 @@ ParticleSystem::ParticleSystem() : Object()
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float size, int max, bool spin, bool emit) : Object()
+ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float size, int max, bool spin, bool emit)
 {
 	renderAsPoints = renderAsP;
 	particle_count = 0;
