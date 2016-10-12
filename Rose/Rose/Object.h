@@ -28,6 +28,7 @@ public:
 
 	bool alive = true;
 
+	int posInVec;
 	bool collide(Object obj);
 	virtual void draw();
 	virtual void drawHitbox();

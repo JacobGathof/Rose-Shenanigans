@@ -1,10 +1,10 @@
 #pragma once
 #include "Entity.h"
-#include "Weapon.h"
 #include <vector>
 #include <iostream>
 #include "Mission.h"
 #include "Text.h"
+#include "Skill.h"
 
 enum TypesOfHands {
 	right,
@@ -22,6 +22,7 @@ public:
 
 	int iFrames = 0;
 
+	int posInVec;
 	int maxhp;
 	int hp;
 	int maxmana;
@@ -30,6 +31,8 @@ public:
 	int exp;
 	int maxXp;
 	int level;
+	Skill empty;
+	Skill skills[6];
 	Weapon hands[2];
 	std::vector<Object> inventory;
 	std::vector<Mission> missions;

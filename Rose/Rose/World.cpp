@@ -29,7 +29,7 @@ void World::update(float dt){
 	}
 
 	std::sort(objects.begin(), objects.end(), Object::compare);
-
+	
 	removeDead();
 
 }

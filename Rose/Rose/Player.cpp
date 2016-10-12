@@ -5,6 +5,10 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
+	empty = Skill(0, 0, 0, 0, "empty_skill");
+	for (int i = 0; i < 6; i++) {
+		skills[i] = empty;
+	}
 	maxhp = 100;
 	hp = 100;
 	mana = 100;
@@ -89,6 +93,9 @@ void Player::move(Vector2f dir, float dt) {
 void Player::draw() {
 	if (hands[0].attacking) {
 		hands[0].draw();
+	}
+	for (int i = 0; i < 8; i++) {
+		skills[i].draw(Vector2f(40 * i, 50));
 	}
 	Entity::draw();
 }
