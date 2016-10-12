@@ -67,7 +67,7 @@ void Res::initShaders(){
 
 void Res::initTextures(){
 	Res::loadTexture("Echo", "Echo.png");
-	Res::loadTexture("Slime", "slime.png");
+	Res::loadTexture("Slime", "Slime.png");
 	Res::loadTexture("Rain", "Rain.png");
 	Res::loadTexture("Inn", "Echo.png");
 	Res::loadTexture("Edwin", "Edwin.png");
@@ -77,6 +77,12 @@ void Res::initTextures(){
 	Res::loadTexture("Candle", "Sprites.png");
 	Res::loadTexture("Tree", "Tree.png");
 	Res::loadTexture("Default", "Default.png");
+
+	Res::loadTexture("GreenSlime", "GreenSlime.png");
+	Res::loadTexture("FireSlime", "FireSlime.png");
+	Res::loadTexture("SkySlime", "SkySlime.png");
+	Res::loadTexture("Rose", "Rose.png");
+	Res::loadTexture("House", "CarpenterHouse.png");
 }
 
 void Res::initModels(){

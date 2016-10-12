@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\ExperimentalTextures">
+      <UniqueIdentifier>{5f999fe8-e41c-4624-b8ee-953f07522ba6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -99,6 +102,12 @@
     <ClInclude Include="Statbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PopUpManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -174,6 +183,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Statbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PopUpManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -264,11 +279,24 @@
     <Image Include="slime.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="GreenSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="FireSlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="SkySlime.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="Rose.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="CarpenterHouse.png">
+      <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
-    <None Include="World 2" />
-    <None Include="World 3" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc">

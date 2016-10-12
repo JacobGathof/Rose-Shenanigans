@@ -14,6 +14,7 @@ class Entity :	public Object
 public:
 
 	float speed;
+	
 
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();

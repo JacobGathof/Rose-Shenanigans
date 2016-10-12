@@ -18,10 +18,10 @@ public:
 	std::string name;
 	std::vector<Object *> objects;
 	std::vector<NPC *> npcs;
-	//std::vector<ParticleSystem *> systems;
+	std::vector<ParticleSystem *> systems;
 	std::vector<Light *> lights;
-	std::vector<Terrain *> terrain;
 	std::vector<LoadZone> zones;
+	Terrain * terrain;
 	
 	void AddEntity(Entity * obj);
 	void AddObject(Object * obj);
@@ -39,5 +39,7 @@ public:
 	World* checkLoad(Player* player);
 	void draw();
 	void unloadWorld();
+	void checkEnemyCollisions(Player* player);
+	void removeDead();
 };
 

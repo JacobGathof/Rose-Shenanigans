@@ -21,6 +21,7 @@ int main() {
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetErrorCallback(error_callback);
+	glfwSetWindowRefreshCallback(window, window_refresh_callback);
 
 	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
 		Input::isUsingJoystick = true;
@@ -63,7 +64,7 @@ int main() {
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 
@@ -93,6 +94,9 @@ int main() {
 	Res::cleanResources();
 
 	glfwTerminate();
+
+	//PopUpManager::showMessage(L"You quit the game. Why would you do that?!?!?", L"Really?");
+	MessageBox(NULL, L"You quit the game. Why would you do that?!?!?", L"Really?", MB_ICONASTERISK);
 
 	return 0;
 
@@ -148,4 +152,9 @@ void error_callback(int error, const char* desc) {
 
 	std::cout << desc << std::endl;
 
+}
+
+void window_refresh_callback(GLFWwindow* window){
+
+	glfwSwapBuffers(window);
 }

@@ -8,21 +8,33 @@ enum ObjectType {
 	ENTITY,
 	PLAYER,
 	NPC_,
+	SLIME,
+
 };
 
 class Object
 {
 public:
 
+	struct Hitbox {
+		Vector2f position;
+		Vector2f scale;
+	};
+
+	Hitbox hitbox;
 	Vector2f position;
 	Vector2f scale;
 	Texture * tex;
 
+	bool alive = true;
+
 	bool collide(Object obj);
 	virtual void draw();
+	virtual void drawHitbox();
 	virtual void tick();
 	virtual void update(float dt);
 	virtual ObjectType getType() { return OBJECT; }
+	virtual void destroy();
 
 	static bool compare(Object * o, Object * o2);
 

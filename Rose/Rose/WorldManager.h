@@ -39,6 +39,9 @@ public:
 	static bool collide(Object o);
 	static NPC* findClosestNPC(Vector2f pos);
 
+	static void checkEnemyCollisions(Player * player);
+	static void addPlayerToSlimes(Entity * player);
+
 	static World * currentWorld;
 	static std::map<std::string, World*> worlds;
 

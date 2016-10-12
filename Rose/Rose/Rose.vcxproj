@@ -96,6 +96,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +115,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\X64;opengl-wrapper\GLFW\lib-vc2013-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -132,6 +138,9 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,12 +161,16 @@
       <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\X64;opengl-wrapper\GLFW\lib-vc2013-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copyShaders.bat $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="PopUpManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LoadZone.h" />
@@ -171,6 +184,7 @@
     <ClInclude Include="Res.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="Slime.h" />
     <ClInclude Include="Statbox.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
@@ -187,6 +201,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LoadZone.cpp" />
@@ -198,6 +213,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
+    <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Statbox.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -226,14 +242,19 @@
     <Text Include="uiVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="CarpenterHouse.png" />
     <Image Include="Default.png" />
     <Image Include="Echo.png" />
     <Image Include="Edwin.png" />
     <Image Include="Fire.png" />
+    <Image Include="FireSlime.png" />
     <Image Include="Font_Texture.png" />
     <Image Include="Grass.png" />
     <Image Include="Exteriordecor.png" />
+    <Image Include="GreenSlime.png" />
     <Image Include="Rain.png" />
+    <Image Include="Rose.png" />
+    <Image Include="SkySlime.png" />
     <Image Include="slime.png" />
     <Image Include="slimebasic.png" />
     <Image Include="Sprites.png" />
@@ -243,8 +264,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Town of Beginnings" />
-    <None Include="World 2" />
-    <None Include="World 3" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc" />

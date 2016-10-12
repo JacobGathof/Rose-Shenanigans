@@ -1,5 +1,7 @@
 #include "WorldManager.h"
 #include "World.h"
+#include "Slime.h"
+
 
 #pragma region WORLDMANAGER
 
@@ -10,14 +12,24 @@ std::map<std::string, World*> WorldManager::worlds;
 void WorldManager::init() {
 
 	World * world = new World("Town of Beginnings");
+	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 30; i++) {
+	for (int i = 0; i < 3; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
-		Entity * slime = new Entity(random, Vector2f(15, 15), "Slime");
-		slime->framesPerAnimation = 3;
-		slime->numberOfAnimationRows = 4;
+		Entity * slime;
+		if (i == 0){
+			slime = new Slime(random, Vector2f(30,30), "GreenSlime", 15.0f, 0);
+		}
+		if (i == 1) {
+			slime = new Slime(random, Vector2f(30,30), "FireSlime", 10.0f, 0);
+		}
+		if (i == 2) {
+			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
+		}
+		slime->framesPerAnimation = 8;
+		slime->numberOfAnimationRows = 1;
 		world->AddEntity(slime);
 	}
 
@@ -25,24 +37,24 @@ void WorldManager::init() {
 		for (int j = 0; j < 4; j++) {
 			
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1, i / 4.0, j / 4.0), 2.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 2.0f));
 		}
 	}
 
 	world->addTerrain(new Terrain("Town of Beginnings"));
 
 
-	World * world2 = new World("World 2");
+	World * world2 = new World("Carpenter House");
 	//world2->AddEntity(new Entity(Vector2f(0, 10), Vector2f(10, 10), "Edwin", 20));
 	world2->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
-	world2->addTerrain(new Terrain("World 2"));
+	world2->addTerrain(new Terrain("Carpenter House"));
 
 
-	World * world3 = new World("World 3");
+	World * world3 = new World("Library of Aventheim");
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 64.0f, 128.00f, 2000, true, false));
 	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 32.0f, 96.00f, 5000, true, false));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
-	world3->addTerrain(new Terrain("World 3"));
+	world3->addTerrain(new Terrain("Library of Aventheim"));
 
 
 	world->AddLoadZone(LoadZone(world, world2, Vector2f(50, 80), Vector2f(10, 10)));
@@ -97,12 +109,27 @@ void WorldManager::destroy() {
 }
 
 bool WorldManager::collide(Object o) {
-	return currentWorld->terrain[0]->getSolid(o);
+	return currentWorld->terrain->getSolid(o);
 }
 
 NPC * WorldManager::findClosestNPC(Vector2f pos)
 {
 	return currentWorld->findClosestNPC(pos);
+}
+
+void WorldManager::checkEnemyCollisions(Player * player){
+
+	return currentWorld->checkEnemyCollisions(player);
+}
+
+void WorldManager::addPlayerToSlimes(Entity * player){
+	for (auto w : worlds) {
+		for (auto o : w.second->objects) {
+			if (o->getType() == SLIME) {
+				((Slime*)(o))->target = player;
+			}
+		}
+	}
 }
 
 void WorldManager::checkWorld(Player* player) {
@@ -205,13 +232,12 @@ NPCManager::~NPCManager()
 
 void NPCManager::init() {
 
-	NPC* edwin = new NPC(Vector2f(10, 10), Vector2f(20, 20), "Edwin", 50);
+	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
 	edwin->numberOfAnimationRows = 4;
 	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(MOVE, Vector2f(100, 120)));
-	edwin->addAction(NPCAction(WAIT));
-	edwin->addAction(NPCAction(TALK, "It's dangerous to go alone/Take this"));
-
+	//edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
+	//edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
+	//edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
 
 	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
 	george->numberOfAnimationRows = 5;
@@ -223,9 +249,14 @@ void NPCManager::init() {
 	george->addAction(NPCAction(WAIT));
 	george->addAction(NPCAction(TALK, "Stop following me"));
 
+	NPC* rose = new NPC(Vector2f(30, -60), Vector2f(20, 20), "Rose", 50);
+	rose->numberOfAnimationRows = 1;
+	rose->framesPerAnimation = 4;
+
 
 	WorldManager::currentWorld->addNPC(edwin);
 	WorldManager::currentWorld->addNPC(george);
+	WorldManager::currentWorld->addNPC(rose);
 }
 
 void NPCManager::destroy()
@@ -279,4 +310,5 @@ UIManager::~UIManager()
 }
 
 #pragma endregion
+
 

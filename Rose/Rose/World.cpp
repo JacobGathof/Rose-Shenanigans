@@ -6,7 +6,6 @@ World::World(){}
 World::~World(){}
 
 
-
 World::World(std::string title)
 {
 	name = title;
@@ -25,7 +24,13 @@ void World::update(float dt){
 		o->update(dt);
 	}
 
+	for (auto s : systems) {
+		s->update(dt);
+	}
+
 	std::sort(objects.begin(), objects.end(), Object::compare);
+
+	removeDead();
 
 }
 
@@ -51,8 +56,7 @@ void World::AddEntity(Entity * e) {
 }
 
 void World::AddSystem(ParticleSystem * s) {
-	//systems.push_back(s);
-	objects.push_back(s);
+	systems.push_back(s);
 }
 
 void World::AddLight(Light * l){
@@ -60,7 +64,7 @@ void World::AddLight(Light * l){
 }
 
 void World::addTerrain(Terrain * t){
-	terrain.push_back(t);
+	terrain = t;
 }
 
 void World::addNPC(NPC * n){
@@ -85,9 +89,7 @@ NPC * World::findClosestNPC(Vector2f position)
 
 void World::draw() {
 
-	for (auto t : terrain) {
-		t->draw();
-	}
+	terrain->draw();
 
 	for (auto o : objects) {
 		if (((o->position.x + o->scale.x) > (Camera::position.x - SCALEFACTOR)) && (o->position.x < (Camera::position.x + SCALEFACTOR)) &&
@@ -101,9 +103,9 @@ void World::draw() {
 		//e->draw();
 	//}
 
-	//for (auto s : systems) {
-		//s->draw();
-	//}
+	for (auto s : systems) {
+		s->draw();
+	}
 
 	for (auto l : zones) {
 		l.draw();
@@ -117,15 +119,39 @@ void World::unloadWorld(){
 		if(o->getType() != PLAYER && o->getType() != NPC_)
 			delete o;
 	}
-	//for (auto e : systems) {
-		//delete e;
-	//}
+
+	for (auto e : systems) {
+		delete e;
+	}
+
 	for (auto e : lights) {
 		delete e;
 	}
-	for (auto e : terrain) {
-		delete e;
+	delete terrain;
+}
+
+void World::checkEnemyCollisions(Player * player){
+	for (auto o : objects) {
+		if (o->getType() == SLIME) {
+			if (o->collide(*player)) {
+				player->takeDamage();
+				//o->destroy();
+			}
+		}
 	}
+}
+
+void World::removeDead()
+{
+	for (int i = 0; i < objects.size(); i++) {
+		Object * obj = objects[i];
+		if (obj->getType() == SLIME && obj->alive == false) {
+			delete obj;
+			objects.erase(objects.begin() + i);
+			i--;
+		}
+	}
+
 }
 
 World * World::checkLoad(Player* player) {

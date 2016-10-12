@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class ParticleSystem : public Object
+class ParticleSystem
 {
 public:
 
