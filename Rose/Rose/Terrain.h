@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <Windows.h>
 
 
 class Terrain

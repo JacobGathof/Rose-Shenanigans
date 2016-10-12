@@ -5,13 +5,13 @@
 Terrain::Terrain() {
 	tilesPerChunk = 16;
 	tileScale = 16.0f;
-	loadTerrain("Town of Beginnings");
+	loadTerrain("Resources/Town of Beginnings");
 };
 
 Terrain::Terrain(std::string str) {
 	tilesPerChunk = 16;
 	tileScale = 16.0f;
-	loadTerrain(str);
+	loadTerrain("Resources/" + str);
 };
 
 Terrain::~Terrain() {
@@ -117,7 +117,27 @@ void Terrain::loadTerrain(std::string filename){
 
 
 	std::ifstream file;
-	file.open(filename, file.in);
+	//file.open(filename, file.in);
+	//if (file.is_open()) {
+	//	int response = MessageBox(NULL, L"Could not open file, Try again?", L"", MB_ICONERROR | MB_ABORTRETRYIGNORE);
+	//}
+	std::cout << filename << std::endl;
+	int response;
+	do {
+		response = IDABORT;
+		file.open(filename, file.in);
+		if (!file.is_open()) {
+			response = MessageBox(NULL, L"Could not open terrain file, try again?", L"Terrain Error", MB_ICONERROR | MB_CANCELTRYCONTINUE);
+		}
+	} while (response == IDTRYAGAIN);
+
+	if (response == IDCANCEL) {
+		std::cout << "aborted" << std::endl;
+		return;
+	}
+	else if (response == IDCONTINUE) {
+		std::cout << "ignored" << std::endl;
+	}
 
 	char buffer[8192];
 
@@ -169,7 +189,7 @@ void Terrain::loadTerrain(std::string filename){
 void Terrain::saveTerrain(std::string filename){
 
 	std::ofstream file;
-	file.open(filename, file.out);
+	file.open("Resources/" + filename, file.out);
 
 	for (auto t : terrain) {
 		std::string s(t.second->position.toIntString()+"\n");

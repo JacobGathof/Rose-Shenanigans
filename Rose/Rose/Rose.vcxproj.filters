@@ -296,7 +296,9 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Town of Beginnings" />
+    <None Include="copyShaders.bat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rose1.rc">

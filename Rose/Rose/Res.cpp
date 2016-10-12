@@ -57,32 +57,32 @@ void Res::init() {
 }
 
 void Res::initShaders(){
-	Res::loadShader(entityShader, "simpleVertexShader.txt", 0, "simpleFragmentShader.txt");
-	Res::loadShader(particleShader, "particleVertexShader.txt", 0, "particleFragmentShader.txt");
-	Res::loadShader(staticShader, "staticVertexShader.txt", 0, "staticFragmentShader.txt");
-	Res::loadShader(textShader, "textVertexShader.txt", 0, "textFragmentShader.txt");
-	Res::loadShader(terrainShader, "terrainVertexShader.txt", 0, "terrainFragmentShader.txt");
-	Res::loadShader(uiShader, "uiVertexShader.txt", 0, "uiFragmentShader.txt");
+	Res::loadShader(entityShader, "Resources/simpleVertexShader.txt", 0, "Resources/simpleFragmentShader.txt");
+	Res::loadShader(particleShader, "Resources/particleVertexShader.txt", 0, "Resources/particleFragmentShader.txt");
+	Res::loadShader(staticShader, "Resources/staticVertexShader.txt", 0, "Resources/staticFragmentShader.txt");
+	Res::loadShader(textShader, "Resources/textVertexShader.txt", 0, "Resources/textFragmentShader.txt");
+	Res::loadShader(terrainShader, "Resources/terrainVertexShader.txt", 0, "Resources/terrainFragmentShader.txt");
+	Res::loadShader(uiShader, "Resources/uiVertexShader.txt", 0, "Resources/uiFragmentShader.txt");
 }
 
 void Res::initTextures(){
-	Res::loadTexture("Echo", "Echo.png");
-	Res::loadTexture("Slime", "Slime.png");
-	Res::loadTexture("Rain", "Rain.png");
-	Res::loadTexture("Inn", "Echo.png");
-	Res::loadTexture("Edwin", "Edwin.png");
-	Res::loadTexture("Grass", "Grass.png");
-	Res::loadTexture("sword", "sword.png");
-	Res::loadTexture("Fire", "Fire.png");
-	Res::loadTexture("Candle", "Sprites.png");
-	Res::loadTexture("Tree", "Tree.png");
-	Res::loadTexture("Default", "Default.png");
+	Res::loadTexture("Echo", "Resources/Echo.png");
+	Res::loadTexture("Slime", "Resources/Slime.png");
+	Res::loadTexture("Rain", "Resources/Rain.png");
+	Res::loadTexture("Inn", "Resources/Echo.png");
+	Res::loadTexture("Edwin", "Resources/Edwin.png");
+	Res::loadTexture("Grass", "Resources/Grass.png");
+	Res::loadTexture("sword", "Resources/sword.png");
+	Res::loadTexture("Fire", "Resources/Fire.png");
+	Res::loadTexture("Candle", "Resources/Sprites.png");
+	Res::loadTexture("Tree", "Resources/Tree.png");
+	Res::loadTexture("Default", "Resources/Default.png");
 
-	Res::loadTexture("GreenSlime", "GreenSlime.png");
-	Res::loadTexture("FireSlime", "FireSlime.png");
-	Res::loadTexture("SkySlime", "SkySlime.png");
-	Res::loadTexture("Rose", "Rose.png");
-	Res::loadTexture("House", "CarpenterHouse.png");
+	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png");
+	Res::loadTexture("FireSlime", "Resources/FireSlime.png");
+	Res::loadTexture("SkySlime", "Resources/SkySlime.png");
+	Res::loadTexture("Rose", "Resources/Rose.png");
+	Res::loadTexture("House", "Resources/CarpenterHouse.png");
 }
 
 void Res::initModels(){
@@ -94,7 +94,7 @@ void Res::initModels(){
 }
 
 void Res::initFonts(){
-	Res::loadFont("Font", "Font.txt", "Font_Texture.png");
+	Res::loadFont("Font", "Resources/Font.txt", "Resources/Font_Texture.png");
 }
 
 void Res::initProjections(){
