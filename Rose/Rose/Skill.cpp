@@ -22,7 +22,7 @@ Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
 void Skill::draw(Vector2f pos)
 {
 	icon.position = pos;
-	icon.draw();
+	//icon.draw();
 }
 
 bool Skill::use(Vector2f pos, Weapon weapon)
