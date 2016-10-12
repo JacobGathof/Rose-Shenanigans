@@ -108,6 +108,9 @@
     <ClInclude Include="PopUpManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -191,6 +194,9 @@
     <ClCompile Include="PopUpManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Font.txt">
@@ -255,9 +261,6 @@
     <Image Include="Exteriordecor.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="sword.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Fire.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -293,6 +296,12 @@
     </Image>
     <Image Include="CarpenterHouse.png">
       <Filter>Resource Files\ExperimentalTextures</Filter>
+    </Image>
+    <Image Include="empty_skill.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sword.png">
+      <Filter>Source Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
