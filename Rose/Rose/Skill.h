@@ -20,6 +20,7 @@ public:
 	int range;
 	int speed;
 	std::string name;
+	Object icon;
 
 	void draw(Vector2f pos);
 	bool use(Vector2f pos, Weapon weapon);

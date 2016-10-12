@@ -16,13 +16,11 @@ bool Object::collide(Object obj)
 
 void Object::draw(){
 	tex->bind();
-	
 	ShaderProgram * shader = Res::getShader(staticShader);
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);
-
+	
 	Res::stdModel->bind();
-
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
 	drawHitbox();
