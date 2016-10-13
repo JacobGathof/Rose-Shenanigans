@@ -15,6 +15,18 @@ LoadZone::LoadZone(World * currentWorld, World * targetWorld, Vector2f position,
 	this->targetWorld = targetWorld;
 	this->position = position;
 	this->scale = scale;
+
+	movePlayer = false;
+}
+
+LoadZone::LoadZone(World * currentWorld, World * targetWorld, Vector2f targetPosition, Vector2f position, Vector2f scale) {
+	this->currentWorld = currentWorld;
+	this->targetWorld = targetWorld;
+	this->targetPosition = targetPosition;
+	this->position = position;
+	this->scale = scale;
+
+	movePlayer = true;
 }
 
 void LoadZone::draw(){

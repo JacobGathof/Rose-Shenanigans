@@ -104,7 +104,9 @@ void World::draw() {
 	//}
 
 	for (auto s : systems) {
-		s->draw();
+		if (s->active) {
+			s->draw();
+		}
 	}
 
 	for (auto l : zones) {
@@ -159,6 +161,9 @@ World * World::checkLoad(Player* player) {
 	for (auto z : zones) {
 		if (z.position.y <= player->position.y + player->scale.y && z.position.y + z.scale.y >= player->position.y) {
 			if (z.position.x <= player->position.x + player->scale.x && z.position.x + z.scale.x >= player->position.x) {
+				if (z.movePlayer) {
+					player->position = z.targetPosition;
+				}
 				return z.targetWorld;
 			}
 		}

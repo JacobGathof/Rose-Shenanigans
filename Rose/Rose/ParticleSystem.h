@@ -3,6 +3,7 @@
 #include "Vector2f.h"
 #include "Color.h"
 #include "Object.h"
+#include "Camera.h"
 #include <vector>
 
 
@@ -16,6 +17,7 @@ public:
 	bool emit = false;			/*True == particles are blown away from center. False == Particles are sucked into center*/
 	bool renderAsPoints = false;
 	float particleScale = 1.0f;
+	float system_size;
 
 	struct Particle {
 		Vector2f position;

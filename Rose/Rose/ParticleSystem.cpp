@@ -54,57 +54,69 @@ void ParticleSystem::generateVAO(){
 
 void ParticleSystem::update(float dt)
 {
-	float newParticlesUnrounded = (max_particles*dt / (particle_life));
-	int new_particles = (int)newParticlesUnrounded;
+	if ((Camera::position.x - SCALEFACTOR - system_size < position.x) && (Camera::position.x + SCALEFACTOR + system_size > position.x) &&
+		(Camera::position.y - SCALEFACTOR - system_size < position.y) && (Camera::position.y + SCALEFACTOR + system_size > position.y)) {
+		active = true;
 
-	if (new_particles <= 0) {
-		newParticlePart += newParticlesUnrounded;
-		if (newParticlePart >= 1.0f) {
-			new_particles = 1;
-			newParticlePart -= 1.0f;
+		float newParticlesUnrounded = (max_particles*dt / (particle_life));
+		int new_particles = (int)newParticlesUnrounded;
+
+		if (new_particles <= 0) {
+			newParticlePart += newParticlesUnrounded;
+			if (newParticlePart >= 1.0f) {
+				new_particles = 1;
+				newParticlePart -= 1.0f;
+			}
 		}
+
+		if (new_particles > 50)
+			new_particles = 50;
+
+		if (active) {
+			for (int i = 0; i < new_particles; i++) {
+				int index = getLastUnused();
+				if (index == -1) continue;
+
+				setNewParticle(index);
+			}
+		}
+
+		particle_count = 0;
+
+		for (int i = 0; i < max_particles; i++) {
+
+			if (particles[i].life <= 0.0f) {
+				continue;
+			}
+
+			particle_count++;
+
+			if (spin && !emit) {
+				Vector2f vel = (position - particles[i].position);
+				particles[i].velocity = vel.normalize()*particle_speed;
+				//TODO: work on calculation optimization
+				particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / (vel.magnitude())));
+			}
+			else if (spin && emit) {
+				particles[i].velocity += 1 * dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
+			}
+			else {
+
+			}
+			particles[i].position += dt* particles[i].velocity;
+			particles[i].life -= dt;
+
+		}
+
+		updateBuffers();
 	}
-
-	if (new_particles > 50)
-		new_particles = 50;
-
-	if (active) {
-		for (int i = 0; i < new_particles; i++) {
-			int index = getLastUnused();
-			if (index == -1) continue;
-
-			setNewParticle(index);
-		}
+	else {
+		active = false;
 	}
-
-	particle_count = 0;
-
-	for (int i = 0; i < max_particles; i++) {
-
-		if (particles[i].life <= 0.0f) {
-			continue;
-		}
-
-		particle_count++;
-		
-		if (spin && !emit) {
-			Vector2f vel = (position - particles[i].position);
-			particles[i].velocity = vel.normalize()*particle_speed;
-			//TODO: work on calculation optimization
-			particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / (vel.magnitude())) );
-		}
-		else if(spin && emit) {
-			particles[i].velocity += 1*dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
-		}
-		else {
-			
-		}
-		particles[i].position += dt* particles[i].velocity;
-		particles[i].life -= dt;
-
-	}
-
-	updateBuffers();
+	//if (active) {
+	//	
+	//}
+	
 
 }
 
@@ -208,8 +220,9 @@ ParticleSystem::ParticleSystem()
 	emit = emit;
 
 	max_particles = 500;
-	particle_life = 0.5f;
+	system_size = 16.0f;
 	particle_speed = 32.0f;
+	particle_life = system_size/particle_speed;
 	color = Color(1,0,0);
 	position = Vector2f(0, 0);
 }
@@ -227,6 +240,7 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float sp
 	positionDev = Vector2f(0,0);
 	color = Color(col.r, col.g, col.b);
 	colorDev = Color(0,0,0);
+	system_size = size;
 	particle_speed = speed;
 	particle_life = size/speed;
 	max_particles = max;

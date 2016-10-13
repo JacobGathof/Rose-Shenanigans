@@ -11,9 +11,13 @@ public:
 	~LoadZone();
 
 	LoadZone(World * currentWorld, World * targetWorld, Vector2f position, Vector2f scale);
+	LoadZone(World * currentWorld, World * targetWorld, Vector2f targetPosition, Vector2f position, Vector2f scale);
 	
 	World* currentWorld;
 	World* targetWorld;
+	Vector2f targetPosition;
+
+	bool movePlayer;
 
 	Vector2f scale;
 	Vector2f position;

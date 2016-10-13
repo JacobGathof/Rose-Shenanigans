@@ -96,7 +96,7 @@ int main() {
 	glfwTerminate();
 
 	//PopUpManager::showMessage(L"You quit the game. Why would you do that?!?!?", L"Really?");
-	MessageBox(NULL, L"You quit the game. Why would you do that?!?!?", L"Really?", MB_ICONASTERISK);
+	//MessageBox(NULL, L"You quit the game. Why would you do that?!?!?", L"Really?", MB_ICONASTERISK);
 
 	return 0;
 
