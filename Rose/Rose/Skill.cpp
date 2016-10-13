@@ -16,13 +16,12 @@ Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
 	attackType = typ;
 	speed = spd;
 	name = def;
-	
+	icon = Object(Vector2f(0,0), Vector2f(20, 20), name.data());
 }
 
 void Skill::draw(Vector2f pos)
 {
-	//std::cout << name;
-	//Object icon = Object(pos, Vector2f(20, 20), name);
+	icon.position = pos;
 	//icon.draw();
 }
 
