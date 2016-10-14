@@ -42,6 +42,7 @@ public:
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();
 	virtual void tick();
+	float speedconst;
 
 
 	void talkTo(NPC npc);
@@ -53,5 +54,7 @@ public:
 	void LevelUp();
 	void takeDamage();
 	void addSkill(int index, Skill skill);
+	void useSkill(int index);
+	void levelUpSkill(int index);
 };
 

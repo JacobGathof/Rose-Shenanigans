@@ -3,6 +3,7 @@
 #include "NPC.h"
 #include "Vector2f.h"
 #include "Object.h"
+
 enum type {
 	RANGED,
 	MELEE,
@@ -15,6 +16,7 @@ public:
 	~Skill();
 	Skill(int dmg, int rng, int typ, int spd, std::string def);
 
+	int level;
 	int damage;
 	int attackType;
 	int range;
@@ -23,7 +25,7 @@ public:
 	Object icon;
 
 	void draw(Vector2f pos);
-	bool use(Vector2f pos, Weapon weapon);
+	int use(Vector2f pos, Weapon weapon);
 };
 
 

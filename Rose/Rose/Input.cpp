@@ -99,6 +99,44 @@ void Input::processInput(float dt)
 		keys[GLFW_KEY_9] = false;
 		WorldManager::currentWorld->terrain->saveTerrain(WorldManager::currentWorld->name);
 	}
+
+	if (keys[GLFW_KEY_J]) {
+		keys[GLFW_KEY_J] = false;
+		game->player.useSkill(0);
+	}
+	if (keys[GLFW_KEY_K]) {
+		keys[GLFW_KEY_K] = false;
+		game->player.useSkill(1);
+	}
+	if (keys[GLFW_KEY_L]) {
+		keys[GLFW_KEY_L] = false;
+		game->player.useSkill(2);
+	}
+	if (keys[GLFW_KEY_SEMICOLON]) {
+		keys[GLFW_KEY_SEMICOLON] = false;
+		game->player.useSkill(3);
+	}
+	if (keys[GLFW_KEY_U]) {
+		keys[GLFW_KEY_U] = false;
+		game->player.useSkill(4);
+	}
+	if (keys[GLFW_KEY_I]) {
+		keys[GLFW_KEY_I] = false;
+		game->player.useSkill(5);
+	}
+	if (keys[GLFW_KEY_O]) {
+		keys[GLFW_KEY_O] = false;
+		game->player.useSkill(6);
+	}
+	if (keys[GLFW_KEY_P]) {
+		keys[GLFW_KEY_P] = false;
+		game->player.useSkill(7);
+	}
+	//testing
+	if (keys[GLFW_KEY_COMMA]) {
+		keys[GLFW_KEY_COMMA] = false;
+		game->player.levelUpSkill(1);
+	}
 	
 	if (lastFive[0] == 83 && lastFive[1] == 65 && lastFive[2] == 78 && lastFive[3] == 73 && lastFive[4] == 67) {
 		game->player.speed *= 2;

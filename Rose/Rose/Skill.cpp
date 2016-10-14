@@ -16,6 +16,7 @@ Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
 	attackType = typ;
 	speed = spd;
 	name = def;
+	level = 1;
 	icon = Object(Vector2f(0, 0), Vector2f(8, 8), name.data());
 }
 
@@ -25,8 +26,10 @@ void Skill::draw(Vector2f pos)
 	icon.draw();
 }
 
-bool Skill::use(Vector2f pos, Weapon weapon)
+int Skill::use(Vector2f pos, Weapon weapon)
 {
-
-	return false;
+	if (!std::strcmp(name.data(), "dash")) {
+		return 1;
+	}
+	return 0;
 }

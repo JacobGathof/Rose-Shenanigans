@@ -5,6 +5,7 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
+	speedconst = speed;
 	empty = Skill(0, 0, 0, 0, "empty_skill");
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
@@ -87,12 +88,27 @@ void Player::addSkill(int index, Skill skill)
 	skills[index] = skill;
 }
 
+void Player::useSkill(int index)
+{
+	int i = skills[index].use(position, hands[0]);
+	std::cout << i;
+	if (i == 1) {
+		speed = 1200*(skills[index].level);
+	}
+}
+
+void Player::levelUpSkill(int index)
+{
+	skills[index].level++;
+}
+
 void Player::move(Vector2f dir, float dt) {
 	Entity::move(dir, dt);
 	CheckMissions();
 	if (maxXp <= exp) {
 		LevelUp();
 	}
+	speed = speedconst;
 }
 
 void Player::draw() {
