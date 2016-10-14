@@ -255,6 +255,7 @@
     <Image Include="Exteriordecor.png" />
     <Image Include="GreenSlime.png" />
     <Image Include="empty_skill.png" />
+    <Image Include="dash.png" />
     <Image Include="Rain.png" />
     <Image Include="Rose.png" />
     <Image Include="SkySlime.png" />

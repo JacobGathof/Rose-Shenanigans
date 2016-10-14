@@ -32,7 +32,7 @@ public:
 	int maxXp;
 	int level;
 	Skill empty;
-	Skill skills[6];
+	Skill skills[8];
 	Weapon hands[2];
 	std::vector<Object> inventory;
 	std::vector<Mission> missions;
@@ -52,5 +52,6 @@ public:
 	void addToInventory(Object item);
 	void LevelUp();
 	void takeDamage();
+	void addSkill(int index, Skill skill);
 };
 

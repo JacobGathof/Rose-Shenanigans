@@ -301,6 +301,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="sword.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="dash.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

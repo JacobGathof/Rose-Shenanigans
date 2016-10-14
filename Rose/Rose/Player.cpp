@@ -6,7 +6,7 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
 	empty = Skill(0, 0, 0, 0, "empty_skill");
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
 	}
 	maxhp = 100;
@@ -82,6 +82,11 @@ void Player::takeDamage(){
 
 }
 
+void Player::addSkill(int index, Skill skill)
+{
+	skills[index] = skill;
+}
+
 void Player::move(Vector2f dir, float dt) {
 	Entity::move(dir, dt);
 	CheckMissions();
@@ -95,7 +100,7 @@ void Player::draw() {
 		hands[0].draw();
 	}
 	for (int i = 0; i < 8; i++) {
-		skills[i].draw(Vector2f(40 * i, 50));
+		skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
 	}
 	Entity::draw();
 }

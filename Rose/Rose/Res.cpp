@@ -68,7 +68,6 @@ void Res::initShaders(){
 void Res::initTextures(){
 
 	Res::loadTexture("Echo", "Resources/Echo.png");
-	Res::loadTexture("empty_skill", "Resources/empty_skill.png");
 	Res::loadTexture("Slime", "Resources/Slime.png");
 	Res::loadTexture("Rain", "Resources/Rain.png");
 	Res::loadTexture("Inn", "Resources/Echo.png");
@@ -85,6 +84,10 @@ void Res::initTextures(){
 	Res::loadTexture("SkySlime", "Resources/SkySlime.png");
 	Res::loadTexture("Rose", "Resources/Rose.png");
 	Res::loadTexture("House", "Resources/CarpenterHouse.png");
+
+	//skill textures
+	Res::loadTexture("empty_skill", "Resources/empty_skill.png");
+	//Res::loadTexture("dash", "Resources/Rose.png");
 }
 
 void Res::initModels(){
