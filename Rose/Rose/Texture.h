@@ -2,6 +2,7 @@
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include <fstream>
 #include <string>
+#include <iostream>
 
 class Texture
 {
@@ -12,7 +13,9 @@ public:
 
 	void bind();
 	Texture(char* filename);
-	Texture(GLuint tbo) : tbo(tbo) {}
+	Texture(GLuint tbo) : tbo(tbo) {
+		textureType = GL_TEXTURE_2D;
+	}
 	Texture() {};
 	~Texture();
 };

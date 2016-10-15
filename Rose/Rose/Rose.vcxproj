@@ -229,8 +229,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Font.txt" />
+    <Text Include="lightFragmentShader.txt" />
+    <Text Include="lightVertexShader.txt" />
     <Text Include="particleFragmentShader.txt" />
     <Text Include="particleVertexShader.txt" />
+    <Text Include="screenFragmentShader.txt" />
+    <Text Include="screenVertexShader.txt" />
     <Text Include="simpleFragmentShader.txt" />
     <Text Include="simpleVertexShader.txt" />
     <Text Include="staticFragmentShader.txt" />

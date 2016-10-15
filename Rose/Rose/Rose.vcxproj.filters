@@ -241,6 +241,18 @@
     <Text Include="Storyboard.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="screenVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="screenFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="lightVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="lightFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Wizard.png">

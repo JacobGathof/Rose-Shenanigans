@@ -67,12 +67,41 @@ void Game::loop(float dt){
 
 void Game::render(){
 
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glClear(GL_COLOR_BUFFER_BIT);
+
+
 	WorldManager::drawWorld();
+	LightManager::drawLights();
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	Res::getModel("ScreenVAO")->bind();
+	Res::getShader(screenShader)->use();
+
+
+	glActiveTexture(GL_TEXTURE0);
+	Res::getTexture("WorldTexture")->bind();
+	glActiveTexture(GL_TEXTURE1);
+	Res::getTexture("LightTexture")->bind();
+
+	glDrawArrays(GL_TRIANGLES, 0 ,6);
+
+	glActiveTexture(GL_TEXTURE0);
+
+	/*
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
 	Res::getShader(uiShader)->loadInteger("doTexture", 1);
 	Res::getTexture("Grass")->bind();
 	UIManager::tilebox.draw();
 	Res::getShader(uiShader)->loadInteger("doTexture", 0);
+	*/
+
 
 }

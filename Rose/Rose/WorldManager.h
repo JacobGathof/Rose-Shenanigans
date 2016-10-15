@@ -90,6 +90,7 @@ public:
 	static void clearLights();
 	static void updateLights(ShaderType shader);
 	static void reloadLights(ShaderType shader);
+	static void drawLights();
 
 	static void cleanUp();
 

@@ -35,8 +35,7 @@ int main() {
 		std::cout << "Error:" << glewGetErrorString(err);
 
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glClearColor(1, 1, 1, 1);
+	glClearColor(0, 0, 0, 1);
 
 	game.init();
 	Input::game = &game;
@@ -54,17 +53,17 @@ int main() {
 			current_time = (float)glfwGetTime();
 			dt = current_time - last_time;
 
-			while (dt < 2.0/120) {
-				current_time = (float)glfwGetTime();
-				dt = current_time - last_time;
-			}
+			//while (dt < 2.0/120) {
+				//current_time = (float)glfwGetTime();
+				//dt = current_time - last_time;
+			//}
 
 			last_time = current_time;
 			framesPerSecond++;
 
 			if (current_time - last_second >= 1.0f) {
 				last_second = current_time;
-				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
+				std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
 				framesPerSecond = 0;
 			}
 
@@ -72,8 +71,6 @@ int main() {
 				game.gameTick = true;
 				last_tick = current_time;
 			}
-
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			Input::processInput(dt);
 
