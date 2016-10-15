@@ -16,6 +16,7 @@ public:
 	~Skill();
 	Skill(int dmg, int rng, int typ, int spd, std::string def);
 
+	Object bracket;
 	int level;
 	int damage;
 	int attackType;

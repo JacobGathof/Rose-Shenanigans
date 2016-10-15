@@ -87,7 +87,8 @@ void Res::initTextures(){
 
 	//skill textures
 	Res::loadTexture("empty_skill", "Resources/empty_skill.png");
-	Res::loadTexture("dash", "Resources/Rose.png");
+	Res::loadTexture("dash", "Resources/dash.png");
+	Res::loadTexture("bracket", "Resources/bracket.png");
 }
 
 void Res::initModels(){

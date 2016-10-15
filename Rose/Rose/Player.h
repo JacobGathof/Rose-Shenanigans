@@ -44,7 +44,6 @@ public:
 	virtual void tick();
 	float speedconst;
 
-
 	void talkTo(NPC npc);
 	void addMission(Mission mission);
 	void CheckMissions();
