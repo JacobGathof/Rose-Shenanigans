@@ -99,9 +99,6 @@
     <ClInclude Include="Slime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PopUpManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Skill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Slime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PopUpManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">

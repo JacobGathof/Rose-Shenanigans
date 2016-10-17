@@ -36,7 +36,7 @@ void WorldManager::init() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(i/4.0,j/4.0,1), 32.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(i/4.0,j/4.0,1), 16.0f));
 		}
 	}
 
@@ -202,7 +202,7 @@ void LightManager::drawLights(){
 
 
 	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
-	glBlendFunc(GL_ONE, GL_ONE);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	Res::getModel("CenteredModel")->bind();
 	Res::getTexture("Light")->bind();
 
