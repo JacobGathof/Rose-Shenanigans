@@ -1,7 +1,6 @@
 #pragma once
 #include "Building.h"
-#include "Textbox.h"
-#include "Statbox.h"
+#include "UIElement.h"
 #include <vector>
 
 

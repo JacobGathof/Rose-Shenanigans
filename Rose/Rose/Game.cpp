@@ -3,7 +3,6 @@
 #include "Camera.h"
 #include "Player.h"
 #include "Weapon.h"
-#include "Textbox.h"
 #include "WorldManager.h"
 #include "Vector2f.h"
 #include <iostream>
@@ -76,7 +75,7 @@ void Game::render(){
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	WorldManager::drawWorld();
+	//WorldManager::drawWorld();
 	LightManager::drawLights();
 
 

@@ -7,7 +7,7 @@ uniform sampler2D lights;
 
 void main(){
 
-	vec4 outColor = (texture(lights, texCoords_)+vec4(.1,.1,.1,0)) * texture(world, texCoords_);
+	vec4 outColor = (texture(lights, texCoords_)+vec4(.1,.1,.1,0)) /* texture(world, texCoords_)*/;
 
 	gl_FragColor = outColor;
 

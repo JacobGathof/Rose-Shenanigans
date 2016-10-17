@@ -35,16 +35,9 @@ void WorldManager::init() {
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			//world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 32.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(i/4.0,j/4.0,1), 32.0f));
 		}
-	}
-
-
-
-	for (int i = 0; i < 1; i++) {
-		world->AddLight(new Light(Vector2f(90*cos(i*3.14159*2/256) , 90*sin(i*3.14159 * 2 / 256)), Color(abs(cos(i*3.14159 * 2 / 128)), abs(sin(i*3.14159 * 2 / 128)), abs(sin(i*3.14159 * 2 / 128))), 64.0f));
 	}
 
 	world->addTerrain(new Terrain("Town of Beginnings"));
@@ -209,6 +202,7 @@ void LightManager::drawLights(){
 
 
 	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glBlendFunc(GL_ONE, GL_ONE);
 	Res::getModel("CenteredModel")->bind();
 	Res::getTexture("Light")->bind();
 
@@ -223,6 +217,8 @@ void LightManager::drawLights(){
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	}
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
 

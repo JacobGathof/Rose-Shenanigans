@@ -10,7 +10,7 @@ void main(){
 
 	vec4 outColor = texture(image, texCoords_);
 	
-	gl_FragColor = vec4(vec3(outColor.r), outColor.r) * vec4(color, 1.0);
+	gl_FragColor = outColor * vec4(color, 1.0);
 
 }
 
