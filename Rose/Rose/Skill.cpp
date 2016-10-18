@@ -31,8 +31,23 @@ void Skill::draw(Vector2f pos)
 
 int Skill::use(Vector2f pos, Weapon weapon)
 {
-	if (!std::strcmp(name.data(), "dash")) {
-		return 1;
-	}
+	std::cout << "there";
 	return 0;
 }
+
+
+	Dash::Dash()
+		:Skill(0,0,0,0,"dash")
+	{
+		
+	}
+
+	
+	int Dash::use(Vector2f pos, Weapon wep)
+	{
+		std::cout << "here";
+		return 1;
+	}
+
+	
+

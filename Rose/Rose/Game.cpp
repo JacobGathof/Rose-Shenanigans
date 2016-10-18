@@ -18,7 +18,7 @@ void Game::init()
 	player = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
 	//player.numberOfAnimationRows = 1;
 	//player.framesPerAnimation = 8;
-	Skill skill = Skill(0, 0, 0, 40, "dash");
+	Dash skill = Dash();
 	player.addSkill(1,skill);
 	Weapon weapon = Weapon(10, 20, 5, player.position, "sword");
 	player.hands[0] = weapon;

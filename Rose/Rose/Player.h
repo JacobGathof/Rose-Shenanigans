@@ -42,7 +42,6 @@ public:
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();
 	virtual void tick();
-	float speedconst;
 
 	void talkTo(NPC npc);
 	void addMission(Mission mission);

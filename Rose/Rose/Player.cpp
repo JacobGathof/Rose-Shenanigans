@@ -5,7 +5,6 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
-	speedconst = speed;
 	empty = Skill(0, 0, 0, 0, "empty_skill");
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;

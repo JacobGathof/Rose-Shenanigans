@@ -26,7 +26,15 @@ public:
 	Object icon;
 
 	void draw(Vector2f pos);
-	int use(Vector2f pos, Weapon weapon);
+	virtual int use(Vector2f pos, Weapon weapon);
+
+};
+
+class Dash : public Skill
+{
+public:
+	Dash();
+	int use(Vector2f pos, Weapon wep);
 };
 
 
