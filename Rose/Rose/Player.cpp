@@ -107,7 +107,6 @@ void Player::move(Vector2f dir, float dt) {
 	if (maxXp <= exp) {
 		LevelUp();
 	}
-	speed = speedconst;
 }
 
 void Player::draw() {
