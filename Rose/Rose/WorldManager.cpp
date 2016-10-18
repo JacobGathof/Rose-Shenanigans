@@ -33,10 +33,10 @@ void WorldManager::init() {
 		world->AddEntity(slime);
 	}
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (int i = 0; i < 1; i++) {
+		for (int j = 0; j < 1; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(i/4.0,j/4.0,1), 16.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 128.0f));
 		}
 	}
 

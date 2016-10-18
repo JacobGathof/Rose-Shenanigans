@@ -93,14 +93,14 @@ void Game::render(){
 
 	glActiveTexture(GL_TEXTURE0);
 
-	
+	/*
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
 	Res::getShader(uiShader)->loadInteger("doTexture", 1);
 	Res::getTexture("Grass")->bind();
 	UIManager::tilebox.draw();
 	Res::getShader(uiShader)->loadInteger("doTexture", 0);
-	
+	*/
 
 
 }

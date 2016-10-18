@@ -6,11 +6,17 @@ uniform sampler2D image;
 
 uniform vec3 color;
 
+
+const float darknessPercent = .5;
+
 void main(){
 
 	vec4 outColor = texture(image, texCoords_);
 	
-	gl_FragColor = vec4(outColor.xyz, outColor.r) * vec4(color, 1.0);
+	float brightness = outColor.r;
+	brightness = (brightness > darknessPercent) ? darknessPercent : brightness;
+
+	gl_FragColor = vec4(outColor.xyz, brightness) * vec4(color, 1.0);
 
 }
 
