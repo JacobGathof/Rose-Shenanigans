@@ -1,0 +1,16 @@
+#version 400 core
+
+in vec2 texCoords_;
+
+uniform sampler2D world;
+uniform sampler2D lights;
+
+void main(){
+
+	vec4 outColor = (texture(lights, texCoords_)+vec4(.1,.1,.1,0)) * texture(world, texCoords_);
+
+	gl_FragColor = outColor;
+
+}
+
+

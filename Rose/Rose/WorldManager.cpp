@@ -15,7 +15,7 @@ void WorldManager::init() {
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 0; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
 		Entity * slime;
@@ -33,11 +33,10 @@ void WorldManager::init() {
 		world->AddEntity(slime);
 	}
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			
+	for (int i = 0; i < 1; i++) {
+		for (int j = 0; j < 1; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 2.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 128.0f));
 		}
 	}
 
@@ -98,6 +97,7 @@ void WorldManager::makeWorldCurrent(std::string name) {
 }
 
 void WorldManager::drawWorld() {
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
 	currentWorld->draw();
 }
 
@@ -159,9 +159,9 @@ void LightManager::addLight(Light * light) {
 
 	lights.push_back(light);
 	numberOfLights++;
-	updateLights(entityShader);
-	updateLights(staticShader);
-	updateLights(terrainShader);
+	//updateLights(entityShader);
+	//updateLights(staticShader);
+	//updateLights(terrainShader);
 }
 
 void LightManager::clearLights() {
@@ -195,6 +195,30 @@ void LightManager::reloadLights(ShaderType shader)
 		currentShader->loadColor((char *)("pointLights[" + std::to_string(i) + "].color").c_str(), lights[i]->color);
 		currentShader->loadFloat((char *)("pointLights[" + std::to_string(i) + "].intensity").c_str(), lights[i]->intensity);
 	}
+
+}
+
+void LightManager::drawLights(){
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	Res::getModel("CenteredModel")->bind();
+	Res::getTexture("Light")->bind();
+
+	ShaderProgram * current = Res::getShader(lightShader);
+
+	for(auto l : lights) {
+
+		current->loadVector2f("pos", l->position);
+		current->loadVector2f("scale", Vector2f(l->intensity, l->intensity));
+		current->loadColor("color", l->color);
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	}
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
 

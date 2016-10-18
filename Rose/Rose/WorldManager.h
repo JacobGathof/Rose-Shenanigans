@@ -1,7 +1,6 @@
 #pragma once
 #include "Building.h"
-#include "Textbox.h"
-#include "Statbox.h"
+#include "UIElement.h"
 #include <vector>
 
 
@@ -90,6 +89,7 @@ public:
 	static void clearLights();
 	static void updateLights(ShaderType shader);
 	static void reloadLights(ShaderType shader);
+	static void drawLights();
 
 	static void cleanUp();
 

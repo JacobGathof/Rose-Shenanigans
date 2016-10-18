@@ -81,9 +81,6 @@
     <ClInclude Include="NPC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Textbox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -99,13 +96,7 @@
     <ClInclude Include="UIElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Statbox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Slime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PopUpManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
@@ -170,9 +161,6 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Textbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -185,13 +173,7 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Statbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Slime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PopUpManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
@@ -199,89 +181,59 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Font.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="particleFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="particleVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="simpleFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="simpleVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="staticFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="staticVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="terrainFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="terrainVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="textFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="textVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="uiFragmentShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
-    <Text Include="uiVertexShader.txt">
-      <Filter>Resource Files\Shaders</Filter>
-    </Text>
     <Text Include="Storyboard.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Resources\lightFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\lightVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\particleFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\particleVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\screenFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\screenVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\simpleFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\simpleVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\staticFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\staticVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\terrainFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\terrainVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\textFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\textVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\uiFragmentShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
+    <Text Include="Resources\uiVertexShader.txt">
+      <Filter>Resource Files\Shaders</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Wizard.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Echo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Edwin.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Font_Texture.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Grass.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Exteriordecor.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Fire.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Rain.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Default.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Sprites.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Tree.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="slimebasic.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="slime.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="GreenSlime.png">
       <Filter>Resource Files\ExperimentalTextures</Filter>
     </Image>
@@ -297,13 +249,73 @@
     <Image Include="CarpenterHouse.png">
       <Filter>Resource Files\ExperimentalTextures</Filter>
     </Image>
-    <Image Include="empty_skill.png">
+    <Image Include="Resources\bracket.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="sword.png">
-      <Filter>Source Files</Filter>
+    <Image Include="Resources\CarpenterHouse.png">
+      <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="dash.png">
+    <Image Include="Resources\dash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Default.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Echo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Edwin.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\empty_skill.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Exteriordecor.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Fire.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\FireSlime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Font_Texture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\GreenSlime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\lightTex.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Rain.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Rose.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\SkySlime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\slime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\slimebasic.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Sprites.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Tree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wizard.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -311,10 +323,5 @@
     <None Include="copyShaders.bat">
       <Filter>Resource Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Rose1.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

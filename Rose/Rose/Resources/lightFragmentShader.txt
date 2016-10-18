@@ -1,0 +1,22 @@
+#version 400 core
+
+in vec2 texCoords_;
+
+uniform sampler2D image;
+
+uniform vec3 color;
+
+
+const float darknessPercent = .5;
+
+void main(){
+
+	vec4 outColor = texture(image, texCoords_);
+	
+	float brightness = outColor.r;
+	brightness = (brightness > darknessPercent) ? darknessPercent : brightness;
+
+	gl_FragColor = vec4(outColor.xyz, brightness) * vec4(color, 1.0);
+
+}
+

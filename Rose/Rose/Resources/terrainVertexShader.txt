@@ -6,7 +6,6 @@ layout (location = 2) in vec2 instPosition;
 layout (location = 3) in int instTex;
 
 out vec2 texCoords_;
-out vec2 fragPos_;
 
 uniform vec2 scale;
 uniform vec2 pos;
@@ -22,11 +21,6 @@ void main(){
 		vec4(
 		(vertices.x+instPosition.x)*scale.x + pos.x - cameraPosition.x, 
 		(vertices.y+instPosition.y)*scale.y + pos.y - cameraPosition.y, 0.0 , 1.0);
-
-	fragPos_ = 
-		vec2(
-		(vertices.x+instPosition.x)*scale.x + pos.x, 
-		(vertices.y+instPosition.y)*scale.y + pos.y);
 
 	texCoords_ = vec2(texCoords.x/8, texCoords.y/8) + vec2(.125*(instTex%8), .125*(instTex/8));
 

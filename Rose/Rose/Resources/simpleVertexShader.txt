@@ -4,7 +4,6 @@ layout (location = 0) in vec2 vertices;
 layout (location = 1) in vec2 texCoords;
 
 out vec2 texCoords_;
-out vec2 fragPos_;
 
 uniform vec2 scale;
 uniform vec2 pos;
@@ -24,10 +23,6 @@ void main(){
 		vertices.x*scale.x + pos.x - cameraPosition.x, 
 		vertices.y*scale.y + pos.y - cameraPosition.y, 0.0 , 1.0);
 
-	fragPos_ =
-		vec4(
-		vertices.x*scale.x + pos.x, 
-		vertices.y*scale.y + pos.y, 0.0 , 1.0).xy;
 
 	texCoords_ = vec2(texCoords.x/cols + (1.0/cols) * mod(round(animTimer*4.0), cols) , texCoords.y/rows + (1.0/rows) * direction);
 

@@ -12,7 +12,9 @@ enum ShaderType {
 	staticShader,
 	textShader,
 	terrainShader,
-	uiShader
+	uiShader,
+	screenShader,
+	lightShader
 };
 
 
@@ -27,6 +29,7 @@ private:
 	static std::map<ShaderType, ShaderProgram*> shaders;
 	static std::map<std::string, Texture*> textures;
 	static std::map<std::string, Character*> characters;
+	static std::map<std::string, GLuint> fbos;
 
 	static void initShaders();
 	static void initTextures();
@@ -34,6 +37,7 @@ private:
 	static void initFonts();
 	static void initProjections();
 	static void initManagers();
+	static void initFramebuffers();
 
 public:
 	static Model * stdModel;
@@ -42,11 +46,13 @@ public:
 	static ShaderProgram* getShader(ShaderType str);
 	static Texture* getTexture(std::string str);
 	static Character* getCharacter(std::string str);
+	static GLuint getFramebuffer(std::string str);
 
 	static void loadModel(std::string name, float * vertices, float * tex, int length);
 	static void loadShader(ShaderType name, char* file_vertex, char* file_geo, char* file_fragment);
 	static void loadTexture(std::string name, char* filename);
 	static void loadFont(std::string name, char * filename_font, char* filename_texture);
+	static void loadFBO(std::string fbo_name, std::string tex_name);
 
 	static void updateShaders(float gameTime);
 
