@@ -72,11 +72,11 @@ void Res::initShaders(){
 
 void Res::initTextures(){
 
-	Res::loadTexture("Echo", "Resources/Echo.png");
-	Res::loadTexture("Slime", "Resources/Slime.png");
-	Res::loadTexture("Rain", "Resources/Rain.png");
+	Res::loadTexture("Echo", "Resources/Echo.png", 5, 3);
+	Res::loadTexture("Slime", "Resources/Slime.png", 9, 9);
+	Res::loadTexture("Rain", "Resources/Rain.png", 5, 3);
 	Res::loadTexture("Inn", "Resources/Echo.png");
-	Res::loadTexture("Edwin", "Resources/Edwin.png");
+	Res::loadTexture("Edwin", "Resources/Edwin.png", 4, 3);
 	Res::loadTexture("Grass", "Resources/Grass.png");
 	Res::loadTexture("sword", "Resources/sword.png");
 	Res::loadTexture("Fire", "Resources/Fire.png");
@@ -85,10 +85,10 @@ void Res::initTextures(){
 	Res::loadTexture("Default", "Resources/Default.png");
 	Res::loadTexture("Light", "Resources/lightTex.png");
 
-	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png");
-	Res::loadTexture("FireSlime", "Resources/FireSlime.png");
-	Res::loadTexture("SkySlime", "Resources/SkySlime.png");
-	Res::loadTexture("Rose", "Resources/Rose.png");
+	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png", 1, 8);
+	Res::loadTexture("FireSlime", "Resources/FireSlime.png", 1, 8);
+	Res::loadTexture("SkySlime", "Resources/SkySlime.png", 1, 8);
+	Res::loadTexture("Rose", "Resources/Rose.png", 1, 4);
 	Res::loadTexture("House", "Resources/CarpenterHouse.png");
 
 	//skill textures
@@ -190,6 +190,11 @@ void Res::loadShader(ShaderType name, char * file_vertex, char * file_geo, char 
 
 void Res::loadTexture(std::string name, char * filename){
 	Texture * t = new Texture(filename);
+	textures[name] = t;
+}
+
+void Res::loadTexture(std::string name, char * filename, int rows, int cols) {
+	Texture * t = new Texture(filename, rows, cols);
 	textures[name] = t;
 }
 

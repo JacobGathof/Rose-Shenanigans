@@ -61,6 +61,7 @@ void Game::loop(float dt){
 
 	Camera::position = Vector2f(player.position.x + player.scale.x / 2, player.position.y + player.scale.y / 2);
 	Res::updateShaders(gameTime);
+	LightManager::updateLights(gameTime);
 
 }
 

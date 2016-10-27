@@ -28,15 +28,13 @@ void WorldManager::init() {
 		if (i == 2) {
 			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
 		}
-		slime->framesPerAnimation = 8;
-		slime->numberOfAnimationRows = 1;
 		world->AddEntity(slime);
 	}
 
 	for (int i = 0; i < 1; i++) {
 		for (int j = 0; j < 1; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,1,1), 128.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,.5,0), 64.0f));
 		}
 	}
 
@@ -169,8 +167,9 @@ void LightManager::clearLights() {
 	lights.clear();
 }
 
-void LightManager::updateLights(ShaderType shader) {
+void LightManager::updateLights(float gameTime) {
 
+	/*
 	ShaderProgram * currentShader = Res::getShader(shader);
 
 	currentShader->loadInteger("numLights", numberOfLights);
@@ -178,6 +177,10 @@ void LightManager::updateLights(ShaderType shader) {
 	currentShader->loadVector2f((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].position").c_str(), lights[numberOfLights - 1]->position);
 	currentShader->loadColor((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].color").c_str(), lights[numberOfLights - 1]->color);
 	currentShader->loadFloat((char *)("pointLights[" + std::to_string(numberOfLights - 1) + "].intensity").c_str(), lights[numberOfLights - 1]->intensity);
+	*/
+
+	ShaderProgram * ls = Res::getShader(lightShader);
+	ls->loadFloat("gameTime", gameTime);
 
 
 }
@@ -257,14 +260,12 @@ NPCManager::~NPCManager()
 void NPCManager::init() {
 
 	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
-	edwin->numberOfAnimationRows = 4;
 	edwin->addAction(NPCAction(WAIT));
 	//edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
 	//edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
 	//edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
 
 	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
-	george->numberOfAnimationRows = 5;
 	george->addAction(NPCAction(WAIT));
 	george->addAction(NPCAction(MOVE, Vector2f(-100, -100)));
 	george->addAction(NPCAction(WAIT));
@@ -274,8 +275,6 @@ void NPCManager::init() {
 	george->addAction(NPCAction(TALK, "Stop following me"));
 
 	NPC* rose = new NPC(Vector2f(30, -60), Vector2f(20, 20), "Rose", 50);
-	rose->numberOfAnimationRows = 1;
-	rose->framesPerAnimation = 4;
 
 
 	WorldManager::currentWorld->addNPC(edwin);

@@ -6,17 +6,21 @@ uniform sampler2D image;
 
 uniform vec3 color;
 
-
-const float darknessPercent = .5;
+uniform float gameTime;
 
 void main(){
 
 	vec4 outColor = texture(image, texCoords_);
 	
-	float brightness = outColor.r;
-	brightness = (brightness > darknessPercent) ? darknessPercent : brightness;
+	float x = outColor.r;
+	float y = 0;
 
-	gl_FragColor = vec4(outColor.xyz, brightness) * vec4(color, 1.0);
+	y = -.7*(1-x)*(1-x)+.7;
+	//if(x < .25)
+	y += .02*clamp(sin(gameTime*4), -1, 1);
+
+
+	gl_FragColor = vec4(y) * vec4(color, 1.0);
 
 }
 
