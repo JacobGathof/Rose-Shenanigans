@@ -6,8 +6,6 @@ Slime::Slime(Vector2f pos, Vector2f scale, std::string texName, float speed, Ent
 {
 	this->speed = speed;
 	this->target = target;
-	numberOfAnimationRows = 1;
-	framesPerAnimation = 8;
 }
 
 

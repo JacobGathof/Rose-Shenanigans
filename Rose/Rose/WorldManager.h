@@ -87,7 +87,7 @@ public:
 
 	static void addLight(Light* light);
 	static void clearLights();
-	static void updateLights(ShaderType shader);
+	static void updateLights(float gameTime);
 	static void reloadLights(ShaderType shader);
 	static void drawLights();
 

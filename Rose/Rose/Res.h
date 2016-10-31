@@ -51,6 +51,7 @@ public:
 	static void loadModel(std::string name, float * vertices, float * tex, int length);
 	static void loadShader(ShaderType name, char* file_vertex, char* file_geo, char* file_fragment);
 	static void loadTexture(std::string name, char* filename);
+	static void loadTexture(std::string name, char* filename, int rows, int cols);
 	static void loadFont(std::string name, char * filename_font, char* filename_texture);
 	static void loadFBO(std::string fbo_name, std::string tex_name);
 

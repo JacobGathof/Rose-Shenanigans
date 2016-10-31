@@ -8,8 +8,7 @@ void Texture::bind()
 	glBindTexture(textureType, tbo);
 }
 
-Texture::Texture(char* filename)
-{
+void Texture::init(char * filename){
 	textureType = GL_TEXTURE_2D;
 	std::vector<unsigned char> image;
 	unsigned width, height;
@@ -24,11 +23,23 @@ Texture::Texture(char* filename)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+Texture::Texture(char* filename)
+{
+	this->numberOfRows = 1;
+	this->numberOfColumns = 1;
+	this->init(filename);
 
 }
 
+Texture::Texture(char * filename, int numRows, int numCol){
+	this->numberOfRows = numRows;
+	this->numberOfColumns = numCol;
+	this->init(filename);
+}
 
-Texture::~Texture()
-{
+
+Texture::~Texture(){
 	glDeleteBuffers(1, &tbo);
 }
