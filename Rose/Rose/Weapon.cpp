@@ -22,11 +22,11 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std
 	damage = dmg;
 }
 
-std::vector<int> Weapon::GetBuffs()
-{
+//std::vector<int> Weapon::GetBuffs()
+//{
 	//TODO
 	//return std::vector<int>;
-}
+//}
 
 Gem Weapon::addGem(int index, Gem gem)
 {

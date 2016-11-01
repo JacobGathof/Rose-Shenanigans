@@ -89,7 +89,7 @@ void Player::addSkill(int index, Skill skill)
 
 void Player::useSkill(int index)
 {
-	int i = skills[index].use(position, hands[0]);
+	int i = (&skills[index])->use(position, hands[0]);
 	if (i == 1) {
 		speed = 1200*(skills[index].level);
 	}
