@@ -24,8 +24,8 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std
 
 //std::vector<int> Weapon::GetBuffs()
 //{
-//	//TODO
-//	//return std::vector<int>;
+	//TODO
+	//return std::vector<int>;
 //}
 
 Gem Weapon::addGem(int index, Gem gem)
