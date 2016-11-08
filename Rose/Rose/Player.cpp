@@ -112,9 +112,9 @@ void Player::draw() {
 	if (hands[0].attacking) {
 		hands[0].draw();
 	}
-	for (int i = 0; i < 8; i++) {
-		skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
-	}
+	//for (int i = 0; i < 8; i++) {
+	//	skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
+	//}
 	Entity::draw();
 }
 

@@ -61,6 +61,7 @@ public:
 	static Textbox textbox;
 	static Statbox statbox;
 	static UIElement tilebox;
+	static Skillbox skillbox;
 
 	static void init();
 	static void destroy();

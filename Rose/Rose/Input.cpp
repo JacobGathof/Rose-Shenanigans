@@ -77,6 +77,8 @@ void Input::processInput(float dt)
 	if (keys[GLFW_KEY_I]) {
 		keys[GLFW_KEY_I] = false;
 		tilePointer = (tilePointer - 1) % 64;
+		if (tilePointer < 0)
+			tilePointer = tilePointer + 64;
 		Res::getShader(uiShader)->loadInteger("tile", tilePointer);
 	}
 
@@ -120,18 +122,18 @@ void Input::processInput(float dt)
 		keys[GLFW_KEY_U] = false;
 		game->player.useSkill(4);
 	}
-	if (keys[GLFW_KEY_I]) {
-		keys[GLFW_KEY_I] = false;
-		game->player.useSkill(5);
-	}
-	if (keys[GLFW_KEY_O]) {
-		keys[GLFW_KEY_O] = false;
-		game->player.useSkill(6);
-	}
-	if (keys[GLFW_KEY_P]) {
-		keys[GLFW_KEY_P] = false;
-		game->player.useSkill(7);
-	}
+	//if (keys[GLFW_KEY_I]) {
+	//	keys[GLFW_KEY_I] = false;
+	//	game->player.useSkill(5);
+	//}
+	//if (keys[GLFW_KEY_O]) {
+	//	keys[GLFW_KEY_O] = false;
+	//	game->player.useSkill(6);
+	//}
+	//if (keys[GLFW_KEY_P]) {
+	//	keys[GLFW_KEY_P] = false;
+	//	game->player.useSkill(7);
+	//}
 	//testing
 	if (keys[GLFW_KEY_COMMA]) {
 		keys[GLFW_KEY_COMMA] = false;

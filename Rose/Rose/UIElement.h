@@ -72,3 +72,15 @@ public:
 
 
 
+class Skillbox : public UIElement 
+{
+public:
+	Skillbox();
+
+	virtual void init();
+	virtual void draw(Player *player);
+};
+
+
+
+

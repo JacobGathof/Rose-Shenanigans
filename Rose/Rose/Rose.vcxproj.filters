@@ -16,9 +16,6 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\ExperimentalTextures">
-      <UniqueIdentifier>{5f999fe8-e41c-4624-b8ee-953f07522ba6}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -238,92 +235,6 @@
     <Text Include="Resources\uiVertexShader.txt">
       <Filter>Resource Files\Shaders</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="GreenSlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="FireSlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="SkySlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="Rose.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="CarpenterHouse.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="Resources\bracket.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\CarpenterHouse.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\dash.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Default.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Echo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Edwin.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\empty_skill.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Exteriordecor.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Fire.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\FireSlime.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Font_Texture.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Grass.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\GreenSlime.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\lightTex.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Rain.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Rose.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\SkySlime.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\slime.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\slimebasic.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Sprites.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\sword.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Tree.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Wizard.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="copyShaders.bat">
