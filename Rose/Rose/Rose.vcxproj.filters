@@ -232,6 +232,7 @@
     <Text Include="Resources\uiVertexShader.txt">
       <Filter>Resource Files\Shaders</Filter>
     </Text>
+    <Text Include="Resources\Font.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="GreenSlime.png">
@@ -316,6 +317,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Wizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textbox.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

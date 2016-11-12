@@ -16,6 +16,7 @@ UIElement::~UIElement(){}
 void UIElement::draw()
 {
 	if (isVisible) {
+		this->tex->bind();
 		ShaderProgram * shader = Res::getShader(uiShader);
 		shader->loadVector2f("scale", -1 * topLeft + botRight);
 		shader->loadVector2f("pos", topLeft);
@@ -46,6 +47,7 @@ void Statbox::draw() {
 
 void Statbox::init() {
 
+	tex = Res::getTexture("Default");
 	isVisible = true;
 	topLeft = Vector2f(-60 * SCALEFACTOR / 64, 60 * SCALEFACTOR / 64);
 	botRight = Vector2f(-20 * SCALEFACTOR / 64, 20 * SCALEFACTOR / 64);
@@ -93,12 +95,13 @@ void Textbox::draw()
 
 void Textbox::init() {
 
+	tex = Res::getTexture("Textbox");
 	isVisible = false;
 	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
-	topLeft = Vector2f(-60 * SCALEFACTOR / 64, -32 * SCALEFACTOR / 64);
-	botRight = Vector2f(60 * SCALEFACTOR / 64, -60 * SCALEFACTOR / 64);
+	topLeft = Vector2f(-48 * SCALEFACTOR / 64, -28 * SCALEFACTOR / 64);
+	botRight = Vector2f(48 * SCALEFACTOR / 64, -60 * SCALEFACTOR / 64);
 	text = new Text(Vector2f(0, 0), "", Vector2f(4 * SCALEFACTOR / 64, 4 * SCALEFACTOR / 64));
 }
 
@@ -145,6 +148,8 @@ void Textbox::update() {
 	if (text->addCharactersToRender())
 		currentlyWriting = false;
 
+	if (!isVisible)
+		text->reset();
 }
 
 void Textbox::print(std::string message) {

@@ -222,6 +222,7 @@
     <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Resources\Font.txt" />
     <Text Include="Resources\lightFragmentShader.txt" />
     <Text Include="Resources\lightVertexShader.txt" />
     <Text Include="Resources\particleFragmentShader.txt" />
@@ -265,6 +266,7 @@
     <Image Include="Resources\slimebasic.png" />
     <Image Include="Resources\Sprites.png" />
     <Image Include="Resources\sword.png" />
+    <Image Include="Resources\Textbox.png" />
     <Image Include="Resources\Tree.png" />
     <Image Include="Resources\Wizard.png" />
     <Image Include="Rose.png" />

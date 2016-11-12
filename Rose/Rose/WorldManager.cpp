@@ -261,21 +261,19 @@ void NPCManager::init() {
 
 	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
 	edwin->addAction(NPCAction(WAIT));
-	//edwin->addAction(NPCAction(TALK, "You're saying I'm inferior to Imanity? Please, do understand that my feelings towards you are best described as curiosity, not respect."));
-	//edwin->addAction(NPCAction(TALK, "So don't get too comfortable little ant. I could easily squish you anytime I like."));
-	//edwin->addAction(NPCAction(TALK, "Effulgent Oil"));
 
 	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
 	george->addAction(NPCAction(WAIT));
 	george->addAction(NPCAction(MOVE, Vector2f(-100, -100)));
 	george->addAction(NPCAction(WAIT));
-	george->addAction(NPCAction(MOVE, Vector2f(100, -100)));
-	george->addAction(NPCAction(MOVE, Vector2f(0, 0)));
 	george->addAction(NPCAction(WAIT));
 	george->addAction(NPCAction(TALK, "Stop following me"));
 
-	NPC* rose = new NPC(Vector2f(30, -60), Vector2f(20, 20), "Rose", 50);
+	NPC* rose = new Echo();
 
+	npcs["Edwin"] = edwin;
+	npcs["George"] = george;
+	npcs["Rose"] = rose;
 
 	WorldManager::currentWorld->addNPC(edwin);
 	WorldManager::currentWorld->addNPC(george);
@@ -295,24 +293,20 @@ void NPCManager::destroy()
 #pragma region UIMANAGER
 Textbox UIManager::textbox;
 Statbox UIManager::statbox;
-UIElement UIManager::tilebox;
 
 void UIManager::init() {
 	textbox.init();
 	statbox.init();
-	tilebox.init();
 }
 
 void UIManager::destroy() {
 	textbox.destroy();
 	statbox.destroy();
-	tilebox.destroy();
 }
 
 void UIManager::update() {
 	textbox.update();
 	statbox.update();
-	tilebox.update();
 }
 
 void UIManager::tick() {

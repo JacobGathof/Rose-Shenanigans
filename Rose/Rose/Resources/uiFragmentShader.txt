@@ -3,11 +3,9 @@
 in vec2 texCoords_;
 
 uniform sampler2D image;
-uniform int doTexture;
 
 void main(){
-	if(doTexture == 1)
+
 		gl_FragColor = vec4(1.0,1.0,1.0,.75) * texture(image, texCoords_);
-	else
-		gl_FragColor = vec4(0.0,0.0,0.0,.75);
+		//gl_FragColor = vec4(0.0,0.0,0.0,.75);
 }
