@@ -171,6 +171,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gem.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LoadZone.h" />
     <ClInclude Include="lodepng.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gem.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LoadZone.cpp" />
     <ClCompile Include="lodepng.cpp" />
@@ -266,7 +268,6 @@
     <Image Include="Resources\slimebasic.png" />
     <Image Include="Resources\Sprites.png" />
     <Image Include="Resources\sword.png" />
-    <Image Include="Resources\Textbox.png" />
     <Image Include="Resources\Tree.png" />
     <Image Include="Resources\Wizard.png" />
     <Image Include="Rose.png" />

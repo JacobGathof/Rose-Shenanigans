@@ -78,7 +78,8 @@ void Res::initTextures(){
 	Res::loadTexture("Rain", "Resources/Rain.png", 5, 3);
 	Res::loadTexture("Inn", "Resources/Echo.png");
 	Res::loadTexture("Edwin", "Resources/Edwin.png", 4, 3);
-	Res::loadTexture("Grass", "Resources/Grass.png");
+	Res::loadTexture("Grass", "Resources/terrainTiles.png");
+	//Res::loadTexture("Grass", "Resources/Grass.png");
 	Res::loadTexture("sword", "Resources/sword.png");
 	Res::loadTexture("Fire", "Resources/Fire.png");
 	Res::loadTexture("Candle", "Resources/Sprites.png");

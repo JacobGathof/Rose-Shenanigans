@@ -238,7 +238,7 @@ void Terrain::TerrainChunk::buildTerrain(int textures[], int walkable[]) {
 			if (walkable == 0) tiles[i*tilesPerChunk + j].isWalkable = true;
 			else tiles[i*tilesPerChunk + j].isWalkable = walkable[i*tilesPerChunk + j];
 
-			if (textures == 0) tiles[i*tilesPerChunk + j].texture = 0;
+			if (textures == 0) tiles[i*tilesPerChunk + j].texture = 9;
 			else tiles[i*tilesPerChunk + j].texture = textures[i*tilesPerChunk+j];
 
 		}

@@ -31,7 +31,7 @@ void Skill::draw(Vector2f pos)
 
 int Skill::use(Vector2f pos, Weapon weapon)
 {
-	std::cout << "there";
+	std::cout << "there" << std::endl;
 	return 0;
 }
 
@@ -45,7 +45,7 @@ int Skill::use(Vector2f pos, Weapon weapon)
 	
 	int Dash::use(Vector2f pos, Weapon wep)
 	{
-		std::cout << "here";
+		std::cout << "here" << std::endl;
 		return 1;
 	}
 

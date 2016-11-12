@@ -293,10 +293,14 @@ void NPCManager::destroy()
 #pragma region UIMANAGER
 Textbox UIManager::textbox;
 Statbox UIManager::statbox;
+UIElement UIManager::tilebox;
+Skillbox UIManager::skillbox;
 
 void UIManager::init() {
 	textbox.init();
 	statbox.init();
+	tilebox.init();
+	skillbox.init();
 }
 
 void UIManager::destroy() {

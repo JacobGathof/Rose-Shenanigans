@@ -16,9 +16,6 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{0a3bacfa-228c-49ee-a15a-cc0eec94fda8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\ExperimentalTextures">
-      <UniqueIdentifier>{5f999fe8-e41c-4624-b8ee-953f07522ba6}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -102,6 +99,9 @@
     <ClInclude Include="Skill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Gem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -177,6 +177,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -317,9 +320,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Wizard.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textbox.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

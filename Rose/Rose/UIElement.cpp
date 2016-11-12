@@ -192,3 +192,21 @@ int Textbox::findIndex(std::string str, int start, int end) {
 
 #pragma endregion
 
+
+#pragma region Skillbox
+
+Skillbox::Skillbox() {}
+
+void Skillbox::init() {}
+
+void Skillbox::draw(Player *player) {
+	int i = 0;
+	for each (Skill s in player->skills)
+	{
+		s.draw(Vector2f(player->position.x - 70 + (10 * i), player->position.y - 80));
+		++i;
+	}
+}
+
+#pragma endregion
+

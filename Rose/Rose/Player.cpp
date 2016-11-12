@@ -89,7 +89,7 @@ void Player::addSkill(int index, Skill skill)
 
 void Player::useSkill(int index)
 {
-	int i = skills[index].use(position, hands[0]);
+	int i = (&skills[index])->use(position, hands[0]);
 	if (i == 1) {
 		speed = 1200*(skills[index].level);
 	}
@@ -112,9 +112,9 @@ void Player::draw() {
 	if (hands[0].attacking) {
 		hands[0].draw();
 	}
-	for (int i = 0; i < 8; i++) {
-		skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
-	}
+	//for (int i = 0; i < 8; i++) {
+	//	skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
+	//}
 	Entity::draw();
 }
 

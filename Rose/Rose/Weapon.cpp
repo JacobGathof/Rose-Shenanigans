@@ -12,13 +12,28 @@ Weapon::~Weapon()
 {
 }
 
-Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, std::string texName) 
+Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std::string texName) 
 	: Entity(pos + Vector2f(15,20), Vector2f(20, 20), texName, 0)
 {
+	NumSlots = slotNum;
 	texture = texName;
 	critdamage = dmg;
 	critpercent = percent;
 	damage = dmg;
+}
+
+//std::vector<int> Weapon::GetBuffs()
+//{
+	//TODO
+	//return std::vector<int>;
+//}
+
+Gem Weapon::addGem(int index, Gem gem)
+{
+	if (&(slots.at(index)) != NULL) {
+		return slots.at(index);
+	}
+	slots.at(index) = gem;
 }
 
 bool Weapon::attack(NPC obj, Vector2f pos, int dir)
