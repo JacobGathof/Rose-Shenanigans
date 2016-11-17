@@ -1,5 +1,5 @@
 :@echo off
-if not "%1"=="" goto :continue
+if not "%1" == "" goto :continue
 echo destination directory required
 goto :end
 :continue

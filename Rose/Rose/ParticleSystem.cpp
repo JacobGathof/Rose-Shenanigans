@@ -69,33 +69,33 @@ void ParticleSystem::update(float dt)
 			}
 		}
 
-		if (new_particles > 50)
-			new_particles = 50;
+		if (new_particles > 32)
+			new_particles = 32;
 
-		if (active) {
-			for (int i = 0; i < new_particles; i++) {
-				int index = getLastUnused();
-				if (index == -1) continue;
+		for (int i = 0; i < new_particles; ++i) {
+			int index = getLastUnused();
+			if (index == -1) continue;
 
-				setNewParticle(index);
-			}
+			setNewParticle(index);
 		}
 
 		particle_count = 0;
+		float Constant = sqrt(particle_life);
 
-		for (int i = 0; i < max_particles; i++) {
+		for (int i = 0; i < max_particles; ++i) {
 
 			if (particles[i].life <= 0.0f) {
 				continue;
 			}
 
-			particle_count++;
+			++particle_count;
 
 			if (spin && !emit) {
 				Vector2f vel = (position - particles[i].position);
-				particles[i].velocity = vel.normalize()*particle_speed;
+				particles[i].velocity = vel * particle_speed;
 				//TODO: work on calculation optimization
-				particles[i].velocity += (Vector2f(vel.y, -vel.x) * (particle_speed * sqrt(particle_life) / (vel.magnitude())));
+				//looks like additional optimization will have to cut down on vel.magnitude()
+				particles[i].velocity = ((particles[i].velocity) + (Vector2f(vel.y, -vel.x) * particle_speed * Constant)) / vel.magnitude();
 			}
 			else if (spin && emit) {
 				particles[i].velocity += 1 * dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
