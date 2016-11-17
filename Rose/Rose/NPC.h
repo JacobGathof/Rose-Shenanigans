@@ -9,10 +9,13 @@ enum ActionType {
 	MOVE,
 	FIGHT,
 	WAIT,
+	WAIT_FOR_TEXTBOX,
+	DETECT_PLAYER,
 	MOVE_SPECIAL,
 };
 
 class NPC;
+class Player;
 
 class NPCAction {
 
@@ -49,11 +52,13 @@ public:
 	std::string name;
 	
 	void update(float dt);
+	void tick();
 
 	void trigger();
 	bool print(std::string str);
 	bool moveTo(Vector2f endPoint, float dt);
 	bool idle();
+	bool detectPlayer();
 
 	void interact();
 	void act();
@@ -61,7 +66,17 @@ public:
 
 
 	std::queue<NPCAction> actionQueue;
-	void addAction(NPCAction a);
+	void addAction(NPCAction a, bool doWait = 0);
+
+
+};
+
+
+class Echo : public NPC
+{
+
+public:
+	Echo();
 
 
 };

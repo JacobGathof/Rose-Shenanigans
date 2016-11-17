@@ -224,6 +224,7 @@
     <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Resources\Font.txt" />
     <Text Include="Resources\lightFragmentShader.txt" />
     <Text Include="Resources\lightVertexShader.txt" />
     <Text Include="Resources\particleFragmentShader.txt" />
@@ -241,6 +242,36 @@
     <Text Include="Resources\uiFragmentShader.txt" />
     <Text Include="Resources\uiVertexShader.txt" />
     <Text Include="Storyboard.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="CarpenterHouse.png" />
+    <Image Include="FireSlime.png" />
+    <Image Include="GreenSlime.png" />
+    <Image Include="Resources\bracket.png" />
+    <Image Include="Resources\CarpenterHouse.png" />
+    <Image Include="Resources\dash.png" />
+    <Image Include="Resources\Default.png" />
+    <Image Include="Resources\Echo.png" />
+    <Image Include="Resources\Edwin.png" />
+    <Image Include="Resources\empty_skill.png" />
+    <Image Include="Resources\Exteriordecor.png" />
+    <Image Include="Resources\Fire.png" />
+    <Image Include="Resources\FireSlime.png" />
+    <Image Include="Resources\Font_Texture.png" />
+    <Image Include="Resources\Grass.png" />
+    <Image Include="Resources\GreenSlime.png" />
+    <Image Include="Resources\lightTex.png" />
+    <Image Include="Resources\Rain.png" />
+    <Image Include="Resources\Rose.png" />
+    <Image Include="Resources\SkySlime.png" />
+    <Image Include="Resources\slime.png" />
+    <Image Include="Resources\slimebasic.png" />
+    <Image Include="Resources\Sprites.png" />
+    <Image Include="Resources\sword.png" />
+    <Image Include="Resources\Tree.png" />
+    <Image Include="Resources\Wizard.png" />
+    <Image Include="Rose.png" />
+    <Image Include="SkySlime.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="copyShaders.bat" />

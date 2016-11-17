@@ -30,6 +30,7 @@ std::map<std::string, Character*> Res::characters;
 std::map<std::string, GLuint> Res::fbos;
 
 Model * Res::stdModel;
+Player * Res::player;
 
 
 
@@ -85,11 +86,13 @@ void Res::initTextures(){
 	Res::loadTexture("Tree", "Resources/Tree.png");
 	Res::loadTexture("Default", "Resources/Default.png");
 	Res::loadTexture("Light", "Resources/lightTex.png");
+	Res::loadTexture("Textbox", "Resources/Textbox.png");
 
 	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png", 1, 8);
 	Res::loadTexture("FireSlime", "Resources/FireSlime.png", 1, 8);
 	Res::loadTexture("SkySlime", "Resources/SkySlime.png", 1, 8);
-	Res::loadTexture("Rose", "Resources/Rose.png", 1, 4);
+	Res::loadTexture("Rose", "Resources/Jibril.png", 1, 1);
+	Res::loadTexture("Jibril", "Resources/Rose.png", 1, 4);
 	Res::loadTexture("House", "Resources/CarpenterHouse.png");
 
 	//skill textures

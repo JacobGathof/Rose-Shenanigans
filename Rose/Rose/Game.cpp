@@ -15,7 +15,7 @@ void Game::init()
 
 	std::vector<Weapon> blank;
 
-	player = Player(Vector2f(0, 0), Vector2f(20, 20), "Echo", 50);
+	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
 	//player.numberOfAnimationRows = 1;
 	//player.framesPerAnimation = 8;
 	Dash skill = Dash();
@@ -28,11 +28,10 @@ void Game::init()
 	//mission = Mission(50, 50, blank, "hello", basicNPC);
 	//player.addMission(mission);
 	
-
+	Res::player = &player;
 
 	UIManager::statbox.player = &player;
 	WorldManager::addToAllWorlds(&player);
-
 	WorldManager::addPlayerToSlimes(&player);
 
 }
@@ -97,11 +96,9 @@ void Game::render(){
 	
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
-	Res::getShader(uiShader)->loadInteger("doTexture", 1);
-	Res::getTexture("Grass")->bind();
-	UIManager::tilebox.draw();
-	Res::getShader(uiShader)->loadInteger("doTexture", 0);
 	
+	
+
 	UIManager::skillbox.draw(&player);
 
 }

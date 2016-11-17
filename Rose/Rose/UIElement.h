@@ -13,6 +13,8 @@ public:
 	Vector2f topLeft;
 	Vector2f botRight;
 
+	Texture * tex;
+
 	virtual void draw();
 	virtual void init();
 	virtual void destroy();

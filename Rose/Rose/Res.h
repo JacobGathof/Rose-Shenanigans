@@ -4,7 +4,7 @@
 #include "Color.h"
 #include "Text.h"
 
-#define SCALEFACTOR 96.0
+#define SCALEFACTOR 128.0
 
 enum ShaderType {
 	entityShader,
@@ -21,6 +21,7 @@ enum ShaderType {
 class Model;
 class ModelLoader;
 class ShaderProgram;
+class Player;
 
 class Res
 {
@@ -41,6 +42,7 @@ private:
 
 public:
 	static Model * stdModel;
+	static Player * player;
 
 	static Model* getModel(std::string str);
 	static ShaderProgram* getShader(ShaderType str);
