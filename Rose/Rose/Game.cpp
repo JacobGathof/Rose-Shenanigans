@@ -5,6 +5,8 @@
 #include "Weapon.h"
 #include "WorldManager.h"
 #include "Vector2f.h"
+#include "Renderer.h"
+#include "Screen.h"
 #include <iostream>
 
 
@@ -58,6 +60,7 @@ void Game::loop(float dt){
 
 	gameTime += dt;
 
+	Screen::update(dt);
 	Camera::update(dt);
 	Res::updateShaders(gameTime);
 	LightManager::updateLights(gameTime);
@@ -66,39 +69,17 @@ void Game::loop(float dt){
 
 void Game::render(){
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
-	glClear(GL_COLOR_BUFFER_BIT);
 
+	
+	Renderer::prepareToRender();
+	Renderer::render();
+	Renderer::renderScreen();
 
-	WorldManager::drawWorld();
-	LightManager::drawLights();
-
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	Res::getModel("ScreenVAO")->bind();
-	Res::getShader(screenShader)->use();
-
-
-	glActiveTexture(GL_TEXTURE0);
-	Res::getTexture("WorldTexture")->bind();
-	glActiveTexture(GL_TEXTURE1);
-	Res::getTexture("LightTexture")->bind();
-
-	glDrawArrays(GL_TRIANGLES, 0 ,6);
-
-	glActiveTexture(GL_TEXTURE0);
+	
 
 	
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
-	
-	
-
 	UIManager::skillbox.draw(&player);
 
 }

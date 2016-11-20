@@ -8,8 +8,6 @@
 class Renderer
 {
 public:
-	Renderer();
-	~Renderer();
 
 	static void renderObject(Object * object);
 	static void renderHitbox(Object * object);
@@ -21,6 +19,11 @@ public:
 	static void renderText(Text* text);
 
 	static void renderTerrainChunk(Terrain::TerrainChunk* chunk);
+	static void renderScreen();
+
+
+	static void render();
+	static void prepareToRender();
 
 };
 

@@ -1,15 +1,8 @@
 #include "Renderer.h"
 
+#include "WorldManager.h"
+#include "Screen.h"
 
-
-Renderer::Renderer()
-{
-}
-
-
-Renderer::~Renderer()
-{
-}
 
 void Renderer::renderText(Text * text){
 
@@ -109,6 +102,46 @@ void Renderer::renderHitbox(Object * object){
 	shader->loadVector2f("pos", object->hitbox.position + object->position);
 	glDrawArrays(GL_LINE_LOOP, 0, Res::stdModel->numberOfVertices);
 	shader->loadInteger("useTexture", 1);
+
+}
+
+
+void Renderer::renderScreen() {
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	Res::getModel("ScreenVAO")->bind();
+	ShaderProgram * shader = Res::getShader(screenShader);
+	shader->loadFloat("black", Screen::black);
+	shader->loadFloat("white", Screen::white);
+	
+
+	glActiveTexture(GL_TEXTURE0);
+	Res::getTexture("WorldTexture")->bind();
+	glActiveTexture(GL_TEXTURE1);
+	Res::getTexture("LightTexture")->bind();
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glActiveTexture(GL_TEXTURE0);
+
+}
+
+void Renderer::render() {
+
+	WorldManager::drawWorld();
+	LightManager::drawLights();
+
+}
+
+void Renderer::prepareToRender() {
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glClear(GL_COLOR_BUFFER_BIT);
 
 }
 

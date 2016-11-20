@@ -1,6 +1,7 @@
 #include "Input.h"
 #include "WorldManager.h"
 #include <iostream>
+#include "Screen.h"
 
 bool Input::keys[];
 bool Input::mouse[];
@@ -58,6 +59,14 @@ void Input::processInput(float dt)
 	if (keys[GLFW_KEY_J] && keys[GLFW_KEY_K]) {
 		game->player.attack(0);
 	}
+
+	if (keys[GLFW_KEY_M]) {
+		Screen::fadeBlack();
+	}
+	if (keys[GLFW_KEY_N]) {
+		Screen::fadeWhite();
+	}
+
 
 
 	if (keys[GLFW_KEY_T]) {

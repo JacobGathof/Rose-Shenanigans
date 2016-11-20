@@ -5,13 +5,13 @@
 
 Terrain::Terrain() {
 	tilesPerChunk = 16;
-	tileScale = 16.0f;
+	tileScale = 32.0f;
 	loadTerrain("Resources/Town of Beginnings");
 }
 
 Terrain::Terrain(std::string str) {
 	tilesPerChunk = 16;
-	tileScale = 16.0f;
+	tileScale = 32.0f;
 	loadTerrain("Resources/" + str);
 }
 
