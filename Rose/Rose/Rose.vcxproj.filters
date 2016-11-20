@@ -102,6 +102,9 @@
     <ClInclude Include="Gem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -182,6 +185,9 @@
     <ClCompile Include="Gem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Storyboard.txt">
@@ -238,21 +244,6 @@
     <Text Include="Resources\Font.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="GreenSlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="FireSlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="SkySlime.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="Rose.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
-    <Image Include="CarpenterHouse.png">
-      <Filter>Resource Files\ExperimentalTextures</Filter>
-    </Image>
     <Image Include="Resources\bracket.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -320,6 +311,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Wizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="CarpenterHouse.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="FireSlime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GreenSlime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Rose.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="SkySlime.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

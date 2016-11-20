@@ -181,6 +181,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Slime.cpp" />

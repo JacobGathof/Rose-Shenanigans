@@ -16,8 +16,7 @@ void Game::init()
 	std::vector<Weapon> blank;
 
 	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
-	//player.numberOfAnimationRows = 1;
-	//player.framesPerAnimation = 8;
+
 	Dash skill = Dash();
 	player.addSkill(1,skill);
 	Weapon weapon = Weapon(10, 20, 5, player.position, 0, "sword");
@@ -25,10 +24,11 @@ void Game::init()
 	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
 	player.addMission(mission);
 
-	//mission = Mission(50, 50, blank, "hello", basicNPC);
-	//player.addMission(mission);
+
 	
 	Res::player = &player;
+	Camera::setFocus(&player);
+	Camera::setSpeed(1.0f);
 
 	UIManager::statbox.player = &player;
 	WorldManager::addToAllWorlds(&player);
@@ -58,7 +58,7 @@ void Game::loop(float dt){
 
 	gameTime += dt;
 
-	Camera::position = Vector2f(player.position.x + player.scale.x / 2, player.position.y + player.scale.y / 2);
+	Camera::update(dt);
 	Res::updateShaders(gameTime);
 	LightManager::updateLights(gameTime);
 

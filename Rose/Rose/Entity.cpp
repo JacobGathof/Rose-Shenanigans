@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "WorldManager.h"
 #include <iostream>
+#include "Renderer.h"
 
 
 Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)	: Object(pos, scale, texName)
@@ -39,23 +40,7 @@ void Entity::move(Vector2f dir, float dt)
 }
 
 void Entity::draw() {
-
-	tex->bind();
-
-	ShaderProgram * shader = Res::getShader(entityShader);
-	shader->loadVector2f("scale", scale);
-	shader->loadVector2f("pos", position);
-	shader->loadFloat("animTimer", internalTime);
-	shader->loadInteger("direction", direction);
-
-	shader->loadInteger("rows", tex->numberOfRows);
-	shader->loadInteger("cols", tex->numberOfColumns);
-
-	Res::stdModel->bind();
-
-	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
-
-	drawHitbox();
+	Renderer::renderEntity(this);
 
 }
 

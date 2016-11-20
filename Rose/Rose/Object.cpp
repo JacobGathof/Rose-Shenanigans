@@ -1,11 +1,11 @@
 #include "Object.h"
-
+#include "Renderer.h"
 
 
 bool Object::collide(Object obj)
 {
-	if (obj.position.x <= position.x + scale.x && obj.position.x + obj.scale.x >= position.x) {
-		if (obj.position.y <= position.y + scale.y && obj.position.y + obj.scale.y >= position.y) {
+	if (obj.hitbox.position.x <= hitbox.position.x + hitbox.scale.x && obj.hitbox.position.x + obj.hitbox.scale.x >= hitbox.position.x) {
+		if (obj.hitbox.position.y <= hitbox.position.y + hitbox.scale.y && obj.hitbox.position.y + obj.hitbox.scale.y >= hitbox.position.y) {
 			return true;
 		}
 	}
@@ -15,38 +15,17 @@ bool Object::collide(Object obj)
 
 
 void Object::draw(){
-	tex->bind();
-	ShaderProgram * shader = Res::getShader(staticShader);
-	shader->loadVector2f("scale", scale);
-	shader->loadVector2f("pos", position);
-	
-	Res::stdModel->bind();
-	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
-
-	drawHitbox();
-
+	Renderer::renderObject(this);
 }
 
-void Object::drawHitbox(){
 
-	ShaderProgram * shader = Res::getShader(staticShader);
-	shader->loadInteger("useTexture", 0);
-	shader->loadVector2f("scale", hitbox.scale);
-	shader->loadVector2f("pos", hitbox.position + position);
-	glDrawArrays(GL_LINE_LOOP, 0, Res::stdModel->numberOfVertices);
-	shader->loadInteger("useTexture", 1);
+void Object::tick(){
 }
 
-void Object::tick()
-{
+void Object::update(float dt){
 }
 
-void Object::update(float dt)
-{
-}
-
-bool Object::compare(Object * o, Object * o2)
-{
+bool Object::compare(Object * o, Object * o2){
 	return o->position.y > o2->position.y;
 }
 
@@ -73,6 +52,5 @@ Object::Object(Vector2f pos, Vector2f scale, std::string texName){
 	this->hitbox.scale = Vector2f(scale);
 }
 
-Object::~Object()
-{
+Object::~Object(){
 }

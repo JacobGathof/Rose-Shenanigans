@@ -1,6 +1,7 @@
 #include "UIElement.h"
 
 
+#include "Renderer.h"
 
 #pragma region UIELEMENT
 UIElement::UIElement(){
@@ -11,38 +12,23 @@ UIElement::UIElement(){
 
 }
 
-UIElement::~UIElement(){}
-
-void UIElement::draw()
-{
-	if (isVisible) {
-		this->tex->bind();
-		ShaderProgram * shader = Res::getShader(uiShader);
-		shader->loadVector2f("scale", -1 * topLeft + botRight);
-		shader->loadVector2f("pos", topLeft);
-
-		Res::stdModel->bind();
-		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
-	}
+void UIElement::draw(){
+	Renderer::renderDefaultUIElement(this);
 }
 
+
 void UIElement::init(){}
-
 void UIElement::destroy(){}
-
 void UIElement::update(){}
+UIElement::~UIElement() {}
 
 #pragma endregion
 
 
 #pragma region STATBOX
 
-
 void Statbox::draw() {
-
-	UIElement::draw();
-	text->draw();
-
+	Renderer::renderStatbox(this);
 }
 
 void Statbox::init() {
@@ -85,12 +71,8 @@ Statbox::~Statbox(){}
 
 std::queue<std::string> Textbox::queue;
 
-void Textbox::draw()
-{
-	if (isVisible) {
-		UIElement::draw();
-		text->draw();
-	}
+void Textbox::draw(){
+	Renderer::renderTextbox(this);
 }
 
 void Textbox::init() {

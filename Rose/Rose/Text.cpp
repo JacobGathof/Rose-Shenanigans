@@ -1,9 +1,11 @@
 #include "Text.h"
 #include "Res.h"
-
+#include "Renderer.h"
 #include <iostream>
 
 static float scaleFactor = 512.0f;
+
+static float textSizeScale = 64.0f;
 
 Text::Text(Vector2f position, std::string data, Vector2f scale)
 {
@@ -47,25 +49,25 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 
 		Character* ch = Res::getCharacter(str);
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / 64.0f;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / 64.0f;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
 
-		xPointer += .75f*ch->xadvance;
+		xPointer += 1.0f*ch->xadvance;
 
 
 		tex[texPointer++] = (ch->x) / scaleFactor;
@@ -159,19 +161,7 @@ bool Text::addCharactersToRender()
 }
 
 void Text::draw() {
-
-	ShaderProgram * currentShader = Res::getShader(textShader);
-
-	glActiveTexture(GL_TEXTURE0);
-	Res::getTexture("Font")->bind();
-
-	glBindVertexArray(this->VAO);
-
-	currentShader->loadVector2f("pos", this->position);
-	currentShader->loadVector2f("scale", this->scale);
-
-	glDrawArrays(GL_TRIANGLES, 0, this->charsToRender);
-
+	Renderer::renderText(this);
 }
 
 

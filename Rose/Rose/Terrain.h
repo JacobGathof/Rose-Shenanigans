@@ -12,15 +12,17 @@ class Terrain
 {
 public:
 
+
+	enum TileType;
 	class TerrainChunk;
 
 	struct Tile {
 		int texture = 0;
 		Vector2f position;
-		bool isWalkable = true;
+		TileType type = TileType::GRASS_FULL;
 	};
 
-	std::map<Vector2f, TerrainChunk*> terrain;
+	std::map<Vector2f, TerrainChunk*> terrainChunks;
 
 	void draw();
 
@@ -33,8 +35,8 @@ public:
 
 	void addTerrain(Vector2f position = Vector2f(0,0));
 
+	bool isWalkable(Tile tile);
 	void setTile(Vector2f pos, int i);
-	void setTile(Vector2f pos, bool b);
 	void deleteChunk(Vector2f pos);
 	bool getSolid(Object o);
 	bool getSolid(Vector2f pos);
@@ -68,6 +70,22 @@ public:
 			void rebuildAll();
 			void draw();
 
+
+	};
+
+	enum TileType {
+		GRASS_FULL,
+		DIRT_FULL,
+
+		GRASS_BOTTOM_RIGHT_DIRT,
+		GRASS_BOTTOM_LEFT_DIRT,
+		GRASS_TOP_RIGHT_DIRT,
+		GRASS_TOP_LEFT_DIRT,
+
+		GRASS_TOP_DIRT,
+		GRASS_BOTTOM_DIRT,
+		GRASS_LEFT_DIRT,
+		GRASS_RIGHT_DIRT,
 
 	};
 

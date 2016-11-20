@@ -28,10 +28,8 @@ public:
 
 	bool alive = true;
 
-	int posInVec;
 	bool collide(Object obj);
 	virtual void draw();
-	virtual void drawHitbox();
 	virtual void tick();
 	virtual void update(float dt);
 	virtual ObjectType getType() { return OBJECT; }

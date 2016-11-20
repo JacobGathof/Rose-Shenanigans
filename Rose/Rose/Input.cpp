@@ -75,11 +75,6 @@ void Input::processInput(float dt)
 		WorldManager::getCurrentWorld()->terrain->setTile(game->player.position + game->player.scale / 2, tilePointer);
 	}
 
-	if (keys[GLFW_KEY_LEFT_BRACKET]) {
-		keys[GLFW_KEY_LEFT_BRACKET] = false;
-		WorldManager::getCurrentWorld()->terrain->setTile(game->player.position + game->player.scale / 2, false);
-	}
-
 	if (keys[GLFW_KEY_X]) {
 		keys[GLFW_KEY_X] = false;
 		WorldManager::getCurrentWorld()->terrain->deleteChunk(game->player.position + game->player.scale / 2);

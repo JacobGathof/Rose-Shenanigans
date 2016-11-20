@@ -248,14 +248,6 @@ LightManager::~LightManager()
 std::map<std::string, NPC*> NPCManager::npcs;
 
 
-NPCManager::NPCManager()
-{
-}
-
-
-NPCManager::~NPCManager()
-{
-}
 
 void NPCManager::init() {
 
@@ -277,7 +269,7 @@ void NPCManager::init() {
 
 	WorldManager::currentWorld->addNPC(edwin);
 	WorldManager::currentWorld->addNPC(george);
-	WorldManager::currentWorld->addNPC(rose);
+	//WorldManager::currentWorld->addNPC(rose);
 }
 
 void NPCManager::destroy()

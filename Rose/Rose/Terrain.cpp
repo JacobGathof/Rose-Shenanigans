@@ -1,4 +1,5 @@
 #include "Terrain.h"
+#include "Renderer.h"
 #include <sstream>
 
 
@@ -6,31 +7,37 @@ Terrain::Terrain() {
 	tilesPerChunk = 16;
 	tileScale = 16.0f;
 	loadTerrain("Resources/Town of Beginnings");
-};
+}
 
 Terrain::Terrain(std::string str) {
 	tilesPerChunk = 16;
 	tileScale = 16.0f;
 	loadTerrain("Resources/" + str);
-};
+}
 
 Terrain::~Terrain() {
-	for (auto t : terrain) {
+	for (auto t : terrainChunks) {
 		delete t.second;
 	}
-};
+}
 
 
 void Terrain::addTerrain(Vector2f pos) {
 	TerrainChunk * c = new TerrainChunk(pos, tilesPerChunk, tileScale);
 	c->buildTerrain(0, 0);
-	terrain[pos] = c;
+	terrainChunks[pos] = c;
 }
 
 void Terrain::draw() {
-	for (auto t : terrain) {
+	for (auto t : terrainChunks) {
 		t.second->draw();
 	}
+}
+
+bool Terrain::isWalkable(Tile tile)
+{
+	if (tile.type == TileType::DIRT_FULL) return false;
+	return true;
 }
 
 void Terrain::setTile(Vector2f pos, int i){
@@ -38,12 +45,12 @@ void Terrain::setTile(Vector2f pos, int i){
 	Vector2f cPos = pos / (tileScale*tilesPerChunk);
 	cPos = cPos.round();
 
-	if (terrain.find(cPos) == terrain.end()) {
+	if (terrainChunks.find(cPos) == terrainChunks.end()) {
 		addTerrain(cPos);
 		return;
 	}
 
-	TerrainChunk * t = terrain[cPos];
+	TerrainChunk * t = terrainChunks[cPos];
 	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
@@ -58,34 +65,18 @@ void Terrain::setTile(Vector2f pos, int i){
 
 }
 
-void Terrain::setTile(Vector2f pos, bool b){
-	Vector2f cPos = pos / (tileScale*tilesPerChunk);
-	cPos = cPos.round();
-
-	if (terrain.find(cPos) == terrain.end()) {
-		addTerrain(cPos);
-		return;
-	}
-
-	TerrainChunk * t = terrain[cPos];
-	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
-
-	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
-
-	t->tiles[index].isWalkable = b;
-}
 
 void Terrain::deleteChunk(Vector2f pos){
 
 	Vector2f cPos = pos / (tileScale*tilesPerChunk);
 	cPos = cPos.round();
 
-	if (terrain.find(cPos) == terrain.end()) {
+	if (terrainChunks.find(cPos) == terrainChunks.end()) {
 		return;
 	}
 
-	TerrainChunk * t = terrain[cPos];
-	terrain.erase(terrain.find(cPos));
+	TerrainChunk * t = terrainChunks[cPos];
+	terrainChunks.erase(terrainChunks.find(cPos));
 	delete t;
 
 }
@@ -100,16 +91,16 @@ bool Terrain::getSolid(Vector2f pos){
 	Vector2f cPos = pos / (tileScale*tilesPerChunk);
 	cPos = cPos.round();
 
-	if (terrain.find(cPos) == terrain.end()) {
+	if (terrainChunks.find(cPos) == terrainChunks.end()) {
 		return false;
 	}
 
-	TerrainChunk * t = terrain[cPos];
+	TerrainChunk * t = terrainChunks[cPos];
 	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
-	return !t->tiles[index].isWalkable;
+	return !isWalkable(t->tiles[index]);
 	
 }
 
@@ -117,27 +108,7 @@ void Terrain::loadTerrain(std::string filename){
 
 
 	std::ifstream file;
-	//file.open(filename, file.in);
-	//if (file.is_open()) {
-	//	int response = MessageBox(NULL, L"Could not open file, Try again?", L"", MB_ICONERROR | MB_ABORTRETRYIGNORE);
-	//}
-	//std::cout << filename << std::endl;
-	int response;
-	do {
-		response = IDABORT;
-		file.open(filename, file.in);
-		if (!file.is_open()) {
-			response = MessageBox(NULL, L"Could not open terrain file, try again?", L"Terrain Error", MB_ICONERROR | MB_CANCELTRYCONTINUE);
-		}
-	} while (response == IDTRYAGAIN);
-
-	//if (response == IDCANCEL) {
-	//	std::cout << "aborted" << std::endl;
-	//	return;
-	//}
-	//else if (response == IDCONTINUE) {
-	//	std::cout << "ignored" << std::endl;
-	//}
+	file.open(filename, file.in);
 
 	char buffer[8192];
 
@@ -181,7 +152,7 @@ void Terrain::loadTerrain(std::string filename){
 		line.str("");
 
 		chunk->buildTerrain(tileTextures, tileWalkable);
-		terrain[pos] = chunk;
+		terrainChunks[pos] = chunk;
 	}
 
 }
@@ -191,7 +162,7 @@ void Terrain::saveTerrain(std::string filename){
 	std::ofstream file;
 	file.open("Resources/" + filename, file.out);
 
-	for (auto t : terrain) {
+	for (auto t : terrainChunks) {
 		std::string s(t.second->position.toIntString()+"\n");
 		file.write((s).c_str(), std::strlen(s.c_str()));
 
@@ -199,7 +170,7 @@ void Terrain::saveTerrain(std::string filename){
 			for (int j = 0; j < tilesPerChunk; j++) {
 				Tile tile = t.second->tiles[tilesPerChunk*i + j];
 				int v = tile.texture;
-				int w = tile.isWalkable;
+				int w = tile.type;
 				std::string q = std::to_string(w) + std::to_string(v) + ",";
 				file.write(q.c_str(), q.length());
 			}
@@ -228,15 +199,15 @@ void Terrain::TerrainChunk::loadBuffers()
 {
 }
 
-void Terrain::TerrainChunk::buildTerrain(int textures[], int walkable[]) {
+void Terrain::TerrainChunk::buildTerrain(int textures[], int type[]) {
 
 	for (int i = 0; i < tilesPerChunk; i++) {
 		for (int j = 0; j < tilesPerChunk; j++) {
 			tiles[i*tilesPerChunk + j].position.x = i*1.0f;
 			tiles[i*tilesPerChunk + j].position.y = j*1.0f;
 
-			if (walkable == 0) tiles[i*tilesPerChunk + j].isWalkable = true;
-			else tiles[i*tilesPerChunk + j].isWalkable = walkable[i*tilesPerChunk + j];
+			if (type == 0) tiles[i*tilesPerChunk + j].type = TileType::GRASS_FULL;
+			else tiles[i*tilesPerChunk + j].type = (TileType)type[i*tilesPerChunk + j];
 
 			if (textures == 0) tiles[i*tilesPerChunk + j].texture = 9;
 			else tiles[i*tilesPerChunk + j].texture = textures[i*tilesPerChunk+j];
@@ -245,7 +216,7 @@ void Terrain::TerrainChunk::buildTerrain(int textures[], int walkable[]) {
 	}
 
 	delete[] textures;
-	delete[] walkable;
+	delete[] type;
 
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float texures[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
@@ -311,16 +282,5 @@ void Terrain::TerrainChunk::rebuildAll(){
 }
 
 void Terrain::TerrainChunk::draw() {
-
-	Res::getTexture("Grass")->bind();
-
-	ShaderProgram * shader = Res::getShader(terrainShader);
-	shader->loadVector2f("scale", Vector2f(scale, scale));
-
-	shader->loadVector2f("pos", position*(tilesPerChunk*scale));
-
-	glBindVertexArray(VAO);
-
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, tilesPerChunk*tilesPerChunk);
-	
+	Renderer::renderTerrainChunk(this);
 }
