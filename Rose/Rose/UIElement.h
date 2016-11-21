@@ -12,6 +12,7 @@ public:
 
 	Vector2f topLeft;
 	Vector2f botRight;
+	Vector2f toScreenCoordinates(int x, int y);
 
 	Texture * tex;
 

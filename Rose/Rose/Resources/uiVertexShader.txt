@@ -17,6 +17,6 @@ void main(){
 		vertices.x*scale.x + pos.x, 
 		vertices.y*scale.y + pos.y, 0.0 , 1.0);
 
-	texCoords_ = texCoords;
+	texCoords_ = vec2(texCoords.x, 1-texCoords.y);
 	
 }

@@ -6,8 +6,8 @@
 #pragma region UIELEMENT
 UIElement::UIElement(){
 
-	topLeft = Vector2f(40 * SCALEFACTOR / 64, 40 * SCALEFACTOR / 64);
-	botRight = Vector2f(60 * SCALEFACTOR / 64, 60 * SCALEFACTOR / 64);
+	topLeft = toScreenCoordinates(40,40);
+	botRight = toScreenCoordinates(60, 60);
 	isVisible = true;
 
 }
@@ -22,6 +22,10 @@ void UIElement::destroy(){}
 void UIElement::update(){}
 UIElement::~UIElement() {}
 
+Vector2f UIElement::toScreenCoordinates(int x, int y){
+	return Vector2f(x*SCALEFACTOR / 64, y*SCALEFACTOR/64);
+}
+
 #pragma endregion
 
 
@@ -35,8 +39,8 @@ void Statbox::init() {
 
 	tex = Res::getTexture("Default");
 	isVisible = true;
-	topLeft = Vector2f(-60 * SCALEFACTOR / 64, 60 * SCALEFACTOR / 64);
-	botRight = Vector2f(-20 * SCALEFACTOR / 64, 20 * SCALEFACTOR / 64);
+	topLeft = toScreenCoordinates(-60, 60);
+	botRight = toScreenCoordinates(-20, 20);
 	text = new Text(Vector2f(0, 0), "", Vector2f(4 * SCALEFACTOR / 64, 4 * SCALEFACTOR / 64));
 }
 
@@ -53,7 +57,7 @@ void Statbox::update() {
 			"/Age : " + "???" +
 			"/HP : " + std::to_string(player->hp));
 
-		text->position = topLeft + Vector2f(4 * SCALEFACTOR / 64, -4 * SCALEFACTOR / 64);
+		text->position = topLeft + toScreenCoordinates(4, -4);
 	}
 	player->statsChanged = false;
 }
@@ -78,12 +82,12 @@ void Textbox::draw(){
 void Textbox::init() {
 
 	tex = Res::getTexture("Textbox");
-	isVisible = false;
+	isVisible = true;
 	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
-	topLeft = Vector2f(-48 * SCALEFACTOR / 64, -28 * SCALEFACTOR / 64);
-	botRight = Vector2f(48 * SCALEFACTOR / 64, -60 * SCALEFACTOR / 64);
+	topLeft = toScreenCoordinates(-60, -28);
+	botRight = toScreenCoordinates(60, -60);
 	text = new Text(Vector2f(0, 0), "", Vector2f(4 * SCALEFACTOR / 64, 4 * SCALEFACTOR / 64));
 }
 
@@ -113,7 +117,7 @@ void Textbox::advanceQueue() {
 		queue.pop();
 
 		text->setText(str);
-		text->position = topLeft + Vector2f(4 * SCALEFACTOR / 64, -4 * SCALEFACTOR / 64);
+		text->position = topLeft + toScreenCoordinates(4, -4);
 		text->reset();
 	}
 	else {

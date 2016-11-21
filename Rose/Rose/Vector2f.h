@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
+#define ZERO_VECTOR Vector2f(0,0)
+
 class Vector2f
 {
 public:
