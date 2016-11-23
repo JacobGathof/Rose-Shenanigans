@@ -48,6 +48,11 @@ class Echo : public NPC
 public:
 	Echo();
 
+};
 
+class Jibril : public NPC
+{
+public:
+	Jibril();
 };
 

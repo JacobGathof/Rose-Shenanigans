@@ -250,29 +250,16 @@ std::map<std::string, NPC*> NPCManager::npcs;
 
 
 void NPCManager::init() {
-
-	/*
-	NPC* edwin = new NPC(Vector2f(30, 30), Vector2f(20, 20), "Edwin", 50);
-	edwin->addAction(NPCAction(WAIT));
-
-	NPC* george = new NPC(Vector2f(-30, -60), Vector2f(20, 20), "Rain", 50);
-	george->addAction(NPCAction(WAIT));
-	george->addAction(NPCAction(MOVE, Vector2f(-100, -100)));
-	george->addAction(NPCAction(WAIT));
-	george->addAction(NPCAction(WAIT));
-	george->addAction(NPCAction(TALK, "Stop following me"));
-	*/
-
 	
 	NPC* echo = new Echo();
+	NPC* jibril = new Jibril();
 
-	//npcs["Edwin"] = edwin;
-	//npcs["George"] = george;
 	npcs["Rose"] = echo;
+	npcs["Jibril"] = jibril;
 
-	//WorldManager::currentWorld->addNPC(edwin);
-	//WorldManager::currentWorld->addNPC(george);
+	
 	WorldManager::currentWorld->addNPC(echo);
+	WorldManager::currentWorld->addNPC(jibril);
 	
 }
 
