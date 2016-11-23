@@ -37,7 +37,7 @@ void Statbox::draw() {
 
 void Statbox::init() {
 
-	tex = Res::getTexture("Default");
+	tex = Res::getTexture("Statbox");
 	isVisible = true;
 	topLeft = toScreenCoordinates(-60, 60);
 	botRight = toScreenCoordinates(-20, 20);

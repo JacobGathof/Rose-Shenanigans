@@ -3,9 +3,8 @@
 #include "Renderer.h"
 #include <iostream>
 
-static float scaleFactor = 512.0f;
-
-static float textSizeScale = 64.0f;
+static float textureScaleFactor = 512.0f;
+static float textScaleFactor = 64.0f;
 
 Text::Text(Vector2f position, std::string data, Vector2f scale)
 {
@@ -42,51 +41,51 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 		str += string[i];
 
 		if (str == "/") {
-			yPointer -= Res::getCharacter("I")->height;
+			yPointer -= 1.5f*Res::getCharacter("I")->height;
 			xPointer = 0;
 			continue;
 		}
 
 		Character* ch = Res::getCharacter(str);
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textScaleFactor;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textScaleFactor;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textScaleFactor;
 
-		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->width + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textScaleFactor;
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->yoffset) / textScaleFactor;
 
-		pos[vertexPointer++] = (xPointer + ch->xoffset) / textSizeScale;
-		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textSizeScale;
+		pos[vertexPointer++] = (xPointer + ch->xoffset) / textScaleFactor;
+		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textScaleFactor;
 
 		xPointer += 1.0f*ch->xadvance;
 
 
-		tex[texPointer++] = (ch->x) / scaleFactor;
-		tex[texPointer++] = (ch->y + ch->height) / scaleFactor;
+		tex[texPointer++] = (ch->x) / textureScaleFactor;
+		tex[texPointer++] = (ch->y + ch->height) / textureScaleFactor;
 
-		tex[texPointer++] = (ch->x + ch->width) / scaleFactor;
-		tex[texPointer++] = (ch->y + ch->height) / scaleFactor;
+		tex[texPointer++] = (ch->x + ch->width) / textureScaleFactor;
+		tex[texPointer++] = (ch->y + ch->height) / textureScaleFactor;
 
-		tex[texPointer++] = (ch->x + ch->width) / scaleFactor;
-		tex[texPointer++] = (ch->y) / scaleFactor;
+		tex[texPointer++] = (ch->x + ch->width) / textureScaleFactor;
+		tex[texPointer++] = (ch->y) / textureScaleFactor;
 
-		tex[texPointer++] = (ch->x + ch->width) / scaleFactor;
-		tex[texPointer++] = (ch->y) / scaleFactor;
+		tex[texPointer++] = (ch->x + ch->width) / textureScaleFactor;
+		tex[texPointer++] = (ch->y) / textureScaleFactor;
 
-		tex[texPointer++] = (ch->x) / scaleFactor;
-		tex[texPointer++] = (ch->y) / scaleFactor;
+		tex[texPointer++] = (ch->x) / textureScaleFactor;
+		tex[texPointer++] = (ch->y) / textureScaleFactor;
 
-		tex[texPointer++] = (ch->x) / scaleFactor;
-		tex[texPointer++] = (ch->y + ch->height) / scaleFactor;
+		tex[texPointer++] = (ch->x) / textureScaleFactor;
+		tex[texPointer++] = (ch->y + ch->height) / textureScaleFactor;
 
 	}
 

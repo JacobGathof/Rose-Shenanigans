@@ -87,6 +87,7 @@ void Res::initTextures(){
 	Res::loadTexture("Default", "Resources/Default.png");
 	Res::loadTexture("Light", "Resources/lightTex.png");
 	Res::loadTexture("Textbox", "Resources/Textbox.png");
+	Res::loadTexture("Statbox", "Resources/Statbox.png");
 
 	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png", 1, 8);
 	Res::loadTexture("FireSlime", "Resources/FireSlime.png", 1, 8);

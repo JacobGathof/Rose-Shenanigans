@@ -115,8 +115,6 @@ void Game::loop(float dt){
 }
 
 void Game::render(){
-
-
 	
 	Renderer::prepareToRender();
 	Renderer::render();
@@ -125,6 +123,6 @@ void Game::render(){
 	
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
-	UIManager::skillbox.draw(&player);
+	//UIManager::skillbox.draw(&player);
 
 }
