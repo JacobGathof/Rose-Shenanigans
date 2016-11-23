@@ -21,13 +21,14 @@ void Game::init()
 
 	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
 
+	/*
 	Dash skill = Dash();
 	player.addSkill(1,skill);
 	Weapon weapon = Weapon(10, 20, 5, player.position, 0, "sword");
 	player.hands[0] = weapon;
 	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
 	player.addMission(mission);
-
+	*/
 
 	Res::player = &player;
 	Camera::setFocus(&player);
@@ -37,7 +38,7 @@ void Game::init()
 	WorldManager::addToAllWorlds(&player);
 	WorldManager::addPlayerToSlimes(&player);
 
-
+	/*
 	Graph graph = Graph();
 	Info::x = 0;
 	Graph::Node * buildHouse = new Graph::Node("Building a House", []() {return Info::x == 0; });
@@ -71,15 +72,16 @@ void Game::init()
 	graph.printData();
 
 	graph.destroy();
+	*/
 
-
-
+	/*
 	std::cout << Info::PLAYER_STATUS << std::endl;
 	Info::addPlayerStatus(BLEEDING);
 	Info::addPlayerStatus(FIRE);
 	std::cout << Info::PLAYER_STATUS << std::endl;
 	Info::removePlayerStatus(BLEEDING);
 	std::cout << Info::PLAYER_STATUS << std::endl;
+	*/
 
 }
 

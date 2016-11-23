@@ -48,7 +48,7 @@ void Player::CheckMissions()
 
 void Player::attack(int hand)
 {
-	hands[hand].attack(NPC(), position, lastdirection);
+	//hands[hand].attack(NPC(), position, lastdirection);
 }
 
 void Player::equip(Weapon weapon, int hand)

@@ -12,31 +12,40 @@ NPC::NPC()
 }
 
 
-NPC::~NPC()
-{
+NPC::~NPC(){
+	for (auto a : actionGraph.allNodes) {
+		for (auto b : a->data.actions) {
+			delete b;
+		}
+	}
+	actionGraph.destroy();
 }
 
 void NPC::update(float dt){
 
-	if (!actionQueue.empty()) {
-		NPCAction a = actionQueue.front();
-		a.act(dt);
-		if (a.finished) actionQueue.pop();
+	if (!currentActionList.isEmpty()) {
+		NPCAction * a = currentActionList.getAction();
+
+		a->target = this;
+		a->act(dt);
+		if (a->finished) {
+			currentActionList.advance();
+		}
+	}
+
+	else {
+		currentActionList.reset();
+		actionGraph.update();
+		currentActionList = actionGraph.getData();
 	}
 
 	triggered = false;
 
 }
 
-void NPC::tick()
-{
-	Entity::tick();
+void NPC::tick(){
 
-	/*
-	if (!actionQueue.empty() && actionQueue.front().finished) {
-		actionQueue.pop();
-	}
-	*/
+	Entity::tick();
 }
 
 
@@ -84,47 +93,44 @@ void NPC::act(){
 
 }
 
-void NPC::addAction(NPCAction a, bool doWait){
-	a.target = this;
-	actionQueue.push(a);
-	
-	/*
-	if (doWait == 0) {
-		NPCAction waiter(WAIT);
-		waiter.target = this;
-		actionQueue.push(waiter);
-	}
-	*/
+void NPC::addActionListToGraph(NPCActionList l, bool(*condition)()){
+
+	//Graph<NPCActionList>::Node * node = new Graph<NPCActionList>::Node(l, condition);
+	//actionGraph.addNode(node);
 
 }
 
+//void NPC::addNodeToGraph(Graph<NPCActionList>::Node n, bool(*condition)()){
+	//actionGraph.addNode(n);
+//}
 
-void NPCAction::act(float dt){
-	if (!finished) {
-		switch (type) {
-			case TALK: finished = target->print(message); break;
-			case WAIT: finished = target->idle(); break;
-			case MOVE: finished = target->moveTo(endPoint, dt); break;
-			case WAIT_FOR_TEXTBOX: finished = !UIManager::textbox.isVisible; break;
-			case DETECT_PLAYER: finished = target->detectPlayer(); break;
-		}
 
-	}
-	
-}
+
 
 Echo::Echo() : NPC(Vector2f(100, 100), Vector2f(32, 32), "Echo", 50)
 {
-	addAction(NPCAction(MOVE, Vector2f(0,0)));
-	addAction(NPCAction(TALK, "Welcome to the Town of Beginnings. Here, you can begin your adventure"));
-	addAction(NPCAction(TALK, "Follow me to the inn."));
-	addAction(NPCAction(WAIT_FOR_TEXTBOX));
-	addAction(NPCAction(MOVE, Vector2f(200, 50)));
-	addAction(NPCAction(DETECT_PLAYER));
-	addAction(NPCAction(TALK, "Here we are! why don't you step inside for a moment?"));
+
+	
+	NPCActionList list = NPCActionList();
+	list.addAction(new NPCAction(MOVE, Vector2f(0, 0)));
+	list.addAction(new NPCAction(TALK, "Hello World"));
+	list.addAction(new NPCAction(WAIT_FOR_TEXTBOX));
+	Graph::Node * node_helloworld = new Graph::Node(list, []() {return true; });
 
 
+	NPCActionList list2 = NPCActionList();
+	list2.addAction(new NPCAction(TALK, "Goodbye Hero"));
+	list2.addAction(new NPCAction(WAIT_FOR_TEXTBOX));
+	Graph::Node * node_farewell = new Graph::Node(list2, []() {return true; });
 
+	
+	actionGraph.connectNode(actionGraph.currentNode, node_helloworld);
+	actionGraph.connectNode(node_helloworld, node_farewell);
+	actionGraph.connectNode(node_farewell, node_helloworld);
 
-
+	actionGraph.addNode(node_helloworld);
+	actionGraph.addNode(node_farewell);
+	
 }
+
+

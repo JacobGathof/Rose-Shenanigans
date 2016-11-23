@@ -180,6 +180,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="NPCAction.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPCAction.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />

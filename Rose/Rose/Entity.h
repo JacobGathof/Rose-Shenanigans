@@ -6,7 +6,11 @@ enum Direction {
 	EAST,
 	WEST,
 	NORTH,
-	IDLE, 
+};
+
+enum State {
+	MOVING,
+	IDLE
 };
 
 class Entity :	public Object
@@ -14,6 +18,7 @@ class Entity :	public Object
 public:
 
 	float speed;
+	float currentSpeed;
 
 	virtual void move(Vector2f dir, float dt);
 	virtual void draw();
@@ -21,8 +26,10 @@ public:
 	virtual void tick();
 	virtual ObjectType getType() { return ENTITY; }
 
-	Direction direction = IDLE;
-	Direction lastdirection = SOUTH;
+	Direction direction = SOUTH;
+	State state = IDLE;
+	bool continueAnimation = true;
+	//Direction lastdirection = SOUTH;
 
 	float internalTime = 0;
 

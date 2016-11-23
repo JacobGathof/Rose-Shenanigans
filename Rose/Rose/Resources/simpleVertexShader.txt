@@ -24,7 +24,7 @@ void main(){
 		vertices.y*scale.y + pos.y - cameraPosition.y, 0.0 , 1.0);
 
 
-	texCoords_ = vec2(texCoords.x/cols + (1.0/cols) * mod(round(animTimer*4.0), cols) , texCoords.y/rows + (1.0/rows) * direction);
+	texCoords_ = vec2(texCoords.x/cols + (1.0/cols) * mod(round(animTimer*1.0), cols) , texCoords.y/rows + (1.0/rows) * direction);
 
 
 	if(direction == 8){

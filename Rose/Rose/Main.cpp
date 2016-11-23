@@ -37,8 +37,10 @@ int main() {
 	glEnable(GL_BLEND);
 	glClearColor(0, 0, 0, 1);
 
+
 	game.init();
 	Input::game = &game;
+
 
 	glfwSetTime(0);
 	float dt = 0;
