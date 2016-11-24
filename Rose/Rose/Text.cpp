@@ -41,7 +41,7 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 		str += string[i];
 
 		if (str == "/") {
-			yPointer -= 1.5f*Res::getCharacter("I")->height;
+			yPointer -= 1.25f*Res::getCharacter("I")->height;
 			xPointer = 0;
 			continue;
 		}
@@ -66,7 +66,7 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 		pos[vertexPointer++] = (xPointer + ch->xoffset) / textScaleFactor;
 		pos[vertexPointer++] = (yPointer + -ch->height - ch->yoffset) / textScaleFactor;
 
-		xPointer += 1.0f*ch->xadvance;
+		xPointer += 1.00f*ch->xadvance;
 
 
 		tex[texPointer++] = (ch->x) / textureScaleFactor;

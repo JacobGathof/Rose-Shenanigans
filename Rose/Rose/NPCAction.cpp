@@ -16,6 +16,18 @@ void NPCAction::act(float dt) {
 	}
 }
 
+NPCActionList::NPCActionList()
+{
+}
+
+NPCActionList::NPCActionList(NPCAction * arr[])
+{
+	int counter = 0;
+	while (arr[counter] != 0) {
+		addAction(arr[counter++]);
+	}
+}
+
 void NPCActionList::advance()
 {
 	counter++;

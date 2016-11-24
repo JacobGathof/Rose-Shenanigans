@@ -112,10 +112,13 @@ Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), "Echo", 50)
 {
 
 	
-	NPCActionList list = NPCActionList();
-	list.addAction(new NPCAction(WAIT));
-	list.addAction(new NPCAction(TALK, "Welcome to the Avantheim!"));
-	list.addAction(new NPCAction(WAIT_FOR_TEXTBOX));
+	NPCAction* arr[] = {
+		new NPCAction(WAIT), 
+		new NPCAction(TALK, "Welcome to Avantheim!"),
+		new NPCAction(WAIT_FOR_TEXTBOX),
+		0
+	};
+	NPCActionList list = NPCActionList(arr);
 	Graph::Node * node_1 = new Graph::Node(list, []() {return true; });
 
 

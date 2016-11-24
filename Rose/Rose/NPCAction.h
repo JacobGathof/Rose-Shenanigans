@@ -20,6 +20,8 @@ class NPCActionList {
 
 public:
 
+	NPCActionList();
+	NPCActionList(NPCAction* arr[]);
 	std::vector<NPCAction *> actions;
 	int counter = 0;
 	int max = 0;
