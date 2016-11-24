@@ -56,11 +56,12 @@ void Weapon::Reconfigure(int slot)
 Gem Weapon::RemoveGem(int slot)
 {
 	if (&slots.at(slot) == nullptr) {
-		return;
+		Gem gem;
+		return gem;
 	}
 	SubtractBuffs(slots.at(slot));
 	slots.at(slot).durability -= 10;
-	slots.erase(slots.begin + slot); // Check this for correct indexing
+	//slots.erase(slots.begin + slot); // Check this for correct indexing
 }
 
 void Weapon::SubtractBuffs(Gem gem)
