@@ -53,7 +53,11 @@ void Player::attack(int hand)
 
 void Player::equip(Weapon weapon, int hand)
 {
+	if (&hands[hand] != nullptr) {
+		DeBuff(hands[hand]);
+	}
 	hands[hand] = weapon;
+	ReBuff(hands[hand]);
 }
 
 void Player::addToInventory(Object item)
@@ -122,5 +126,30 @@ void Player::tick(){
 	Entity::tick();
 	if(iFrames > 0)
 		iFrames--;
+}
+
+void Player::addGem(int hand, Gem gem, int index)
+{
+	DeBuff(hands[hand]);
+	hands[hand].addGem(index, gem);
+	ReBuff(hands[hand]);
+}
+
+void Player::removeGem(int hand, int index)
+{
+	DeBuff(hands[hand]);
+	hands[hand].RemoveGem(index);
+}
+
+void Player::ReBuff(Weapon weapon)
+{
+	maxhp += weapon.attributes[ENVIGORATE];
+	maxmana += weapon.attributes[ENLIGHTENED];
+}
+
+void Player::DeBuff(Weapon weapon)
+{
+	maxhp -= weapon.attributes[ENVIGORATE];
+	maxmana -= weapon.attributes[ENLIGHTENED];
 }
 

@@ -20,6 +20,9 @@ Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std
 	critdamage = dmg;
 	critpercent = percent;
 	damage = dmg;
+	for (int i = 0; i < 9; i++) {
+		attributes[i] = 0;
+	}
 }
 
 //std::vector<int> Weapon::GetBuffs()
@@ -34,6 +37,43 @@ Gem Weapon::addGem(int index, Gem gem)
 		return slots.at(index);
 	}
 	slots.at(index) = gem;
+	Reconfigure(index);
+}
+
+void Weapon::Reconfigure(int slot)
+{
+	attributes[(int)std::log2(FIRE)] += slots.at(slot).attributes[(int)std::log2(FIRE)];
+	attributes[(int)std::log2(POISON)] += slots.at(slot).attributes[(int)std::log2(POISON)];
+	attributes[(int)std::log2(SLOWED)] += slots.at(slot).attributes[(int)std::log2(SLOWED)];
+	attributes[(int)std::log2(FROZEN)] += slots.at(slot).attributes[(int)std::log2(FROZEN)];
+	attributes[(int)std::log2(CURSED)] += slots.at(slot).attributes[(int)std::log2(CURSED)];
+	attributes[(int)std::log2(BLEEDING)] += slots.at(slot).attributes[(int)std::log2(BLEEDING)];
+	attributes[(int)std::log2(STRENGTHEN)] += slots.at(slot).attributes[(int)std::log2(STRENGTHEN)];
+	attributes[(int)std::log2(ENVIGORATE)] += slots.at(slot).attributes[(int)std::log2(ENVIGORATE)];
+	attributes[(int)std::log2(ENLIGHTENED)] += slots.at(slot).attributes[(int)std::log2(ENLIGHTENED)];
+}
+
+Gem Weapon::RemoveGem(int slot)
+{
+	if (&slots.at(slot) == nullptr) {
+		return;
+	}
+	SubtractBuffs(slots.at(slot));
+	slots.at(slot).durability -= 10;
+	slots.erase(slots.begin + slot); // Check this for correct indexing
+}
+
+void Weapon::SubtractBuffs(Gem gem)
+{
+	attributes[(int)std::log2(FIRE)] -= gem.attributes[(int)std::log2(FIRE)];
+	attributes[(int)std::log2(POISON)] -= gem.attributes[(int)std::log2(POISON)];
+	attributes[(int)std::log2(SLOWED)] -= gem.attributes[(int)std::log2(SLOWED)];
+	attributes[(int)std::log2(FROZEN)] -= gem.attributes[(int)std::log2(FROZEN)];
+	attributes[(int)std::log2(CURSED)] -= gem.attributes[(int)std::log2(CURSED)];
+	attributes[(int)std::log2(BLEEDING)] -= gem.attributes[(int)std::log2(BLEEDING)];
+	attributes[(int)std::log2(STRENGTHEN)] -= gem.attributes[(int)std::log2(STRENGTHEN)];
+	attributes[(int)std::log2(ENVIGORATE)] -= gem.attributes[(int)std::log2(ENVIGORATE)];
+	attributes[(int)std::log2(ENLIGHTENED)] -= gem.attributes[(int)std::log2(ENLIGHTENED)];
 }
 
 bool Weapon::attack(NPC obj, Vector2f pos, int dir)

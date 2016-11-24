@@ -43,6 +43,10 @@ public:
 	virtual void draw();
 	virtual void tick();
 
+	void addGem(int hand, Gem gem, int index);
+	void removeGem(int hand, int index);
+	void ReBuff(Weapon weapon);
+	void DeBuff(Weapon weapon);
 	void talkTo(NPC npc);
 	void addMission(Mission mission);
 	void CheckMissions();
