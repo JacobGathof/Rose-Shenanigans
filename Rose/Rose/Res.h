@@ -67,23 +67,37 @@ public:
 };
 
 
-
+/*
+	ShaderProgram
+	A class to contain the information about a single shader
+	Used to compile shaders and load uniforms into them
+*/
 class ShaderProgram
 {
 public:
+	/*Unique Shader ID assign by GL*/
 	int shader_program;
 
 	ShaderProgram();
 	~ShaderProgram();
 
+	/*Pass in Shader source files to compile. Vertex and Fragment files ar required, Geometry is optional*/
 	void compileShader(char* file_vertex, char* file_geo, char* file_fragment);
+
+	/*Bind as current Shader in use*/
 	void use();
 
+	/*Load uniform Integer at location*/
 	void loadInteger(char* location, int value);
+	/*Load uniform Float at location*/
 	void loadFloat(char* location, float value);
+	/*Load uniform Vector2f at location*/
 	void loadVector2f(char* location, Vector2f v);
+	/*Load uniform 4x4 float matrix at location*/
 	void loadMatrix(char* location, float * m);
+	/*Load uniform Color at location*/
 	void loadColor(char* location, Color c);
+	/*Load uniform Sampler at location (Interchangable with loadInteger)*/
 	void loadSampler(char* location, int i);
 
 private:
@@ -95,11 +109,18 @@ private:
 };
 
 
-
+/*
+	ModelLoader
+	A static class which facilitates creating a Model object.
+	Contains functions for compiling vertices and texture coordinates into data that GL can read
+*/
 class ModelLoader{
 public:
 
+	/*Load a basic Model, with only vertices*/
 	static Model* loadModel(float* vertices, int length);
+
+	/*Load a Model, with vertices and texture coordinates*/
 	static Model* loadModel(float* vertices, float* texCoords, int length);
 
 	ModelLoader();
@@ -112,14 +133,28 @@ private:
 
 
 
+
+/*
+	Model
+	Represents a collection of vertices and texture coordinates
+	When bound, any calls to GLDrawArrays(...) will render an instance of this Model
+*/
 class Model{
 public:
-	GLuint VAO;
+
+	/*Number of vertices in the model*/
 	int numberOfVertices;
+
+	/*Bind this modelto be current*/
 	void bind();
 
 	/*Construct a Model Object with a VAO and the Number of Vertices to render*/
 	Model(int vao, int num);
 	Model();
 	~Model();
+
+private:
+	/*Unique GL identifier for this Model*/
+	GLuint VAO;
+
 };
