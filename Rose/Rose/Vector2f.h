@@ -56,6 +56,9 @@ public:
 	/*Random distribution operator -> increase 1st by a random fraction of the 2nd*/
 	friend Vector2f operator%(const Vector2f& v, const Vector2f& v2);
 
+	/*Random distribution operator -> increase 1st by a random fraction of the 2nd -- Negative support*/
+	friend Vector2f operator%=(const Vector2f& v, const Vector2f& v2);
+
 	/*Equals operator -> Two Vectors are equal if their rounded values are equal*/
 	friend bool operator==(const Vector2f& v, const Vector2f& v2);
 

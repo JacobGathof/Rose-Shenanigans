@@ -19,6 +19,8 @@ public:
 	float particleScale = 1.0f;
 	float system_size;
 
+	float temp = 0;
+
 	struct Particle {
 		Vector2f position;
 		Vector2f velocity;

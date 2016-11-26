@@ -13,6 +13,7 @@ void WorldManager::init() {
 
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
+	world->AddSystem(new ParticleSystem(Vector2f(-64, 64), Color(0, 0, 0), false, 32.0f, 512.00f, 100, true, false));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 0; i++) {

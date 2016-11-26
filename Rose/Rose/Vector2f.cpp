@@ -94,6 +94,14 @@ Vector2f operator%(const Vector2f& v, const Vector2f& v2) {
 	return Vector2f(v.x + random_x*v2.x, v.y + random_y*v2.y);
 }
 
+Vector2f operator%=(const Vector2f& v, const Vector2f& v2) {
+
+	float random_x = 2*((float)rand() / RAND_MAX)-1;
+	float random_y = 2*((float)rand() / RAND_MAX)-1;
+
+	return Vector2f(v.x + random_x*v2.x, v.y + random_y*v2.y);
+}
+
 bool operator==(const Vector2f& v, const Vector2f& v2) {
 	return (int)v.x == (int)v2.x && (int)v.y == (int)v2.y;
 }
