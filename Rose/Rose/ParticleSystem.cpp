@@ -54,6 +54,13 @@ void ParticleSystem::generateVAO(){
 
 void ParticleSystem::update(float dt)
 {
+
+	//dt /= 4;
+
+	temp += 8 * dt;
+	if (temp >= 360)
+		temp = 0;
+
 	if ((Camera::position.x - SCALEFACTOR - system_size < position.x) && (Camera::position.x + SCALEFACTOR + system_size > position.x) &&
 		(Camera::position.y - SCALEFACTOR - system_size < position.y) && (Camera::position.y + SCALEFACTOR + system_size > position.y)) {
 		active = true;
@@ -80,7 +87,7 @@ void ParticleSystem::update(float dt)
 		}
 
 		particle_count = 0;
-		float Constant = sqrt(particle_life);
+		//float Constant = sqrt(particle_life);
 
 		for (int i = 0; i < max_particles; ++i) {
 
@@ -90,6 +97,7 @@ void ParticleSystem::update(float dt)
 
 			++particle_count;
 
+			/*
 			if (spin && !emit) {
 				Vector2f vel = (position - particles[i].position);
 				particles[i].velocity = vel * particle_speed;
@@ -103,6 +111,9 @@ void ParticleSystem::update(float dt)
 			else {
 
 			}
+			*/
+			Vector2f randomVelocity = particles[i].velocity %= Vector2f(8, 8);
+			particles[i].velocity = randomVelocity.normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 			particles[i].position += dt* particles[i].velocity;
 			particles[i].life -= dt;
 
@@ -141,16 +152,17 @@ int ParticleSystem::getLastUnused()
 
 void ParticleSystem::setNewParticle(int index)
 {
-	if (emit) {
+	//if (emit) {
 		particles[index].life = particle_life;
 		particles[index].velocity = Vector2f((
 			((float)rand() / RAND_MAX) - .5f),
 			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 
-		particles[index].color = color % colorDev;
-		particles[index].position = position % positionDev;
-	}
-
+		//particles[index].color = color % colorDev;
+		particles[index].color = (ColorHSV(0, 1.0, 1.0) % 60);
+		particles[index].position = position %= Vector2f(128, 128);
+	//}
+	/*
 	else {
 		particles[index].life = particle_life;
 		Vector2f vel = Vector2f((
@@ -162,6 +174,7 @@ void ParticleSystem::setNewParticle(int index)
 		particles[index].color = color % colorDev;
 		particles[index].position = position + particle_life*vel % positionDev;
 	}
+	*/
 
 }
 

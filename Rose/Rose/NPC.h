@@ -44,7 +44,6 @@ public:
 
 class Echo : public NPC
 {
-
 public:
 	Echo();
 
