@@ -18,20 +18,20 @@ void Input::processInput(float dt)
 
 	if (!UIManager::textbox.isVisible) {
 		Vector2f movement;
-		if (keys[GLFW_KEY_W]) {
+		if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP]) {
 			movement = movement + Vector2f(0, 1);
 		}
-		if (keys[GLFW_KEY_S]) {
+		if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN]) {
 			movement = movement + Vector2f(0, -1);
 		}
-		if (keys[GLFW_KEY_A]) {
+		if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT]) {
 			movement = movement + Vector2f(-1, 0);
 		}
-		if (keys[GLFW_KEY_D]) {
+		if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT]) {
 			movement = movement + Vector2f(1, 0);
 		}
 
-		if (keys[GLFW_KEY_1]) {
+		if (keys[GLFW_KEY_1] || keys[GLFW_KEY_DOWN]) {
 			game->player.attack(0);
 		}
 		else {

@@ -32,7 +32,7 @@ void Game::init()
 
 	Res::player = &player;
 	Camera::setFocus(&player);
-	Camera::setSpeed(1.0f);
+	Camera::setSpeed(2.0f);
 
 	UIManager::statbox.player = &player;
 	WorldManager::addToAllWorlds(&player);
