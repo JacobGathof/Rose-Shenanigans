@@ -10,6 +10,7 @@ int Input::tilePointer;
 bool Input::isUsingJoystick = false;
 int Input::joystick = 0;
 int Input::lastFive[];
+bool Input::testVar = false;
 
 void Input::processInput(float dt)
 {
@@ -65,6 +66,12 @@ void Input::processInput(float dt)
 	}
 	if (keys[GLFW_KEY_N]) {
 		Screen::fadeWhite();
+	}
+
+
+	if (keys[GLFW_KEY_B]) {
+		keys[GLFW_KEY_B] = false;
+		testVar = !testVar;
 	}
 
 

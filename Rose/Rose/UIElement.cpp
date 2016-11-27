@@ -52,7 +52,7 @@ void Statbox::update() {
 	if (player->statsChanged) {
 		text->setText(
 			"Level : " + std::to_string(player->level) +
-			"/Name : " + "Eric" +
+			"/Name : " + "Era" +
 			"/EXP : " + std::to_string(player->exp) +
 			"/Age : " + "???" +
 			"/HP : " + std::to_string(player->hp));

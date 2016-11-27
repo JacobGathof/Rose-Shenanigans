@@ -13,7 +13,7 @@ void WorldManager::init() {
 
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
-	world->AddSystem(new ParticleSystem(Vector2f(-64, 64), Color(0, 0, 0), false, 32.0f, 512.00f, 100, true, false));
+	world->AddSystem(new ParticleSystem(Vector2f(0, 0), Color(0, .1, 1), 64.0f, 512.0f, 100, EMIT));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 0; i++) {
@@ -49,8 +49,8 @@ void WorldManager::init() {
 
 
 	World * world3 = new World("Library of Aventheim");
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 64.0f, 128.00f, 2000, true, false));
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 32.0f, 96.00f, 3000, true, false));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), 64.0f, 128.00f, 2000, SPIN | RANDOM_COLOR));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), 32.0f, 96.00f, 3000, SPIN | RANDOM_COLOR));
 	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("Library of Aventheim"));
 

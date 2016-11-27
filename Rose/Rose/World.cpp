@@ -104,7 +104,7 @@ void World::draw() {
 	//}
 
 	for (auto s : systems) {
-		if (s->active) {
+		if (s->isActive()) {
 			s->draw();
 		}
 	}

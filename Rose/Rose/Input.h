@@ -14,6 +14,8 @@ public:
 	static bool isUsingJoystick;
 	static int joystick;
 
+	static bool testVar;
+
 	static void processInput(float dt);
 	static void turnKeyOn(int key);
 	static NPC* findClosestNPC(Vector2f position);

@@ -1,6 +1,7 @@
 #include "ParticleSystem.h"
 #include "Res.h"
 #include <iostream>
+#include "Input.h"
 
 void ParticleSystem::init(){
 
@@ -55,15 +56,9 @@ void ParticleSystem::generateVAO(){
 void ParticleSystem::update(float dt)
 {
 
-	//dt /= 4;
-
-	temp += 8 * dt;
-	if (temp >= 360)
-		temp = 0;
-
 	if ((Camera::position.x - SCALEFACTOR - system_size < position.x) && (Camera::position.x + SCALEFACTOR + system_size > position.x) &&
 		(Camera::position.y - SCALEFACTOR - system_size < position.y) && (Camera::position.y + SCALEFACTOR + system_size > position.y)) {
-		active = true;
+		options |= ACTIVE;
 
 		float newParticlesUnrounded = (max_particles*dt / (particle_life));
 		int new_particles = (int)newParticlesUnrounded;
@@ -87,7 +82,7 @@ void ParticleSystem::update(float dt)
 		}
 
 		particle_count = 0;
-		//float Constant = sqrt(particle_life);
+		float Constant = sqrt(particle_life);
 
 		for (int i = 0; i < max_particles; ++i) {
 
@@ -95,25 +90,28 @@ void ParticleSystem::update(float dt)
 				continue;
 			}
 
-			++particle_count;
+			particle_count++;
 
-			/*
-			if (spin && !emit) {
+			
+			if (isSpinning() && !isEmitting()) {
 				Vector2f vel = (position - particles[i].position);
 				particles[i].velocity = vel * particle_speed;
 				//TODO: work on calculation optimization
 				//looks like additional optimization will have to cut down on vel.magnitude()
 				particles[i].velocity = ((particles[i].velocity) + (Vector2f(vel.y, -vel.x) * particle_speed * Constant)) / vel.magnitude();
 			}
-			else if (spin && emit) {
+			else if (isSpinning() && isEmitting()) {
 				particles[i].velocity += 1 * dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
 			}
 			else {
 
 			}
-			*/
-			Vector2f randomVelocity = particles[i].velocity %= Vector2f(8, 8);
-			particles[i].velocity = randomVelocity.normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
+			
+			if (isRandomVel()) {
+				Vector2f randomVelocity = particles[i].velocity %= Vector2f(8, 8);
+				particles[i].velocity = randomVelocity.normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
+			}
+
 			particles[i].position += dt* particles[i].velocity;
 			particles[i].life -= dt;
 
@@ -122,7 +120,7 @@ void ParticleSystem::update(float dt)
 		updateBuffers();
 	}
 	else {
-		active = false;
+		options &= !ACTIVE;
 	}
 	//if (active) {
 	//	
@@ -152,44 +150,72 @@ int ParticleSystem::getLastUnused()
 
 void ParticleSystem::setNewParticle(int index)
 {
-	//if (emit) {
-		particles[index].life = particle_life;
+
+	particles[index].life = particle_life;
+	particles[index].color = color;
+
+
+	if (isEmitting()) {
 		particles[index].velocity = Vector2f((
 			((float)rand() / RAND_MAX) - .5f),
 			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 
-		//particles[index].color = color % colorDev;
-		particles[index].color = (ColorHSV(0, 1.0, 1.0) % 60);
-		particles[index].position = position %= Vector2f(128, 128);
-	//}
-	/*
+		
+		particles[index].position = position;
+	}
+	
 	else {
-		particles[index].life = particle_life;
 		Vector2f vel = Vector2f((
 			((float)rand() / RAND_MAX) - .5f),
 			(((float)rand() / RAND_MAX) - .5f)).normalize() * particle_speed * ((float)rand() / RAND_MAX / 2 + .5);
 
 		particles[index].velocity = -1 * vel;
 
-		particles[index].color = color % colorDev;
+		//particles[index].color = (ColorHSV(0, 1.0, 1.0) % 60);
 		particles[index].position = position + particle_life*vel % positionDev;
 	}
-	*/
+
+	if (isRandomVel()) {
+		particles[index].position = position %= Vector2f(128, 128);
+	}
+
+	if (isRandomColor()) {
+		particles[index].color = color % colorDev;
+	}
+
+	if (isColorHSV()) {
+		particles[index].color = ((ColorHSV(color.r, color.g, color.b) % 60));
+	}
+	
+	
 
 }
 
 void ParticleSystem::draw() {
 
+	if (Input::testVar) {
+		glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	}
 
 	Res::getShader(particleShader);
-	//Res::getTexture("Fire")->bind();
+	Res::getTexture("Light")->bind();
 
 	glBindVertexArray(this->VAO);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, particle_count);
 
-	glDrawArraysInstanced(	renderAsPoints ? GL_POINTS : GL_TRIANGLES, 0, 
-							renderAsPoints ? 1 : 6, particle_count);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
 
 }
+
+bool ParticleSystem::isActive(){		return (options & ACTIVE) >> 2;}
+bool ParticleSystem::isEmitting(){		return (options & EMIT) >> 1;}
+bool ParticleSystem::isSpinning(){		return (options & SPIN) >> 0;}
+bool ParticleSystem::isRandomVel(){		return (options & RANDOM_VELOCITY) >> 3;}
+bool ParticleSystem::isRandomColor(){	return (options & RANDOM_COLOR) >> 4;}
+bool ParticleSystem::isColorHSV(){		return (options & COLOR_HSV) >> 5;}
+
 
 void ParticleSystem::updateBuffers() {
 
@@ -225,34 +251,27 @@ void ParticleSystem::updateBuffers() {
 
 ParticleSystem::ParticleSystem()
 {
-
 	particle_count = 0;
 	last_unused_particle = 0;
-	active = true;
-	spin = false;
-	emit = emit;
 
-	max_particles = 500;
-	system_size = 16.0f;
-	particle_speed = 32.0f;
+	max_particles = 16;
+	system_size = 1.0f;
+	particle_speed = 1.0f;
 	particle_life = system_size/particle_speed;
-	color = Color(1,0,0);
+	color = Color(0,0,0);
 	position = Vector2f(0, 0);
 }
 
-ParticleSystem::ParticleSystem(Vector2f pos, Color col, bool renderAsP, float speed, float size, int max, bool spin, bool emit)
+ParticleSystem::ParticleSystem(Vector2f pos, Color col,float speed, float size, int max, int op)
 {
-	renderAsPoints = renderAsP;
+	options = op | ACTIVE;
+
 	particle_count = 0;
 	last_unused_particle = 0;
-	active = true;
-	this->spin = spin;
-	this->emit = emit;
 
 	position = Vector2f(pos);
 	positionDev = Vector2f(0,0);
 	color = Color(col.r, col.g, col.b);
-	colorDev = Color(0,0,0);
 	system_size = size;
 	particle_speed = speed;
 	particle_life = size/speed;
