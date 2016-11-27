@@ -543,7 +543,7 @@ void ShaderProgram::loadMatrix(char * location, float * m) {
 	glUniformMatrix4fv(glGetUniformLocation(this->shader_program, location), 1, true, m);
 }
 
-void ShaderProgram::loadColor(char * location, Color c) {
+void ShaderProgram::loadColor(char * location, ColorRGB c) {
 	glUniform3f(glGetUniformLocation(this->shader_program, location), c.r, c.g, c.b);
 }
 

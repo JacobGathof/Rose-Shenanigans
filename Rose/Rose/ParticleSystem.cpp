@@ -184,7 +184,7 @@ void ParticleSystem::setNewParticle(int index)
 	}
 
 	if (isColorHSV()) {
-		particles[index].color = ((ColorHSV(color.r, color.g, color.b) % 60));
+		particles[index].color = ((ColorHSV(color.x, color.y, color.z) % 60));
 	}
 	
 	
@@ -258,7 +258,7 @@ ParticleSystem::ParticleSystem()
 	system_size = 1.0f;
 	particle_speed = 1.0f;
 	particle_life = system_size/particle_speed;
-	color = Color(0,0,0);
+	color = ColorRGB(0,0,0);
 	position = Vector2f(0, 0);
 }
 
@@ -271,7 +271,7 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col,float speed, float size, 
 
 	position = Vector2f(pos);
 	positionDev = Vector2f(0,0);
-	color = Color(col.r, col.g, col.b);
+	color = Color(col.x, col.y, col.z);
 	system_size = size;
 	particle_speed = speed;
 	particle_life = size/speed;

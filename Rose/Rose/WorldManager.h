@@ -10,10 +10,10 @@
 class Light {
 public:
 	Vector2f position;
-	Color color;
+	ColorRGB color;
 	float intensity;
 
-	Light(Vector2f pos, Color color, float intensity) : position(pos), color(color), intensity(intensity) {}
+	Light(Vector2f pos, ColorRGB color, float intensity) : position(pos), color(color), intensity(intensity) {}
 };
 
 

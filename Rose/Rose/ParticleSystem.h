@@ -31,7 +31,7 @@ public:
 	struct Particle {
 		Vector2f position;
 		Vector2f velocity;
-		Color color;
+		ColorRGB color;
 		float life;
 	};
 
