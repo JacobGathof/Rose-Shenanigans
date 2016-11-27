@@ -26,6 +26,15 @@ Color operator+(const Color& c, const Color& c2) {
 	return Color(c.x + c2.x, c.y + c2.y, c.z + c2.z);
 }
 
+Color operator%(const Color& c, const Color& c2) {
+
+	float random_r = ((float)rand() / RAND_MAX);
+	float random_g = ((float)rand() / RAND_MAX);
+	float random_b = ((float)rand() / RAND_MAX);
+
+	return Color(c.x + random_r*c2.x, c.y + random_g*c2.y, c.z + random_b*c2.z);
+}
+
 
 
 

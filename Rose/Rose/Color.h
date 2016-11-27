@@ -13,6 +13,7 @@ public:
 	Color(float x, float y, float z);
 
 	friend Color operator+(const Color& c, const Color& c2);
+	friend Color operator%(const Color& c, const Color& c2);
 
 	operator ColorRGB();
 	operator ColorHSV();
