@@ -64,12 +64,12 @@ bool NPC::moveTo(Vector2f endPoint, float dt)
 {
 
 	if (abs(position.x - endPoint.x) > 1.0f) {
-		move(Vector2f(1 * (position.x - endPoint.x < 0.0 ? 1 : -1), 0), dt);
+		move(Vector2f(1.0f * (position.x - endPoint.x < 0.0 ? 1 : -1), 0), dt);
 		return false;
 	}
 
 	else if(abs(position.y - endPoint.y) > 1.0f){
-		move(Vector2f(0, 1 * (position.y - endPoint.y < 0.0 ? 1 : -1)), dt);
+		move(Vector2f(0, 1.0f * (position.y - endPoint.y < 0.0 ? 1 : -1)), dt);
 		return false;
 	}
 

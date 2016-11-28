@@ -8,11 +8,15 @@ uniform sampler2D lights;
 uniform float black;
 uniform float white;
 
-const vec4 ambient = vec4(.1,.1,.1,0);
+const vec4 ambient = vec4(.1f,.1f,.1f,0);
 
 void main(){
 
-	vec4 basicColor = ((texture(lights, texCoords_)+ambient) * texture(world, texCoords_) * 4);
+
+	vec4 lightColor = (texture(lights, texCoords_)+ambient);
+	vec4 worldColor = texture(world, texCoords_);
+
+	vec4 basicColor = lightColor*worldColor*4;
 
 	basicColor.x = min(1, basicColor.x);
 	basicColor.y = min(1, basicColor.y);

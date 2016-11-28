@@ -116,7 +116,7 @@ Vector2f::Vector2f(){
 	y = 0;
 }
 
-Vector2f::Vector2f(float x, float y){
+Vector2f::Vector2f(float x, float y) {
 	this->x = x;
 	this->y = y;
 }

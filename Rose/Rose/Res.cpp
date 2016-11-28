@@ -122,7 +122,7 @@ void Res::initFonts(){
 }
 
 void Res::initProjections(){
-	float projMat[] = { 1.0 / SCALEFACTOR, 0, 0, 0,		0, 1.0 / SCALEFACTOR, 0, 0,		0, 0, 2, -1,	0, 0, 0, 1 };
+	float projMat[] = { 1.0f / SCALEFACTOR, 0, 0, 0,		0, 1.0f / SCALEFACTOR, 0, 0,		0, 0, 2.0f, -1.0f,		0, 0, 0, 1.0f };
 	Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
 	Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
 	Res::getShader(staticShader)->loadMatrix("projectionMatrix", projMat);
@@ -277,7 +277,7 @@ void Res::loadFBO(std::string fbo_name, std::string tex_name){
 	*/
 
 
-	if (!glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
+	if (!(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE))
 		std::cout << "Framebuffer failed";
 
 
@@ -336,7 +336,7 @@ void Res::resizeWindow(int width, int height) {
 
 	if (0) {
 		// keeps sizes the same when changing window size: make window bigger, people stay same size 
-		float projMat[] = { 1.0 / (SCALEFACTOR*size / 800.0), 0, 0, 0,			0, 1.0 / (SCALEFACTOR*size / 800.0), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
+		float projMat[] = { 1.0f / (SCALEFACTOR*size / 512.0f), 0, 0, 0,			0, 1.0f / (SCALEFACTOR*size / 512.0f), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
 
 		Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
 		Res::getShader(particleShader)->loadMatrix("projectionMatrix", projMat);
@@ -515,7 +515,7 @@ const char* ShaderProgram::getShaderSource(char * filename)
 	int size;
 
 	file.seekg(0, file.end);
-	size = file.tellg();
+	size = (int)file.tellg();
 	file.seekg(0, file.beg);
 
 	buffer = new char[size + 1];
