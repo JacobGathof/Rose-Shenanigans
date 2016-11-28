@@ -8,15 +8,68 @@ uniform sampler2D lights;
 uniform float black;
 uniform float white;
 
-const vec4 ambient = vec4(.1,.1,.1,0);
+const vec4 ambient = vec4(.1f,.1f,.1f,0);
+const float offset = 1/256.0;
+
 
 void main(){
 
-	vec4 basicColor = ((texture(lights, texCoords_)+ambient) * texture(world, texCoords_) * 4);
+	/*
+	vec2 offsets[9] = {
+		vec2(-offset,offset),
+		vec2(0,offset),
+		vec2(offset,offset),
+		vec2(-offset,0),
+		vec2(0,0),
+		vec2(offset,0),
+		vec2(-offset,-offset),
+		vec2(0,-offset),
+		vec2(offset,-offset),
+	};
+
+	float kernel_[9] = {
+		1.0/9,1.0/9,1.0/9,
+		1.0/9,1.0/9,1.0/9,
+		1.0/9,1.0/9,1.0/9,	
+	};
+
+	float kernel[9] = {
+		1,0,1,
+		0,-4,0,
+		1,0,1,	
+	};
+
+	vec4 kernelColor = vec4(0,0,0,0);
+
+	for(int i = 0; i < 9; i++){
+		vec2 currTex = texCoords_+offsets[i];
+
+		vec4 lightColor = (texture(lights, currTex)+ambient);
+		vec4 worldColor = texture(world, currTex);
+
+		vec4 basicColor = lightColor*worldColor*4;
+
+		basicColor.x = min(1, basicColor.x);
+		basicColor.y = min(1, basicColor.y);
+		basicColor.z = min(1, basicColor.z);
+
+		kernelColor += basicColor*kernel[i];
+
+
+	}
+	gl_FragColor = vec4(kernelColor.xyz, 1.0);
+	*/
+
+
+	vec4 lightColor = (texture(lights, texCoords_)+ambient);
+	vec4 worldColor = texture(world, texCoords_);
+
+	vec4 basicColor = lightColor*worldColor*4;
 
 	basicColor.x = min(1, basicColor.x);
 	basicColor.y = min(1, basicColor.y);
 	basicColor.z = min(1, basicColor.z);
+
 
 	vec4 totalColor = basicColor + (vec4(-1,-1,-1,0)*black) + vec4(1,1,1,0)*white;
 

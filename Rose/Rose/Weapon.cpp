@@ -13,7 +13,7 @@ Weapon::~Weapon()
 }
 
 Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std::string texName) 
-	: Entity(pos + Vector2f(15,20), Vector2f(20, 20), texName, 0)
+	: Entity(pos, Vector2f(120, 120), texName, 0)
 {
 	NumSlots = slotNum;
 	texture = texName;
@@ -61,7 +61,7 @@ Gem Weapon::RemoveGem(int slot)
 	}
 	SubtractBuffs(slots.at(slot));
 	slots.at(slot).durability -= 10;
-	//slots.erase(slots.begin + slot); // Check this for correct indexing
+	slots.erase(slots.begin() + slot); // Check this for correct indexing
 }
 
 void Weapon::SubtractBuffs(Gem gem)

@@ -104,7 +104,7 @@ void World::draw() {
 	//}
 
 	for (auto s : systems) {
-		if (s->active) {
+		if (s->isActive()) {
 			s->draw();
 		}
 	}
@@ -137,6 +137,8 @@ void World::checkEnemyCollisions(Player * player){
 		if (o->getType() == SLIME) {
 			if (o->collide(*player)) {
 				player->takeDamage();
+				if (player->attributes[0] == 0)
+					player->addStatus(FIRE, 1);
 				//o->destroy();
 			}
 		}

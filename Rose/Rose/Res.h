@@ -4,7 +4,8 @@
 #include "Color.h"
 #include "Text.h"
 
-#define SCALEFACTOR 128.0
+#define SCALEFACTOR 64.0f
+
 
 enum ShaderType {
 	entityShader,
@@ -96,7 +97,7 @@ public:
 	/*Load uniform 4x4 float matrix at location*/
 	void loadMatrix(char* location, float * m);
 	/*Load uniform Color at location*/
-	void loadColor(char* location, Color c);
+	void loadColor(char* location, ColorRGB c);
 	/*Load uniform Sampler at location (Interchangable with loadInteger)*/
 	void loadSampler(char* location, int i);
 

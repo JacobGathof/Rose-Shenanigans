@@ -4,11 +4,18 @@
 
 bool Object::collide(Object obj)
 {
-	if (obj.hitbox.position.x <= hitbox.position.x + hitbox.scale.x && obj.hitbox.position.x + obj.hitbox.scale.x >= hitbox.position.x) {
-		if (obj.hitbox.position.y <= hitbox.position.y + hitbox.scale.y && obj.hitbox.position.y + obj.hitbox.scale.y >= hitbox.position.y) {
+	Vector2f ohp = obj.hitbox.position;
+	Vector2f ohs = obj.hitbox.scale;
+
+	Vector2f hp = hitbox.position;
+	Vector2f hs = hitbox.scale;
+
+	if (ohp.x+obj.position.x <= hp.x+position.x + hs.x && ohp.x+obj.position.x + ohs.x >= hp.x+position.x) {
+		if (ohp.y+obj.position.y <= hp.y+position.y + hs.y && ohp.y+obj.position.y + ohs.y >= hp.y+position.y) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -23,6 +30,7 @@ void Object::tick(){
 }
 
 void Object::update(float dt){
+
 }
 
 bool Object::compare(Object * o, Object * o2){

@@ -5,6 +5,7 @@
 #include "Mission.h"
 #include "Text.h"
 #include "Skill.h"
+#include "Inventory.h"
 
 enum TypesOfHands {
 	right,
@@ -22,6 +23,7 @@ public:
 
 	int iFrames = 0;
 
+	bool display;
 	int posInVec;
 	int maxhp;
 	int hp;
@@ -31,10 +33,13 @@ public:
 	int exp;
 	int maxXp;
 	int level;
+	int bitmask;
 	Skill empty;
 	Skill skills[8];
 	Weapon hands[2];
-	std::vector<Object> inventory;
+	int attributes[9];
+	int effectCounter;
+	Inventory inventory;
 	std::vector<Mission> missions;
 	Text stats;
 	bool statsChanged = false;
@@ -43,6 +48,8 @@ public:
 	virtual void draw();
 	virtual void tick();
 
+	void statusEffect();
+	void addStatus(int effect, int effectAmount);
 	void addGem(int hand, Gem gem, int index);
 	void removeGem(int hand, int index);
 	void ReBuff(Weapon weapon);
@@ -53,6 +60,8 @@ public:
 	void attack(int hand);
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
+	void addToInventory(Weapon weapon);
+	int DisplayInventory(bool change);
 	void LevelUp();
 	void takeDamage();
 	void addSkill(int index, Skill skill);

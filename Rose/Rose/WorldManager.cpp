@@ -7,16 +7,16 @@
 
 World * WorldManager::currentWorld;
 std::map<std::string, World*> WorldManager::worlds;
-
+bool WorldManager::freeze;
 
 void WorldManager::init() {
-
+	freeze = false;
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
-	world->AddSystem(new ParticleSystem(Vector2f(-64, 64), Color(0, 0, 0), false, 32.0f, 512.00f, 100, true, false));
+	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 50, RANDOM_VELOCITY | COLOR_HSV));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 0; i++) {
+	for (int i = 0; i < 3; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
 		Entity * slime;
@@ -35,7 +35,7 @@ void WorldManager::init() {
 	for (int i = 0; i < 1; i++) {
 		for (int j = 0; j < 1; j++) {
 			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
-			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), Color(1,.5,0), 64.0f));
+			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), ColorRGB(1,.5,0), 64.0f));
 		}
 	}
 
@@ -44,14 +44,14 @@ void WorldManager::init() {
 
 	World * world2 = new World("Carpenter House");
 	//world2->AddEntity(new Entity(Vector2f(0, 10), Vector2f(10, 10), "Edwin", 20));
-	world2->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
+	world2->AddLight(new Light(Vector2f(10, 0), ColorRGB(1, 0, 1), 16.0f));
 	world2->addTerrain(new Terrain("Carpenter House"));
 
 
 	World * world3 = new World("Library of Aventheim");
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 64.0f, 128.00f, 2000, true, false));
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), Color(0, 0, 0), false, 32.0f, 96.00f, 3000, true, false));
-	world3->AddLight(new Light(Vector2f(10, 0), Color(1, 0, 1), 16.0f));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 64.0f, 128.00f, 2000, SPIN | RANDOM_COLOR));
+	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 32.0f, 96.00f, 3000, SPIN | RANDOM_COLOR));
+	world3->AddLight(new Light(Vector2f(10, 0), ColorRGB(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("Library of Aventheim"));
 
 
@@ -139,11 +139,15 @@ void WorldManager::checkWorld(Player* player) {
 }
 
 void WorldManager::tick() {
-	currentWorld->tick();
+	if (!freeze) {
+		currentWorld->tick();
+	}
 }
 
 void WorldManager::update(float dt) {
-	currentWorld->update(dt);
+	if (!freeze) {
+		currentWorld->update(dt);
+	}
 }
 
 #pragma endregion

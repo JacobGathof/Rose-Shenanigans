@@ -5,13 +5,13 @@
 
 Terrain::Terrain() {
 	tilesPerChunk = 16;
-	tileScale = 20.0f;
+	tileScale = 32.0f;
 	loadTerrain("Resources/Town of Beginnings");
 }
 
 Terrain::Terrain(std::string str) {
 	tilesPerChunk = 16;
-	tileScale = 20.0f;
+	tileScale = 32.0f;
 	loadTerrain("Resources/" + str);
 }
 
@@ -51,7 +51,7 @@ void Terrain::setTile(Vector2f pos, int i){
 	}
 
 	TerrainChunk * t = terrainChunks[cPos];
-	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
+	Vector2f pPos = pos - (cPos*tileScale*(float)tilesPerChunk);
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
@@ -83,7 +83,7 @@ void Terrain::deleteChunk(Vector2f pos){
 
 bool Terrain::getSolid(Object o)
 {
-	return getSolid(o.position + Vector2f(0+4,0)) || getSolid(o.position + Vector2f(o.scale.x-4, 0)) || getSolid(o.position + Vector2f(4, .3*o.scale.y)) || getSolid(o.position + Vector2f(o.scale.x-4, .3*o.scale.y));
+	return getSolid(o.position + Vector2f(0+4,0)) || getSolid(o.position + Vector2f(o.scale.x-4, 0)) || getSolid(o.position + Vector2f(4, .3f*o.scale.y)) || getSolid(o.position + Vector2f(o.scale.x-4, .3f*o.scale.y));
 }
 
 bool Terrain::getSolid(Vector2f pos){
@@ -96,7 +96,7 @@ bool Terrain::getSolid(Vector2f pos){
 	}
 
 	TerrainChunk * t = terrainChunks[cPos];
-	Vector2f pPos = pos - (cPos*tileScale*tilesPerChunk);
+	Vector2f pPos = pos - (cPos*tileScale*(float)tilesPerChunk);
 
 	int index = tilesPerChunk*(int)(pPos.x / tileScale) + ((int)(pPos.y / tileScale) % tilesPerChunk);
 
@@ -127,7 +127,7 @@ void Terrain::loadTerrain(std::string filename){
 		line.getline(b1, 64, ',');
 		line.getline(b2, 64, ' ');
 
-		Vector2f pos(std::stoi(b1), std::stoi(b2));
+		Vector2f pos((float)std::stoi(b1), (float)std::stoi(b2));
 		TerrainChunk * chunk = new TerrainChunk(pos, tilesPerChunk, tileScale);
 
 		file.getline(buffer, 8192);
@@ -218,8 +218,8 @@ void Terrain::TerrainChunk::buildTerrain(int textures[], int type[]) {
 	delete[] textures;
 	delete[] type;
 
-	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
-	float texures[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
+	float vertices[] = { 0.0f,0.0f, 0.0f,1.0f, 1.0f,1.0f , 1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f };
+	float texures[] = { 0.0f,1.0f, 0.0f,0.0f, 1.0f,0.0f , 1.0f,0.0f, 1.0f,1.0f, 0.0f,1.0f };
 
 	generateBuffers();
 
