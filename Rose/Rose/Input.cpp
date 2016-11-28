@@ -138,6 +138,21 @@ void Input::processInput(float dt)
 		keys[GLFW_KEY_COMMA] = false;
 		game->player.levelUpSkill(1);
 	}
+
+	if (keys[GLFW_KEY_I]) {
+		keys[GLFW_KEY_I] = false;
+		int displaying = game->player.DisplayInventory(true);
+		
+		WorldManager::freeze = false;
+		if (displaying) {
+			WorldManager::freeze = true;
+		}
+	}
+
+	if (keys[GLFW_KEY_PERIOD]) {
+		Weapon weapon = Weapon(0, 0, 0, Vector2f(0,0) , 1, "Echo");
+		game->player.addToInventory(weapon);
+	}
 	
 	if (lastFive[0] == 83 && lastFive[1] == 65 && lastFive[2] == 78 && lastFive[3] == 73 && lastFive[4] == 67) {
 		game->player.speed *= 2;

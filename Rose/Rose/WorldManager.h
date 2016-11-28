@@ -37,6 +37,7 @@ public:
 	static void destroy();
 	static bool collide(Object o);
 	static NPC* findClosestNPC(Vector2f pos);
+	static bool freeze;
 
 	static void checkEnemyCollisions(Player * player);
 	static void addPlayerToSlimes(Entity * player);

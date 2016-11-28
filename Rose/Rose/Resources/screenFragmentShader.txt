@@ -14,7 +14,7 @@ const float offset = 1/256.0;
 
 void main(){
 
-	
+	/*
 	vec2 offsets[9] = {
 		vec2(-offset,offset),
 		vec2(0,offset),
@@ -57,12 +57,10 @@ void main(){
 
 
 	}
-
 	gl_FragColor = vec4(kernelColor.xyz, 1.0);
+	*/
 
 
-
-	/*
 	vec4 lightColor = (texture(lights, texCoords_)+ambient);
 	vec4 worldColor = texture(world, texCoords_);
 
@@ -76,7 +74,6 @@ void main(){
 	vec4 totalColor = basicColor + (vec4(-1,-1,-1,0)*black) + vec4(1,1,1,0)*white;
 
 	gl_FragColor = totalColor;
-	*/
 
 }
 

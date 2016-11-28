@@ -7,10 +7,10 @@
 
 World * WorldManager::currentWorld;
 std::map<std::string, World*> WorldManager::worlds;
-
+bool WorldManager::freeze;
 
 void WorldManager::init() {
-
+	freeze = false;
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 50, RANDOM_VELOCITY | COLOR_HSV));
@@ -139,11 +139,15 @@ void WorldManager::checkWorld(Player* player) {
 }
 
 void WorldManager::tick() {
-	currentWorld->tick();
+	if (!freeze) {
+		currentWorld->tick();
+	}
 }
 
 void WorldManager::update(float dt) {
-	currentWorld->update(dt);
+	if (!freeze) {
+		currentWorld->update(dt);
+	}
 }
 
 #pragma endregion

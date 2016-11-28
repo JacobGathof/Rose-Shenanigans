@@ -175,6 +175,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Info.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="LoadZone.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Main.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Info.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="LoadZone.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -257,6 +259,7 @@
     <Image Include="CarpenterHouse.png" />
     <Image Include="FireSlime.png" />
     <Image Include="GreenSlime.png" />
+    <Image Include="Inventory.png" />
     <Image Include="Resources\bracket.png" />
     <Image Include="Resources\CarpenterHouse.png" />
     <Image Include="Resources\dash.png" />

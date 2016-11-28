@@ -5,6 +5,7 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
+	display = false;
 	empty = Skill(0, 0, 0, 0, "empty_skill");
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
@@ -66,7 +67,24 @@ void Player::equip(Weapon weapon, int hand)
 
 void Player::addToInventory(Object item)
 {
-	inventory.push_back(item);
+	//TODO
+}
+
+void Player::addToInventory(Weapon weapon)
+{
+	inventory.addWeapon(weapon);
+}
+
+int Player::DisplayInventory(bool change)
+{
+	if (change) {
+		display = !display;
+	}
+	if (display) {
+		inventory.Display(hp, mana, exp, position);
+		return 1;
+	}
+	return 0;
 }
 
 void Player::LevelUp()
@@ -109,10 +127,12 @@ void Player::levelUpSkill(int index)
 }
 
 void Player::move(Vector2f dir, float dt) {
-	Entity::move(dir, dt);
-	CheckMissions();
-	if (maxXp <= exp) {
-		LevelUp();
+	if (!display) {
+		Entity::move(dir, dt);
+		CheckMissions();
+		if (maxXp <= exp) {
+			LevelUp();
+		}
 	}
 }
 
@@ -124,13 +144,16 @@ void Player::draw() {
 	//	skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
 	//}
 	Entity::draw();
+	DisplayInventory(false);
 }
 
 void Player::tick(){
-	Entity::tick();
-	if(iFrames > 0)
-		iFrames--;
-	statusEffect();
+	if (!display) {
+		Entity::tick();
+		if (iFrames > 0)
+			iFrames--;
+		statusEffect();
+	}
 }
 
 void Player::statusEffect()
