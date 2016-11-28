@@ -22,6 +22,6 @@ void main(){
 		(vertices.x+instPosition.x)*scale.x + pos.x - cameraPosition.x, 
 		(vertices.y+instPosition.y)*scale.y + pos.y - cameraPosition.y, 0.0f, 1.0f);
 
-	texCoords_ = vec2(texCoords.x/8.0, texCoords.y/8.0) + vec2(.125f*(instTex%8), .125f*(instTex/8.0));
+	texCoords_ = vec2(texCoords.x/8.0, texCoords.y/8.0) + vec2(.125*(instTex%8), .125*(instTex/8));
 
 }

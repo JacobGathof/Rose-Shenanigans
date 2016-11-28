@@ -4,7 +4,7 @@
 #include "Color.h"
 #include "Text.h"
 
-#define SCALEFACTOR 128.0f
+#define SCALEFACTOR 64.0f
 
 
 enum ShaderType {
