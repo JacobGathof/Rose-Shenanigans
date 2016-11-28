@@ -144,7 +144,7 @@ void Player::draw() {
 	//	skills[i].draw(Vector2f(position.x - 70 + (10 * i), position.y-80));
 	//}
 	Entity::draw();
-	DisplayInventory(false);
+	//DisplayInventory(false);
 }
 
 void Player::tick(){

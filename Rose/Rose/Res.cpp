@@ -95,7 +95,7 @@ void Res::initTextures(){
 	//Res::loadTexture("Jibril", "Resources/Jibril.png", 1, 1);
 	Res::loadTexture("Jibril", "Resources/Rose.png", 1, 4);
 	Res::loadTexture("House", "Resources/CarpenterHouse.png");
-	Res::loadTexture("Inventory", "Resources/Echo.png");
+	Res::loadTexture("Inventory", "Resources/Inventory.png");
 
 	//skill textures
 	Res::loadTexture("empty_skill", "Resources/empty_skill.png");

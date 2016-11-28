@@ -111,7 +111,6 @@ void Game::loop(float dt){
 	Camera::update(dt);
 	Res::updateShaders(gameTime);
 	LightManager::updateLights(gameTime);
-
 }
 
 void Game::render(){
@@ -124,5 +123,5 @@ void Game::render(){
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
 	//UIManager::skillbox.draw(&player);
-
+	player.DisplayInventory(false);
 }

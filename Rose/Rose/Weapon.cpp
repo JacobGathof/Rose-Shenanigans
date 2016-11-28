@@ -13,7 +13,7 @@ Weapon::~Weapon()
 }
 
 Weapon::Weapon(int dmg, int critdmg, int percent, Vector2f pos, int slotNum, std::string texName) 
-	: Entity(pos, Vector2f(120, 120), texName, 0)
+	: Entity(pos, Vector2f(10, 10), texName, 0)
 {
 	NumSlots = slotNum;
 	texture = texName;
