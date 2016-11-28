@@ -137,7 +137,6 @@ void Player::statusEffect()
 {
 	if (effectCounter % 20 == 0) {
 		//takeDamage();
-		std::cout << attributes[0] << std::endl;
 		this->hp -= attributes[0];
 		this->hp -= attributes[1];
 		this->hp -= attributes[4];
