@@ -9,6 +9,7 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
 	}
+	effectCounter = 0;
 	maxhp = 100;
 	hp = 100;
 	mana = 100;
@@ -19,6 +20,9 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	level = 1;
 	stats = Text(Vector2f(40, -60), "Level: " + std::to_string(level), Vector2f(3, 3));
 	statsChanged = true;
+	for (int i = 0; i < 9; i++) {
+		attributes[i] = 0;
+	}
 }
 
 void Player::talkTo(NPC npc)
@@ -126,6 +130,26 @@ void Player::tick(){
 	Entity::tick();
 	if(iFrames > 0)
 		iFrames--;
+	statusEffect();
+}
+
+void Player::statusEffect()
+{
+	if (effectCounter % 20 == 0) {
+		//takeDamage();
+		std::cout << attributes[0] << std::endl;
+		this->hp -= attributes[0];
+		this->hp -= attributes[1];
+		this->hp -= attributes[4];
+		this->hp -= attributes[5];
+		this->statsChanged = true;
+	}
+	effectCounter++;
+}
+
+void Player::addStatus(int effect, int effectAmount)
+{
+	attributes[(int)std::log2(effect)] += effectAmount;
 }
 
 void Player::addGem(int hand, Gem gem, int index)
@@ -143,13 +167,23 @@ void Player::removeGem(int hand, int index)
 
 void Player::ReBuff(Weapon weapon)
 {
-	maxhp += weapon.attributes[ENVIGORATE];
-	maxmana += weapon.attributes[ENLIGHTENED];
+	maxhp += weapon.attributes[(int)std::log2(ENVIGORATE)];
+	maxmana += weapon.attributes[(int)std::log2(ENLIGHTENED)];
+	bitmask = 0;
+	for (int i = 0; i < 9; i++) {
+		attributes[i] += weapon.attributes[i];
+		if (attributes[i] != 0) {
+			bitmask += pow(2, i);
+		}
+	}
 }
 
 void Player::DeBuff(Weapon weapon)
 {
 	maxhp -= weapon.attributes[ENVIGORATE];
 	maxmana -= weapon.attributes[ENLIGHTENED];
+	for (int i = 0; i < 9; i++) {
+		attributes[i] -= weapon.attributes[i];
+	}
 }
 

@@ -16,7 +16,7 @@ void WorldManager::init() {
 	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 50, RANDOM_VELOCITY | COLOR_HSV));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 0; i++) {
+	for (int i = 0; i < 3; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
 		Entity * slime;

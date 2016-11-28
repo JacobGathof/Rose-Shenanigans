@@ -31,9 +31,12 @@ public:
 	int exp;
 	int maxXp;
 	int level;
+	int bitmask;
 	Skill empty;
 	Skill skills[8];
 	Weapon hands[2];
+	int attributes[9];
+	int effectCounter;
 	std::vector<Object> inventory;
 	std::vector<Mission> missions;
 	Text stats;
@@ -43,6 +46,8 @@ public:
 	virtual void draw();
 	virtual void tick();
 
+	void statusEffect();
+	void addStatus(int effect, int effectAmount);
 	void addGem(int hand, Gem gem, int index);
 	void removeGem(int hand, int index);
 	void ReBuff(Weapon weapon);
