@@ -61,7 +61,7 @@ Gem Weapon::RemoveGem(int slot)
 	}
 	SubtractBuffs(slots.at(slot));
 	slots.at(slot).durability -= 10;
-	//slots.erase(slots.begin + slot); // Check this for correct indexing
+	slots.erase(slots.begin() + slot); // Check this for correct indexing
 }
 
 void Weapon::SubtractBuffs(Gem gem)
