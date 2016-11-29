@@ -5,7 +5,7 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
-	display = false;
+	inventoryOpen = false;
 	empty = Skill(0, 0, 0, 0, "empty_skill");
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
@@ -75,16 +75,8 @@ void Player::addToInventory(Weapon weapon)
 	inventory.addWeapon(weapon);
 }
 
-int Player::DisplayInventory(bool change)
-{
-	if (change) {
-		display = !display;
-	}
-	if (display) {
-		inventory.Display(hp, mana, exp, position);
-		return 1;
-	}
-	return 0;
+int Player::ToggleInventory() {
+	 return inventoryOpen = !inventoryOpen;
 }
 
 void Player::LevelUp()
@@ -127,7 +119,7 @@ void Player::levelUpSkill(int index)
 }
 
 void Player::move(Vector2f dir, float dt) {
-	if (!display) {
+	if (!inventoryOpen) {
 		Entity::move(dir, dt);
 		CheckMissions();
 		if (maxXp <= exp) {
@@ -148,7 +140,7 @@ void Player::draw() {
 }
 
 void Player::tick(){
-	if (!display) {
+	if (!inventoryOpen) {
 		Entity::tick();
 		if (iFrames > 0)
 			iFrames--;

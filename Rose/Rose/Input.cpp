@@ -141,7 +141,7 @@ void Input::processInput(float dt)
 
 	if (keys[GLFW_KEY_I]) {
 		keys[GLFW_KEY_I] = false;
-		int displaying = game->player.DisplayInventory(true);
+		int displaying = game->player.ToggleInventory();
 		
 		WorldManager::freeze = false;
 		if (displaying) {

@@ -18,15 +18,7 @@ Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
 	name = def;
 	level = 1;
 	bracket = Object(Vector2f(0, 0), Vector2f(8, 8), "bracket");
-	icon = Object(Vector2f(0, 0), Vector2f(8, 8), name.data());
-}
-
-void Skill::draw(Vector2f pos)
-{
-	icon.position = pos;
-	bracket.position = pos;
-	icon.draw();
-	bracket.draw();
+	icon = Res::getTexture(def);
 }
 
 int Skill::use(Vector2f pos, Weapon weapon)

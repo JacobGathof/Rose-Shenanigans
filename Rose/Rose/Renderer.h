@@ -4,7 +4,7 @@
 #include "UIElement.h"
 #include "Terrain.h"
 
-
+#define SkillScale 5
 
 /*
 	Static class holding the drawing methods for everything in the game. 
@@ -35,6 +35,9 @@ public:
 
 	/*Render function for any piece of Text*/
 	static void renderText(Text* text);
+
+
+	static void renderSkill(Skill *s, int i);
 
 	/*Render function for a single TerrainChunk*/
 	static void renderTerrainChunk(Terrain::TerrainChunk* chunk);

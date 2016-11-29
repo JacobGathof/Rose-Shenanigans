@@ -23,9 +23,8 @@ public:
 	int range;
 	int speed;
 	std::string name;
-	Object icon;
+	Texture *icon;
 
-	void draw(Vector2f pos);
 	virtual int use(Vector2f pos, Weapon weapon);
 
 };

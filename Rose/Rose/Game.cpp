@@ -21,14 +21,14 @@ void Game::init()
 
 	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
 
-	/*
-	Dash skill = Dash();
-	player.addSkill(1,skill);
-	Weapon weapon = Weapon(10, 20, 5, player.position, 0, "sword");
-	player.hands[0] = weapon;
-	Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
-	player.addMission(mission);
-	*/
+	
+	//Dash skill = Dash();
+	//player.addSkill(1,skill);
+	//Weapon weapon = Weapon(10, 20, 5, player.position, 0, "sword");
+	//player.hands[0] = weapon;
+	//Mission mission = Mission(50, 50, blank, "hello", Vector2f(64, 64));
+	//player.addMission(mission);
+	
 
 	Res::player = &player;
 	Camera::setFocus(&player);
@@ -122,6 +122,8 @@ void Game::render(){
 	
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
-	//UIManager::skillbox.draw(&player);
-	player.DisplayInventory(false);
+	UIManager::skillbox.draw(&player);
+	if (player.inventoryOpen) {
+		player.inventory.Display(player.hp, player.mana, player.exp, player.position);
+	}
 }

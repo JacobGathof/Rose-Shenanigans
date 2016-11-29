@@ -183,14 +183,17 @@ int Textbox::findIndex(std::string str, int start, int end) {
 
 Skillbox::Skillbox() {}
 
-void Skillbox::init() {}
+void Skillbox::init() {
+	topLeft = toScreenCoordinates(-60, 60);
+	botRight = toScreenCoordinates(-20, 20);
+}
 
 void Skillbox::draw(Player *player) {
 	int i = 0;
 	for each (Skill s in player->skills)
 	{
-		s.draw(Vector2f(player->position.x - 70 + (10 * i), player->position.y - 80));
 		++i;
+		Renderer::renderSkill(&s, i);
 	}
 }
 

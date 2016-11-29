@@ -23,7 +23,7 @@ public:
 
 	int iFrames = 0;
 
-	bool display;
+	bool inventoryOpen;
 	int posInVec;
 	int maxhp;
 	int hp;
@@ -61,7 +61,7 @@ public:
 	void equip(Weapon weapon, int hand);
 	void addToInventory(Object item);
 	void addToInventory(Weapon weapon);
-	int DisplayInventory(bool change);
+	int ToggleInventory();
 	void LevelUp();
 	void takeDamage();
 	void addSkill(int index, Skill skill);
