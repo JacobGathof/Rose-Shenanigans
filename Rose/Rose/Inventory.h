@@ -16,6 +16,7 @@ public:
 	Text page3[100];
 
 	std::vector<Weapon> weapons;
+	int selectedIndex = 1;
 	int page;
 	int textSize = 3;
 	bool initialized;
@@ -28,5 +29,11 @@ public:
 	int Display(int health, int mana, int xp, Vector2f pos);
 	void addWeapon(Weapon weapon);
 	void discard(Weapon weapon);
+	void MoveRight();
+	void MoveLeft();
+	void MoveUp();
+	void MoveDown();
+	void Select();
+	Text * GetCurrentPage();
 };
 

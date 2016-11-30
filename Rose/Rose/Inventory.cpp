@@ -21,7 +21,7 @@ void Inventory::BuildPages()
 		blank, Text(Vector2f(0,0), "STATS", Vector2f(textSize,textSize)), blank, blank, Text(Vector2f(0,0), "INVENTORY", Vector2f(textSize,textSize)), blank, blank, blank, Text(Vector2f(0,0), "MENU", Vector2f(textSize,textSize)), blank,
 		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
 		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
-		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
+		blank, blank, object, blank, blank, object, blank, blank, blank, blank,
 		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
 		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
 		blank, blank, object, blank, blank, blank, blank, blank, blank, blank,
@@ -68,10 +68,11 @@ int Inventory::Display(int health, int mana, int xp, Vector2f pos)
 {
 	if (!initialized) {
 		BuildPages();
-
 		BackDrop = Object(Vector2f(0, 0), Vector2f(128, 128), "Inventory");
 		initialized = true;
 	}
+	std::cout << selectedIndex << std::endl;
+	page1[selectedIndex] = Text(Vector2f(0, 0), "hello", Vector2f(0, 0));
 	BackDrop.position = pos - Vector2f(48, 48);
 	BackDrop.draw();
 	int line = 0;
@@ -79,14 +80,10 @@ int Inventory::Display(int health, int mana, int xp, Vector2f pos)
 		case (0) :
 			line = 0;
 			for (int i = 0; i < 100; i++) {
-				if (page1[i].data == "STATS") {
-					std::cout << line << std::endl;
-				}
 				page1[i].position.x = -60 + ((i%10) * 12);
 				page1[i].position.y = 60 - (line * 12);
 				page1[i].draw();
 				if (i % 10 == 0 && i != 0) {
-					
 					line++;
 				}
 			}
@@ -112,5 +109,103 @@ void Inventory::discard(Weapon weapon)
 			break;
 		}
 	}
+}
+
+void Inventory::MoveRight()
+{
+	int oldIndex = selectedIndex;
+	selectedIndex++;
+	int i = 0;
+	Text * currentPage = GetCurrentPage();
+	while (i != 1) {
+		if (selectedIndex < 0 || selectedIndex > 100) {
+			selectedIndex = oldIndex;
+			return;
+		}
+		if (currentPage[selectedIndex].data == "") {
+			selectedIndex++;
+		}
+		else {
+			i = 1;
+		}
+	}
+}
+
+void Inventory::MoveLeft()
+{
+	int oldIndex = selectedIndex;
+	selectedIndex--;
+	int i = 0;
+	Text * currentPage = GetCurrentPage();
+	while (i != 1) {
+		if (selectedIndex < 0 || selectedIndex > 100) {
+			selectedIndex = oldIndex;
+			return;
+		}
+		if (currentPage[selectedIndex].data == "") {
+			selectedIndex--;
+		}
+		else {
+			i = 1;
+		}
+	}
+}
+
+void Inventory::MoveUp()
+{
+	int oldIndex = selectedIndex;
+	selectedIndex -= 10;
+	int i = 0;
+	Text * currentPage = GetCurrentPage();
+	while (i != 1) {
+		if (selectedIndex < 0 || selectedIndex > 100) {
+			selectedIndex = oldIndex;
+			return;
+		}
+		if (currentPage[selectedIndex].data == "") {
+			selectedIndex++;
+		}
+		else {
+			i = 1;
+		}
+	}
+}
+
+void Inventory::MoveDown()
+{
+	int oldIndex = selectedIndex;
+	selectedIndex += 10;
+	int i = 0;
+	Text * currentPage = GetCurrentPage();
+	while (i != 1) {
+		if (selectedIndex < 0 || selectedIndex > 100) {
+			selectedIndex = oldIndex;
+			return;
+		}
+		if (currentPage[selectedIndex].data == "") {
+			selectedIndex++;
+		}
+		else {
+			i = 1;
+		}
+	}
+}
+
+void Inventory::Select()
+{
+}
+
+Text * Inventory::GetCurrentPage()
+{
+	if (page == 0) {
+		return page1;
+	}
+	else if (page == 1) {
+		return page2;
+	}
+	else if (page == 2) {
+		return page3;
+	}
+	return nullptr;
 }
 
