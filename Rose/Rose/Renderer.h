@@ -5,6 +5,7 @@
 #include "Terrain.h"
 
 #define SkillScale 5
+#define WeaponScale 5
 
 /*
 	Static class holding the drawing methods for everything in the game. 
@@ -36,6 +37,8 @@ public:
 	/*Render function for any piece of Text*/
 	static void renderText(Text* text);
 
+	/*Renders Inventory screen*/
+	static void renderInventoyScreen(Weapon * weapons, Texture *backdrop, int size);
 
 	static void renderSkill(Skill *s, int i);
 

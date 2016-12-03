@@ -199,3 +199,29 @@ void Skillbox::draw(Player *player) {
 
 #pragma endregion
 
+#pragma region Inventory_Screen
+
+Inventory_Screen::Inventory_Screen(Player *player) {
+	this->player = player;
+}
+
+Inventory_Screen::~Inventory_Screen()
+{
+	delete player;
+}
+
+void Inventory_Screen::init()
+{
+	topLeft = toScreenCoordinates(-60, 60);
+	botRight = toScreenCoordinates(-20, 20);
+}
+
+void Inventory_Screen::draw()
+{
+	//Renderer::renderInventoyScreen(&(player->inventory.weapons.at(0)), player->inventory.BackDrop, player->inventory.weapons.size());
+}
+
+
+#pragma endregion
+
+
