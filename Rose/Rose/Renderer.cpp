@@ -94,6 +94,27 @@ void Renderer::renderStatbox(Statbox * box){
 	renderText(box->text);
 }
 
+void Renderer::renderInventoyScreen(Weapon * weapons, Texture *backdrop, int size)
+{
+	backdrop->bind();
+	ShaderProgram * shader = Res::getShader(uiShader);
+	shader->loadVector2f("scale", Vector2f(128, 128));
+	shader->loadVector2f("pos", Vector2f(-64, -64));
+
+	Res::stdModel->bind();
+	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
+
+	for (int i = 0; i < size; i++) {
+		weapons[i].tex->bind();
+		ShaderProgram * shader = Res::getShader(uiShader);
+		shader->loadVector2f("scale", Vector2f(WeaponScale, WeaponScale));
+		shader->loadVector2f("pos", Vector2f(WeaponScale * i, 0));
+
+		Res::stdModel->bind();
+		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
+	}
+}
+
 void Renderer::renderSkill(Skill *s, int i) {
 	s->icon->bind();
 	ShaderProgram * shader = Res::getShader(uiShader);

@@ -85,5 +85,15 @@ public:
 };
 
 
+class Inventory_Screen : public UIElement
+{
+public:
+	Inventory_Screen(Player *player);
+	~Inventory_Screen();
 
+	Player * player;
+
+	virtual void init();
+	virtual void draw();
+};
 
