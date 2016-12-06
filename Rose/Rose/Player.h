@@ -16,9 +16,9 @@ class Player: public Entity
 {
 public:
 	virtual ObjectType getType() { return PLAYER; }
-
+	
 	Player() {};
-	~Player() {};
+
 	Player(Vector2f pos, Vector2f sc, std::string image, float speed);
 
 	int iFrames = 0;
@@ -34,8 +34,9 @@ public:
 	int maxXp;
 	int level;
 	int bitmask;
-	Skill empty;
-	Skill skills[8];
+	int cleanup = 0;
+	//Skill *empty;
+	Skill *skills[8];
 	Weapon hands[2];
 	int attributes[9];
 	int effectCounter;
@@ -67,5 +68,20 @@ public:
 	void addSkill(int index, Skill skill);
 	void useSkill(int index);
 	void levelUpSkill(int index);
+
+	~Player() {
+		//		skills.clear();
+		if (skills) {
+			std::cout << "here" << std::endl;
+			for (auto a : skills) {
+				//std::cout << i << std::endl;
+				//std::cout << skills[i] << std::endl;
+				delete a;
+				std::cout << "here" << std::endl;
+				//skills.at(i) = 0;
+			}
+		}
+		//delete[] skills;
+	};
 };
 

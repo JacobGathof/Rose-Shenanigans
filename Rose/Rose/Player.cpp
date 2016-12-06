@@ -2,14 +2,16 @@
 
 
 
+
+
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
-	inventoryOpen = false;
-	empty = Skill(0, 0, 0, 0, "empty_skill");
+	Skill *empty = new Skill(0, 0, 0, 0, "empty");
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
 	}
+	inventoryOpen = false;
 	effectCounter = 0;
 	maxhp = 100;
 	hp = 100;
@@ -102,21 +104,23 @@ void Player::takeDamage(){
 
 void Player::addSkill(int index, Skill skill)
 {
-	skills[index] = skill;
+	//skills[index] = &skill;
 }
 
 void Player::useSkill(int index)
 {
-	int i = (&skills[index])->use(position, hands[0]);
+	int i = 0;
+	//int i = skills[index]->use(position, hands[0]);
 	if (i == 1) {
-		speed = 1200*(skills[index].level);
+		//speed = 1200*(skills[index]->level);
 	}
 }
 
 void Player::levelUpSkill(int index)
 {
-	skills[index].level++;
+	//skills[index]->level++;
 }
+
 
 void Player::move(Vector2f dir, float dt) {
 	if (!inventoryOpen) {

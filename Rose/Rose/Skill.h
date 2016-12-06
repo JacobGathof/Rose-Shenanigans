@@ -33,7 +33,7 @@ class Dash : public Skill
 {
 public:
 	Dash();
-	int use(Vector2f pos, Weapon wep);
+	virtual int use(Vector2f pos, Weapon wep);
 };
 
 

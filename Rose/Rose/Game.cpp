@@ -20,7 +20,6 @@ void Game::init()
 	std::vector<Weapon> blank;
 
 	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
-
 	
 	//Dash skill = Dash();
 	//player.addSkill(1,skill);

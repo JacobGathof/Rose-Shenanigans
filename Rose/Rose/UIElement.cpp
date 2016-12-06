@@ -190,11 +190,11 @@ void Skillbox::init() {
 
 void Skillbox::draw(Player *player) {
 	int i = 0;
-	for each (Skill s in player->skills)
-	{
-		++i;
-		Renderer::renderSkill(&s, i);
-	}
+//	for each (Skill *s in player->skills)
+//	{
+//		++i;
+//		Renderer::renderSkill(s, i);
+//	}
 }
 
 #pragma endregion

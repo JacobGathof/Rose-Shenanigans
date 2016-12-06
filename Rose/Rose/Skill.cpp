@@ -1,5 +1,5 @@
 #include "Skill.h"
-
+#pragma region Skill
 Skill::Skill()
 {
 }
@@ -26,20 +26,21 @@ int Skill::use(Vector2f pos, Weapon weapon)
 	std::cout << "there" << std::endl;
 	return 0;
 }
+#pragma endregion
 
-
-	Dash::Dash()
-		:Skill(0,0,0,0,"dash")
-	{
-		
-	}
-
+#pragma region Dash
+Dash::Dash()
+	:Skill(0,0,0,0,"dash")
+{
 	
-	int Dash::use(Vector2f pos, Weapon wep)
-	{
-		std::cout << "here" << std::endl;
-		return 1;
-	}
+}
+	
+int Dash::use(Vector2f pos, Weapon wep)
+{
+	std::cout << "here" << std::endl;
+	return 1;
+}
+#pragma endregion
 
 	
 
