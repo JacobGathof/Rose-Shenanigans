@@ -12,6 +12,7 @@
 #define RANDOM_VELOCITY 0x08
 #define RANDOM_COLOR 0x10
 #define COLOR_HSV 0x20
+#define SIN 0x40
 
 class ParticleSystem
 {
@@ -49,6 +50,7 @@ public:
 	bool isRandomVel();
 	bool isRandomColor();
 	bool isColorHSV();
+	bool isSin();
 
 	ParticleSystem();
 	ParticleSystem(Vector2f pos, Color col = Color(0, 0, 0), float speed = 32.0f, float size = 32.0f, int max = 500, int op = 0x00);

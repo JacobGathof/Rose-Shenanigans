@@ -103,8 +103,9 @@ void ParticleSystem::update(float dt)
 			else if (isSpinning() && isEmitting()) {
 				particles[i].velocity += 1 * dt*Vector2f(particles[i].velocity.y, -particles[i].velocity.x);
 			}
-			else {
 
+			else if (isSin()){
+				particles[i].velocity = Vector2f(128, 128*sin( particles[i].position.x / 16)) ;
 			}
 			
 			if (isRandomVel()) {
@@ -153,6 +154,7 @@ void ParticleSystem::setNewParticle(int index)
 
 	particles[index].life = particle_life;
 	particles[index].color = color;
+	particles[index].position = position;
 
 
 	if (isEmitting()) {
@@ -172,7 +174,7 @@ void ParticleSystem::setNewParticle(int index)
 		particles[index].velocity = -1 * vel;
 
 		//particles[index].color = (ColorHSV(0, 1.0, 1.0) % 60);
-		particles[index].position = position + particle_life*vel % positionDev;
+		//particles[index].position = position + particle_life*vel % positionDev;
 	}
 
 	if (isRandomVel()) {
@@ -187,6 +189,9 @@ void ParticleSystem::setNewParticle(int index)
 		particles[index].color = ((ColorHSV(color.x, color.y, color.z) % 60));
 	}
 	
+	if (isSin()) {
+		particles[index].position = position %= Vector2f(4,4);
+	}
 	
 
 }
@@ -209,13 +214,13 @@ void ParticleSystem::draw() {
 
 }
 
-bool ParticleSystem::isActive(){		return (options & ACTIVE) >> 2 == 0x0001;}
-bool ParticleSystem::isEmitting(){		return (options & EMIT) >> 1 == 0x0001;}
-bool ParticleSystem::isSpinning(){		return (options & SPIN) >> 0 == 0x0001;}
-bool ParticleSystem::isRandomVel(){		return (options & RANDOM_VELOCITY) >> 3 == 0x0001;}
-bool ParticleSystem::isRandomColor(){	return (options & RANDOM_COLOR) >> 4 == 0x0001;}
-bool ParticleSystem::isColorHSV(){		return (options & COLOR_HSV) >> 5 == 0x0001;}
-
+bool ParticleSystem::isSpinning(){		return (options & SPIN) >>				0 == 0x0001;}
+bool ParticleSystem::isEmitting(){		return (options & EMIT) >>				1 == 0x0001;}
+bool ParticleSystem::isActive(){		return (options & ACTIVE) >>			2 == 0x0001;}
+bool ParticleSystem::isRandomVel(){		return (options & RANDOM_VELOCITY) >>	3 == 0x0001;}
+bool ParticleSystem::isRandomColor(){	return (options & RANDOM_COLOR) >>		4 == 0x0001;}
+bool ParticleSystem::isColorHSV(){		return (options & COLOR_HSV) >>			5 == 0x0001;}
+bool ParticleSystem::isSin(){			return (options & SIN) >>				6 == 0x0001;}
 
 void ParticleSystem::updateBuffers() {
 

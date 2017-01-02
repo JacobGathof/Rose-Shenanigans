@@ -18,7 +18,7 @@ void main(){
 
 	gl_PointSize = 5.0f;
 
-	gl_Position = projectionMatrix * vec4(position+(vertices*8)-cameraPosition, 0.0, 1.0);
+	gl_Position = projectionMatrix * vec4(position+(vertices*2)-cameraPosition, 0.0, 1.0);
 
 	color_ = color;
 	texCoords_ = texCoords;
