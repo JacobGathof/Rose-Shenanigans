@@ -4,7 +4,6 @@
 #include "UIElement.h"
 #include "Terrain.h"
 
-#define SkillScale 5
 #define WeaponScale 5
 
 /*

@@ -3,6 +3,7 @@
 #include "WorldManager.h"
 #include "Screen.h"
 
+#define SkillScale 5
 
 void Renderer::renderText(Text * text){
 
@@ -117,8 +118,8 @@ void Renderer::renderInventoyScreen(Weapon * weapons, Texture *backdrop, int siz
 void Renderer::renderSkill(Skill *s, int i) {
 	s->icon->bind();
 	ShaderProgram * shader = Res::getShader(uiShader);
-	shader->loadVector2f("scale", Vector2f(SkillScale, -SkillScale));
-	shader->loadVector2f("pos", Vector2f(-20 + SkillScale * i, 60));
+	shader->loadVector2f("scale", Vector2f(SkillScale, -SkillScale)*SCALEFACTOR/64);
+	shader->loadVector2f("pos", UIElement::toScreenCoordinates(-20 + SkillScale * i, 60));
 
 	Res::stdModel->bind();
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
