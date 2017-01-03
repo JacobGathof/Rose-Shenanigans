@@ -1,7 +1,7 @@
 #pragma once
 #include "Res.h"
 #include "Entity.h"
-#include "UIElement.h"
+//#include "UI_Manager.h"
 #include "Terrain.h"
 
 #define WeaponScale 5
@@ -10,6 +10,12 @@
 	Static class holding the drawing methods for everything in the game. 
 	"Draw()" methods will only perform a call to the appropriate function in this class
 */
+
+class UI_Textbox;
+class UI_Statbox;
+class UI_Element;
+class Skill;
+class Weapon;
 
 class Renderer
 {
@@ -25,13 +31,13 @@ public:
 	static void renderEntity(Entity* entity);
 
 	/*Render function for any UIElement*/
-	static void renderDefaultUIElement(UIElement* element);
+	static void renderDefaultUIElement(UI_Element* element);
 
 	/*Render function for the Textbox*/
-	static void renderTextbox(Textbox * box);
+	static void renderTextbox(UI_Textbox * box);
 
 	/*Render function for the Statbox*/
-	static void renderStatbox(Statbox * box);
+	static void renderStatbox(UI_Statbox * box);
 
 	/*Render function for any piece of Text*/
 	static void renderText(Text* text);

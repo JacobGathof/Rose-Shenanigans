@@ -278,46 +278,4 @@ void NPCManager::destroy()
 #pragma endregion
 
 
-#pragma region UIMANAGER
-Textbox UIManager::textbox;
-Statbox UIManager::statbox;
-UIElement UIManager::tilebox;
-Skillbox UIManager::skillbox;
-
-void UIManager::init() {
-	textbox.init();
-	statbox.init();
-	tilebox.init();
-	skillbox.init();
-}
-
-void UIManager::destroy() {
-	textbox.destroy();
-	statbox.destroy();
-}
-
-void UIManager::update() {
-	textbox.update();
-	statbox.update();
-}
-
-void UIManager::tick() {
-
-}
-
-void UIManager::drawTextured() {
-
-}
-
-UIManager::UIManager()
-{
-}
-
-
-UIManager::~UIManager()
-{
-}
-
-#pragma endregion
-
 

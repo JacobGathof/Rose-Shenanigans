@@ -1,7 +1,7 @@
 #include "NPCAction.h"
 #include "NPC.h"
 #include "WorldManager.h"
-
+#include "UI_Manager.h"
 
 void NPCAction::act(float dt) {
 	if (!finished) {

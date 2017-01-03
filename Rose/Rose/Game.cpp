@@ -4,11 +4,13 @@
 #include "Player.h"
 #include "Weapon.h"
 #include "WorldManager.h"
+#include "UI_Manager.h"
 #include "Vector2f.h"
 #include "Renderer.h"
 #include "Screen.h"
 #include "Graph.h"
 #include "Info.h"
+#include "Input.h"
 #include <iostream>
 
 
@@ -16,6 +18,7 @@ void Game::init()
 {
 	Res::init();
 	gameTime = 0;
+	state = FREE;
 
 	std::vector<Weapon> blank;
 
@@ -38,50 +41,6 @@ void Game::init()
 	WorldManager::addToAllWorlds(&player);
 	WorldManager::addPlayerToSlimes(&player);
 
-	/*
-	Graph graph = Graph();
-	Info::x = 0;
-	Graph::Node * buildHouse = new Graph::Node("Building a House", []() {return Info::x == 0; });
-	Graph::Node * getMoney = new Graph::Node("Get Money", []() {return Info::x == 1; });
-	Graph::Node * getBitches = new Graph::Node("Get Bitches", []() {return Info::x == 2; });
-	Graph::Node * spaghetti = new Graph::Node("Mom's Spaghetti", []() {return Info::x == 3; });
-
-	graph.addNode(buildHouse);
-	graph.addNode(getMoney);
-	graph.addNode(getBitches);
-	graph.addNode(spaghetti);
-
-	graph.connectNode(graph.currentNode, buildHouse);
-	graph.connectNode(graph.currentNode, getMoney);
-	graph.connectNode(graph.currentNode, getBitches);
-	graph.connectNode(buildHouse, getMoney);
-	graph.connectNode(getMoney, getBitches);
-	graph.connectNode(getBitches, spaghetti);
-
-	graph.printData();
-	graph.update();
-	graph.printData();
-	Info::x = 1;
-	graph.update();
-	graph.printData();
-	Info::x = 2;
-	graph.update();
-	graph.printData();
-	Info::x = 3;
-	graph.update();
-	graph.printData();
-
-	graph.destroy();
-	*/
-
-	/*
-	std::cout << Info::PLAYER_STATUS << std::endl;
-	Info::addPlayerStatus(BLEEDING);
-	Info::addPlayerStatus(FIRE);
-	std::cout << Info::PLAYER_STATUS << std::endl;
-	Info::removePlayerStatus(BLEEDING);
-	std::cout << Info::PLAYER_STATUS << std::endl;
-	*/
 
 }
 
@@ -98,6 +57,67 @@ void Game::tick() {
 
 void Game::loop(float dt){
 
+	Input::processInput(dt);
+
+	switch (state) {
+
+		case GameState::MENU: loopMenu();  break;
+		case GameState::INVENTORY: loopInventory(); break;
+		case GameState::FREE: loopFree(dt); break;
+		case GameState::LOCKED: break;
+
+	}
+
+}
+
+void Game::render(){
+	
+	switch (state) {
+
+		case GameState::MENU: renderMenu();  break;
+		case GameState::INVENTORY: renderInventory(); break;
+		case GameState::FREE: renderFree(); break;
+		case GameState::LOCKED: break;
+
+	}
+}
+
+void Game::renderMenu()
+{
+}
+
+void Game::renderInventory()
+{
+
+	Renderer::prepareToRender();
+	Renderer::render();
+	Renderer::renderScreen();
+
+	player.inventory.Display(player.hp, player.mana, player.exp, player.position);
+	
+
+}
+
+void Game::renderFree()
+{
+	Renderer::prepareToRender();
+	Renderer::render();
+	Renderer::renderScreen();
+
+	UIManager::textbox.draw();
+	UIManager::statbox.draw();
+	UIManager::skillbox.draw(&player);
+	
+}
+
+void Game::renderPaused()
+{
+}
+
+
+
+void Game::loopFree(float dt){
+
 	if (gameTick) {
 		tick();
 		gameTick = false;
@@ -111,19 +131,19 @@ void Game::loop(float dt){
 	Camera::update(dt);
 	Res::updateShaders(gameTime);
 	LightManager::updateLights(gameTime);
+
 }
 
-void Game::render(){
-	
-	Renderer::prepareToRender();
-	Renderer::render();
-	Renderer::renderScreen();
+void Game::loopMenu()
+{
+}
 
-	
-	UIManager::textbox.draw();
-	UIManager::statbox.draw();
-	UIManager::skillbox.draw(&player);
-	if (player.inventoryOpen) {
-		player.inventory.Display(player.hp, player.mana, player.exp, player.position);
-	}
+void Game::loopInventory()
+{
+
+
+}
+
+void Game::loopPaused()
+{
 }

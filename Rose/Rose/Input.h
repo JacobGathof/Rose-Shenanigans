@@ -11,16 +11,18 @@ public:
 	static int lastFive[5];
 	static Game * game;
 	static int tilePointer;
-	static bool isUsingJoystick;
-	static int joystick;
-	static bool inInventory;
 
 	static bool testVar;
 
-	static void InventoryKeys();
 	static void processInput(float dt);
 	static void turnKeyOn(int key);
 	static NPC* findClosestNPC(Vector2f position);
+
+
+	static void MenuLogic();
+	static void GameLogic(float dt);
+	static void InventoryLogic();
+	static void LockedLogic();
 
 	Input();
 	~Input();

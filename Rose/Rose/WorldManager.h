@@ -1,6 +1,6 @@
 #pragma once
 #include "Building.h"
-#include "UIElement.h"
+#include "UI_Element.h"
 #include <vector>
 
 
@@ -53,26 +53,7 @@ public:
 
 };
 
-/*---------------------------------------
-			UIManager
-----------------------------------------*/ 
-class UIManager {
-public:
 
-	static Textbox textbox;
-	static Statbox statbox;
-	static UIElement tilebox;
-	static Skillbox skillbox;
-
-	static void init();
-	static void destroy();
-	static void update();
-	static void tick();
-	static void drawTextured();
-
-	UIManager();
-	~UIManager();
-};
 
 
 

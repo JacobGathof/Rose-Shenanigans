@@ -2,6 +2,7 @@
 
 #include "WorldManager.h"
 #include "Screen.h"
+#include "UI_Manager.h"
 
 #define SkillScale 5
 
@@ -70,7 +71,7 @@ void Renderer::renderEntity(Entity * entity){
 	renderHitbox(entity);
 }
 
-void Renderer::renderDefaultUIElement(UIElement * element){
+void Renderer::renderDefaultUIElement(UI_Element * element){
 
 	if (element->isVisible) {
 		element->tex->bind();
@@ -84,12 +85,12 @@ void Renderer::renderDefaultUIElement(UIElement * element){
 
 }
 
-void Renderer::renderTextbox(Textbox * box){
+void Renderer::renderTextbox(UI_Textbox * box){
 	renderDefaultUIElement(box);
 	renderText(box->text);
 }
 
-void Renderer::renderStatbox(Statbox * box){
+void Renderer::renderStatbox(UI_Statbox * box){
 	renderDefaultUIElement(box);
 	renderText(box->text);
 }

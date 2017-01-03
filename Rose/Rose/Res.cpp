@@ -1,5 +1,6 @@
 #include "Res.h"
 #include "WorldManager.h"
+#include "UI_Manager.h"
 #include "Camera.h"
 #include <iostream>
 #include <string>

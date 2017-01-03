@@ -90,9 +90,6 @@
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UIElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Slime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -118,6 +115,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Statbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Skillbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Textbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Element.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,9 +200,6 @@
     <ClCompile Include="Mission.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UIElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Slime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -216,6 +225,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Statbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Skillbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Textbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Element.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

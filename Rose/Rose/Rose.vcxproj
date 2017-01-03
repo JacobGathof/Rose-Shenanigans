@@ -195,7 +195,11 @@
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="UI_Element.h" />
+    <ClInclude Include="UI_Manager.h" />
+    <ClInclude Include="UI_Skillbox.h" />
+    <ClInclude Include="UI_Statbox.h" />
+    <ClInclude Include="UI_Textbox.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
@@ -229,7 +233,11 @@
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UI_Element.cpp" />
+    <ClCompile Include="UI_Manager.cpp" />
+    <ClCompile Include="UI_Skillbox.cpp" />
+    <ClCompile Include="UI_Statbox.cpp" />
+    <ClCompile Include="UI_Textbox.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />

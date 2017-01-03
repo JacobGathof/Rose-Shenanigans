@@ -16,17 +16,12 @@ int main() {
 	glfwMakeContextCurrent(window);
 
 	glfwSetWindowSizeCallback(window, window_resize_callback);
-	glfwSetJoystickCallback(joystick_callback);
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetErrorCallback(error_callback);
 	glfwSetWindowRefreshCallback(window, window_refresh_callback);
 
-	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) {
-		Input::isUsingJoystick = true;
-		Input::joystick = GLFW_JOYSTICK_1;
-	}
 
 
 	glewExperimental = GL_TRUE;
@@ -73,8 +68,6 @@ int main() {
 				game.gameTick = true;
 				last_tick = current_time;
 			}
-
-			Input::processInput(dt);
 
 			game.loop(dt);
 			game.render();
@@ -134,17 +127,6 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 
 void window_resize_callback(GLFWwindow* window, int width, int height) {
 	Res::resizeWindow(width, height);
-}
-
-void joystick_callback(int joystick, int action) {
-	if (action == GLFW_CONNECTED) {
-		Input::isUsingJoystick = true;
-		Input::joystick = joystick;
-	}
-
-	if (action == GLFW_DISCONNECTED) {
-		Input::isUsingJoystick = false;
-	}
 }
 
 void error_callback(int error, const char* desc) {

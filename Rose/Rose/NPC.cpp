@@ -1,6 +1,7 @@
 #include "NPC.h"
 #include <iostream>
 #include "WorldManager.h"
+#include "UI_Manager.h"
 #include "Info.h"
 
 

@@ -71,7 +71,7 @@ int Inventory::Display(int health, int mana, int xp, Vector2f pos)
 		BackDrop = Object(Vector2f(0, 0), Vector2f(128, 128), "Inventory");
 		initialized = true;
 	}
-	std::cout << selectedIndex << std::endl;
+	//std::cout << selectedIndex << std::endl;
 	page1[selectedIndex] = Text(Vector2f(0, 0), "hello", Vector2f(0, 0));
 	BackDrop.position = pos - Vector2f(48, 48);
 	BackDrop.draw();
