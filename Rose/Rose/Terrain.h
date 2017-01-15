@@ -18,15 +18,18 @@ public:
 
 	struct Tile {
 		int texture = 0;
-		Vector2f position;
 		TileType type = TileType::GRASS_FULL;
 	};
 
-	std::map<Vector2f, TerrainChunk*> terrainChunks;
+	Tile * tiles;
+	int worldScaleX, worldScaleY;
+
+	GLuint VAO;
+	GLuint VBO_vertices, VBO_textures, VBO_inst_pos, VBO_inst_tex;
+
 
 	void draw();
 
-	int tilesPerChunk;
 	float tileScale;
 
 	Terrain();
@@ -43,35 +46,9 @@ public:
 	void loadTerrain(std::string filename);
 	void saveTerrain(std::string filename);
 
-	class TerrainChunk {
-
-		public:
-			GLuint VAO;
-			GLuint VBO_vertices, VBO_textures, VBO_inst_pos, VBO_inst_tex;
-			int tilesPerChunk;
-			float scale;
-			Vector2f position;
-			Tile * tiles;
-
-			TerrainChunk(Vector2f pos, int tpc, float sc) {
-				position = pos;
-				tilesPerChunk = tpc;
-				scale = sc;
-				tiles = new Tile[tpc*tpc];
-			};
-
-			~TerrainChunk() {
-				delete[] tiles;
-			};
-
-			void generateBuffers();
-			void loadBuffers();
-			void buildTerrain(int textures[], int walkable[]);
-			void rebuildAll();
-			void draw();
-
-
-	};
+	void generateBuffers();
+	void buildTerrain(int type[]);
+	void rebuildAll();
 
 	enum TileType {
 		GRASS_FULL,

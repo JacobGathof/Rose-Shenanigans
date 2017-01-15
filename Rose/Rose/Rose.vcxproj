@@ -195,6 +195,7 @@
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="UI_Element.h" />
     <ClInclude Include="UI_Manager.h" />
     <ClInclude Include="UI_Skillbox.h" />
@@ -233,6 +234,7 @@
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UI_Element.cpp" />
     <ClCompile Include="UI_Manager.cpp" />
     <ClCompile Include="UI_Skillbox.cpp" />

@@ -48,7 +48,7 @@ public:
 	static void renderSkill(Skill *s, int i);
 
 	/*Render function for a single TerrainChunk*/
-	static void renderTerrainChunk(Terrain::TerrainChunk* chunk);
+	static void renderTerrain(Terrain* terrain);
 
 	/*Combine framebuffers and display to the monitor*/
 	static void renderScreen();

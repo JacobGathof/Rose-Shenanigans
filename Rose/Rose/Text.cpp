@@ -150,11 +150,13 @@ int Text::getNumberOfVertices()
 	return 6 * length;
 }
 
-bool Text::addCharactersToRender()
+bool Text::addCharactersToRender(int n)
 {
-	if (charsToRender < length * 6) {
-		charsToRender += 6;
-		return false;
+	for (int i = 0; i < n; i++) {
+		if (charsToRender < length * 6) {
+			charsToRender += 6;
+			return false;
+		}
 	}
 	return true;
 }

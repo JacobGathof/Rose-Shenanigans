@@ -13,10 +13,10 @@ void WorldManager::init() {
 	freeze = false;
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
-	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500, SIN));
+	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500));
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 1; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
 		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
 		Entity * slime;
@@ -29,6 +29,9 @@ void WorldManager::init() {
 		if (i == 2) {
 			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
 		}
+
+	
+
 		world->AddEntity(slime);
 	}
 
@@ -49,8 +52,8 @@ void WorldManager::init() {
 
 
 	World * world3 = new World("Library of Aventheim");
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 64.0f, 128.00f, 2000, SPIN | RANDOM_COLOR));
-	world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 32.0f, 96.00f, 3000, SPIN | RANDOM_COLOR));
+	//world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 64.0f, 128.00f, 2000, SPIN | RANDOM_COLOR));
+	//world3->AddSystem(new ParticleSystem(Vector2f(64, 64), ColorRGB(0, 0, 0), 32.0f, 96.00f, 3000, SPIN | RANDOM_COLOR));
 	world3->AddLight(new Light(Vector2f(10, 0), ColorRGB(1, 0, 1), 16.0f));
 	world3->addTerrain(new Terrain("Library of Aventheim"));
 

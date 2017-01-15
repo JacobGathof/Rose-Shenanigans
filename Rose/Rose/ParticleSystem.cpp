@@ -286,6 +286,56 @@ ParticleSystem::ParticleSystem(Vector2f pos, Color col,float speed, float size, 
 	init();
 }
 
+ParticleSystem::ParticleSystem(Object * object){
+
+	options = 0;
+
+
+	particle_count = 0;
+	last_unused_particle = 0;
+
+	position = Vector2f(object->position);
+	positionDev = Vector2f(0, 0);
+	color = Color(1,1,1);
+	colorDev = Color(.5, .5, .5);
+	system_size = 0.0f;
+	particle_speed = 0.1f;
+	particle_life = 50.0f;
+	max_particles = 36*36;
+
+	init();
+
+	/*
+	Texture* tex = object->tex;
+	tex->bind();
+
+	float *pixels = new float[48*48*4];
+	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_FLOAT, pixels);
+
+	
+	int counter = 0;
+	for (int i = 0; i < 48; i++) {
+		for (int j = 0; j < 48; j++) {
+
+			if (pixels[4 * counter + 3] < .5f) {
+				counter++;
+				continue;
+			}
+
+			Color col = Color(pixels[4*counter+0], pixels[4 * counter + 1], pixels[4 * counter + 2]);
+			Vector2f pos = object->position + 128.0f*Vector2f(i, j) / 48.0f;
+			setNewParticle(counter);
+			particles[counter].color = col;
+			particles[counter].position = pos;
+			counter++;
+		}
+	}
+	
+
+	delete[] pixels;
+	*/
+}
+
 
 ParticleSystem::~ParticleSystem()
 {

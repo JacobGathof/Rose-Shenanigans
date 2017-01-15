@@ -96,7 +96,6 @@ void World::draw() {
 			((o->position.y + o->scale.y) > (Camera::position.y - SCALEFACTOR)) && (o->position.y < (Camera::position.y + SCALEFACTOR))) {
 			o->draw();
 		}
-
 	}
 
 	//for (auto e : entities) {

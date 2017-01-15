@@ -46,6 +46,7 @@ public:
 
 	bool gameTick;
 	float gameTime;
+	int numberOfTicks;
 	Player player;
 	GameState state;
 

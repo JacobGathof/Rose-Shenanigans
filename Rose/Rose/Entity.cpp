@@ -49,7 +49,7 @@ void Entity::tick(){
 
 	if (state == MOVING || continueAnimation) {
 		continueAnimation = true;
-		internalTime += .25f;
+		internalTime += .125f;
 		if (internalTime > tex->numberOfColumns) {
 			internalTime -= tex->numberOfColumns;
 			continueAnimation = false;

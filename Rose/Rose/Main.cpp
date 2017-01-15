@@ -1,98 +1,79 @@
 #include "Main.h"
 #include <time.h>
+#include "Timer.h"
+
 
 int main() {
 
 	srand((unsigned int)time(NULL));
 
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_RESIZABLE, 0);
+	initializeGLFW();
 
-	//GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", glfwGetPrimaryMonitor(), 0);
 	GLFWwindow * window = glfwCreateWindow(800, 800, "Default Title", 0, 0);
 	glfwMakeContextCurrent(window);
 
-	glfwSetWindowSizeCallback(window, window_resize_callback);
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	glfwSetScrollCallback(window, scroll_callback);
-	glfwSetErrorCallback(error_callback);
-	glfwSetWindowRefreshCallback(window, window_refresh_callback);
-
-
-
-	glewExperimental = GL_TRUE;
-	GLenum err = glewInit();
-	if (err != GLEW_OK)
-		std::cout << "Error:" << glewGetErrorString(err);
-
-	glEnable(GL_BLEND);
-	glClearColor(0, 0, 0, 1);
+	setCallbacks(window);
+	initializeOGL();
 
 
 	game.init();
 	Input::game = &game;
 
-
 	glfwSetTime(0);
-	float dt = 0;
-	float last_second = 0;
-	float last_tick = 0;
-	float last_time = 0;
-	float current_time = 0;
-	int framesPerSecond = 0;
 
 	while (!glfwWindowShouldClose(window)) {
-		try {
-			current_time = (float)glfwGetTime();
-			dt = current_time - last_time;
 
-			while (dt < 2.0/120) {
-				current_time = (float)glfwGetTime();
-				dt = current_time - last_time;
-			}
+		Timer::wait();
 
-			last_time = current_time;
-			framesPerSecond++;
-
-			if (current_time - last_second >= 1.0f) {
-				last_second = current_time;
-				//std::cout << "FPS : " << std::to_string((framesPerSecond)) << std::endl;
-				framesPerSecond = 0;
-			}
-
-			if (current_time - last_tick >= 0.05f) {
-				game.gameTick = true;
-				last_tick = current_time;
-			}
-
-			game.loop(dt);
-			game.render();
+		game.loop(0);
+		game.render();
 
 
-			glfwPollEvents();
-			glfwSwapBuffers(window);
+		glfwPollEvents();
+		glfwSwapBuffers(window);
 
-			//_sleep(8.33333333333333 - dt);
-		}
-		catch (exception e) {
-			std::cout << "Caught error: " << e.what() << endl;
-		}
 	}
 
 	Res::cleanResources();
 
 	glfwTerminate();
 
-	//PopUpManager::showMessage(L"You quit the game. Why would you do that?!?!?", L"Really?");
-	//MessageBox(NULL, L"You quit the game. Why would you do that?!?!?", L"Really?", MB_ICONASTERISK);
-
 	return 0;
 
 }
+
+void initializeGLFW() {
+	std::cout << "Initializing GLFW" << std::endl;
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, 0);
+
+}
+
+void initializeOGL() {
+	std::cout << "Initializing OpenGL" << std::endl;
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (err != GLEW_OK)
+		std::cout << "Error:" << glewGetErrorString(err) << std::endl;
+
+	glEnable(GL_BLEND);
+	glEnable(GL_POINT_SIZE);
+	glClearColor(0, 0, 0, 1);
+	std::cout << "Initializing OpenGL Complete" << std::endl;
+}
+
+void setCallbacks(GLFWwindow* window) {
+	glfwSetWindowSizeCallback(window, window_resize_callback);
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetErrorCallback(error_callback);
+	glfwSetWindowRefreshCallback(window, window_refresh_callback);
+}
+
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 

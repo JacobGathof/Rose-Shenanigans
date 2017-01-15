@@ -40,7 +40,7 @@ public:
 	void generateVAO();
 	void setText(std::string str);
 	int getNumberOfVertices();
-	bool addCharactersToRender();
+	bool addCharactersToRender(int n = 1);
 	void reset() { charsToRender = 0; }
 	void draw();
 };

@@ -59,7 +59,7 @@ void Textbox::update() {
 		advanceQueue();
 	}
 
-	if (text->addCharactersToRender())
+	if (text->addCharactersToRender(1))
 		currentlyWriting = false;
 
 	if (!isVisible)

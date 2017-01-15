@@ -114,6 +114,17 @@ void Input::GameLogic(float dt){
 	if (keys[GLFW_KEY_B]) {
 		keys[GLFW_KEY_B] = false;
 		testVar = !testVar;
+		Camera::setFocus(NPCManager::npcs["Rose"]);
+	}
+
+	if (keys[GLFW_KEY_LEFT_BRACKET]) {
+		keys[GLFW_KEY_LEFT_BRACKET] = false;
+		(++tilePointer) %= 64;
+	}
+
+	if (keys[GLFW_KEY_RIGHT_BRACKET]) {
+		keys[GLFW_KEY_RIGHT_BRACKET] = false;
+		(--tilePointer) %= 64;
 	}
 
 	if (keys[GLFW_KEY_P]) {

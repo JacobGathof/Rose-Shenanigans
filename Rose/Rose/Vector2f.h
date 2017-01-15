@@ -32,6 +32,9 @@ public:
 	/*Scale a Vector2f by a float*/
 	friend Vector2f operator*(const Vector2f &v, float f);
 
+	/*Scale a Vector2f by a Vector2f (***)*/
+	friend Vector2f operator*(const Vector2f &v, const Vector2f &v2);
+
 	/*Scale a Vector2f by a float*/
 	friend Vector2f operator/(float f, const Vector2f &v);
 

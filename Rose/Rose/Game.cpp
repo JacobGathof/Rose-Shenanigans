@@ -11,6 +11,7 @@
 #include "Graph.h"
 #include "Info.h"
 #include "Input.h"
+#include "Timer.h"
 #include <iostream>
 
 
@@ -18,6 +19,7 @@ void Game::init()
 {
 	Res::init();
 	gameTime = 0;
+	numberOfTicks = 0;
 	state = FREE;
 
 	std::vector<Weapon> blank;
@@ -46,16 +48,26 @@ void Game::init()
 
 void Game::tick() {
 
-	UIManager::update();
 
-	WorldManager::tick();
-	WorldManager::checkWorld(&player);
-	WorldManager::checkEnemyCollisions(&player);
+	numberOfTicks++;
+
+	if (numberOfTicks >= 1) {
+		numberOfTicks = 0;
+
+		UIManager::update();
+
+		WorldManager::tick();
+		WorldManager::checkWorld(&player);
+		WorldManager::checkEnemyCollisions(&player);
+
+	}
 
 }
 
 
 void Game::loop(float dt){
+
+	dt = Timer::dt;
 
 	Input::processInput(dt);
 
@@ -118,7 +130,7 @@ void Game::renderPaused()
 
 void Game::loopFree(float dt){
 
-	if (gameTick) {
+	if (Timer::tick) {
 		tick();
 		gameTick = false;
 	}

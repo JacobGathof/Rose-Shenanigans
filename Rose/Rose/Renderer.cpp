@@ -22,18 +22,18 @@ void Renderer::renderText(Text * text){
 
 }
 
-void Renderer::renderTerrainChunk(Terrain::TerrainChunk * chunk){
+void Renderer::renderTerrain(Terrain * terrain){
 
 	Res::getTexture("Grass")->bind();
 
 	ShaderProgram * shader = Res::getShader(terrainShader);
-	shader->loadVector2f("scale", Vector2f(chunk->scale, chunk->scale));
+	shader->loadVector2f("scale", Vector2f(terrain->tileScale, terrain->tileScale));
 
-	shader->loadVector2f("pos", chunk->position*(chunk->tilesPerChunk*chunk->scale));
+	shader->loadVector2f("pos", Vector2f(0,0));
 
-	glBindVertexArray(chunk->VAO);
+	glBindVertexArray(terrain->VAO);
 
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, chunk->tilesPerChunk*chunk->tilesPerChunk);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, terrain->worldScaleX*terrain->worldScaleY);
 
 }
 

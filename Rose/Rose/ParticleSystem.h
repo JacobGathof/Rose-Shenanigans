@@ -54,6 +54,7 @@ public:
 
 	ParticleSystem();
 	ParticleSystem(Vector2f pos, Color col = Color(0, 0, 0), float speed = 32.0f, float size = 32.0f, int max = 500, int op = 0x00);
+	ParticleSystem(Object* object);
 	~ParticleSystem();
 
 private:

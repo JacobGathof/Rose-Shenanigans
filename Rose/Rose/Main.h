@@ -6,7 +6,6 @@
 #include "Input.h"
 #include <iostream>
 #include <Windows.h>
-//#include "PopUpManager.h"
 
 
 int main();
@@ -17,6 +16,10 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void window_resize_callback(GLFWwindow* window, int width, int height);
 void error_callback(int error, const char* desc);
 void window_refresh_callback(GLFWwindow* window);
+
+void setCallbacks(GLFWwindow *window);
+void initializeGLFW();
+void initializeOGL();
 
 Game game;
 
