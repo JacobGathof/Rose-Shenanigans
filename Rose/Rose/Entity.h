@@ -26,6 +26,9 @@ public:
 	virtual void tick();
 	virtual ObjectType getType() { return ENTITY; }
 
+	Vector2f position1;
+	Vector2f position2;
+
 	Direction direction = SOUTH;
 	State state = IDLE;
 	bool continueAnimation = true;

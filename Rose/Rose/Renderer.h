@@ -1,6 +1,7 @@
 #pragma once
 #include "Res.h"
 #include "Entity.h"
+#include "Projectile.h"
 //#include "UI_Manager.h"
 #include "Terrain.h"
 
@@ -29,6 +30,9 @@ public:
 
 	/*Render function for any Entity*/
 	static void renderEntity(Entity* entity);
+
+
+	static void renderProjectile(Projectile* proj);
 
 	/*Render function for any UIElement*/
 	static void renderDefaultUIElement(UI_Element* element);

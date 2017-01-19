@@ -21,12 +21,18 @@ int main() {
 
 	glfwSetTime(0);
 
+	//Timer::slow = true;
+
 	while (!glfwWindowShouldClose(window)) {
 
 		Timer::wait();
 
+
 		game.loop(0);
 		game.render();
+
+		if (game.player.hp <= 0)
+			break;
 
 
 		glfwPollEvents();

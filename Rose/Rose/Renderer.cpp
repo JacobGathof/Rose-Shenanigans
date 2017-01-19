@@ -71,6 +71,29 @@ void Renderer::renderEntity(Entity * entity){
 	renderHitbox(entity);
 }
 
+void Renderer::renderProjectile(Projectile * proj){
+
+	proj->tex->bind();
+
+	ShaderProgram * shader = Res::getShader(entityShader);
+	shader->loadVector2f("scale", proj->scale);
+	shader->loadVector2f("pos", proj->position);
+	shader->loadFloat("animTimer", proj->internalTime);
+	shader->loadInteger("direction", proj->direction);
+
+	shader->loadInteger("rows", proj->tex->numberOfRows);
+	shader->loadInteger("cols", proj->tex->numberOfColumns);
+
+	Res::stdModel->bind();
+
+	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
+
+	//renderHitbox(proj);
+
+	proj->system->draw();
+
+}
+
 void Renderer::renderDefaultUIElement(UI_Element * element){
 
 	if (element->isVisible) {

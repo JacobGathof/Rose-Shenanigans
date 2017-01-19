@@ -93,7 +93,7 @@ void Player::takeDamage(){
 	if (iFrames > 0) {
 		return;
 	}
-	this->hp -= 1;
+	this->hp -= 20;
 	iFrames = 10;
 	this->statsChanged = true;
 

@@ -42,10 +42,13 @@ void Entity::draw() {
 }
 
 void Entity::update(float dt){
-
+	Object::update(dt);
 }
 
 void Entity::tick(){
+
+	position2 = position1;
+	position1 = position;
 
 	if (state == MOVING || continueAnimation) {
 		continueAnimation = true;

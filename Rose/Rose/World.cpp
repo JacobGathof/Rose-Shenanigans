@@ -20,8 +20,8 @@ void World::tick()
 
 void World::update(float dt){
 
-	for (auto o : objects) {
-		o->update(dt);
+	for (int i = 0; i < objects.size(); i++) {
+		objects[i]->update(dt);
 	}
 
 	for (auto s : systems) {
@@ -51,7 +51,6 @@ void World::AddObject(Object * obj) {
 }
 
 void World::AddEntity(Entity * e) {
-	//entities.push_back(e);
 	objects.push_back(e);
 }
 
@@ -92,6 +91,8 @@ void World::draw() {
 	terrain->draw();
 
 	for (auto o : objects) {
+		if (o->getType() == PROJECTILE) {
+		}
 		if (((o->position.x + o->scale.x) > (Camera::position.x - SCALEFACTOR)) && (o->position.x < (Camera::position.x + SCALEFACTOR)) &&
 			((o->position.y + o->scale.y) > (Camera::position.y - SCALEFACTOR)) && (o->position.y < (Camera::position.y + SCALEFACTOR))) {
 			o->draw();
@@ -141,6 +142,12 @@ void World::checkEnemyCollisions(Player * player){
 				//o->destroy();
 			}
 		}
+		if (o->getType() == PROJECTILE) {
+			if (o->collide(*player)) {
+				player->takeDamage();
+				o->destroy();
+			}
+		}
 	}
 }
 
@@ -148,7 +155,7 @@ void World::removeDead()
 {
 	for (int i = 0; i < objects.size(); i++) {
 		Object * obj = objects[i];
-		if (obj->getType() == SLIME && obj->alive == false) {
+		if ((obj->getType() == SLIME || obj->getType() == PROJECTILE) && obj->alive == false) {
 			delete obj;
 			objects.erase(objects.begin() + i);
 			i--;

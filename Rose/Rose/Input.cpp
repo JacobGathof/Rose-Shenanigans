@@ -104,8 +104,10 @@ void Input::GameLogic(float dt){
 	}
 
 	if (keys[GLFW_KEY_M]) {
-		Screen::fadeBlack();
+		keys[GLFW_KEY_M] = false;
+		game->player.position += -40.0f*(game->player.position2 - game->player.position1);
 	}
+
 	if (keys[GLFW_KEY_N]) {
 		Screen::fadeWhite();
 	}
@@ -114,7 +116,7 @@ void Input::GameLogic(float dt){
 	if (keys[GLFW_KEY_B]) {
 		keys[GLFW_KEY_B] = false;
 		testVar = !testVar;
-		Camera::setFocus(NPCManager::npcs["Rose"]);
+		//Camera::setFocus(NPCManager::npcs["Rose"]);
 	}
 
 	if (keys[GLFW_KEY_LEFT_BRACKET]) {

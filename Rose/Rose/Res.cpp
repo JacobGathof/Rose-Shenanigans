@@ -137,7 +137,6 @@ void Res::initProjections(){
 void Res::initManagers(){
 	WorldManager::init();
 	UIManager::init();
-	NPCManager::init();
 }
 
 void Res::initFramebuffers(){

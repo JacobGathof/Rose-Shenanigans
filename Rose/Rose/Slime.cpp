@@ -16,7 +16,7 @@ Slime::~Slime(){
 void Slime::update(float dt){
 
 	Entity::update(dt);
-	follow(dt);
+	//follow(dt);
 
 }
 

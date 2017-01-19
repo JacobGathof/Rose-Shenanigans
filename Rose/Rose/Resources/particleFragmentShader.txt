@@ -11,7 +11,7 @@ void main(){
 
 	vec4 col = texture(image, texCoords_);
 
-	outColor =  vec4(col.xyzx) * vec4(color_, 0.25f);
+	outColor =  vec4(col.xyz, 1.0f) * vec4(color_, 1.00f);
 
 }
  

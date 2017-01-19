@@ -10,6 +10,7 @@ float Timer::lastSecond = 0;
 int Timer::frameLimit = 120;
 int Timer::FPS;
 bool Timer::tick = false;
+bool Timer::slow = false;
 
 void Timer::wait(){
 
@@ -38,5 +39,8 @@ void Timer::wait(){
 		//Find a more stable Tick method
 	}
 
+	if (slow) {
+		dt = dt / 4.0f;
+	}
 
 }

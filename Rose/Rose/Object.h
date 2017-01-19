@@ -9,6 +9,8 @@ enum ObjectType {
 	PLAYER,
 	NPC_,
 	SLIME,
+	PROJECTILE,
+	ENEMY
 
 };
 
@@ -23,6 +25,7 @@ public:
 
 	Hitbox hitbox;
 	Vector2f position;
+	Vector2f centerOfMass;
 	Vector2f scale;
 	Texture * tex;
 

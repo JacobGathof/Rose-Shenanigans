@@ -30,7 +30,7 @@ void Object::tick(){
 }
 
 void Object::update(float dt){
-
+	this->centerOfMass = position + .5f*scale;
 }
 
 bool Object::compare(Object * o, Object * o2){
@@ -49,6 +49,7 @@ Object::Object(){
 	this->scale = Vector2f(1,1);
 	this->hitbox.position = Vector2f(0, 0);
 	this->hitbox.scale = scale;
+	this->centerOfMass = Vector2f(0, 0);
 }
 
 
@@ -58,6 +59,7 @@ Object::Object(Vector2f pos, Vector2f scale, std::string texName){
 	this->scale = Vector2f(scale);
 	this->hitbox.position = Vector2f(0, 0);
 	this->hitbox.scale = Vector2f(scale);
+	this->centerOfMass = position + .5f*scale;
 }
 
 Object::~Object(){

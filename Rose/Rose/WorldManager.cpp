@@ -1,6 +1,7 @@
 #include "WorldManager.h"
 #include "World.h"
 #include "Slime.h"
+#include "Enemy.h"
 
 
 #pragma region WORLDMANAGER
@@ -13,27 +14,8 @@ void WorldManager::init() {
 	freeze = false;
 	World * world = new World("Town of Beginnings");
 	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
-	world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500));
-	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
-
-	for (int i = 0; i < 1; i++) {
-		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
-		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
-		Entity * slime;
-		if (i == 0){
-			slime = new Slime(random, Vector2f(30,30), "GreenSlime", 15.0f, 0);
-		}
-		if (i == 1) {
-			slime = new Slime(random, Vector2f(30,30), "FireSlime", 10.0f, 0);
-		}
-		if (i == 2) {
-			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
-		}
-
+	//world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500));
 	
-
-		world->AddEntity(slime);
-	}
 
 	for (int i = 0; i < 1; i++) {
 		for (int j = 0; j < 1; j++) {
@@ -58,8 +40,8 @@ void WorldManager::init() {
 	world3->addTerrain(new Terrain("Library of Aventheim"));
 
 
-	world->AddLoadZone(LoadZone(world, world2, Vector2f(50, 80), Vector2f(10, 10)));
-	world->AddLoadZone(LoadZone(world, world3, Vector2f(50, 50), Vector2f(10, 10)));
+	//world->AddLoadZone(LoadZone(world, world2, Vector2f(50, 80), Vector2f(10, 10)));
+	//world->AddLoadZone(LoadZone(world, world3, Vector2f(50, 50), Vector2f(10, 10)));
 	world3->AddLoadZone(LoadZone(world3, world, Vector2f(0, 0), Vector2f(10, 10)));
 	world2->AddLoadZone(LoadZone(world2, world, Vector2f(-50, 0), Vector2f(10, 10)));
 
@@ -122,16 +104,6 @@ NPC * WorldManager::findClosestNPC(Vector2f pos)
 void WorldManager::checkEnemyCollisions(Player * player){
 
 	return currentWorld->checkEnemyCollisions(player);
-}
-
-void WorldManager::addPlayerToSlimes(Entity * player){
-	for (auto w : worlds) {
-		for (auto o : w.second->objects) {
-			if (o->getType() == SLIME) {
-				((Slime*)(o))->target = player;
-			}
-		}
-	}
 }
 
 void WorldManager::checkWorld(Player* player) {
@@ -257,7 +229,7 @@ std::map<std::string, NPC*> NPCManager::npcs;
 
 
 
-void NPCManager::init() {
+void NPCManager::init(Player* player) {
 	
 	NPC* echo = new Echo();
 	NPC* jibril = new Jibril();
@@ -268,6 +240,30 @@ void NPCManager::init() {
 	
 	WorldManager::currentWorld->addNPC(echo);
 	WorldManager::currentWorld->addNPC(jibril);
+
+
+	World * world = WorldManager::getWorld("Town of Beginnings");
+	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), "Edwin", 15.0f));
+	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
+
+	for (int i = 0; i < 0; i++) {
+		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
+		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
+		Entity * slime;
+		if (i == 0) {
+			slime = new Slime(random, Vector2f(30, 30), "GreenSlime", 15.0f, 0);
+		}
+		if (i == 1) {
+			slime = new Slime(random, Vector2f(30, 30), "FireSlime", 10.0f, 0);
+		}
+		if (i == 2) {
+			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
+		}
+
+		world->AddEntity(slime);
+	}
+
+
 	
 }
 

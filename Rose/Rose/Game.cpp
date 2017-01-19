@@ -24,8 +24,8 @@ void Game::init()
 
 	std::vector<Weapon> blank;
 
-	player = Player(Vector2f(0, 0), Vector2f(32, 32), "Echo", 50);
-
+	player = Player(Vector2f(0, 0), Vector2f(4, 4), "Echo", 50);
+	NPCManager::init(&player);
 	
 	//Dash skill = Dash();
 	//player.addSkill(1,skill);
@@ -41,7 +41,6 @@ void Game::init()
 
 	UIManager::statbox.player = &player;
 	WorldManager::addToAllWorlds(&player);
-	WorldManager::addPlayerToSlimes(&player);
 
 
 }

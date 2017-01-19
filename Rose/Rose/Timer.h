@@ -8,6 +8,7 @@ public:
 	static float dt;
 	static float gameTime;
 	static bool tick;
+	static bool slow;
 
 	static float currentTime;
 	static float lastTime;

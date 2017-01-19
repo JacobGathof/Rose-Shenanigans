@@ -40,7 +40,7 @@ public:
 	static bool freeze;
 
 	static void checkEnemyCollisions(Player * player);
-	static void addPlayerToSlimes(Entity * player);
+	//static void addPlayerToSlimes(Entity * player);
 
 	static World * currentWorld;
 	static std::map<std::string, World*> worlds;
@@ -92,7 +92,7 @@ public:
 	~NPCManager();
 
 	static std::map<std::string, NPC*> npcs;
-	static void init();
+	static void init(Player* player);
 	static void destroy();
 };
 
