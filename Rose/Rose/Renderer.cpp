@@ -121,8 +121,10 @@ void Renderer::renderDefaultUIElement(UI_Element * element){
 	if (element->isVisible) {
 		element->tex->bind();
 		ShaderProgram * shader = Res::getShader(uiShader);
+		shader->loadInteger("textured", element->textured);
 		shader->loadVector2f("scale", -1 * element->topLeft + element->botRight);
 		shader->loadVector2f("pos", element->topLeft);
+		shader->loadFloat("opacity", element->opacity);
 
 		Res::stdModel->bind();
 		glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
@@ -131,6 +133,11 @@ void Renderer::renderDefaultUIElement(UI_Element * element){
 }
 
 void Renderer::renderTextbox(UI_Textbox * box){
+	renderDefaultUIElement(box);
+	renderText(box->text);
+}
+
+void Renderer::renderTitle(UI_Title * box) {
 	renderDefaultUIElement(box);
 	renderText(box->text);
 }

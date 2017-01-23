@@ -3,9 +3,15 @@
 in vec2 texCoords_;
 
 uniform sampler2D image;
+uniform float opacity;
+uniform int textured;
 
 void main(){
 
-		gl_FragColor = vec4(1.0,1.0,1.0,.75) * texture(image, texCoords_);
-		//gl_FragColor = vec4(0.0,0.0,0.0,.75);
+		if(textured == 1){
+			gl_FragColor = vec4(1.0,1.0,1.0,opacity) * texture(image, texCoords_);
+		}
+		else{
+			gl_FragColor = vec4(1.0,1.0,1.0,opacity);
+		}
 }

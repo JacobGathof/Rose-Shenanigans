@@ -30,11 +30,12 @@ public:
 	int length;
 	int charsToRender;
 
-	Text(Vector2f position, std::string data, Vector2f scale);
+	Text(Vector2f position, std::string data, Vector2f scale, bool centered = false);
 	Text() {};
 
 	~Text() {};
 
+	Vector2f toScreenCoordinates(int x, int y);
 	void writeCharacterData(std::string string, float *pos, float *tex);
 	void updateVAO(float * pos, int pos_size, float * tex, int tex_size);
 	void generateVAO();

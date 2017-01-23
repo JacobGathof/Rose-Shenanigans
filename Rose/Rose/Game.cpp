@@ -117,6 +117,7 @@ void Game::renderFree()
 
 	UIManager::textbox.draw();
 	UIManager::statbox.draw();
+	UIManager::title.draw();
 	UIManager::skillbox.draw(&player);
 	
 }

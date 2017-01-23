@@ -15,6 +15,9 @@ public:
 
 	Vector2f topLeft;
 	Vector2f botRight;
+	float opacity;
+	int textured = 1;
+
 	static Vector2f toScreenCoordinates(int x, int y);
 
 	Texture * tex;

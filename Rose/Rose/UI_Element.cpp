@@ -5,6 +5,7 @@ UIElement::UIElement(){
 
 	topLeft = toScreenCoordinates(40,40);
 	botRight = toScreenCoordinates(60, 60);
+	opacity = 0.50f;
 	isVisible = true;
 
 }

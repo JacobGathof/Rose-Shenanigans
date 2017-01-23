@@ -6,13 +6,17 @@
 static float textureScaleFactor = 512.0f;
 static float textScaleFactor = 64.0f;
 
-Text::Text(Vector2f position, std::string data, Vector2f scale)
+Text::Text(Vector2f position, std::string data, Vector2f scale, bool centered)
 {
 	this->data = data;
 	this->length = data.length();
 	this->position = position;
 	this->scale = scale;
 	this->charsToRender = length*6;
+
+	if (centered) {
+		this->position.x -= this->scale.x/SCALEFACTOR*64.0f*.5f*toScreenCoordinates(this->length*Res::getCharacter(" ")->xadvance, 0).x / textScaleFactor;
+	}
 	
 	generateVAO();
 
@@ -163,6 +167,10 @@ bool Text::addCharactersToRender(int n)
 
 void Text::draw() {
 	Renderer::renderText(this);
+}
+
+Vector2f Text::toScreenCoordinates(int x, int y) {
+	return Vector2f(x*SCALEFACTOR / 64, y*SCALEFACTOR / 64);
 }
 
 

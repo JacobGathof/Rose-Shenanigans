@@ -203,6 +203,7 @@
     <ClInclude Include="UI_Skillbox.h" />
     <ClInclude Include="UI_Statbox.h" />
     <ClInclude Include="UI_Textbox.h" />
+    <ClInclude Include="UI_Title.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="UI_Skillbox.cpp" />
     <ClCompile Include="UI_Statbox.cpp" />
     <ClCompile Include="UI_Textbox.cpp" />
+    <ClCompile Include="UI_Title.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />

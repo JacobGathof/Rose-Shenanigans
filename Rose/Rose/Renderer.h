@@ -15,6 +15,7 @@
 class UI_Textbox;
 class UI_Statbox;
 class UI_Element;
+class UI_Title;
 class Skill;
 class Weapon;
 
@@ -41,6 +42,9 @@ public:
 
 	/*Render function for the Textbox*/
 	static void renderTextbox(UI_Textbox * box);
+
+	/*Render function for the Textbox*/
+	static void renderTitle(UI_Title * title);
 
 	/*Render function for the Statbox*/
 	static void renderStatbox(UI_Statbox * box);
