@@ -4,7 +4,7 @@
 
 Projectile::Projectile(Vector2f pos, Vector2f scale, std::string texName, float speed, Vector2f dir) : Entity(pos, scale, texName, speed)
 {
-	system = new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 16.0f, 16.0f, 100, RANDOM_COLOR);
+	system = new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 16.0f, 16.0f, 100);
 	this->dir = dir;
 }
 

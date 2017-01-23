@@ -17,6 +17,8 @@ Enemy::~Enemy()
 
 void Enemy::update(float dt){
 
+	Entity::update(dt);
+
 	if (current_cooldown <= 0.0f) {
 		shoot(dt);
 		current_cooldown = cooldown;
@@ -29,6 +31,9 @@ void Enemy::update(float dt){
 		current_predict_cooldown = predict_cooldown;
 	}
 	current_predict_cooldown -= dt;
+
+	follow(dt);
+
 
 }
 
@@ -45,11 +50,24 @@ void Enemy::analyze(){
 	prediction.time1 = Timer::currentTime;
 }
 
+void Enemy::follow(float dt){
+
+	Vector2f dir = (target->position - this->position).normalize();
+
+	if (dir.y > .707) direction = NORTH;
+	if (dir.y < -.707) direction = SOUTH;
+
+	if (dir.x > .707) direction = WEST;
+	if (dir.x < -.707) direction = EAST;
+
+
+	if ((this->position ^ target->position) > 100.0f) {
+		this->move(dir, dt);
+	}
+
+}
+
 void Enemy::shoot(float dt){
-
-	//std::cout << "Creating new Projectile";
-
-	
 	
 	for (int i = 0; i < 10; i++) {
 		Vector2f position = this->centerOfMass + Vector2f(0, 64 * (2 * ((float)rand() / RAND_MAX) - 1.0f)) + Vector2f(16 * 4 * (2*((float)rand() / RAND_MAX)-1.0f), 0);
@@ -63,7 +81,7 @@ void Enemy::shoot(float dt){
 
 void Enemy::shootPrediction(float dt){
 
-	UIManager::textbox.print("Mongrel");
+	//UIManager::textbox.print("Mongrel");
 
 	Vector2f direction = ((target->centerOfMass + (prediction.v1 - prediction.v2)*(prediction.time2 - prediction.time1)) - this->centerOfMass).normalize();
 

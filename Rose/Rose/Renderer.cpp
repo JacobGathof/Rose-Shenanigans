@@ -94,6 +94,28 @@ void Renderer::renderProjectile(Projectile * proj){
 
 }
 
+void Renderer::renderParticleSystem(ParticleSystem * sys){
+
+	/*
+	if (Input::testVar) {
+		glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	}
+	*/
+
+	ShaderProgram* shader = Res::getShader(particleShader);
+	Res::getTexture("Light")->bind();
+	shader->loadFloat("opacity", 1.0f);
+	shader->loadFloat("size", 4.0f);
+
+	glBindVertexArray(sys->VAO);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, sys->particle_count);
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+
+}
+
 void Renderer::renderDefaultUIElement(UI_Element * element){
 
 	if (element->isVisible) {

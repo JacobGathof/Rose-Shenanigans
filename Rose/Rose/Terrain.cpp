@@ -154,8 +154,15 @@ void Terrain::buildTerrain(int type[]) {
 	for (int i = 0; i < worldScaleX; i++) {
 		for (int j = 0; j < worldScaleY; j++) {
 
-			if (type == 0) tiles[i*worldScaleX + j].type = TileType::GRASS_FULL;
-			else tiles[i*worldScaleX + j].type = (TileType)type[i*worldScaleX + j];
+			if (type == 0) {
+				tiles[i*worldScaleX + j].type = TileType::GRASS_FULL;
+				tiles[i*worldScaleX + j].texture = 0;
+			}
+			else {
+				tiles[i*worldScaleX + j].type = (TileType)type[i*worldScaleX + j];
+				tiles[i*worldScaleX + j].texture = type[i*worldScaleX + j];
+			}
+
 
 		}
 	}

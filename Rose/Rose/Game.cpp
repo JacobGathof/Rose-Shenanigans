@@ -24,7 +24,7 @@ void Game::init()
 
 	std::vector<Weapon> blank;
 
-	player = Player(Vector2f(0, 0), Vector2f(4, 4), "Echo", 50);
+	player = Player(Vector2f(0, 0), Vector2f(4, 4), "Echo", 100);
 	NPCManager::init(&player);
 	
 	//Dash skill = Dash();

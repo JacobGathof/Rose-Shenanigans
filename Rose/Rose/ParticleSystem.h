@@ -57,7 +57,7 @@ public:
 	ParticleSystem(Object* object);
 	~ParticleSystem();
 
-private:
+//private:
 
 	void generateVAO();
 	void updateBuffers();

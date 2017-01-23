@@ -34,6 +34,8 @@ public:
 
 	static void renderProjectile(Projectile* proj);
 
+	static void renderParticleSystem(ParticleSystem* sys);
+
 	/*Render function for any UIElement*/
 	static void renderDefaultUIElement(UI_Element* element);
 

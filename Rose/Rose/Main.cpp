@@ -31,8 +31,8 @@ int main() {
 		game.loop(0);
 		game.render();
 
-		if (game.player.hp <= 0)
-			break;
+		//if (game.player.hp <= 0)
+			//break;
 
 
 		glfwPollEvents();

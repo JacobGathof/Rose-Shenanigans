@@ -35,7 +35,7 @@ void ParticleSystem::generateVAO(){
 	GLuint vertices;
 	GLuint tex;
 
-	float vertices_[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
+	float vertices_[] = { -1,-1, -1,1, 1,1 , 1,1, 1,-1, -1,-1 };
 	float tex_[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
 
 	glGenBuffers(1, &vertices);
@@ -197,20 +197,7 @@ void ParticleSystem::setNewParticle(int index)
 }
 
 void ParticleSystem::draw() {
-
-	if (Input::testVar) {
-		glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	}
-
-	Res::getShader(particleShader);
-	Res::getTexture("Light")->bind();
-
-	glBindVertexArray(this->VAO);
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, particle_count);
-
-
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	Renderer::renderParticleSystem(this);
 
 }
 

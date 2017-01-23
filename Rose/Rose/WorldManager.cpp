@@ -13,7 +13,7 @@ bool WorldManager::freeze;
 void WorldManager::init() {
 	freeze = false;
 	World * world = new World("Town of Beginnings");
-	world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
+	//world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	//world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500));
 	
 
@@ -243,12 +243,18 @@ void NPCManager::init(Player* player) {
 
 
 	World * world = WorldManager::getWorld("Town of Beginnings");
-	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), "Edwin", 15.0f));
+	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), "Edwin", 100.0f));
+
+	world->AddEntity(new Entity(Vector2f(-100, 50), Vector2f(36, 36), "Mavis"));
+	//world->AddEntity(new Entity(Vector2f(-50, 50), Vector2f(36, 36), "Yuno"));
+	//world->AddEntity(new Entity(Vector2f(0, 50), Vector2f(36, 36), "Lucy"));
+	//world->AddEntity(new Entity(Vector2f(50, 50), Vector2f(36, 36), "Lizbeth"));
+
 	//world->AddEntity(new Entity(Vector2f(-30, 30), Vector2f(20, 20), "Rain", 20));
 
 	for (int i = 0; i < 0; i++) {
 		Vector2f random = Vector2f(250 * (-.5 + (float)(rand()) / RAND_MAX), 250 * (-.5 + (float)(rand()) / RAND_MAX));
-		//world->AddObject(new Object(random, Vector2f(30, 30), "Tree"));
+		
 		Entity * slime;
 		if (i == 0) {
 			slime = new Slime(random, Vector2f(30, 30), "GreenSlime", 15.0f, 0);
