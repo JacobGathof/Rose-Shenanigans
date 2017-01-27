@@ -11,12 +11,15 @@ void Renderer::renderText(Text * text){
 	ShaderProgram * currentShader = Res::getShader(textShader);
 
 	glActiveTexture(GL_TEXTURE0);
-	Res::getTexture("Font")->bind();
+	Res::getTexture(Font)->bind();
 
 	glBindVertexArray(text->VAO);
 
 	currentShader->loadVector2f("pos", text->position);
 	currentShader->loadVector2f("scale", text->scale);
+	currentShader->loadColor("color", text->color);
+	currentShader->loadFloat("opacity", text->opacity);
+
 
 	glDrawArrays(GL_TRIANGLES, 0, text->charsToRender);
 
@@ -24,7 +27,7 @@ void Renderer::renderText(Text * text){
 
 void Renderer::renderTerrain(Terrain * terrain){
 
-	Res::getTexture("Grass")->bind();
+	Res::getTexture(Grass)->bind();
 
 	ShaderProgram * shader = Res::getShader(terrainShader);
 	shader->loadVector2f("scale", Vector2f(terrain->tileScale, terrain->tileScale));
@@ -43,11 +46,12 @@ void Renderer::renderObject(Object * object){
 	ShaderProgram * shader = Res::getShader(staticShader);
 	shader->loadVector2f("scale", object->scale);
 	shader->loadVector2f("pos", object->position);
+	shader->loadInteger("useTexture", 1);
 
 	Res::stdModel->bind();
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
-	renderHitbox(object);
+	//renderHitbox(object);
 
 }
 
@@ -68,7 +72,7 @@ void Renderer::renderEntity(Entity * entity){
 
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
 
-	renderHitbox(entity);
+	//renderHitbox(entity);
 }
 
 void Renderer::renderProjectile(Projectile * proj){
@@ -90,7 +94,7 @@ void Renderer::renderProjectile(Projectile * proj){
 
 	//renderHitbox(proj);
 
-	proj->system->draw();
+	//proj->system->draw();
 
 }
 
@@ -104,7 +108,7 @@ void Renderer::renderParticleSystem(ParticleSystem * sys){
 	*/
 
 	ShaderProgram* shader = Res::getShader(particleShader);
-	Res::getTexture("Light")->bind();
+	Res::getTexture(Light_Tex)->bind();
 	shader->loadFloat("opacity", 1.0f);
 	shader->loadFloat("size", 4.0f);
 
@@ -112,7 +116,7 @@ void Renderer::renderParticleSystem(ParticleSystem * sys){
 	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, sys->particle_count);
 
 
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(WorldFBO));
 
 }
 
@@ -172,7 +176,7 @@ void Renderer::renderSkill(Skill *s, int i) {
 	s->icon->bind();
 	ShaderProgram * shader = Res::getShader(uiShader);
 	shader->loadVector2f("scale", Vector2f(SkillScale, -SkillScale)*SCALEFACTOR/64);
-	shader->loadVector2f("pos", UIElement::toScreenCoordinates(-20 + SkillScale * i, 60));
+	shader->loadVector2f("pos", Utils::toScreenCoordinates(-20 + SkillScale * i, 60));
 
 	Res::stdModel->bind();
 	glDrawArrays(GL_TRIANGLES, 0, Res::stdModel->numberOfVertices);
@@ -198,12 +202,12 @@ void Renderer::renderScreen() {
 	ShaderProgram * shader = Res::getShader(screenShader);
 	shader->loadFloat("black", Screen::black);
 	shader->loadFloat("white", Screen::white);
-	
+
 
 	glActiveTexture(GL_TEXTURE0);
-	Res::getTexture("WorldTexture")->bind();
+	Res::getTexture(WorldTexture)->bind();
 	glActiveTexture(GL_TEXTURE1);
-	Res::getTexture("LightTexture")->bind();
+	Res::getTexture(LightTexture)->bind();
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
@@ -223,10 +227,9 @@ void Renderer::prepareToRender() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(WorldFBO));
 	glClear(GL_COLOR_BUFFER_BIT);
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(LightFBO));
 	glClear(GL_COLOR_BUFFER_BIT);
 
 }
-

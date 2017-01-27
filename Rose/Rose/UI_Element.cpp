@@ -3,8 +3,8 @@
 
 UIElement::UIElement(){
 
-	topLeft = toScreenCoordinates(40,40);
-	botRight = toScreenCoordinates(60, 60);
+	topLeft = Utils::toScreenCoordinates(40,40);
+	botRight = Utils::toScreenCoordinates(60, 60);
 	opacity = 0.50f;
 	isVisible = true;
 
@@ -19,10 +19,6 @@ void UIElement::init(){}
 void UIElement::destroy(){}
 void UIElement::update(){}
 UIElement::~UIElement() {}
-
-Vector2f UIElement::toScreenCoordinates(int x, int y){
-	return Vector2f(x*SCALEFACTOR / 64, y*SCALEFACTOR/64);
-}
 
 #pragma endregion
 
@@ -42,8 +38,8 @@ Inventory_Screen::~Inventory_Screen()
 
 void Inventory_Screen::init()
 {
-	topLeft = toScreenCoordinates(-60, 60);
-	botRight = toScreenCoordinates(-20, 20);
+	topLeft = Utils::toScreenCoordinates(-60, 60);
+	botRight = Utils::toScreenCoordinates(-20, 20);
 }
 
 void Inventory_Screen::draw()

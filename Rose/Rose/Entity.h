@@ -36,7 +36,7 @@ public:
 
 	float internalTime = 0;
 
-	Entity(Vector2f pos, Vector2f scale, std::string texName, float speed = 1.0);
+	Entity(Vector2f pos, Vector2f scale, TextureName texName, float speed = 1.0);
 	Entity() {}
 	~Entity() {};
 };

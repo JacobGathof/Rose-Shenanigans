@@ -9,7 +9,7 @@ Skill::~Skill()
 {
 }
 
-Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
+Skill::Skill(int dmg, int rng, int typ, int spd, TextureName def)
 {
 	damage = dmg;
 	range = rng;
@@ -17,7 +17,7 @@ Skill::Skill(int dmg, int rng, int typ, int spd, std::string def)
 	speed = spd;
 	name = def;
 	level = 1;
-	bracket = Object(Vector2f(0, 0), Vector2f(8, 8), "bracket");
+	bracket = Object(Vector2f(0, 0), Vector2f(8, 8), Bracket);
 	icon = Res::getTexture(def);
 }
 
@@ -29,7 +29,7 @@ int Skill::use(Vector2f pos, Weapon weapon)
 
 
 	Dash::Dash()
-		:Skill(0,0,0,0,"dash")
+		:Skill(0,0,0,0,Dash_Tex)
 	{
 		
 	}

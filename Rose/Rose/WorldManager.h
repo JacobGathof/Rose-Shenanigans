@@ -1,5 +1,4 @@
 #pragma once
-#include "Building.h"
 #include "UI_Element.h"
 #include <vector>
 

@@ -9,13 +9,13 @@ void Textbox::draw() {
 
 void Textbox::init() {
 
-	tex = Res::getTexture("Textbox");
+	tex = Res::getTexture(Textbox_Tex);
 	isVisible = true;
 	currentlyWriting = false;
 	isDisplayingText = false;
 	locked = false;
-	topLeft = toScreenCoordinates(-60, -28);
-	botRight = toScreenCoordinates(60, -60);
+	topLeft = Utils::toScreenCoordinates(-60, -28);
+	botRight = Utils::toScreenCoordinates(60, -60);
 	text = new Text(Vector2f(0, 0), "", Vector2f(4 * SCALEFACTOR / 64, 4 * SCALEFACTOR / 64));
 }
 
@@ -45,7 +45,7 @@ void Textbox::advanceQueue() {
 		queue.pop();
 
 		text->setText(str);
-		text->position = topLeft + toScreenCoordinates(4, -4);
+		text->position = topLeft + Utils::toScreenCoordinates(4, -4);
 		text->reset();
 	}
 	else {

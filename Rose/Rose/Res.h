@@ -18,6 +18,53 @@ enum ShaderType {
 	lightShader
 };
 
+enum TextureName{
+
+	Light_Tex,
+	Font,
+
+	Echo_Tex,
+	Mavis,
+	Yuno,
+	Lizbeth,
+	Lucy,
+
+	Slime_Tex,
+	Rain,
+	Inn,
+	Edwin,
+	Grass,
+	Sword,
+	Fire,
+	Candle,
+	Tree,
+	Default,
+	Textbox_Tex,
+	Statbox_Tex,
+
+	GreenSlime,
+	FireSlime,
+	SkySlime,
+	Jibril_Tex,
+	House,
+	Inventory_Tex,
+
+	Empty_skill,
+	Dash_Tex,
+	Bracket,
+
+
+	WorldTexture,
+	LightTexture,
+
+
+};
+
+enum Framebuffer {
+	WorldFBO,
+	LightFBO
+};
+
 
 class Model;
 class ModelLoader;
@@ -29,9 +76,9 @@ class Res
 private:
 	static std::map<std::string, Model*> models;
 	static std::map<ShaderType, ShaderProgram*> shaders;
-	static std::map<std::string, Texture*> textures;
+	static std::map<TextureName, Texture*> textures;
 	static std::map<std::string, Character*> characters;
-	static std::map<std::string, GLuint> fbos;
+	static std::map<Framebuffer, GLuint> fbos;
 
 	static void initShaders();
 	static void initTextures();
@@ -47,16 +94,16 @@ public:
 
 	static Model* getModel(std::string str);
 	static ShaderProgram* getShader(ShaderType str);
-	static Texture* getTexture(std::string str);
+	static Texture* getTexture(TextureName name);
 	static Character* getCharacter(std::string str);
-	static GLuint getFramebuffer(std::string str);
+	static GLuint getFramebuffer(Framebuffer name);
 
 	static void loadModel(std::string name, float * vertices, float * tex, int length);
 	static void loadShader(ShaderType name, char* file_vertex, char* file_geo, char* file_fragment);
-	static void loadTexture(std::string name, char* filename);
-	static void loadTexture(std::string name, char* filename, int rows, int cols);
-	static void loadFont(std::string name, char * filename_font, char* filename_texture);
-	static void loadFBO(std::string fbo_name, std::string tex_name);
+	static void loadTexture(TextureName name, char* filename);
+	static void loadTexture(TextureName name, char* filename, int rows, int cols);
+	static void loadFont(TextureName name, char * filename_font, char* filename_texture);
+	static void loadFBO(Framebuffer fbo_name, TextureName tex_name);
 
 	static void updateShaders(float gameTime);
 

@@ -68,7 +68,7 @@ int Inventory::Display(int health, int mana, int xp, Vector2f pos)
 {
 	if (!initialized) {
 		BuildPages();
-		BackDrop = Object(Vector2f(0, 0), Vector2f(128, 128), "Inventory");
+		BackDrop = Object(Vector2f(0, 0), Vector2f(128, 128), Inventory_Tex);
 		initialized = true;
 	}
 	//std::cout << selectedIndex << std::endl;

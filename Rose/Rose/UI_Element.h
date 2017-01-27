@@ -4,6 +4,7 @@
 #include <queue>
 #include "Player.h"
 #include "Renderer.h"
+#include "Utils.h"
 
 #define UIElement UI_Element
 
@@ -17,8 +18,6 @@ public:
 	Vector2f botRight;
 	float opacity;
 	int textured = 1;
-
-	static Vector2f toScreenCoordinates(int x, int y);
 
 	Texture * tex;
 

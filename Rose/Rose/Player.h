@@ -19,7 +19,7 @@ public:
 
 	Player() {};
 	~Player() {};
-	Player(Vector2f pos, Vector2f sc, std::string image, float speed);
+	Player(Vector2f pos, Vector2f sc, TextureName image, float speed);
 
 	int iFrames = 0;
 

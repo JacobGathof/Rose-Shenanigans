@@ -166,7 +166,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Building.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Enemy.h" />
@@ -204,13 +203,13 @@
     <ClInclude Include="UI_Statbox.h" />
     <ClInclude Include="UI_Textbox.h" />
     <ClInclude Include="UI_Title.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -246,6 +245,7 @@
     <ClCompile Include="UI_Statbox.cpp" />
     <ClCompile Include="UI_Textbox.cpp" />
     <ClCompile Include="UI_Title.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />

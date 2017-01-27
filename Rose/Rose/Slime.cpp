@@ -2,7 +2,7 @@
 
 
 
-Slime::Slime(Vector2f pos, Vector2f scale, std::string texName, float speed, Entity* target) : Entity(pos, scale, texName)
+Slime::Slime(Vector2f pos, Vector2f scale, TextureName texName, float speed, Entity* target) : Entity(pos, scale, texName)
 {
 	this->speed = speed;
 	this->target = target;

@@ -188,7 +188,7 @@ void Input::GameLogic(float dt){
 	}
 
 	if (keys[GLFW_KEY_PERIOD]) {
-		Weapon weapon = Weapon(0, 0, 0, Vector2f(0, 0), 1, "Echo");
+		Weapon weapon = Weapon(0, 0, 0, Vector2f(0, 0), 1, Echo_Tex);
 		game->player.addToInventory(weapon);
 	}
 }

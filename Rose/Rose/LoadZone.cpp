@@ -31,7 +31,7 @@ LoadZone::LoadZone(World * currentWorld, World * targetWorld, Vector2f targetPos
 
 void LoadZone::draw(){
 
-	Res::getTexture("Default")->bind();
+	Res::getTexture(Default)->bind();
 	ShaderProgram * shader = Res::getShader(staticShader);
 	shader->loadVector2f("scale", scale);
 	shader->loadVector2f("pos", position);

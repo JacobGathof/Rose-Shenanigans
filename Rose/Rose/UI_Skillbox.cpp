@@ -5,8 +5,8 @@
 Skillbox::Skillbox() {}
 
 void Skillbox::init() {
-	topLeft = toScreenCoordinates(-60, 60);
-	botRight = toScreenCoordinates(-20, 20);
+	topLeft = Utils::toScreenCoordinates(-60, 60);
+	botRight = Utils::toScreenCoordinates(-20, 20);
 }
 
 void Skillbox::draw(Player *player) {

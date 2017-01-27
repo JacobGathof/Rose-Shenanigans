@@ -5,7 +5,7 @@
 class Projectile : public Entity
 {
 public:
-	Projectile(Vector2f pos, Vector2f scale, std::string texName, float speed, Vector2f dir);
+	Projectile(Vector2f pos, Vector2f scale, TextureName texName, float speed, Vector2f dir);
 	~Projectile();
 
 	Vector2f dir;

@@ -1,6 +1,7 @@
 #pragma once
 #include "opengl-wrapper\GLEW\include\GL\glew.h"
 #include "Vector2f.h"
+#include "Color.h"
 #include <vector>
 #include <string>
 
@@ -29,13 +30,15 @@ public:
 	std::string data;
 	int length;
 	int charsToRender;
+	bool centered;
+	float opacity;
+	Color color;
 
-	Text(Vector2f position, std::string data, Vector2f scale, bool centered = false);
+	Text(Vector2f position, std::string data, Vector2f scale, bool centered = false, Color color = Color(0,0,0), float opacity=1.0f);
 	Text() {};
 
 	~Text() {};
 
-	Vector2f toScreenCoordinates(int x, int y);
 	void writeCharacterData(std::string string, float *pos, float *tex);
 	void updateVAO(float * pos, int pos_size, float * tex, int tex_size);
 	void generateVAO();

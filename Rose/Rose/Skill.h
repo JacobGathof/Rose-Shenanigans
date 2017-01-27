@@ -14,7 +14,7 @@ class Skill
 public:
 	Skill();
 	~Skill();
-	Skill(int dmg, int rng, int typ, int spd, std::string def);
+	Skill(int dmg, int rng, int typ, int spd, TextureName def);
 
 	Object bracket;
 	int level;

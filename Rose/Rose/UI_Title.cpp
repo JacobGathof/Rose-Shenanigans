@@ -9,12 +9,12 @@ void Title::draw() {
 void Title::init() {
 
 	opacity = 0.0f;
-	tex = Res::getTexture("Default");
+	tex = Res::getTexture(Default);
 	textured = 0;
 	isVisible = true;
-	topLeft = toScreenCoordinates(-64, 16);
-	botRight = toScreenCoordinates(64, -16);
-	text = new Text(Vector2f(0, 0), "Library Of Avantheim", Vector2f(6 * SCALEFACTOR / 64, 6 * SCALEFACTOR / 64), true);
+	topLeft = Utils::toScreenCoordinates(-64, 2);
+	botRight = Utils::toScreenCoordinates(64, -20);
+	text = new Text(Vector2f(0, 0), "Narcissus/<Sin of Pride>", Vector2f(6 * SCALEFACTOR / 64, 6 * SCALEFACTOR / 64), true, Color(1,1,1), 0.5f);
 	text->charsToRender = 0;
 }
 

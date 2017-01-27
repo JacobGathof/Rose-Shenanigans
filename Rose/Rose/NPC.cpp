@@ -5,7 +5,7 @@
 #include "Info.h"
 
 
-NPC::NPC(Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed){
+NPC::NPC(Vector2f pos, Vector2f scale, TextureName texName, float speed) : Entity(pos, scale, texName, speed){
 	name = "gary";
 }
 
@@ -109,7 +109,7 @@ void NPC::addActionListToGraph(NPCActionList l, bool(*condition)()){
 
 
 
-Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), "Echo", 50)
+Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), TextureName::Echo_Tex, 50)
 {
 
 	
@@ -139,7 +139,7 @@ Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), "Echo", 50)
 
 	NPCActionList list4 = NPCActionList();
 	list4.addAction(new NPCAction(WAIT));
-	list4.addAction(new NPCAction(TALK, "I already said you could pass. What's your problem?"));
+	list4.addAction(new NPCAction(TALK, "I already said you could pass. What's your problem"));
 	list4.addAction(new NPCAction(WAIT_FOR_TEXTBOX));
 	Graph::Node * node_4 = new Graph::Node(list4, []() {return true; });
 
@@ -161,11 +161,11 @@ Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), "Echo", 50)
 	
 }
 
-Jibril::Jibril() : NPC(Vector2f(-100, 100), Vector2f(32, 32), "Jibril", 50)
+Jibril::Jibril() : NPC(Vector2f(-100, 100), Vector2f(32, 32), TextureName::Jibril_Tex, 50)
 {
 	NPCActionList list = NPCActionList();
 	list.addAction(new NPCAction(WAIT));
-	list.addAction(new NPCAction(TALK, "Hello Hero, what brings you here?"));
+	list.addAction(new NPCAction(TALK, "Hello Hero, what brings you here"));
 	list.addAction(new NPCAction(WAIT_FOR_TEXTBOX));
 
 	list.addAction(new NPCAction(WAIT));

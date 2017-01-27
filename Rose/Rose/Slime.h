@@ -4,7 +4,7 @@
 class Slime : public Entity
 {
 public:
-	Slime(Vector2f pos, Vector2f scale, std::string texName, float speed, Entity * target);
+	Slime(Vector2f pos, Vector2f scale, TextureName texName, float speed, Entity * target);
 	~Slime();
 
 	Entity * target;

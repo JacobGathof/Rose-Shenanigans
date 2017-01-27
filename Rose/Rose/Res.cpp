@@ -10,12 +10,12 @@
 #pragma region RES
 /*-----------------------------------------------------------------------
 
-							*ResourceManager*
+						*ResourceManager*
 
 	A static class to hold all resources -> Models, Textures, Shaders.
 	Res will include several helper classes to load resources, and
 	the various static Managers, but will have no reference to other
-	objects, making this class safe to include anywhere. 
+	objects, making this class safe to include anywhere.
 
 	Almost all random crashes will be linked to this class somehow
 
@@ -26,9 +26,9 @@
 
 std::map<std::string, Model*> Res::models;
 std::map<ShaderType, ShaderProgram*> Res::shaders;
-std::map<std::string, Texture*> Res::textures;
+std::map<TextureName, Texture*> Res::textures;
 std::map<std::string, Character*> Res::characters;
-std::map<std::string, GLuint> Res::fbos;
+std::map<Framebuffer, GLuint> Res::fbos;
 
 Model * Res::stdModel;
 Player * Res::player;
@@ -51,7 +51,7 @@ void Res::updateShaders(float gameTime){
 }
 
 void Res::init() {
-	
+
 	initShaders();
 	initProjections();
 	initTextures();
@@ -74,43 +74,47 @@ void Res::initShaders(){
 
 void Res::initTextures(){
 
-	Res::loadTexture("Echo", "Resources/Echo.png", 5, 3);
+	Res::loadTexture(Echo_Tex, "Resources/Echo.png", 5, 3);
 
-	Res::loadTexture("Mavis", "Resources/Mavis.png", 1, 1);
-	Res::loadTexture("Yuno", "Resources/Yuno.png", 1, 1);
-	Res::loadTexture("Lizbeth", "Resources/Lizbeth.png", 1, 1);
-	Res::loadTexture("Lucy", "Resources/Lucy.png", 1, 1);
+	Res::loadTexture(Mavis, "Resources/Mavis.png", 1, 1);
+	Res::loadTexture(Yuno, "Resources/Yuno.png", 1, 1);
+	Res::loadTexture(Lizbeth, "Resources/Lizbeth.png", 1, 1);
+	Res::loadTexture(Lucy, "Resources/Lucy.png", 1, 1);
 
-	Res::loadTexture("Slime", "Resources/Slime.png", 9, 9);
-	Res::loadTexture("Rain", "Resources/Rain.png", 5, 3);
-	Res::loadTexture("Inn", "Resources/Echo.png");
-	Res::loadTexture("Edwin", "Resources/Edwin.png", 4, 3);
+	Res::loadTexture(Slime_Tex, "Resources/Slime.png", 9, 9);
+	Res::loadTexture(Rain, "Resources/Rain.png", 5, 3);
+	Res::loadTexture(Inn, "Resources/Echo.png");
+	Res::loadTexture(Edwin, "Resources/Edwin.png", 4, 3);
 	//Res::loadTexture("Grass", "Resources/terrainTiles.png");
-	Res::loadTexture("Grass", "Resources/Grass.png");
-	Res::loadTexture("sword", "Resources/sword.png");
-	Res::loadTexture("Fire", "Resources/Fire.png");
-	Res::loadTexture("Candle", "Resources/Sprites.png");
-	Res::loadTexture("Tree", "Resources/Tree.png");
-	Res::loadTexture("Default", "Resources/Default.png");
-	Res::loadTexture("Light", "Resources/lightTex.png");
-	Res::loadTexture("Textbox", "Resources/Textbox.png");
-	Res::loadTexture("Statbox", "Resources/Statbox.png");
+	Res::loadTexture(Grass, "Resources/Grass.png");
+	Res::loadTexture(Sword, "Resources/sword.png");
+	Res::loadTexture(Fire, "Resources/Fire.png");
+	Res::loadTexture(Candle, "Resources/Sprites.png");
+	Res::loadTexture(Tree, "Resources/Tree.png");
+	Res::loadTexture(Default, "Resources/Default.png");
+	Res::loadTexture(Light_Tex, "Resources/lightTex.png");
+	Res::loadTexture(Textbox_Tex, "Resources/Textbox.png");
+	Res::loadTexture(Statbox_Tex, "Resources/Statbox.png");
 
-	Res::loadTexture("GreenSlime", "Resources/GreenSlime.png", 1, 8);
-	Res::loadTexture("FireSlime", "Resources/FireSlime.png", 1, 8);
-	Res::loadTexture("SkySlime", "Resources/SkySlime.png", 1, 8);
+	Res::loadTexture(GreenSlime, "Resources/GreenSlime.png", 1, 8);
+	Res::loadTexture(FireSlime, "Resources/FireSlime.png", 1, 8);
+	Res::loadTexture(SkySlime, "Resources/SkySlime.png", 1, 8);
 	//Res::loadTexture("Jibril", "Resources/Jibril.png", 1, 1);
-	Res::loadTexture("Jibril", "Resources/Rose.png", 1, 4);
-	Res::loadTexture("House", "Resources/CarpenterHouse.png");
-	Res::loadTexture("Inventory", "Resources/Inventory.png");
+	Res::loadTexture(Jibril_Tex, "Resources/Rose.png", 1, 4);
+	Res::loadTexture(House, "Resources/CarpenterHouse.png");
+	Res::loadTexture(Inventory_Tex, "Resources/Inventory.png");
 
 	//skill textures
-	Res::loadTexture("empty_skill", "Resources/empty_skill.png");
-	Res::loadTexture("dash", "Resources/dash.png");
-	Res::loadTexture("bracket", "Resources/bracket.png");
+	Res::loadTexture(Empty_skill, "Resources/empty_skill.png");
+	Res::loadTexture(Dash_Tex, "Resources/dash.png");
+	Res::loadTexture(Bracket, "Resources/bracket.png");
 }
 
-void Res::initModels(){
+void Res::initFonts(){
+	Res::loadFont(Font, "Resources/Font.txt", "Resources/Font_Texture.png");
+}
+
+void Res::initModels() {
 	float vertices[] = { 0,0, 0,1, 1,1 , 1,1, 1,0, 0,0 };
 	float tex[] = { 0,1, 0,0, 1,0 , 1,0, 1,1, 0,1 };
 	Res::loadModel("Square", vertices, tex, 12);
@@ -123,10 +127,6 @@ void Res::initModels(){
 
 
 	Res::stdModel = Res::getModel("Square");
-}
-
-void Res::initFonts(){
-	Res::loadFont("Font", "Resources/Font.txt", "Resources/Font_Texture.png");
 }
 
 void Res::initProjections(){
@@ -146,8 +146,8 @@ void Res::initManagers(){
 }
 
 void Res::initFramebuffers(){
-	Res::loadFBO("WorldFBO","WorldTexture");
-	Res::loadFBO("LightFBO", "LightTexture");
+	Res::loadFBO(WorldFBO, WorldTexture);
+	Res::loadFBO(LightFBO, LightTexture);
 
 	Res::getShader(screenShader)->loadInteger("world", 0);
 	Res::getShader(screenShader)->loadInteger("lights", 1);
@@ -173,9 +173,8 @@ ShaderProgram * Res::getShader(ShaderType str)
 	return sp;
 }
 
-Texture * Res::getTexture(std::string str)
-{
-	return textures[str];
+Texture * Res::getTexture(TextureName name){
+	return textures[name];
 }
 
 Character * Res::getCharacter(std::string str)
@@ -183,9 +182,9 @@ Character * Res::getCharacter(std::string str)
 	return characters[str];
 }
 
-GLuint Res::getFramebuffer(std::string str)
+GLuint Res::getFramebuffer(Framebuffer name)
 {
-	return fbos[str];
+	return fbos[name];
 }
 
 void Res::loadModel(std::string name, float * vertices, float * tex, int length){
@@ -200,17 +199,17 @@ void Res::loadShader(ShaderType name, char * file_vertex, char * file_geo, char 
 	shaders[name] = program;
 }
 
-void Res::loadTexture(std::string name, char * filename){
+void Res::loadTexture(TextureName name, char * filename){
 	Texture * t = new Texture(filename);
 	textures[name] = t;
 }
 
-void Res::loadTexture(std::string name, char * filename, int rows, int cols) {
+void Res::loadTexture(TextureName name, char * filename, int rows, int cols) {
 	Texture * t = new Texture(filename, rows, cols);
 	textures[name] = t;
 }
 
-void Res::loadFont(std::string name, char * filename_font, char* filename_texture)
+void Res::loadFont(TextureName name, char * filename_font, char* filename_texture)
 {
 	loadTexture(name, filename_texture);
 
@@ -260,7 +259,7 @@ void Res::loadFont(std::string name, char * filename_font, char* filename_textur
 
 }
 
-void Res::loadFBO(std::string fbo_name, std::string tex_name){
+void Res::loadFBO(Framebuffer fbo_name, TextureName tex_name){
 
 	GLuint fbo;
 	glGenFramebuffers(1, &fbo);
@@ -342,7 +341,7 @@ void Res::resizeWindow(int width, int height) {
 	glViewport(offx, offy, size, size);
 
 	if (0) {
-		// keeps sizes the same when changing window size: make window bigger, people stay same size 
+		// keeps sizes the same when changing window size: make window bigger, people stay same size
 		float projMat[] = { 1.0f / (SCALEFACTOR*size / 512.0f), 0, 0, 0,			0, 1.0f / (SCALEFACTOR*size / 512.0f), 0, 0,			0, 0, 2, -1,		0, 0, 0, 1 };
 
 		Res::getShader(entityShader)->loadMatrix("projectionMatrix", projMat);
@@ -567,5 +566,3 @@ ShaderProgram::ShaderProgram() {
 }
 
 #pragma endregion
-
-

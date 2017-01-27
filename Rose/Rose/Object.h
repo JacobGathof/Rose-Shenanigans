@@ -41,7 +41,7 @@ public:
 	static bool compare(Object * o, Object * o2);
 
 	Object();
-	Object(Vector2f pos, Vector2f scale, std::string texName);
+	Object(Vector2f pos, Vector2f scale, TextureName texName);
 	~Object();
 };
 

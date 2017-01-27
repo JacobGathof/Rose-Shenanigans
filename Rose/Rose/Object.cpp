@@ -53,7 +53,7 @@ Object::Object(){
 }
 
 
-Object::Object(Vector2f pos, Vector2f scale, std::string texName){
+Object::Object(Vector2f pos, Vector2f scale, TextureName texName){
 	this->tex = Res::getTexture(texName);
 	this->position = Vector2f(pos);
 	this->scale = Vector2f(scale);

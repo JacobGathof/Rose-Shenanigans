@@ -1,23 +1,32 @@
 #include "Text.h"
 #include "Res.h"
 #include "Renderer.h"
+#include "Utils.h"
 #include <iostream>
 
 static float textureScaleFactor = 512.0f;
 static float textScaleFactor = 64.0f;
 
-Text::Text(Vector2f position, std::string data, Vector2f scale, bool centered)
+/*
+*		Text is weird, let's leave it at that. Here's the deal, text will only ever really be used on
+*		UI_Elements, so positioning shouldn't matter. However, we need total control over where text can be placed
+*		**Finish description later
+*
+*
+*
+*/
+
+Text::Text(Vector2f position, std::string data, Vector2f scale, bool centered, Color color, float opacity)
 {
 	this->data = data;
 	this->length = data.length();
 	this->position = position;
 	this->scale = scale;
 	this->charsToRender = length*6;
+	this->centered = centered;
+	this->color = color;
+	this->opacity = opacity;
 
-	if (centered) {
-		this->position.x -= this->scale.x/SCALEFACTOR*64.0f*.5f*toScreenCoordinates(this->length*Res::getCharacter(" ")->xadvance, 0).x / textScaleFactor;
-	}
-	
 	generateVAO();
 
 	int pos_size = data.length() * 6 * 2;
@@ -36,9 +45,11 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 {
 	float xPointer = 0;
 	float yPointer = 0;
+	float textLength = 0.0f;
 
 	int vertexPointer = 0;
 	int texPointer = 0;
+	int lastAdjust = 0;
 
 	for (int i = 0; string[i] != '\0'; i++) {
 		std::string str("");
@@ -46,6 +57,14 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 
 		if (str == "/") {
 			yPointer -= 1.25f*Res::getCharacter("I")->height;
+
+			if (this->centered) {
+				for (int j = lastAdjust; j < vertexPointer; j += 2) {
+					pos[j] -= .5f*(xPointer / textScaleFactor);
+				}
+				lastAdjust = vertexPointer;
+			}
+
 			xPointer = 0;
 			continue;
 		}
@@ -91,6 +110,12 @@ void Text::writeCharacterData(std::string string, float * pos, float * tex)
 		tex[texPointer++] = (ch->x) / textureScaleFactor;
 		tex[texPointer++] = (ch->y + ch->height) / textureScaleFactor;
 
+	}
+
+	if (this->centered) {
+		for (int j = lastAdjust; j < vertexPointer; j += 2) {
+			pos[j] -= .5f*(xPointer / textScaleFactor);
+		}
 	}
 
 }
@@ -167,10 +192,6 @@ bool Text::addCharactersToRender(int n)
 
 void Text::draw() {
 	Renderer::renderText(this);
-}
-
-Vector2f Text::toScreenCoordinates(int x, int y) {
-	return Vector2f(x*SCALEFACTOR / 64, y*SCALEFACTOR / 64);
 }
 
 

@@ -2,11 +2,11 @@
 
 
 
-Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
+Player::Player(Vector2f pos, Vector2f sc, TextureName image, float speed)
 	: Entity(pos, sc, image, speed)
 {
 	inventoryOpen = false;
-	empty = Skill(0, 0, 0, 0, "empty_skill");
+	empty = Skill(0, 0, 0, 0, Empty_skill);
 	for (int i = 0; i < 8; i++) {
 		skills[i] = empty;
 	}
@@ -19,7 +19,7 @@ Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	exp = 0;
 	maxXp = 50;
 	level = 1;
-	stats = Text(Vector2f(40, -60), "Level: " + std::to_string(level), Vector2f(3, 3));
+	stats = Text(Vector2f(40, -60), "Level. " + std::to_string(level), Vector2f(3, 3));
 	statsChanged = true;
 	for (int i = 0; i < 9; i++) {
 		attributes[i] = 0;
@@ -84,7 +84,7 @@ void Player::LevelUp()
 	level++;
 	maxXp += 20;
 	exp = 0;
-	stats = Text(Vector2f(40, -60), "Level: " + std::to_string(level), Vector2f(3, 3));
+	stats = Text(Vector2f(40, -60), "Level. " + std::to_string(level), Vector2f(3, 3));
 	statsChanged = true;
 }
 

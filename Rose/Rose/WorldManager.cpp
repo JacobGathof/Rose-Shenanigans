@@ -19,7 +19,7 @@ void WorldManager::init() {
 
 	for (int i = 0; i < 1; i++) {
 		for (int j = 0; j < 1; j++) {
-			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), "Candle"));
+			world->AddObject(new Object(Vector2f(-30 + 40 * i, 0 + -40 * j), Vector2f(20, 20), Candle));
 			world->AddLight(new Light(Vector2f(-20 + 40 * i, -40 * j + 20 - 3), ColorRGB(1,.5,0), 64.0f));
 		}
 	}
@@ -81,7 +81,7 @@ void WorldManager::makeWorldCurrent(std::string name) {
 }
 
 void WorldManager::drawWorld() {
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("WorldFBO"));
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(WorldFBO));
 	currentWorld->draw();
 }
 
@@ -184,10 +184,10 @@ void LightManager::reloadLights(ShaderType shader)
 void LightManager::drawLights(){
 
 
-	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer("LightFBO"));
+	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(LightFBO));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	Res::getModel("CenteredModel")->bind();
-	Res::getTexture("Light")->bind();
+	Res::getTexture(Light_Tex)->bind();
 
 	ShaderProgram * current = Res::getShader(lightShader);
 
@@ -243,9 +243,9 @@ void NPCManager::init(Player* player) {
 
 
 	World * world = WorldManager::getWorld("Town of Beginnings");
-	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), "Edwin", 100.0f));
+	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), Edwin, 100.0f));
 
-	world->AddEntity(new Entity(Vector2f(-100, 50), Vector2f(36, 36), "Mavis"));
+	world->AddEntity(new Entity(Vector2f(-100, 50), Vector2f(36, 36), Mavis));
 	//world->AddEntity(new Entity(Vector2f(-50, 50), Vector2f(36, 36), "Yuno"));
 	//world->AddEntity(new Entity(Vector2f(0, 50), Vector2f(36, 36), "Lucy"));
 	//world->AddEntity(new Entity(Vector2f(50, 50), Vector2f(36, 36), "Lizbeth"));
@@ -257,13 +257,13 @@ void NPCManager::init(Player* player) {
 		
 		Entity * slime;
 		if (i == 0) {
-			slime = new Slime(random, Vector2f(30, 30), "GreenSlime", 15.0f, 0);
+			slime = new Slime(random, Vector2f(30, 30), GreenSlime, 15.0f, 0);
 		}
 		if (i == 1) {
-			slime = new Slime(random, Vector2f(30, 30), "FireSlime", 10.0f, 0);
+			slime = new Slime(random, Vector2f(30, 30), FireSlime, 10.0f, 0);
 		}
 		if (i == 2) {
-			slime = new Slime(random, Vector2f(30 * 2, 30), "SkySlime", 25.0f, 0);
+			slime = new Slime(random, Vector2f(30 * 2, 30), SkySlime, 25.0f, 0);
 		}
 
 		world->AddEntity(slime);

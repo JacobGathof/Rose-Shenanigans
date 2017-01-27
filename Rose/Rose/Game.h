@@ -1,6 +1,5 @@
 #pragma once
 #include "Player.h"
-#include "Building.h"
 #include "World.h"
 #include "WorldManager.h"
 #include "ParticleSystem.h"

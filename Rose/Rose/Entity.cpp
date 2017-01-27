@@ -4,7 +4,7 @@
 #include "Renderer.h"
 
 
-Entity::Entity(Vector2f pos, Vector2f scale, std::string texName, float speed)	: Object(pos, scale, texName)
+Entity::Entity(Vector2f pos, Vector2f scale, TextureName texName, float speed)	: Object(pos, scale, texName)
 {
 	this->speed = speed;
 	internalTime = (float)(rand()) / RAND_MAX;

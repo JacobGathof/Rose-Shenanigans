@@ -13,7 +13,7 @@ public:
 	float currentIdle = 0.0f;
 	bool rising = false;
 	bool falling = false;
-	int letterBuffer = 10;
+	int letterBuffer = 3;
 
 
 	virtual void draw();

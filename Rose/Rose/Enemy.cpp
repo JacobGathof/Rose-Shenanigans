@@ -3,7 +3,7 @@
 #include "UI_Manager.h"
 
 
-Enemy::Enemy(Entity* target, World* world, Vector2f pos, Vector2f scale, std::string texName, float speed) : Entity(pos, scale, texName, speed)
+Enemy::Enemy(Entity* target, World* world, Vector2f pos, Vector2f scale, TextureName texName, float speed) : Entity(pos, scale, texName, speed)
 {
 	this->target = target;
 	this->world = world;
@@ -72,7 +72,7 @@ void Enemy::shoot(float dt){
 	for (int i = 0; i < 10; i++) {
 		Vector2f position = this->centerOfMass + Vector2f(0, 64 * (2 * ((float)rand() / RAND_MAX) - 1.0f)) + Vector2f(16 * 4 * (2*((float)rand() / RAND_MAX)-1.0f), 0);
 		Vector2f direction = ((target->position - position) + Vector2f(8*(2 * ((float)rand() / RAND_MAX) - 1.0f), 8*(2 * ((float)rand() / RAND_MAX) - 1.0f))).normalize();
-		world->AddEntity(new Projectile(position, Vector2f(4, 4), "FireSlime", 2.0f, direction));
+		world->AddEntity(new Projectile(position, Vector2f(4, 4), FireSlime, 2.0f, direction));
 
 	}
 	//world->AddEntity(new Projectile(this->centerOfMass, Vector2f(10, 10), "GreenSlime", 1.0f, (target->centerOfMass - this->centerOfMass).normalize()));
@@ -82,9 +82,8 @@ void Enemy::shoot(float dt){
 void Enemy::shootPrediction(float dt){
 
 	//UIManager::textbox.print("Mongrel");
-
 	Vector2f direction = ((target->centerOfMass + (prediction.v1 - prediction.v2)*(prediction.time2 - prediction.time1)) - this->centerOfMass).normalize();
 
-	world->AddEntity(new Projectile(this->centerOfMass, Vector2f(4, 4), "FireSlime", 1.0f, direction));
+	world->AddEntity(new Projectile(this->centerOfMass, Vector2f(4, 4), FireSlime, 1.0f, direction));
 
 }

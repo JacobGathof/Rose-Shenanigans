@@ -16,7 +16,7 @@ struct VectorAndTime {
 class Enemy : public Entity
 {
 public:
-	Enemy(Entity * target, World* world, Vector2f pos, Vector2f scale, std::string texName, float speed);
+	Enemy(Entity * target, World* world, Vector2f pos, Vector2f scale, TextureName texName, float speed);
 	~Enemy();
 	Entity* target;
 	World* world;
