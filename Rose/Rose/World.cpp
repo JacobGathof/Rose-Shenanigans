@@ -90,13 +90,14 @@ NPC * World::findClosestNPC(Vector2f position)
 void World::draw() {
 
 	terrain->draw();
-
+	int i = 0;
 	for (auto o : objects) {
 		if (((o->position.x + o->scale.x) > (Camera::position.x - SCALEFACTOR)) && (o->position.x < (Camera::position.x + SCALEFACTOR)) &&
 			((o->position.y + o->scale.y) > (Camera::position.y - SCALEFACTOR)) && (o->position.y < (Camera::position.y + SCALEFACTOR))) {
 			o->draw();
+			o->placeInList = i;
 		}
-
+		i++;
 	}
 
 	//for (auto e : entities) {
@@ -133,7 +134,34 @@ void World::unloadWorld(){
 }
 
 void World::checkEnemyCollisions(Player * player){
-	for (auto o : objects) {
+	for (int i = player->placeInList; i > 0; i--) {
+		if (objects.at(i)->position.y < player->position.y + player->hitbox.scale.y) {
+			break;
+		}
+		else if (objects.at(i)->getType() == SLIME) {
+			if (objects.at(i)->collide(*player)) {
+				player->takeDamage();
+				if (player->attributes[0] == 0)
+					player->addStatus(FIRE, 1);
+				//o->destroy();
+			}
+		}
+	}
+	for (int i = player->placeInList; i < objects.size(); i++) {
+		if (objects.at(i)->position.y + objects.at(i)->hitbox.scale.y < player->position.y) {
+			break;
+		}
+		else if (objects.at(i)->getType() == SLIME) {
+			if (objects.at(i)->collide(*player)) {
+				player->takeDamage();
+				if (player->attributes[0] == 0)
+					player->addStatus(FIRE, 1);
+				//o->destroy();
+			}
+		}
+	}
+
+/*	for (auto o : objects) {
 		if (o->getType() == SLIME) {
 			if (o->collide(*player)) {
 				player->takeDamage();
@@ -142,7 +170,35 @@ void World::checkEnemyCollisions(Player * player){
 				//o->destroy();
 			}
 		}
+	}*/
+}
+
+void World::checkWorldCollisions(Player * player)
+{
+	for (int i = player->placeInList - 1; i > 0; i--) {
+		if (objects.at(i)->position.y < player->position.y + player->hitbox.scale.y) {
+			break;
+		}
+		else if (objects.at(i)->getType() != SLIME) {
+			if (objects.at(i)->collide(*player)) {
+				std::cout << "no" << std::endl;
+				player->StepBack(true);
+			}
+		}
 	}
+
+	for (int i = player->placeInList + 1; i < objects.size(); i++) {
+		if (objects.at(i)->position.y + objects.at(i)->hitbox.scale.y < player->position.y) {
+			break;
+		}
+		else if (objects.at(i)->getType() != SLIME) {
+			if (objects.at(i)->collide(*player)) {
+				std::cout << objects.at(i)->getType() << std::endl;
+				player->StepBack(true);
+			}
+		}
+	}
+	player->StepBack(false);
 }
 
 void World::removeDead()

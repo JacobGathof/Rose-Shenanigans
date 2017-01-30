@@ -21,6 +21,7 @@ public:
 		Vector2f scale;
 	};
 
+	int placeInList;
 	Hitbox hitbox;
 	Vector2f position;
 	Vector2f scale;

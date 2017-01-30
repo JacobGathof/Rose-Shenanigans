@@ -5,6 +5,7 @@
 Player::Player(Vector2f pos, Vector2f sc, std::string image, float speed)
 	: Entity(pos, sc, image, speed)
 {
+	lastStep = pos;
 	inventoryOpen = false;
 	empty = Skill(0, 0, 0, 0, "empty_skill");
 	for (int i = 0; i < 8; i++) {
@@ -116,6 +117,16 @@ void Player::useSkill(int index)
 void Player::levelUpSkill(int index)
 {
 	skills[index].level++;
+}
+
+void Player::StepBack(bool step)
+{
+	if (step) {
+		position = lastStep;
+	}
+	else {
+		lastStep = position;
+	}
 }
 
 void Player::move(Vector2f dir, float dt) {

@@ -40,6 +40,7 @@ public:
 	void draw();
 	void unloadWorld();
 	void checkEnemyCollisions(Player* player);
+	void checkWorldCollisions(Player* player);
 	void removeDead();
 };
 

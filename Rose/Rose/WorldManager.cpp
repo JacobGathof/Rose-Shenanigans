@@ -117,7 +117,7 @@ NPC * WorldManager::findClosestNPC(Vector2f pos)
 }
 
 void WorldManager::checkEnemyCollisions(Player * player){
-
+	currentWorld->checkWorldCollisions(player);
 	return currentWorld->checkEnemyCollisions(player);
 }
 

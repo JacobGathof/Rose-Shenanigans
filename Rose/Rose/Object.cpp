@@ -10,7 +10,7 @@ bool Object::collide(Object obj)
 	Vector2f hp = hitbox.position;
 	Vector2f hs = hitbox.scale;
 
-	if (ohp.x+obj.position.x <= hp.x+position.x + hs.x && ohp.x+obj.position.x + ohs.x >= hp.x+position.x) {
+	if (ohp.x+obj.position.x <= hp.x+position.x + hs.x && ohp.x+obj.position.x + ohs.x >= hp.x +position.x) {
 		if (ohp.y+obj.position.y <= hp.y+position.y + hs.y && ohp.y+obj.position.y + ohs.y >= hp.y+position.y) {
 			return true;
 		}

@@ -137,12 +137,12 @@ void Game::loopFree(float dt){
 void Game::loopMenu()
 {
 }
-
+	
 void Game::loopInventory()
 {
 
-
-}
+	
+	}
 
 void Game::loopPaused()
 {
