@@ -106,7 +106,7 @@ void Game::loop(float dt){
 	WorldManager::update(dt);
 
 	gameTime += dt;
-
+	
 	Screen::update(dt);
 	Camera::update(dt);
 	Res::updateShaders(gameTime);

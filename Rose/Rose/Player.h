@@ -23,6 +23,7 @@ public:
 
 	int iFrames = 0;
 
+	Vector2f lastStep;
 	bool inventoryOpen;
 	int posInVec;
 	int maxhp;
@@ -67,5 +68,6 @@ public:
 	void addSkill(int index, Skill skill);
 	void useSkill(int index);
 	void levelUpSkill(int index);
+	void StepBack(bool step);
 };
 
