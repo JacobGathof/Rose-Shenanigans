@@ -16,6 +16,17 @@ void WorldManager::init() {
 	//world->AddObject(new Object(Vector2f(32, 32), Vector2f(90, 90), "House"));
 	//world->AddSystem(new ParticleSystem(Vector2f(0, 0), ColorRGB(1, 1, 1), 64.0f, 512.0f, 500));
 	
+	/*
+	for (int i = 0; i < 40; i++) {
+		Vector2f pos = 200.0f*Vector2f(cos(i / 40.0f * 3.14159 * 2), sin(i / 40.0f * 3.14159 * 2));
+		world->AddObject(new Entity(pos, Vector2f(64, 128), Fire));
+	}
+	
+	for (int i = 0; i < 20; i++) {
+		Vector2f pos = 20.0f*Vector2f(0, i-10);
+		world->AddObject(new Entity(pos, Vector2f(64/4, 128/4), Fire));
+	}
+	*/
 
 	for (int i = 0; i < 1; i++) {
 		for (int j = 0; j < 1; j++) {
@@ -243,7 +254,7 @@ void NPCManager::init(Player* player) {
 
 
 	World * world = WorldManager::getWorld("Town of Beginnings");
-	world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), Edwin, 100.0f));
+	//world->AddEntity(new Enemy(player, world, Vector2f(-100, 0), Vector2f(36, 36), Edwin, 100.0f));
 
 	world->AddEntity(new Entity(Vector2f(-100, 50), Vector2f(36, 36), Mavis));
 	//world->AddEntity(new Entity(Vector2f(-50, 50), Vector2f(36, 36), "Yuno"));

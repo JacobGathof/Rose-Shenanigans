@@ -3,6 +3,7 @@
 #include "WorldManager.h"
 #include <iostream>
 #include "Screen.h"
+#include "Menu.h"
 
 bool Input::keys[];
 bool Input::mouse[];
@@ -18,9 +19,9 @@ void Input::processInput(float dt)
 	switch (game->state) {
 
 		case GameState::MENU: MenuLogic();  break;
-		case GameState::INVENTORY: InventoryLogic();
-		case GameState::FREE: GameLogic(dt);
-		case GameState::LOCKED: LockedLogic();
+		case GameState::INVENTORY: InventoryLogic(); break;
+		case GameState::FREE: GameLogic(dt); break;
+		case GameState::LOCKED: LockedLogic(); break;
 
 	}
 		
@@ -56,6 +57,20 @@ NPC* Input::findClosestNPC(Vector2f position){
 
 void Input::MenuLogic(){
 
+	if (keys[GLFW_KEY_W]) {
+		keys[GLFW_KEY_W] = false;
+		Menu::setSelectedIndex(-1);
+	}
+
+	if (keys[GLFW_KEY_S]) {
+		keys[GLFW_KEY_S] = false;
+		Menu::setSelectedIndex(1);
+	}
+
+	if (keys[GLFW_KEY_SPACE]) {
+		keys[GLFW_KEY_SPACE] = false;
+		Menu::actOnSelection();
+	}
 
 
 }

@@ -3,6 +3,7 @@
 #include "WorldManager.h"
 #include "Screen.h"
 #include "UI_Manager.h"
+#include "Menu.h"
 
 #define SkillScale 5
 
@@ -215,6 +216,14 @@ void Renderer::renderScreen() {
 
 }
 
+void Renderer::renderMenu()
+{
+	renderText(Menu::menuItems[0]);
+	renderText(Menu::menuItems[1]);
+	renderText(Menu::menuItems[2]);
+	renderText(Menu::menuItems[3]);
+}
+
 void Renderer::render() {
 
 	WorldManager::drawWorld();
@@ -225,11 +234,11 @@ void Renderer::render() {
 void Renderer::prepareToRender() {
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
 	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(WorldFBO));
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBindFramebuffer(GL_FRAMEBUFFER, Res::getFramebuffer(LightFBO));
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 }

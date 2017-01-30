@@ -12,6 +12,7 @@
 #include "Info.h"
 #include "Input.h"
 #include "Timer.h"
+#include "Menu.h"
 #include <iostream>
 
 
@@ -20,11 +21,11 @@ void Game::init()
 	Res::init();
 	gameTime = 0;
 	numberOfTicks = 0;
-	state = FREE;
+	state = MENU;
 
 	std::vector<Weapon> blank;
 
-	player = Player(Vector2f(0, 0), Vector2f(4, 4), Echo_Tex, 100);
+	player = Player(Vector2f(0, 0), Vector2f(16, 16), Echo_Tex, 100);
 
 	NPCManager::init(&player);
 	//Dash skill = Dash();
@@ -95,6 +96,8 @@ void Game::render(){
 
 void Game::renderMenu()
 {
+	Renderer::prepareToRender();
+	Menu::render();
 }
 
 void Game::renderInventory()
@@ -146,8 +149,8 @@ void Game::loopFree(float dt){
 
 }
 
-void Game::loopMenu()
-{
+void Game::loopMenu(){
+	Menu::update();
 }
 
 void Game::loopInventory()

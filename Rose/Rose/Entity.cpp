@@ -50,12 +50,12 @@ void Entity::tick(){
 	position2 = position1;
 	position1 = position;
 
-	if (state == MOVING || continueAnimation) {
-		continueAnimation = true;
-		internalTime += .125f;
-		if (internalTime > tex->numberOfColumns) {
+	//if (state == MOVING || continueAnimation) {
+		//continueAnimation = true;
+		internalTime += 0.25f;
+		if (internalTime > 0.5f/tex->numberOfColumns) {
 			internalTime -= tex->numberOfColumns;
-			continueAnimation = false;
+			//continueAnimation = false;
 		}
-	}
+	//}
 }

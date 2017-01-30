@@ -1,6 +1,7 @@
 #include "Main.h"
 #include <time.h>
 #include "Timer.h"
+#include "Menu.h"
 
 
 int main() {
@@ -17,6 +18,7 @@ int main() {
 
 
 	game.init();
+	Menu::init(&game);
 	Input::game = &game;
 
 	glfwSetTime(0);
@@ -31,8 +33,8 @@ int main() {
 		game.loop(0);
 		game.render();
 
-		//if (game.player.hp <= 0)
-			//break;
+		if (game.state == CLOSING)
+			break;
 
 
 		glfwPollEvents();
@@ -41,6 +43,7 @@ int main() {
 	}
 
 	Res::cleanResources();
+	Menu::clean();
 
 	glfwTerminate();
 
