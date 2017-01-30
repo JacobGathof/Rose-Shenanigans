@@ -14,7 +14,7 @@ void Title::init() {
 	isVisible = true;
 	topLeft = Utils::toScreenCoordinates(-64, 2);
 	botRight = Utils::toScreenCoordinates(64, -20);
-	text = new Text(Vector2f(0, 0), "Narcissus/<Sin of Pride>", Vector2f(6 * SCALEFACTOR / 64, 6 * SCALEFACTOR / 64), true, Color(1,1,1), 0.5f);
+	text = new Text(Vector2f(0, 0), "Narcissus/<Sin of Pride>", Vector2f(6 * SCALEFACTOR / 64, 6 * SCALEFACTOR / 64), true, Color(0,.25f,1), 1.0f);
 	text->charsToRender = 0;
 }
 
@@ -30,6 +30,7 @@ void Title::update() {
 		if (!rising && !falling && currentIdle == 0.0f) {
 			rising = true;
 			falling = false;
+			text->opacity = 1.0f;
 		}
 
 		if (rising) {
@@ -55,6 +56,7 @@ void Title::update() {
 		if (currentIdle >= 2.0f) {
 			falling = true;
 			opacity -= .5f*Timer::dt;
+			text->opacity -= 1.0f*Timer::dt;
 		}
 
 		if (falling && opacity <= 0.0) {
