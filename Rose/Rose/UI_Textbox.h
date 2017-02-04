@@ -2,6 +2,11 @@
 #include "UI_Element.h"
 #define Textbox UI_Textbox
 
+struct TextObject {
+	std::string string;
+	bool question;
+};
+
 class Textbox : public UIElement
 {
 public:
@@ -9,20 +14,24 @@ public:
 	Text * text;
 	bool isDisplayingText;
 	bool currentlyWriting;
-	bool locked;
+	bool askingQuestion;
+	int selectedAnswer;
 
-	static std::queue<std::string> queue;
+	Text * answers[3];
+
+	static std::queue<TextObject> queue;
 
 	virtual void draw();
 	virtual void init();
 	virtual void destroy();
 	virtual void update();
 
-	void lock();
-	void unlock();
-
+	void setSelectedAnswer(int i);
 	void advanceQueue();
-	void print(std::string message);
-	std::string splitString(std::string str);
+	void print(std::string message, bool question = false);
+	void printQuestion(std::string str);
+
+	void formatString(std::string str, bool question);
 	int findIndex(std::string str, int start, int end);
+	int findDelimiter(std::string str, char d);
 };

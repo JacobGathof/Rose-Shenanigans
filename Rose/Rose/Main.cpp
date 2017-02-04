@@ -21,9 +21,11 @@ int main() {
 	window.setVerticalSyncEnabled(true);
 	window.setActive();
 
+	/*
 	sf::Music music;
 	music.openFromFile("Resources/mus_zz_megalovania.ogg");
 	music.play();
+	*/
 
 	initializeOGL();
 
@@ -84,8 +86,6 @@ void initializeOGL() {
 
 
 void processKeyEvent(sf::Event event) {
-
-	std::cout << event.key.code << std::endl;
 
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 		game.state = CLOSING;

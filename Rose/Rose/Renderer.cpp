@@ -139,7 +139,14 @@ void Renderer::renderDefaultUIElement(UI_Element * element){
 
 void Renderer::renderTextbox(UI_Textbox * box){
 	renderDefaultUIElement(box);
+	if (box->askingQuestion) {
+		for (int i = 0; i < 3; i++) {
+			renderText(box->answers[i]);
+		}
+	}
+	
 	renderText(box->text);
+	
 }
 
 void Renderer::renderTitle(UI_Title * box) {

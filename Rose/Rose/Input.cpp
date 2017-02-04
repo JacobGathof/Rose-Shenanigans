@@ -106,6 +106,22 @@ void Input::GameLogic(float dt){
 	game->player.move(movement.normalize(), dt);
 
 
+	if (keys[sf::Keyboard::Up]) {
+		keys[sf::Keyboard::Up] = false;
+		UIManager::textbox.setSelectedAnswer(-1);
+	}
+
+	if (keys[sf::Keyboard::Down]) {
+		keys[sf::Keyboard::Down] = false;
+		UIManager::textbox.setSelectedAnswer(1);
+	}
+
+	if (keys[sf::Keyboard::Space]) {
+		keys[sf::Keyboard::Space] = false;
+	}
+
+
+
 	if (keys[sf::Keyboard::Y]) {
 		keys[sf::Keyboard::Y] = false;
 		NPC* n = findClosestNPC(game->player.position);
@@ -126,7 +142,9 @@ void Input::GameLogic(float dt){
 	}
 
 	if (keys[sf::Keyboard::N]) {
-		Screen::fadeWhite();
+		keys[sf::Keyboard::N] = false;
+		UIManager::textbox.print("Which sword will you take?+I'll Take Eos+I'll take Ira+I'm not falling for this one again...+", true);
+		//Screen::fadeWhite();
 	}
 
 
