@@ -15,7 +15,7 @@ int main() {
 	settings.stencilBits = 8;
 	settings.antialiasingLevel = 0;
 	settings.majorVersion = 4;
-	settings.minorVersion = 3;
+	settings.minorVersion = 0;
 
 	sf::RenderWindow window(sf::VideoMode(800, 800), "I'm just a nigga with a rocket launcher", sf::Style::Close, settings);
 	window.setVerticalSyncEnabled(true);
@@ -85,10 +85,15 @@ void initializeOGL() {
 
 void processKeyEvent(sf::Event event) {
 
+	std::cout << event.key.code << std::endl;
+
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 		game.state = CLOSING;
 		return;
 	}
+
+	if (event.key.code < 0) return;
+
 
 	if (event.type == sf::Event::KeyPressed) {
 		Input::keys[event.key.code] = true;
@@ -96,6 +101,5 @@ void processKeyEvent(sf::Event event) {
 	if (event.type == sf::Event::KeyReleased) {
 		Input::keys[event.key.code] = false;
 	}
-
 
 }

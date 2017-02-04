@@ -55,6 +55,8 @@ NPC* Input::findClosestNPC(Vector2f position){
 	return WorldManager::currentWorld->findClosestNPC(position);
 }
 
+
+
 void Input::MenuLogic(){
 
 	if (keys[sf::Keyboard::W]) {

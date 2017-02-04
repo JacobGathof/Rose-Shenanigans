@@ -6,7 +6,7 @@ class Input
 {
 public:
 	
-	static bool keys[1024];
+	static bool keys[256];
 	static bool mouse[1024];
 	static int lastFive[5];
 	static Game * game;
