@@ -3,7 +3,7 @@
 #include "Graph.h"
 #include <queue>
 #include <iostream>
-#include "NPCAction.h"
+#include "Task.h"
 
 
 
@@ -33,10 +33,15 @@ public:
 
 	bool isInteracting = false;
 	bool triggered = false;
-	Graph actionGraph;
-	NPCActionList currentActionList;
-	void addActionListToGraph(NPCActionList l, bool (*condition)());
+	Graph tempGraphName;
+	TaskList currentTaskList;
+	void addActionListToGraph(TaskList l, bool (*condition)());
 	
+
+
+
+
+	void parseScriptFile(std::string filename);
 
 
 };

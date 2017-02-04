@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.h"
-#include "opengl-wrapper\GLFW\include\GLFW\glfw3.h"
+//#include "opengl-wrapper\GLFW\include\GLFW\glfw3.h"
 
 class Input
 {

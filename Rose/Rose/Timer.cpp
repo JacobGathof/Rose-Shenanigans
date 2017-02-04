@@ -1,6 +1,7 @@
 #include "Timer.h"
 
 
+
 float Timer::dt = 0;
 float Timer::gameTime = 0;
 float Timer::currentTime = 0;
@@ -11,16 +12,17 @@ int Timer::frameLimit = 120;
 int Timer::FPS;
 bool Timer::tick = false;
 bool Timer::slow = false;
+sf::Clock Timer::clock;
 
 void Timer::wait(){
 
 	tick = false;
 
-	currentTime = (float)glfwGetTime();
+	currentTime = clock.getElapsedTime().asSeconds();
 	dt = currentTime - lastTime;
 
 	while (dt < 1.0f / frameLimit) {
-		currentTime = (float)glfwGetTime();
+		currentTime = clock.getElapsedTime().asSeconds();
 		dt = currentTime - lastTime;
 	}
 
@@ -33,9 +35,9 @@ void Timer::wait(){
 		FPS = 0;
 	}
 
-	if (currentTime - lastTick >= 0.015625f) {
+	if (currentTime - lastTick >= 0.125f) {
 		tick = true;
-		lastTick += 0.015625f;
+		lastTick += 0.125f;
 		//Find a more stable Tick method
 	}
 

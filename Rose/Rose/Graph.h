@@ -1,65 +1,48 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include "NPCAction.h"
+#include "Task.h"
 
 
-class Graph
-{
+class Graph{
+
 public:
+	
+	
+	std::vector<TaskList> data;
 
-	class Node {
-	public:
-
-		Node(NPCActionList data, bool(*func)()) : data(data), condition(func) {};
-		NPCActionList data;
-		std::vector<Node*> nodes;
-		bool (*condition)();
-		void addNode(Node* n) {
-			nodes.push_back(n);
-		};
+	void addTaskList(TaskList t) {
+		data.push_back(t);
 	};
 
-
-	Node* currentNode;
-	std::vector<Node*> allNodes;
+	int currentIndex = 0;
 
 	void update() {
-		for (auto n : currentNode->nodes) {
-			if (n->condition()) {
-				currentNode = n;
-				return;
-			}
-		}
-		currentNode = 0;
+
+		int nextIndex = data[currentIndex].nextIndex;
+		currentIndex = nextIndex;
+
 	}
 
-	NPCActionList getData() {
-		return currentNode->data; 
+	TaskList getData() {
+		return data[currentIndex]; 
 	}
 
 	void destroy() {
-		for (auto n : allNodes) {
-			delete n;
+		for (auto t : data) {
+			for (auto task : t.actions) {
+				delete task;
+			}
 		}
 	}
 
-	void connectNode(Node* n1, Node* n2) {
-		n1->addNode(n2);
-	}
-
-	void addNode(Node * n) {
-		allNodes.push_back(n);
-	}
 
 	Graph() {
-		Node * n = new Node(NPCActionList(), []() {return true; });
-		currentNode = n;
-		allNodes.push_back(n);
+		data.push_back(TaskList());
 	}
 
 	~Graph() {
 	};
-
+	
 };
 

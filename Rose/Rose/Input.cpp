@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Screen.h"
 #include "Menu.h"
+#include "opengl-wrapper\SFML\include\SFML\Window.hpp"
 
 bool Input::keys[];
 bool Input::mouse[];
@@ -24,11 +25,10 @@ void Input::processInput(float dt)
 		case GameState::LOCKED: LockedLogic(); break;
 
 	}
-		
 
 	
-	if (keys[GLFW_KEY_T]) {
-		keys[GLFW_KEY_T] = false;
+	if (keys[sf::Keyboard::T]) {
+		keys[sf::Keyboard::T] = false;
 		if (!UIManager::textbox.currentlyWriting) {
 			UIManager::textbox.advanceQueue();
 		}
@@ -57,18 +57,18 @@ NPC* Input::findClosestNPC(Vector2f position){
 
 void Input::MenuLogic(){
 
-	if (keys[GLFW_KEY_W]) {
-		keys[GLFW_KEY_W] = false;
+	if (keys[sf::Keyboard::W]) {
+		keys[sf::Keyboard::W] = false;
 		Menu::setSelectedIndex(-1);
 	}
 
-	if (keys[GLFW_KEY_S]) {
-		keys[GLFW_KEY_S] = false;
+	if (keys[sf::Keyboard::S]) {
+		keys[sf::Keyboard::S] = false;
 		Menu::setSelectedIndex(1);
 	}
 
-	if (keys[GLFW_KEY_SPACE]) {
-		keys[GLFW_KEY_SPACE] = false;
+	if (keys[sf::Keyboard::Space]) {
+		keys[sf::Keyboard::Space] = false;
 		Menu::actOnSelection();
 	}
 
@@ -78,20 +78,20 @@ void Input::MenuLogic(){
 void Input::GameLogic(float dt){
 
 	Vector2f movement;
-	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP]) {
+	if (keys[sf::Keyboard::W] || keys[sf::Keyboard::Up]) {
 		movement = movement + Vector2f(0, 1);
 	}
-	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN]) {
+	if (keys[sf::Keyboard::S] || keys[sf::Keyboard::Down]) {
 		movement = movement + Vector2f(0, -1);
 	}
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT]) {
+	if (keys[sf::Keyboard::A] || keys[sf::Keyboard::Left]) {
 		movement = movement + Vector2f(-1, 0);
 	}
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT]) {
+	if (keys[sf::Keyboard::D] || keys[sf::Keyboard::Right]) {
 		movement = movement + Vector2f(1, 0);
 	}
 
-	if (keys[GLFW_KEY_1] || keys[GLFW_KEY_DOWN]) {
+	if (keys[sf::Keyboard::Num1] || keys[sf::Keyboard::Down]) {
 		game->player.attack(0);
 	}
 	else {
@@ -104,8 +104,8 @@ void Input::GameLogic(float dt){
 	game->player.move(movement.normalize(), dt);
 
 
-	if (keys[GLFW_KEY_Y]) {
-		keys[GLFW_KEY_Y] = false;
+	if (keys[sf::Keyboard::Y]) {
+		keys[sf::Keyboard::Y] = false;
 		NPC* n = findClosestNPC(game->player.position);
 
 		if (n == 0);
@@ -114,95 +114,95 @@ void Input::GameLogic(float dt){
 		}
 	}
 
-	if (keys[GLFW_KEY_J] && keys[GLFW_KEY_K]) {
+	if (keys[sf::Keyboard::J] && keys[sf::Keyboard::K]) {
 		game->player.attack(0);
 	}
 
-	if (keys[GLFW_KEY_M]) {
-		keys[GLFW_KEY_M] = false;
+	if (keys[sf::Keyboard::M]) {
+		keys[sf::Keyboard::M] = false;
 		game->player.position += -40.0f*(game->player.position2 - game->player.position1);
 	}
 
-	if (keys[GLFW_KEY_N]) {
+	if (keys[sf::Keyboard::N]) {
 		Screen::fadeWhite();
 	}
 
 
-	if (keys[GLFW_KEY_B]) {
-		keys[GLFW_KEY_B] = false;
+	if (keys[sf::Keyboard::B]) {
+		keys[sf::Keyboard::B] = false;
 		testVar = !testVar;
 		//Camera::setFocus(NPCManager::npcs["Rose"]);
 	}
 
-	if (keys[GLFW_KEY_LEFT_BRACKET]) {
-		keys[GLFW_KEY_LEFT_BRACKET] = false;
+	if (keys[sf::Keyboard::LBracket]) {
+		keys[sf::Keyboard::LBracket] = false;
 		(++tilePointer) %= 64;
 	}
 
-	if (keys[GLFW_KEY_RIGHT_BRACKET]) {
-		keys[GLFW_KEY_RIGHT_BRACKET] = false;
+	if (keys[sf::Keyboard::RBracket]) {
+		keys[sf::Keyboard::RBracket] = false;
 		(--tilePointer) %= 64;
 	}
 
-	if (keys[GLFW_KEY_P]) {
-		keys[GLFW_KEY_P] = false;
+	if (keys[sf::Keyboard::P]) {
+		keys[sf::Keyboard::P] = false;
 		WorldManager::getCurrentWorld()->terrain->setTile(game->player.position + game->player.scale / 2, tilePointer);
 	}
 
-	if (keys[GLFW_KEY_X]) {
-		keys[GLFW_KEY_X] = false;
+	if (keys[sf::Keyboard::X]) {
+		keys[sf::Keyboard::X] = false;
 		WorldManager::getCurrentWorld()->terrain->deleteChunk(game->player.position + game->player.scale / 2);
 	}
 
-	if (keys[GLFW_KEY_9]) {
-		keys[GLFW_KEY_9] = false;
+	if (keys[sf::Keyboard::Num9]) {
+		keys[sf::Keyboard::Num9] = false;
 		WorldManager::currentWorld->terrain->saveTerrain(WorldManager::currentWorld->name);
 	}
 
-	if (keys[GLFW_KEY_J]) {
-		keys[GLFW_KEY_J] = false;
+	if (keys[sf::Keyboard::J]) {
+		keys[sf::Keyboard::J] = false;
 		game->player.useSkill(0);
 	}
-	if (keys[GLFW_KEY_K]) {
-		keys[GLFW_KEY_K] = false;
+	if (keys[sf::Keyboard::K]) {
+		keys[sf::Keyboard::K] = false;
 		game->player.useSkill(1);
 	}
-	if (keys[GLFW_KEY_L]) {
-		keys[GLFW_KEY_L] = false;
+	if (keys[sf::Keyboard::L]) {
+		keys[sf::Keyboard::L] = false;
 		game->player.useSkill(2);
 	}
-	if (keys[GLFW_KEY_SEMICOLON]) {
-		keys[GLFW_KEY_SEMICOLON] = false;
+	if (keys[sf::Keyboard::SemiColon]) {
+		keys[sf::Keyboard::SemiColon] = false;
 		game->player.useSkill(3);
 	}
-	if (keys[GLFW_KEY_U]) {
-		keys[GLFW_KEY_U] = false;
+	if (keys[sf::Keyboard::U]) {
+		keys[sf::Keyboard::U] = false;
 		game->player.useSkill(4);
 	}
-	//if (keys[GLFW_KEY_I]) {
-	//	keys[GLFW_KEY_I] = false;
+	//if (keys[sf::Keyboard::I]) {
+	//	keys[sf::Keyboard::I] = false;
 	//	game->player.useSkill(5);
 	//}
-	//if (keys[GLFW_KEY_O]) {
-	//	keys[GLFW_KEY_O] = false;
+	//if (keys[sf::Keyboard::O]) {
+	//	keys[sf::Keyboard::O] = false;
 	//	game->player.useSkill(6);
 	//}
-	//if (keys[GLFW_KEY_P]) {
-	//	keys[GLFW_KEY_P] = false;
+	//if (keys[sf::Keyboard::P]) {
+	//	keys[sf::Keyboard::P] = false;
 	//	game->player.useSkill(7);
 	//}
 	//testing
-	if (keys[GLFW_KEY_COMMA]) {
-		keys[GLFW_KEY_COMMA] = false;
+	if (keys[sf::Keyboard::Comma]) {
+		keys[sf::Keyboard::Comma] = false;
 		game->player.levelUpSkill(1);
 	}
 
-	if (keys[GLFW_KEY_I]) {
-		keys[GLFW_KEY_I] = false;
+	if (keys[sf::Keyboard::I]) {
+		keys[sf::Keyboard::I] = false;
 		game->state = GameState::INVENTORY;
 	}
 
-	if (keys[GLFW_KEY_PERIOD]) {
+	if (keys[sf::Keyboard::Period]) {
 		Weapon weapon = Weapon(0, 0, 0, Vector2f(0, 0), 1, Echo_Tex);
 		game->player.addToInventory(weapon);
 	}
@@ -210,29 +210,29 @@ void Input::GameLogic(float dt){
 
 void Input::InventoryLogic()
 {
-	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP]) {
-		keys[GLFW_KEY_W] = false;
+	if (keys[sf::Keyboard::W] || keys[sf::Keyboard::Up]) {
+		keys[sf::Keyboard::W] = false;
 		game->player.inventory.MoveUp();
 	}
-	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN]) {
-		keys[GLFW_KEY_S] = false;
+	if (keys[sf::Keyboard::S] || keys[sf::Keyboard::Down]) {
+		keys[sf::Keyboard::S] = false;
 		game->player.inventory.MoveDown();
 	}
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT]) {
-		keys[GLFW_KEY_A] = false;
+	if (keys[sf::Keyboard::A] || keys[sf::Keyboard::Left]) {
+		keys[sf::Keyboard::A] = false;
 		game->player.inventory.MoveLeft();
 	}
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT]) {
-		keys[GLFW_KEY_D] = false;
+	if (keys[sf::Keyboard::D] || keys[sf::Keyboard::Right]) {
+		keys[sf::Keyboard::D] = false;
 		game->player.inventory.MoveRight();
 	}
-	if (keys[GLFW_KEY_I]) {
-		keys[GLFW_KEY_I] = false;
+	if (keys[sf::Keyboard::I]) {
+		keys[sf::Keyboard::I] = false;
 		game->player.inventoryOpen = false;
 		//int displaying = game->player.ToggleInventory();
 		game->state = GameState::FREE;
 	}
-	if (keys[GLFW_KEY_E]) {
+	if (keys[sf::Keyboard::E]) {
 		game->player.inventory.Select();
 	}
 }

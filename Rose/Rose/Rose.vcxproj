@@ -88,16 +88,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>opengl-wrapper\GLEW\include;opengl-wrapper\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>opengl-wrapper\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>opengl-wrapper\SFML\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copyShaders.bat $(TargetDir)/Resources</Command>
+      <Command>copyResources.bat $(TargetDir)/Resources</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,18 +128,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>opengl-wrapper\GLEW\include;opengl-wrapper\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>opengl-wrapper\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>opengl-wrapper\GLEW\lib\Release\Win32;opengl-wrapper\GLFW\lib-vc2013-x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>opengl-wrapper\SFML\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copyShaders.bat $(TargetDir)/Resources</Command>
+      <Command>copyResources.bat $(TargetDir)/Resources</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,6 +172,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gem.h" />
+    <ClInclude Include="gl3w.h" />
+    <ClInclude Include="glcorearb.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Info.h" />
     <ClInclude Include="Input.h" />
@@ -182,7 +184,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="NPC.h" />
-    <ClInclude Include="NPCAction.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gem.cpp" />
+    <ClCompile Include="gl3w.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Info.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -227,7 +230,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="NPC.cpp" />
-    <ClCompile Include="NPCAction.cpp" />
+    <ClCompile Include="Task.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -305,7 +308,7 @@
     <Image Include="SkySlime.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="copyShaders.bat" />
+    <None Include="copyResources.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

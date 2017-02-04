@@ -435,9 +435,7 @@ Model::~Model() {
 #pragma region SHADERPROGRAM
 
 
-void ShaderProgram::compileShader(char * file_vertex, char * file_geo, char * file_fragment)
-{
-
+void ShaderProgram::compileShader(char * file_vertex, char * file_geo, char * file_fragment){
 	shader_program = glCreateProgram();
 
 	int shader_vertex = glCreateShader(GL_VERTEX_SHADER);

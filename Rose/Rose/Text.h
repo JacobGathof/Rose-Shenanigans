@@ -1,5 +1,5 @@
 #pragma once
-#include "opengl-wrapper\GLEW\include\GL\glew.h"
+#include "gl3w.h"
 #include "Vector2f.h"
 #include "Color.h"
 #include <vector>

@@ -3,10 +3,11 @@
 #include "WorldManager.h"
 #include "UI_Manager.h"
 #include "Info.h"
+#include <sstream>
 
 
 NPC::NPC(Vector2f pos, Vector2f scale, TextureName texName, float speed) : Entity(pos, scale, texName, speed){
-	name = "gary";
+	name = "";
 }
 
 NPC::NPC()
@@ -15,32 +16,29 @@ NPC::NPC()
 
 
 NPC::~NPC(){
-	for (auto a : actionGraph.allNodes) {
-		for (auto b : a->data.actions) {
-			delete b;
-		}
-	}
-	actionGraph.destroy();
+	
+	tempGraphName.destroy();
 }
 
 void NPC::update(float dt){
 
-	if (!currentActionList.isEmpty()) {
-		NPCAction * a = currentActionList.getAction();
+	/*
+	if (!currentTaskList.isFinished()) {
+		Task * t = currentTaskList.getAction();
 
-		a->target = this;
-		a->act(dt);
-		if (a->finished) {
-			currentActionList.advance();
+		t->target = this;
+		t->act(dt);
+		if (t->finished) {
+			currentTaskList.advance();
 		}
 	}
 
 	else {
-		currentActionList.reset();
-		actionGraph.update();
-		currentActionList = actionGraph.getData();
+		currentTaskList.reset();
+		tempGraphName.update();
+		currentTaskList = tempGraphName.getData();
 	}
-
+	*/
 	triggered = false;
 
 }
@@ -61,8 +59,7 @@ bool NPC::print(std::string str){
 	return true;
 }
 
-bool NPC::moveTo(Vector2f endPoint, float dt)
-{
+bool NPC::moveTo(Vector2f endPoint, float dt){
 
 	if (abs(position.x - endPoint.x) > 1.0f) {
 		move(Vector2f(1.0f * (position.x - endPoint.x < 0.0 ? 1 : -1), 0), dt);
@@ -95,10 +92,58 @@ void NPC::act(){
 
 }
 
-void NPC::addActionListToGraph(NPCActionList l, bool(*condition)()){
+void NPC::addActionListToGraph(TaskList l, bool(*condition)()){
 
 	//Graph<NPCActionList>::Node * node = new Graph<NPCActionList>::Node(l, condition);
 	//actionGraph.addNode(node);
+
+}
+
+void NPC::parseScriptFile(std::string filename){
+
+	std::cout << "Loading " << name << std::endl;
+
+	std::ifstream file;
+	file.open(filename, file.in);
+
+	char lineBuffer[65536];
+	char b1[1];
+
+
+	std::stringstream line;
+
+	while (!file.eof()) {
+
+		file.getline(lineBuffer, 65536);
+
+		line << lineBuffer;
+		//std::cout << line.str();
+
+	
+		line.getline(b1, 1);
+
+
+		if (b1[0] == '\0') {
+			continue;
+		}
+
+		if (b1[0] == '#') {
+
+		}
+
+		/*
+		while (!line.eof()) {
+
+			line.getline(buffer, 4, ',');
+			if (buffer[0] == '\0') continue;
+			int t = std::stoi(&buffer[0]);
+			tileTextures[ptr++] = t;
+		}
+		*/
+		line.str("");
+
+	}
+	std::cout << "Loaded " << name << std::endl;
 
 }
 
@@ -109,20 +154,25 @@ void NPC::addActionListToGraph(NPCActionList l, bool(*condition)()){
 
 
 
-Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), TextureName::Echo_Tex, 50)
-{
+Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), TextureName::Echo_Tex, 50){
 
-	
-	NPCAction* arr[] = {
-		new NPCAction(WAIT), 
-		new NPCAction(TALK, "Welcome to Avantheim!"),
-		new NPCAction(WAIT_FOR_TEXTBOX),
+
+	Task* arr[] = {
+		new Task(WAIT), 
+		new Task(TALK, "Welcome to Avantheim!"),
+		new Task(WAIT_FOR_TEXTBOX),
 		0
 	};
-	NPCActionList list = NPCActionList(arr);
-	Graph::Node * node_1 = new Graph::Node(list, []() {return true; });
 
+	Task * arr0[] = {
+		new Task(TALK,"Hello Adventurer, Welcome to the town of Astraeus"),
+		new Task(TALK,"My name is Echo, who are you?"),
+		new Task(TALK,"That's fine, you don't need to answer."),
+		0 };
 
+	//Graph::Node * node_1 = new Graph::Node(arr, []() {return true; });
+
+	/*
 	NPCActionList list2 = NPCActionList();
 	list2.addAction(new NPCAction(WAIT));
 	list2.addAction(new NPCAction(TALK, "OH! You have the key! You may certainly pass now"));
@@ -158,11 +208,13 @@ Echo::Echo() : NPC(Vector2f(0, 100), Vector2f(32, 32), TextureName::Echo_Tex, 50
 	actionGraph.addNode(node_2);
 	actionGraph.addNode(node_3);
 	actionGraph.addNode(node_4);
-	
+	*/
+
 }
 
 Jibril::Jibril() : NPC(Vector2f(-100, 100), Vector2f(32, 32), TextureName::Jibril_Tex, 50)
 {
+	/*
 	NPCActionList list = NPCActionList();
 	list.addAction(new NPCAction(WAIT));
 	list.addAction(new NPCAction(TALK, "Hello Hero, what brings you here"));
@@ -187,6 +239,6 @@ Jibril::Jibril() : NPC(Vector2f(-100, 100), Vector2f(32, 32), TextureName::Jibri
 
 	actionGraph.addNode(node_1);
 	actionGraph.addNode(node_2);
-
+	*/
 
 }

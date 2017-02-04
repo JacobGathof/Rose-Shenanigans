@@ -1,5 +1,5 @@
 #pragma once
-#include "opengl-wrapper\GLFW\include\GLFW\glfw3.h"
+#include "opengl-wrapper\SFML\include\SFML\System\Clock.hpp"
 
 class Timer
 {
@@ -23,6 +23,7 @@ public:
 	static void disableTick() { tick = false; }
 
 	static void wait();
+	static sf::Clock clock;
 
 
 	Timer() {};
